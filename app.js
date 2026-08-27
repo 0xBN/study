@@ -9,6 +9,7 @@ const state = {
   rate: 1,
   playing: false,
   parsed: new Map(),
+  syncedAt: null,
 };
 
 let playGen = 0;
@@ -225,6 +226,16 @@ function renderNav() {
     ? `${parsedWeek.dates}. ${chunks.length} chunks in this filter.`
     : `${chunks.length} chunks.`;
   document.getElementById("missing").textContent = parsedWeek?.missing || "";
+  const syncedEl = document.getElementById("synced");
+  if (syncedEl) {
+    syncedEl.textContent = state.syncedAt
+      ? "Last sync " +
+        new Date(state.syncedAt).toLocaleString(undefined, {
+          dateStyle: "medium",
+          timeStyle: "short",
+        })
+      : "";
+  }
   void meta;
 }
 
@@ -341,6 +352,7 @@ function bind() {
 async function boot() {
   const manifest = await fetch("./manifest.json").then((r) => r.json());
   state.weeks = manifest.weeks;
+  state.syncedAt = manifest.syncedAt || null;
   const ls = loadLs();
   const hash = parseHash();
   state.currentWeekId = hash.weekId || ls.weekId || manifest.current;

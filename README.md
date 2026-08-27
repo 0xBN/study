@@ -16,4 +16,6 @@ From the omscs repo:
 python scripts/sync-study-know.py --dest ../study
 ```
 
-Then commit and push this repo. A GitHub Action in omscs can do the same when `STUDY_DEPLOY_TOKEN` is set (PAT with `repo` on `0xBN/study`).
+Then commit and push this repo.
+
+Or from GitHub: omscs → Actions → **Sync study Pages** → Run workflow. Manual only; not on a schedule and not on every Know push. Needs secret `STUDY_DEPLOY_TOKEN` (PAT with `repo` on `0xBN/study`). Last sync is in Checkpoint on the site.
