@@ -1,0 +1,13 @@
+{
+  "current": "01",
+  "weeks": [
+    {
+      "id": "01",
+      "file": "weeks/week-01-know.md"
+    },
+    {
+      "id": "02",
+      "file": "weeks/week-02-know.md"
+    }
+  ]
+}
