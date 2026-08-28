@@ -174,6 +174,38 @@ h2 {
   margin: 0;
 }
 
+.band {
+  margin-top: 0.55rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 6px;
+  background: var(--fill);
+}
+
+.band-label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+
+.band-quiz {
+  border-left: 3px solid var(--accent);
+}
+
+.band-quiz .band-label {
+  color: var(--accent);
+}
+
+.band-trap {
+  border-left: 3px solid var(--text);
+}
+
+.band-plain {
+  border-left: 3px solid var(--line);
+}
+
 a {
   color: var(--accent);
 }

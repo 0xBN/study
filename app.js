@@ -70,6 +70,40 @@ function speakText(text) {
     .trim();
 }
 
+function parseBands(text) {
+  const bands = [];
+  let current = null;
+  text.split("\n").forEach((line) => {
+    const labeled = line.match(
+      /^- \*\*(Plain|Quiz voice|Trap):\*\*\s*(.*)$/i,
+    );
+    if (labeled) {
+      if (current) bands.push(current);
+      const key = labeled[1].toLowerCase();
+      const kind = key.startsWith("plain")
+        ? "plain"
+        : key.startsWith("trap")
+          ? "trap"
+          : "quiz";
+      current = { kind, text: labeled[2] };
+      return;
+    }
+    if (current) {
+      const extra = line.replace(/^- /, "").trim();
+      if (extra) current.text += " " + extra;
+      return;
+    }
+  });
+  if (current) bands.push(current);
+  if (bands.length) return bands;
+  const leftover = text
+    .split("\n")
+    .filter((l) => l.trim() && !l.startsWith("|") && l.trim() !== "---")
+    .join("\n")
+    .trim();
+  return leftover ? [{ kind: "body", text: leftover }] : [];
+}
+
 function parseKnow(md, weekId) {
   const parts = md.split(/^## /m);
   const header = parts[0] || "";
@@ -94,23 +128,58 @@ function parseKnow(md, weekId) {
     if (/6460/.test(heading)) course = "6460";
     else if (/6795/.test(heading)) course = "6795";
     const body = (nl === -1 ? "" : part.slice(nl + 1)).trim();
-    const paras = body
-      .split(/\n{2,}/)
-      .map((p) => p.trim())
-      .filter((p) => p && p !== "---");
-    paras.forEach((para, i) => {
-      if (para.startsWith("|")) return;
-      const titleMatch = para.match(/^\*\*([^*]+)\*\*/);
-      const title = titleMatch
-        ? titleMatch[1].replace(/\.\s*$/, "")
-        : heading;
+    const topics = body.split(/^### /m);
+    const pushChunk = (title, text, i) => {
+      const bands = parseBands(text);
+      if (!bands.length) return;
+      const raw = bands
+        .map((b) => {
+          const prefix =
+            b.kind === "plain"
+              ? "Plain. "
+              : b.kind === "quiz"
+                ? "Quiz voice. "
+                : b.kind === "trap"
+                  ? "Trap. "
+                  : "";
+          return prefix + b.text;
+        })
+        .join(" ");
       chunks.push({
         id: "w" + weekId + "-s" + sIdx + "-" + i,
         course,
         section: heading,
         title,
-        raw: para,
+        bands,
+        raw,
       });
+    };
+    if (topics.length === 1) {
+      body
+        .split(/\n{2,}/)
+        .map((p) => p.trim())
+        .filter((p) => p && p !== "---" && !p.startsWith("|"))
+        .forEach((para, i) => {
+          const titleMatch = para.match(/^\*\*([^*]+)\*\*/);
+          const title = titleMatch
+            ? titleMatch[1].replace(/\.\s*$/, "")
+            : "";
+          const text = titleMatch
+            ? para.replace(/^\*\*[^*]+\*\*\s*/, "")
+            : para;
+          pushChunk(title, text, i);
+        });
+      return;
+    }
+    topics.forEach((topic, i) => {
+      if (i === 0) {
+        pushChunk("", topic, i);
+        return;
+      }
+      const tNl = topic.indexOf("\n");
+      const title = (tNl === -1 ? topic : topic.slice(0, tNl)).trim();
+      const text = tNl === -1 ? "" : topic.slice(tNl + 1).trim();
+      pushChunk(title, text, i);
     });
   });
   return { dates, missing, chunks };
@@ -185,35 +254,51 @@ function renderNav() {
   const chunks = visibleChunks();
   const idx = Math.max(0, chunks.findIndex((c) => c.id === state.chunkId));
   const current = chunks[idx];
-  document.getElementById("open-sheet").textContent =
-    weekLabel(state.currentWeekId) + " · " + state.course;
-  document.getElementById("now").textContent = current
-    ? `${current.title} · ${idx + 1}/${chunks.length}${state.playing ? " · playing" : ""}`
-    : "";
-  document.getElementById("weeks").innerHTML = state.weeks
-    .map((w) => {
-      const active = w.id === state.currentWeekId ? " active" : "";
-      const parsed = state.parsed.get(w.id);
-      const dates = parsed?.dates ? ` · ${parsed.dates}` : "";
-      return `<button type="button" class="${active}" data-week="${w.id}">Week ${Number(w.id)}${dates}</button>`;
-    })
-    .join("");
+  const menu = $("open-sheet");
+  if (menu) {
+    menu.textContent = weekLabel(state.currentWeekId) + " · " + state.course;
+  }
+  const now = $("now");
+  if (now) {
+    now.textContent = current
+      ? `${current.title} · ${idx + 1}/${chunks.length}${state.playing ? " · playing" : ""}`
+      : "";
+  }
+  const weeksEl = $("weeks");
+  if (weeksEl) {
+    weeksEl.innerHTML = state.weeks
+      .map((w) => {
+        const active = w.id === state.currentWeekId ? " active" : "";
+        const parsed = state.parsed.get(w.id);
+        const dates = parsed?.dates ? ` · ${parsed.dates}` : "";
+        return `<button type="button" class="${active}" data-week="${w.id}">Week ${Number(w.id)}${dates}</button>`;
+      })
+      .join("");
+  }
   document.querySelectorAll("[data-course]").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.course === state.course);
   });
-  document.getElementById("rate").value = String(state.rate);
+  const rate = $("rate");
+  if (rate) rate.value = String(state.rate);
   const parsedWeek = state.parsed.get(state.currentWeekId);
-  document.getElementById("checkpoint").textContent = parsedWeek?.dates
-    ? `${parsedWeek.dates}. ${chunks.length} chunks.`
-    : `${chunks.length} chunks.`;
-  document.getElementById("missing").textContent = parsedWeek?.missing || "";
-  document.getElementById("synced").textContent = state.syncedAt
-    ? "Last sync " +
-      new Date(state.syncedAt).toLocaleString(undefined, {
-        dateStyle: "medium",
-        timeStyle: "short",
-      })
-    : "";
+  const checkpoint = $("checkpoint");
+  if (checkpoint) {
+    checkpoint.textContent = parsedWeek?.dates
+      ? `${parsedWeek.dates}. ${chunks.length} chunks.`
+      : `${chunks.length} chunks.`;
+  }
+  const missing = $("missing");
+  if (missing) missing.textContent = parsedWeek?.missing || "";
+  const synced = $("synced");
+  if (synced) {
+    synced.textContent = state.syncedAt
+      ? "Last sync " +
+        new Date(state.syncedAt).toLocaleString(undefined, {
+          dateStyle: "medium",
+          timeStyle: "short",
+        })
+      : "";
+  }
 }
 
 function renderArticle() {
@@ -240,7 +325,26 @@ function renderArticle() {
       lastSection = c.section;
     }
     const active = c.id === state.chunkId ? " active" : "";
-    html += `<div class="chunk${active}" id="${c.id}" data-chunk="${c.id}"><h3>${inlineHtml(c.title)}</h3><p>${inlineHtml(c.raw)}</p></div>`;
+    const title =
+      c.title && c.title !== c.section
+        ? `<h3>${inlineHtml(c.title)}</h3>`
+        : "";
+    const bands = (c.bands && c.bands.length
+      ? c.bands
+      : [{ kind: "body", text: c.raw }]
+    )
+      .map((b) => {
+        if (b.kind === "body") return `<p>${inlineHtml(b.text)}</p>`;
+        const label =
+          b.kind === "plain"
+            ? "Plain"
+            : b.kind === "quiz"
+              ? "Quiz voice"
+              : "Trap";
+        return `<div class="band band-${b.kind}"><span class="band-label">${label}</span><p>${inlineHtml(b.text)}</p></div>`;
+      })
+      .join("");
+    html += `<div class="chunk${active}" id="${c.id}" data-chunk="${c.id}">${title}${bands}</div>`;
   });
   article.innerHTML = html;
   renderNav();
