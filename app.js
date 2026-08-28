@@ -9,6 +9,9 @@ const state = {
   playing: false,
   parsed: new Map(),
   syncedAt: null,
+  collapsed: {},
+  cursorByView: {},
+  scrollByView: {},
 };
 
 let playGen = 0;
@@ -29,8 +32,28 @@ function saveLs() {
       course: state.course,
       chunkId: state.chunkId,
       rate: state.rate,
+      collapsed: state.collapsed,
+      cursorByView: state.cursorByView,
+      scrollByView: state.scrollByView,
     }),
   );
+}
+
+function viewKey() {
+  return state.currentWeekId + "-" + state.course;
+}
+
+function stashView() {
+  state.scrollByView[viewKey()] = window.scrollY;
+  if (state.chunkId) state.cursorByView[viewKey()] = state.chunkId;
+}
+
+function setCurrent(id) {
+  if (state.chunkId && state.chunkId !== id) {
+    state.collapsed[state.chunkId] = true;
+  }
+  delete state.collapsed[id];
+  state.chunkId = id;
 }
 
 function parseHash() {
@@ -225,11 +248,9 @@ function speakFrom() {
       document.getElementById("play").textContent = "Play";
       return;
     }
-    state.chunkId = chunks[n].id;
+    setCurrent(chunks[n].id);
     saveLs();
-    renderArticle();
-    const node = document.getElementById(chunks[n].id);
-    if (node) node.scrollIntoView({ block: "center" });
+    renderArticle({ scrollId: chunks[n].id });
     const spoken = speakText(chunks[n].title + ". " + chunks[n].raw);
     if (!synth) {
       const words = spoken.split(/\s+/).length;
@@ -301,7 +322,8 @@ function renderNav() {
   }
 }
 
-function renderArticle() {
+function renderArticle(opts) {
+  const keepY = opts && typeof opts.y === "number" ? opts.y : window.scrollY;
   const parsed = state.parsed.get(state.currentWeekId);
   const article = document.getElementById("article");
   if (!parsed) {
@@ -325,29 +347,37 @@ function renderArticle() {
       lastSection = c.section;
     }
     const active = c.id === state.chunkId ? " active" : "";
-    const title =
-      c.title && c.title !== c.section
-        ? `<h3>${inlineHtml(c.title)}</h3>`
-        : "";
+    const closed = state.collapsed[c.id] ? " collapsed" : "";
+    const label = c.title && c.title !== c.section ? c.title : "Overview";
+    const open = closed ? "false" : "true";
+    const title = `<button type="button" class="chunk-toggle" aria-expanded="${open}">${inlineHtml(label)}</button>`;
     const bands = (c.bands && c.bands.length
       ? c.bands
       : [{ kind: "body", text: c.raw }]
     )
       .map((b) => {
         if (b.kind === "body") return `<p>${inlineHtml(b.text)}</p>`;
-        const label =
+        const bandLabel =
           b.kind === "plain"
             ? "Plain"
             : b.kind === "quiz"
               ? "Quiz voice"
               : "Trap";
-        return `<div class="band band-${b.kind}"><span class="band-label">${label}</span><p>${inlineHtml(b.text)}</p></div>`;
+        return `<div class="band band-${b.kind}"><span class="band-label">${bandLabel}</span><p>${inlineHtml(b.text)}</p></div>`;
       })
       .join("");
-    html += `<div class="chunk${active}" id="${c.id}" data-chunk="${c.id}">${title}${bands}</div>`;
+    html += `<div class="chunk${active}${closed}" id="${c.id}" data-chunk="${c.id}">${title}<div class="chunk-body">${bands}</div></div>`;
   });
   article.innerHTML = html;
   renderNav();
+  requestAnimationFrame(() => {
+    if (opts && opts.scrollId) {
+      const node = document.getElementById(opts.scrollId);
+      if (node) node.scrollIntoView({ block: "center" });
+      return;
+    }
+    window.scrollTo(0, keepY);
+  });
 }
 
 async function loadWeek(id) {
@@ -360,14 +390,13 @@ async function loadWeek(id) {
 
 async function showWeek(id) {
   cancelSpeech();
+  stashView();
   state.currentWeekId = id;
   await loadWeek(id);
-  const chunks = visibleChunks();
-  if (chunks.length) state.chunkId = chunks[0].id;
+  state.chunkId = state.cursorByView[viewKey()] || null;
   saveLs();
   writeHash();
-  renderArticle();
-  window.scrollTo(0, 0);
+  renderArticle({ y: state.scrollByView[viewKey()] || 0 });
 }
 
 function $(id) {
@@ -406,10 +435,12 @@ function bind() {
   document.querySelectorAll("[data-course]").forEach((btn) => {
     btn.addEventListener("click", () => {
       cancelSpeech();
+      stashView();
       state.course = btn.dataset.course;
+      state.chunkId = state.cursorByView[viewKey()] || null;
       saveLs();
       writeHash();
-      renderArticle();
+      renderArticle({ y: state.scrollByView[viewKey()] || 0 });
     });
   });
   on("rate", "change", (e) => {
@@ -426,9 +457,9 @@ function bind() {
     const idx = chunks.findIndex((c) => c.id === state.chunkId);
     if (idx > 0) {
       cancelSpeech();
-      state.chunkId = chunks[idx - 1].id;
+      setCurrent(chunks[idx - 1].id);
       saveLs();
-      renderArticle();
+      renderArticle({ scrollId: chunks[idx - 1].id });
     }
   });
   on("next", "click", () => {
@@ -436,18 +467,42 @@ function bind() {
     const idx = chunks.findIndex((c) => c.id === state.chunkId);
     if (idx >= 0 && idx < chunks.length - 1) {
       cancelSpeech();
-      state.chunkId = chunks[idx + 1].id;
+      setCurrent(chunks[idx + 1].id);
       saveLs();
-      renderArticle();
+      renderArticle({ scrollId: chunks[idx + 1].id });
     }
   });
   on("article", "click", (e) => {
+    const toggle = e.target.closest(".chunk-toggle");
     const chunk = e.target.closest("[data-chunk]");
     if (!chunk) return;
+    if (toggle) {
+      const id = chunk.dataset.chunk;
+      if (state.collapsed[id]) delete state.collapsed[id];
+      else state.collapsed[id] = true;
+      saveLs();
+      renderArticle();
+      return;
+    }
     cancelSpeech();
-    state.chunkId = chunk.dataset.chunk;
+    setCurrent(chunk.dataset.chunk);
     saveLs();
     renderArticle();
+  });
+  window.addEventListener(
+    "scroll",
+    () => {
+      clearTimeout(window.__studyScroll);
+      window.__studyScroll = setTimeout(() => {
+        state.scrollByView[viewKey()] = window.scrollY;
+        saveLs();
+      }, 200);
+    },
+    { passive: true },
+  );
+  window.addEventListener("pagehide", () => {
+    stashView();
+    saveLs();
   });
 }
 
@@ -460,15 +515,21 @@ async function boot() {
   state.currentWeekId = hash.weekId || ls.weekId || manifest.current;
   const course = hash.course || ls.course;
   state.course = course === "6795" ? "6795" : "6460";
-  state.chunkId = ls.chunkId || null;
   state.rate = Number(ls.rate) || 1;
+  state.collapsed = ls.collapsed && typeof ls.collapsed === "object" ? ls.collapsed : {};
+  state.cursorByView =
+    ls.cursorByView && typeof ls.cursorByView === "object" ? ls.cursorByView : {};
+  state.scrollByView =
+    ls.scrollByView && typeof ls.scrollByView === "object" ? ls.scrollByView : {};
   if (!state.weeks.some((w) => w.id === state.currentWeekId)) {
     state.currentWeekId = manifest.current;
   }
+  state.chunkId =
+    state.cursorByView[viewKey()] || ls.chunkId || null;
   bind();
   await loadWeek(state.currentWeekId);
   writeHash();
-  renderArticle();
+  renderArticle({ y: state.scrollByView[viewKey()] || 0 });
 }
 
 boot().catch((err) => {

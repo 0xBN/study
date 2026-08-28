@@ -165,9 +165,29 @@ h2 {
   border-left-color: var(--accent);
 }
 
-.chunk h3 {
-  margin: 0 0 0.35rem;
+.chunk-toggle {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  min-height: 2.25rem;
   font-size: 1rem;
+  font-weight: 650;
+}
+
+.chunk.collapsed {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+.chunk.collapsed .chunk-body {
+  display: none;
+}
+
+.chunk-body {
+  margin-top: 0.15rem;
 }
 
 .chunk p {
