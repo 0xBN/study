@@ -9,41 +9,44 @@
   </head>
   <body>
     <nav class="nav" aria-label="Study">
-      <div class="nav-row">
-        <h1>Study</h1>
-        <label class="sr-only" for="rate">Speed</label>
-        <select id="rate" aria-label="Read speed">
-          <option value="0.8">0.8×</option>
-          <option value="1" selected>1×</option>
-          <option value="1.25">1.25×</option>
-          <option value="1.5">1.5×</option>
-          <option value="2">2×</option>
-          <option value="2.5">2.5×</option>
-          <option value="3">3×</option>
-        </select>
-      </div>
-      <div id="weeks" class="chips" role="tablist" aria-label="Week"></div>
-      <div class="chips" role="tablist" aria-label="Course">
-        <button type="button" class="chip" data-course="all">Both</button>
-        <button type="button" class="chip" data-course="6460">CS6460</button>
-        <button type="button" class="chip" data-course="6795">CS6795</button>
-      </div>
-      <label class="sr-only" for="section">Section</label>
-      <select id="section" aria-label="Section"></select>
       <div class="play-row">
+        <button type="button" id="open-sheet" class="menu">Week</button>
         <button type="button" id="prev">Prev</button>
         <button type="button" id="play" class="primary">Play</button>
         <button type="button" id="next">Next</button>
       </div>
       <p id="now" class="now"></p>
     </nav>
+
+    <dialog id="sheet" aria-label="Study options">
+      <div class="sheet-head">
+        <strong>Options</strong>
+        <button type="button" id="close-sheet">Done</button>
+      </div>
+      <p class="label">Week</p>
+      <div id="weeks" class="week-list"></div>
+      <p class="label">Course</p>
+      <div class="chips">
+        <button type="button" class="chip" data-course="6460">CS6460</button>
+        <button type="button" class="chip" data-course="6795">CS6795</button>
+      </div>
+      <label class="label" for="rate">Speed</label>
+      <select id="rate">
+        <option value="0.8">0.8×</option>
+        <option value="1" selected>1×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2×</option>
+        <option value="2.5">2.5×</option>
+        <option value="3">3×</option>
+      </select>
+      <p class="label">Checkpoint</p>
+      <p id="checkpoint"></p>
+      <p id="synced" class="muted"></p>
+      <p id="missing" class="muted"></p>
+    </dialog>
+
     <main>
-      <details>
-        <summary>Checkpoint</summary>
-        <p id="checkpoint"></p>
-        <p id="synced" class="muted"></p>
-        <p id="missing" class="muted"></p>
-      </details>
       <article id="article"></article>
     </main>
     <script src="./app.js"></script>

@@ -3,8 +3,7 @@ const LS_KEY = "omscs-study";
 const state = {
   weeks: [],
   currentWeekId: "01",
-  course: "all",
-  section: "all",
+  course: "6460",
   chunkId: null,
   rate: 1,
   playing: false,
@@ -28,7 +27,6 @@ function saveLs() {
     JSON.stringify({
       weekId: state.currentWeekId,
       course: state.course,
-      section: state.section,
       chunkId: state.chunkId,
       rate: state.rate,
     }),
@@ -48,9 +46,7 @@ function parseHash() {
 }
 
 function writeHash() {
-  const week = "w" + state.currentWeekId;
-  const course = state.course === "all" ? "" : "/cs" + state.course;
-  const next = "#" + week + course;
+  const next = "#w" + state.currentWeekId + "/cs" + state.course;
   if (location.hash !== next) history.replaceState(null, "", next);
 }
 
@@ -79,7 +75,9 @@ function parseKnow(md, weekId) {
   const header = parts[0] || "";
   const dates =
     (header.match(/\*\*([^*]*\d{4}-\d{2}-\d{2}[^*]*)\*\*/) || [])[1] || "";
-  const missMatch = header.match(/\*\*Still missing:\*\*\s*([\s\S]*?)(?:\n\n[A-Z|]|\n\n\|)/);
+  const missMatch = header.match(
+    /\*\*Still missing:\*\*\s*([\s\S]*?)(?:\n\n[A-Z|]|\n\n\|)/,
+  );
   const missing = missMatch
     ? missMatch[1]
         .split("\n")
@@ -88,7 +86,6 @@ function parseKnow(md, weekId) {
         .join(" ")
     : "";
   const chunks = [];
-  const sections = [];
   parts.slice(1).forEach((part, sIdx) => {
     const nl = part.indexOf("\n");
     const heading = (nl === -1 ? part : part.slice(0, nl)).trim();
@@ -96,7 +93,6 @@ function parseKnow(md, weekId) {
     let course = "both";
     if (/6460/.test(heading)) course = "6460";
     else if (/6795/.test(heading)) course = "6795";
-    sections.push(heading);
     const body = (nl === -1 ? "" : part.slice(nl + 1)).trim();
     const paras = body
       .split(/\n{2,}/)
@@ -117,34 +113,33 @@ function parseKnow(md, weekId) {
       });
     });
   });
-  return { dates, missing, chunks, sections };
+  return { dates, missing, chunks };
 }
 
 function weekMeta(id) {
   return state.weeks.find((w) => w.id === id) || state.weeks[0];
 }
 
+function weekLabel(id) {
+  return "W" + String(Number(id));
+}
+
 function visibleChunks() {
   const parsed = state.parsed.get(state.currentWeekId);
   if (!parsed) return [];
-  return parsed.chunks.filter((c) => {
-    if (state.course !== "all" && c.course !== "both" && c.course !== state.course) {
-      return false;
-    }
-    if (state.section !== "all" && c.section !== state.section) return false;
-    return true;
-  });
+  return parsed.chunks.filter(
+    (c) => c.course === "both" || c.course === state.course,
+  );
 }
 
 function cancelSpeech() {
   playGen += 1;
   state.playing = false;
   if (window.speechSynthesis) speechSynthesis.cancel();
-  const play = document.getElementById("play");
-  play.textContent = "Play";
+  document.getElementById("play").textContent = "Play";
 }
 
-function speakFrom(start) {
+function speakFrom() {
   const chunks = visibleChunks();
   if (!chunks.length) return;
   cancelSpeech();
@@ -187,56 +182,38 @@ function speakFrom(start) {
 }
 
 function renderNav() {
-  const weeksEl = document.getElementById("weeks");
-  weeksEl.innerHTML = state.weeks
-    .map(
-      (w) =>
-        `<button type="button" class="chip${w.id === state.currentWeekId ? " active" : ""}" data-week="${w.id}">Week ${w.id.replace(/^0/, "")}</button>`,
-    )
+  const chunks = visibleChunks();
+  const idx = Math.max(0, chunks.findIndex((c) => c.id === state.chunkId));
+  const current = chunks[idx];
+  document.getElementById("open-sheet").textContent =
+    weekLabel(state.currentWeekId) + " · " + state.course;
+  document.getElementById("now").textContent = current
+    ? `${current.title} · ${idx + 1}/${chunks.length}${state.playing ? " · playing" : ""}`
+    : "";
+  document.getElementById("weeks").innerHTML = state.weeks
+    .map((w) => {
+      const active = w.id === state.currentWeekId ? " active" : "";
+      const parsed = state.parsed.get(w.id);
+      const dates = parsed?.dates ? ` · ${parsed.dates}` : "";
+      return `<button type="button" class="${active}" data-week="${w.id}">Week ${Number(w.id)}${dates}</button>`;
+    })
     .join("");
   document.querySelectorAll("[data-course]").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.course === state.course);
   });
-  const parsed = state.parsed.get(state.currentWeekId);
-  const sectionSel = document.getElementById("section");
-  const names = ["all", ...new Set((parsed?.chunks || []).filter((c) => {
-    if (state.course !== "all" && c.course !== "both" && c.course !== state.course) {
-      return false;
-    }
-    return true;
-  }).map((c) => c.section))];
-  sectionSel.innerHTML = names
-    .map((name) => {
-      const label = name === "all" ? "All sections" : name.replace(/^CS/, "");
-      const selected = name === state.section ? " selected" : "";
-      return `<option value="${name.replace(/"/g, "&quot;")}"${selected}>${label}</option>`;
-    })
-    .join("");
-  if (!names.includes(state.section)) state.section = "all";
   document.getElementById("rate").value = String(state.rate);
-  const chunks = visibleChunks();
-  const idx = Math.max(0, chunks.findIndex((c) => c.id === state.chunkId));
-  const current = chunks[idx];
-  document.getElementById("now").textContent = current
-    ? `${current.title} · ${idx + 1}/${chunks.length}${state.playing ? " · playing" : ""}`
-    : "";
-  const meta = weekMeta(state.currentWeekId);
   const parsedWeek = state.parsed.get(state.currentWeekId);
   document.getElementById("checkpoint").textContent = parsedWeek?.dates
-    ? `${parsedWeek.dates}. ${chunks.length} chunks in this filter.`
+    ? `${parsedWeek.dates}. ${chunks.length} chunks.`
     : `${chunks.length} chunks.`;
   document.getElementById("missing").textContent = parsedWeek?.missing || "";
-  const syncedEl = document.getElementById("synced");
-  if (syncedEl) {
-    syncedEl.textContent = state.syncedAt
-      ? "Last sync " +
-        new Date(state.syncedAt).toLocaleString(undefined, {
-          dateStyle: "medium",
-          timeStyle: "short",
-        })
-      : "";
-  }
-  void meta;
+  document.getElementById("synced").textContent = state.syncedAt
+    ? "Last sync " +
+      new Date(state.syncedAt).toLocaleString(undefined, {
+        dateStyle: "medium",
+        timeStyle: "short",
+      })
+    : "";
 }
 
 function renderArticle() {
@@ -248,7 +225,8 @@ function renderArticle() {
   }
   const chunks = visibleChunks();
   if (!chunks.length) {
-    article.innerHTML = "<p class='muted'>No chunks in this filter.</p>";
+    article.innerHTML = "<p class='muted'>No chunks for this course.</p>";
+    renderNav();
     return;
   }
   if (!chunks.some((c) => c.id === state.chunkId)) {
@@ -279,7 +257,6 @@ async function loadWeek(id) {
 async function showWeek(id) {
   cancelSpeech();
   state.currentWeekId = id;
-  state.section = "all";
   await loadWeek(id);
   const chunks = visibleChunks();
   if (chunks.length) state.chunkId = chunks[0].id;
@@ -290,6 +267,17 @@ async function showWeek(id) {
 }
 
 function bind() {
+  const sheet = document.getElementById("sheet");
+  document.getElementById("open-sheet").addEventListener("click", () => {
+    renderNav();
+    sheet.showModal();
+  });
+  document.getElementById("close-sheet").addEventListener("click", () => {
+    sheet.close();
+  });
+  sheet.addEventListener("click", (e) => {
+    if (e.target === sheet) sheet.close();
+  });
   document.getElementById("weeks").addEventListener("click", (e) => {
     const btn = e.target.closest("[data-week]");
     if (btn) showWeek(btn.dataset.week);
@@ -298,17 +286,10 @@ function bind() {
     btn.addEventListener("click", () => {
       cancelSpeech();
       state.course = btn.dataset.course;
-      state.section = "all";
       saveLs();
       writeHash();
       renderArticle();
     });
-  });
-  document.getElementById("section").addEventListener("change", (e) => {
-    cancelSpeech();
-    state.section = e.target.value;
-    saveLs();
-    renderArticle();
   });
   document.getElementById("rate").addEventListener("change", (e) => {
     state.rate = Number(e.target.value) || 1;
@@ -316,7 +297,7 @@ function bind() {
   });
   document.getElementById("play").addEventListener("click", () => {
     if (state.playing) cancelSpeech();
-    else speakFrom(0);
+    else speakFrom();
     renderNav();
   });
   document.getElementById("prev").addEventListener("click", () => {
@@ -356,8 +337,8 @@ async function boot() {
   const ls = loadLs();
   const hash = parseHash();
   state.currentWeekId = hash.weekId || ls.weekId || manifest.current;
-  state.course = hash.course || ls.course || "all";
-  state.section = ls.section || "all";
+  const course = hash.course || ls.course;
+  state.course = course === "6795" ? "6795" : "6460";
   state.chunkId = ls.chunkId || null;
   state.rate = Number(ls.rate) || 1;
   if (!state.weeks.some((w) => w.id === state.currentWeekId)) {
