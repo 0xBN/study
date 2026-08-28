@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
     <title>Study</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=3" />
   </head>
   <body>
     <nav class="nav" aria-label="Study">
@@ -18,7 +18,8 @@
       <p id="now" class="now"></p>
     </nav>
 
-    <dialog id="sheet" aria-label="Study options">
+    <div id="backdrop" class="backdrop" hidden></div>
+    <div id="sheet" class="sheet" hidden role="dialog" aria-label="Study options">
       <div class="sheet-head">
         <strong>Options</strong>
         <button type="button" id="close-sheet">Done</button>
@@ -44,11 +45,11 @@
       <p id="checkpoint"></p>
       <p id="synced" class="muted"></p>
       <p id="missing" class="muted"></p>
-    </dialog>
+    </div>
 
     <main>
       <article id="article"></article>
     </main>
-    <script src="./app.js"></script>
+    <script src="./app.js?v=3"></script>
   </body>
 </html>

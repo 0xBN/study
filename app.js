@@ -266,19 +266,36 @@ async function showWeek(id) {
   window.scrollTo(0, 0);
 }
 
+function $(id) {
+  return document.getElementById(id);
+}
+
+function on(id, event, fn) {
+  const el = $(id);
+  if (!el) return;
+  el.addEventListener(event, fn);
+}
+
+function openSheet() {
+  renderNav();
+  const sheet = $("sheet");
+  const backdrop = $("backdrop");
+  if (sheet) sheet.hidden = false;
+  if (backdrop) backdrop.hidden = false;
+}
+
+function closeSheet() {
+  const sheet = $("sheet");
+  const backdrop = $("backdrop");
+  if (sheet) sheet.hidden = true;
+  if (backdrop) backdrop.hidden = true;
+}
+
 function bind() {
-  const sheet = document.getElementById("sheet");
-  document.getElementById("open-sheet").addEventListener("click", () => {
-    renderNav();
-    sheet.showModal();
-  });
-  document.getElementById("close-sheet").addEventListener("click", () => {
-    sheet.close();
-  });
-  sheet.addEventListener("click", (e) => {
-    if (e.target === sheet) sheet.close();
-  });
-  document.getElementById("weeks").addEventListener("click", (e) => {
+  on("open-sheet", "click", openSheet);
+  on("close-sheet", "click", closeSheet);
+  on("backdrop", "click", closeSheet);
+  on("weeks", "click", (e) => {
     const btn = e.target.closest("[data-week]");
     if (btn) showWeek(btn.dataset.week);
   });
@@ -291,16 +308,16 @@ function bind() {
       renderArticle();
     });
   });
-  document.getElementById("rate").addEventListener("change", (e) => {
+  on("rate", "change", (e) => {
     state.rate = Number(e.target.value) || 1;
     saveLs();
   });
-  document.getElementById("play").addEventListener("click", () => {
+  on("play", "click", () => {
     if (state.playing) cancelSpeech();
     else speakFrom();
     renderNav();
   });
-  document.getElementById("prev").addEventListener("click", () => {
+  on("prev", "click", () => {
     const chunks = visibleChunks();
     const idx = chunks.findIndex((c) => c.id === state.chunkId);
     if (idx > 0) {
@@ -310,7 +327,7 @@ function bind() {
       renderArticle();
     }
   });
-  document.getElementById("next").addEventListener("click", () => {
+  on("next", "click", () => {
     const chunks = visibleChunks();
     const idx = chunks.findIndex((c) => c.id === state.chunkId);
     if (idx >= 0 && idx < chunks.length - 1) {
@@ -320,7 +337,7 @@ function bind() {
       renderArticle();
     }
   });
-  document.getElementById("article").addEventListener("click", (e) => {
+  on("article", "click", (e) => {
     const chunk = e.target.closest("[data-chunk]");
     if (!chunk) return;
     cancelSpeech();
@@ -351,5 +368,7 @@ async function boot() {
 }
 
 boot().catch((err) => {
-  document.getElementById("article").textContent = String(err);
+  const article = document.getElementById("article");
+  if (article) article.textContent = String(err);
+  else console.error(err);
 });
