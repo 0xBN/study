@@ -1,9 +1,9 @@
 const LS_KEY = "omscs-study";
+const COURSE = "6460";
 
 const state = {
   weeks: [],
   currentWeekId: "01",
-  course: "6460",
   chunkId: null,
   rate: 1,
   playing: false,
@@ -29,7 +29,6 @@ function saveLs() {
     LS_KEY,
     JSON.stringify({
       weekId: state.currentWeekId,
-      course: state.course,
       chunkId: state.chunkId,
       rate: state.rate,
       collapsed: state.collapsed,
@@ -39,8 +38,15 @@ function saveLs() {
   );
 }
 
-function viewKey() {
-  return state.currentWeekId + "-" + state.course;
+function viewKey(weekId) {
+  return weekId || state.currentWeekId;
+}
+
+/** Prefer week-only keys; fall back to old week-course keys from dual-course builds. */
+function viewLookup(map, weekId) {
+  const id = weekId || state.currentWeekId;
+  if (map[id] != null) return map[id];
+  return map[id + "-" + COURSE];
 }
 
 function stashView() {
@@ -59,17 +65,15 @@ function setCurrent(id) {
 function parseHash() {
   const raw = location.hash.replace(/^#/, "");
   if (!raw) return {};
-  const [weekPart, coursePart] = raw.split("/");
+  const weekPart = raw.split("/")[0];
   const weekId = weekPart.replace(/^w/i, "").padStart(2, "0");
-  const course = (coursePart || "").replace(/^cs/i, "");
   const out = {};
   if (/^\d{2}$/.test(weekId)) out.weekId = weekId;
-  if (course === "6460" || course === "6795") out.course = course;
   return out;
 }
 
 function writeHash() {
-  const next = "#w" + state.currentWeekId + "/cs" + state.course;
+  const next = "#w" + state.currentWeekId;
   if (location.hash !== next) history.replaceState(null, "", next);
 }
 
@@ -150,6 +154,7 @@ function parseKnow(md, weekId) {
     let course = "both";
     if (/6460/.test(heading)) course = "6460";
     else if (/6795/.test(heading)) course = "6795";
+    if (course === "6795") return;
     const body = (nl === -1 ? "" : part.slice(nl + 1)).trim();
     const topics = body.split(/^### /m);
     const pushChunk = (title, text, i) => {
@@ -220,7 +225,7 @@ function visibleChunks() {
   const parsed = state.parsed.get(state.currentWeekId);
   if (!parsed) return [];
   return parsed.chunks.filter(
-    (c) => c.course === "both" || c.course === state.course,
+    (c) => c.course === "both" || c.course === COURSE,
   );
 }
 
@@ -277,12 +282,12 @@ function renderNav() {
   const current = chunks[idx];
   const menu = $("open-sheet");
   if (menu) {
-    menu.textContent = weekLabel(state.currentWeekId) + " · " + state.course;
+    menu.textContent = "CS6460 · " + weekLabel(state.currentWeekId);
   }
   const now = $("now");
   if (now) {
     now.textContent = current
-      ? `${current.title} · ${idx + 1}/${chunks.length}${state.playing ? " · playing" : ""}`
+      ? `${current.title || "Overview"} · ${idx + 1}/${chunks.length}${state.playing ? " · playing" : ""}`
       : "";
   }
   const weeksEl = $("weeks");
@@ -296,17 +301,14 @@ function renderNav() {
       })
       .join("");
   }
-  document.querySelectorAll("[data-course]").forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.course === state.course);
-  });
   const rate = $("rate");
   if (rate) rate.value = String(state.rate);
   const parsedWeek = state.parsed.get(state.currentWeekId);
   const checkpoint = $("checkpoint");
   if (checkpoint) {
     checkpoint.textContent = parsedWeek?.dates
-      ? `${parsedWeek.dates}. ${chunks.length} chunks.`
-      : `${chunks.length} chunks.`;
+      ? `${parsedWeek.dates}. ${chunks.length} cards.`
+      : `${chunks.length} cards.`;
   }
   const missing = $("missing");
   if (missing) missing.textContent = parsedWeek?.missing || "";
@@ -332,7 +334,8 @@ function renderArticle(opts) {
   }
   const chunks = visibleChunks();
   if (!chunks.length) {
-    article.innerHTML = "<p class='muted'>No chunks for this course.</p>";
+    article.innerHTML =
+      "<p class='muted'>No CS6460 quiz cards this week. Quiz 1 → Week 1.</p>";
     renderNav();
     return;
   }
@@ -393,10 +396,10 @@ async function showWeek(id) {
   stashView();
   state.currentWeekId = id;
   await loadWeek(id);
-  state.chunkId = state.cursorByView[viewKey()] || null;
+  state.chunkId = viewLookup(state.cursorByView) || null;
   saveLs();
   writeHash();
-  renderArticle({ y: state.scrollByView[viewKey()] || 0 });
+  renderArticle({ y: viewLookup(state.scrollByView) || 0 });
 }
 
 function $(id) {
@@ -431,17 +434,6 @@ function bind() {
   on("weeks", "click", (e) => {
     const btn = e.target.closest("[data-week]");
     if (btn) showWeek(btn.dataset.week);
-  });
-  document.querySelectorAll("[data-course]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      cancelSpeech();
-      stashView();
-      state.course = btn.dataset.course;
-      state.chunkId = state.cursorByView[viewKey()] || null;
-      saveLs();
-      writeHash();
-      renderArticle({ y: state.scrollByView[viewKey()] || 0 });
-    });
   });
   on("rate", "change", (e) => {
     state.rate = Number(e.target.value) || 1;
@@ -513,23 +505,26 @@ async function boot() {
   const ls = loadLs();
   const hash = parseHash();
   state.currentWeekId = hash.weekId || ls.weekId || manifest.current;
-  const course = hash.course || ls.course;
-  state.course = course === "6795" ? "6795" : "6460";
   state.rate = Number(ls.rate) || 1;
-  state.collapsed = ls.collapsed && typeof ls.collapsed === "object" ? ls.collapsed : {};
+  state.collapsed =
+    ls.collapsed && typeof ls.collapsed === "object" ? ls.collapsed : {};
   state.cursorByView =
-    ls.cursorByView && typeof ls.cursorByView === "object" ? ls.cursorByView : {};
+    ls.cursorByView && typeof ls.cursorByView === "object"
+      ? ls.cursorByView
+      : {};
   state.scrollByView =
-    ls.scrollByView && typeof ls.scrollByView === "object" ? ls.scrollByView : {};
+    ls.scrollByView && typeof ls.scrollByView === "object"
+      ? ls.scrollByView
+      : {};
   if (!state.weeks.some((w) => w.id === state.currentWeekId)) {
     state.currentWeekId = manifest.current;
   }
   state.chunkId =
-    state.cursorByView[viewKey()] || ls.chunkId || null;
+    viewLookup(state.cursorByView) || ls.chunkId || null;
   bind();
   await loadWeek(state.currentWeekId);
   writeHash();
-  renderArticle({ y: state.scrollByView[viewKey()] || 0 });
+  renderArticle({ y: viewLookup(state.scrollByView) || 0 });
 }
 
 boot().catch((err) => {

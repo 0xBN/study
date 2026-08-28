@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
-    <title>Study</title>
-    <link rel="stylesheet" href="./styles.css?v=6" />
+    <title>CS6460 Quiz Drill</title>
+    <link rel="stylesheet" href="./styles.css?v=7" />
   </head>
   <body>
-    <nav class="nav" aria-label="Study">
+    <nav class="nav" aria-label="CS6460 quiz drill">
       <div class="play-row">
         <button type="button" id="open-sheet" class="menu">Week</button>
         <button type="button" id="prev">Prev</button>
@@ -19,18 +19,14 @@
     </nav>
 
     <div id="backdrop" class="backdrop" hidden></div>
-    <div id="sheet" class="sheet" hidden role="dialog" aria-label="Study options">
+    <div id="sheet" class="sheet" hidden role="dialog" aria-label="Drill options">
       <div class="sheet-head">
-        <strong>Options</strong>
+        <strong>CS6460 · Honorlock</strong>
         <button type="button" id="close-sheet">Done</button>
       </div>
+      <p class="muted">Closed-book quiz drill only. 6795 stays in the Know file — open notes there.</p>
       <p class="label">Week</p>
       <div id="weeks" class="week-list"></div>
-      <p class="label">Course</p>
-      <div class="chips">
-        <button type="button" class="chip" data-course="6460">CS6460</button>
-        <button type="button" class="chip" data-course="6795">CS6795</button>
-      </div>
       <label class="label" for="rate">Speed</label>
       <select id="rate">
         <option value="0.8">0.8×</option>
@@ -42,7 +38,7 @@
         <option value="3">3×</option>
       </select>
       <p class="label">How to read</p>
-      <p class="muted">Plain = freshman. Quiz voice = test wording. Trap = the mix-up the quiz is fishing for; missing when there isn’t a classic near-miss. Tap a card title to collapse it; that sticks after a break or switching week/course.</p>
+      <p class="muted">Plain = freshman. Quiz voice = test wording. Trap = the mix-up the quiz is fishing for. Tap a title to collapse; that sticks after a break. Quiz 1 → Week 1 Module 1 (not Week 2 content).</p>
       <p class="label">Checkpoint</p>
       <p id="checkpoint"></p>
       <p id="synced" class="muted"></p>
@@ -52,6 +48,6 @@
     <main>
       <article id="article"></article>
     </main>
-    <script src="./app.js?v=6"></script>
+    <script src="./app.js?v=7"></script>
   </body>
 </html>

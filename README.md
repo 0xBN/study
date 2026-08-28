@@ -1,8 +1,10 @@
-# Study
+# CS6460 Quiz Drill
 
-Phone reader for OMSCS weekly Know files. Live at [0xbn.github.io/study](https://0xbn.github.io/study/).
+Phone reader for closed-book Honorlock quizzes. Live at [0xbn.github.io/study](https://0xbn.github.io/study/).
 
-Source of truth stays in the private `omscs` repo (`tldr/week-NN-know.md`). This repo is a public static copy plus the reader.
+**CS6460 only.** Purpose is reinforcing Module 1 / 3 / 5 vocabulary so you can pass the quizzes without notes. CS6795 is open-notes — keep that in the private Know files, not here.
+
+Source of truth stays in the private `omscs` repo (`tldr/week-NN-know.md`). This repo is a public static copy plus the reader; the reader skips 6795 sections on sync.
 
 ## Local
 
