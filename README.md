@@ -4,7 +4,7 @@ Phone reader for closed-book Honorlock quizzes. Live at [0xbn.github.io/study](h
 
 **CS6460 only.** Purpose is reinforcing Module 1 / 3 / 5 vocabulary so you can pass the quizzes without notes. CS6795 is open-notes — keep that in the private Know files, not here.
 
-Source of truth stays in the private `omscs` repo (`tldr/week-NN-know.md`). This repo is a public static copy plus the reader; the reader skips 6795 sections on sync.
+The on-screen cards keep arrows and slashes. Play mode rewrites those to spoken English so the voice does not say "slash" or "right arrow."
 
 ## Local
 

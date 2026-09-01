@@ -88,13 +88,58 @@ function inlineHtml(text) {
     .replace(/`([^`]+)`/g, "<code>$1</code>");
 }
 
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+/** Strip markdown and symbols so SpeechSynthesis does not say "slash" / "arrow". */
 function speakText(text) {
-  return text
-    .replace(/\*\*/g, "")
-    .replace(/`/g, "")
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-    .replace(/\s+/g, " ")
-    .trim();
+  let s = String(text);
+  s = s.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+  s = s.replace(/https?:\/\/\S+/gi, " ");
+  s = s.replace(/\*\*/g, "");
+  s = s.replace(/`/g, "");
+  s = s.replace(/[“”]/g, "");
+  s = s.replace(/[‘’]/g, "'");
+  s = s.replace(/&amp;/g, " and ");
+  s = s.replace(/&/g, " and ");
+  s = s.replace(/\b(\d{4})-(\d{2})-(\d{2})\b/g, (_, y, m, d) => {
+    const month = MONTHS[Number(m) - 1] || m;
+    return month + " " + Number(d) + ", " + y;
+  });
+  s = s.replace(/\b(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?\b/g, (_, a, b, y) =>
+    y ? a + " " + b + " " + y : a + " " + b,
+  );
+  s = s.replace(/(\d)\s*[–—-]\s*(\d)/g, "$1 through $2");
+  s = s.replace(/→|⇒|➔|↔/g, " to ");
+  s = s.replace(/×/g, " times ");
+  s = s.replace(/±/g, " plus or minus ");
+  s = s.replace(/[—–]/g, ", ");
+  s = s.replace(/…/g, ". ");
+  s = s.replace(/~/g, " about ");
+  s = s.replace(/=/g, " equals ");
+  s = s.replace(/\+/g, " plus ");
+  s = s.replace(/>/g, " more than ");
+  s = s.replace(/</g, " less than ");
+  s = s.replace(/#(\d+)/g, " number $1 ");
+  s = s.replace(/#/g, " ");
+  s = s.replace(/\s*\/\s*/g, ", ");
+  s = s.replace(/[_*]/g, " ");
+  s = s.replace(/[()[\]{}]/g, ", ");
+  s = s.replace(/[:;]/g, ". ");
+  s = s.replace(/\s+/g, " ");
+  return s.replace(/^[,.\s]+|[,.\s]+$/g, "").trim();
 }
 
 function parseBands(text) {
@@ -164,9 +209,9 @@ function parseKnow(md, weekId) {
         .map((b) => {
           const prefix =
             b.kind === "plain"
-              ? "Plain. "
+              ? "Plain English. "
               : b.kind === "quiz"
-                ? "Quiz voice. "
+                ? "Quiz wording. "
                 : b.kind === "trap"
                   ? "Trap. "
                   : "";
