@@ -2,23 +2,18 @@
 
 Master study file for **2026-08-31 → 09-06**. Clerical: [Trello Week 2](https://trello.com/c/RMZzCaIS).
 
-**Still missing:**
-
-- Start-of-week 2 posts (Joyner Ed + Irene Canvas) when they go up.
-- Joyner’s **quiz announcement** if it adds Honorlock detail not already in [Week 1 Know](week-01-know.md).
-
 | Course | This week’s job | Graded 9/6 |
 |---|---|---|
-| **CS6460** | Honorlock Quiz 1 is **Module 1** | Study [Week 1 Know](week-01-know.md). Watch Module 2 for credit (not this quiz). |
-| **CS6795** | Lessons 4–6; Quiz 1 is Thagard **5–7** | Analogies, images, connections. Lesson 4 (VERA) is project setup. **Exercise 1 is week 3** (Canvas), not this quiz week. |
+| **CS6460** | Honorlock Quiz 1 = **Module 1** | Study [Week 1 Know](week-01-know.md). Watch Module 2 for credit (lab next week). |
+| **CS6795** | Quiz 1 = **Week 1** (Lessons 1–3 + Thagard **1–4**) | Open notes. Staff (#15): quizzes test the *previous* week; may still touch anything already taught. Lessons 4–6 / Thagard 5–7 are this week’s *new* content → Quiz 2. Exercise 1 is week 3 with Quiz 2. |
 
 ---
 
 ## CS6460 — Quiz 1 is Module 1
 
-**Do not restudy Module 2 for Honorlock.** Open [Week 1 Know](week-01-know.md). 27 MC, 45 min, 2 attempts, no notes. Quizzes = **definitions + basic applications** (conference-embarrassment bar). Pool **>1400**; the second attempt is a different draw, not a near-copy.
+**Do not restudy Module 2 for Honorlock.** Open [Week 1 Know](week-01-know.md). Joyner #28: quiz + practice open this week; Module 1 only; 27 MC / 45 min / 2 attempts (keep higher); practice from the same pool — take it before the real one; Honorlock onboarding first if not done; Module 2 this week (lab due end of next week). Pool **>1400**; attempt 2 is a different draw. Launch practice from the **Honorlock** tab.
 
-**Module 2 (watch this week; later labs).** Theory was Module 1; this is the *engineering* — categories of tools, each tied back to M1. Spectrum: open/playful → structured/adaptive. No single right point.
+**Module 2 (watch this week; lab next week).** Theory was Module 1; this is the *engineering* — categories of tools, each tied back to M1. Spectrum: open/playful → structured/adaptive. No single right point.
 
 - **Educational games** — play *is* the learning activity, aligned to an outside-the-game objective. Not entertainment-that-happens-to-teach. **Not gamification** (points on the same old drill). Games ↔ simulations are blurry.
 - **Exploratory learning environments** — autonomy to explore/plan/experiment; student’s in-world goal ≠ designer’s learning goal (River City: catch the disease vs learn inquiry). Tied to metacognition.
@@ -28,13 +23,15 @@ Master study file for **2026-08-31 → 09-06**. Clerical: [Trello Week 2](https:
 
 ---
 
-## CS6795 — Lessons 4–6 / Quiz 1 (Thagard 5–7)
+## CS6795 — Quiz 1 is Week 1; this week is Lessons 4–6
 
-Lectures + Thagard Ch. 5–7 are folded here. Cite `cs6795-cognitive-science/raw/reference-thagard-mind.pdf`.
+**Quiz 1 (due Sun 9/6 AOE).** Open notes / open internet (Ed #11). Coverage per staff **#15** (Robert): **previous week** → Lessons **1–3** + Thagard **Ch. 1–4**. May also reference anything already presented. Study [Week 1 Know](week-01-know.md). Do **not** treat Ch. 5–7 as Quiz 1 core (Irene’s “read 5–7 this week” is the new material, not the quiz stem set). Attempt 2 may reshuffle from a larger bank (#31).
+
+**This week’s new material (Quiz 2 later).** Lessons 4–6 + Thagard Ch. 5–7. Cite `cs6795-cognitive-science/raw/reference-thagard-mind.pdf`.
 
 **Spectrum reminder (lecture).** Left = more **rationalist** (logic, rules). Right = more **empiricist** (analogies, images, connections). Scientific thinking sits with empiricism: observe → hypothesize → experiment → analyze → repeat.
 
-**Lesson 4 — VERA (project, not quiz core).** **VERA** = Virtual Experimentation Research Assistant. **Agent-based** models. **Two models at once:** world (e.g. kudzu) + cognitive model of *your* scientific thinking. Report both.
+**Lesson 4 — VERA (project, not Quiz 1).** **VERA** = Virtual Experimentation Research Assistant. **Agent-based** models. **Two models at once:** world (e.g. kudzu) + cognitive model of *your* scientific thinking. Report both.
 
 **Analogies (Ch. 5).** New situation by **adapting a familiar** one — not always by writing a general rule. Stages: **retrieve, map, adapt**. Constraints (**Holyoak & Thagard**): **similarity, structure, purpose**. Gentner: **systematicity** (deep relations, not surface). AI often calls this **case-based reasoning** (Kolodner). **Wrong analog hurts.**
 
@@ -44,4 +41,4 @@ Lectures + Thagard Ch. 5–7 are folded here. Cite `cs6795-cognitive-science/raw
 
 **Connections (Ch. 7).** Units + **excitatory/inhibitory** links. **Spreading activation** + learning (**Hebbian**, **backpropagation**). Built for **parallel constraint satisfaction** (vision, decision, explanation, word meaning). **Local vs distributed.** Rough approximation of real neurons. Broader than Ch. 4 concept-spreading (adds inhibition + hidden units). Lecture: activation **threshold**; networks are experience-specific.
 
-**Traps.** 6795 Quiz 1 is **not** Honorlock. Open Ed yourself. Irene’s week-1 post still says Quiz 1 **and** Exercise 1 next week; **Canvas Grades** puts Exercise 1 on 9/13 with Quiz 2. Follow Canvas.
+**Traps.** Quiz 1 ≠ Honorlock. **Trap:** schedule/Irene “this week’s readings” ≠ Quiz 1 coverage — staff says previous week (1–4). Exercise 1 is week 3 with Quiz 2 (Irene #29 = Canvas).
