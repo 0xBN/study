@@ -5,23 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
     <title>CS6460 Quiz Drill</title>
-    <link rel="stylesheet" href="./styles.css?v=21" />
+    <link rel="stylesheet" href="./styles.css?v=22" />
   </head>
   <body>
     <nav class="nav" aria-label="CS6460 quiz drill">
-      <div class="mode-row" role="tablist" aria-label="Mode">
-        <button type="button" id="mode-read" class="mode active" aria-pressed="true">Read</button>
-        <button type="button" id="mode-match" class="mode" aria-pressed="false">Match</button>
+      <div class="nav-top">
+        <button type="button" id="open-sheet" class="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <p id="nav-title" class="nav-title">CS6460</p>
+        <div class="mode-toggle" role="tablist" aria-label="Mode">
+          <button type="button" id="mode-read" class="mode active" aria-pressed="true">Read</button>
+          <button type="button" id="mode-match" class="mode" aria-pressed="false">Match</button>
+        </div>
       </div>
       <div id="read-controls" class="nav-row">
-        <button type="button" id="open-sheet" class="menu">Week</button>
         <button type="button" id="flip">Face: term</button>
         <button type="button" id="collapse-all">Collapse</button>
         <button type="button" id="sections">Sections: on</button>
       </div>
-      <div id="match-controls" class="nav-row" hidden>
-        <button type="button" id="open-sheet-match" class="menu">Match</button>
-        <span id="match-status" class="match-status"></span>
+      <div id="match-controls" class="match-meter" hidden>
+        <div class="match-meter-row">
+          <span id="match-pct" class="match-pct">0%</span>
+          <span id="match-status" class="match-status"></span>
+        </div>
+        <div class="match-meter-track" aria-hidden="true">
+          <div id="match-meter-fill" class="match-meter-fill"></div>
+        </div>
       </div>
       <p id="deadline" class="deadline" hidden></p>
     </nav>
@@ -60,6 +70,6 @@
       <article id="article"></article>
       <section id="match" class="match" hidden aria-label="Match drill"></section>
     </main>
-    <script src="./app.js?v=21"></script>
+    <script src="./app.js?v=22"></script>
   </body>
 </html>

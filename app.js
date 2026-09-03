@@ -436,20 +436,18 @@ function setMode(mode) {
 }
 
 function renderNav() {
-  const chunks = visibleChunks();
-  const menu = $("open-sheet");
-  if (menu) {
-    menu.textContent = "CS6460 · " + weekLabel(state.currentWeekId);
-  }
-  const menuMatch = $("open-sheet-match");
-  if (menuMatch) {
-    const st = matchStats();
-    menuMatch.textContent = state.deck
-      ? `${state.deck.title} · ${st.percent}%`
-      : "Match";
+  const title = $("nav-title");
+  if (title) {
+    if (state.mode === "match") {
+      title.textContent = state.deck ? state.deck.title : "Match";
+    } else {
+      title.textContent = "CS6460 · " + weekLabel(state.currentWeekId);
+    }
   }
   const status = $("match-status");
-  if (status && state.mode === "match") {
+  const pctEl = $("match-pct");
+  const fill = $("match-meter-fill");
+  if (state.mode === "match") {
     const st = matchStats();
     const sess = state.matchSession;
     const qPart = sess
@@ -458,15 +456,28 @@ function renderNav() {
         : `${Math.min(sess.index + 1, sess.size)}/${sess.size}`
       : "";
     const streak = sess && sess.streak > 1 ? ` · ×${sess.streak}` : "";
-    status.innerHTML = `Study ${st.percent}% · left ${st.left}${
-      qPart ? ` · Q ${qPart}` : ""
-    }${
-      streak
-        ? `<span class="match-streak${
-            sess.answered && sess.lastCorrect ? " bump" : ""
-          }">${streak}</span>`
-        : ""
-    }`;
+    if (pctEl) pctEl.textContent = `${st.percent}%`;
+    if (status) {
+      status.innerHTML = `left ${st.left}${qPart ? ` · Q ${qPart}` : ""}${
+        streak
+          ? `<span class="match-streak${
+              sess.answered && sess.lastCorrect ? " bump" : ""
+            }">${streak}</span>`
+          : ""
+      }`;
+    }
+    if (fill) {
+      const prev = Number(fill.dataset.pct || -1);
+      fill.style.width = `${st.percent}%`;
+      fill.dataset.pct = String(st.percent);
+      if (st.percent > prev && prev >= 0) {
+        fill.classList.remove("bump");
+        void fill.offsetWidth;
+        fill.classList.add("bump");
+        clearTimeout(window.__meterBump);
+        window.__meterBump = setTimeout(() => fill.classList.remove("bump"), 480);
+      }
+    }
   }
   const weeksEl = $("weeks");
   if (weeksEl) {
@@ -1129,7 +1140,6 @@ function bind() {
   on("mode-read", "click", () => setMode("read"));
   on("mode-match", "click", () => setMode("match"));
   on("open-sheet", "click", openSheet);
-  on("open-sheet-match", "click", openSheet);
   on("close-sheet", "click", closeSheet);
   on("backdrop", "click", closeSheet);
   on("weeks", "click", (e) => {
