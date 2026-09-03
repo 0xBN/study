@@ -837,6 +837,7 @@ function renderMatch() {
   if (!root || state.mode !== "match") return;
   if (!state.deck) {
     root.innerHTML = "<p class='muted'>Loading match deck…</p>";
+    root.classList.remove("match-ready-next");
     return;
   }
   const sess = state.matchSession;
@@ -847,6 +848,7 @@ function renderMatch() {
   const s = state.matchSession;
 
   if (s.phase === "cleared") {
+    root.classList.remove("match-ready-next");
     root.innerHTML = `
       <div class="match-board">
         <h2>Deck cleared</h2>
@@ -861,6 +863,7 @@ function renderMatch() {
   }
 
   if (s.phase === "board") {
+    root.classList.remove("match-ready-next");
     const missList = [...new Set(s.misses)]
       .map((id) => itemById(id))
       .filter(Boolean)
@@ -895,14 +898,13 @@ function renderMatch() {
   let fb = "";
   if (s.answered) {
     if (s.lastCorrect) {
-      fb = `<div class="match-fb fb-ok"><strong>Correct</strong><p>${inlineHtml(q.term)}</p></div>`;
+      fb = `<div class="match-fb fb-ok"><strong>Correct</strong><p>${inlineHtml(q.term)}</p><p class="muted match-tap">Tap anywhere for next</p></div>`;
     } else {
-      fb = `<div class="match-fb fb-bad"><strong>Wrong</strong><p><strong>${inlineHtml(q.term)}</strong></p><p>${inlineHtml(q.canonical)}</p></div>`;
+      fb = `<div class="match-fb fb-bad"><strong>Wrong</strong><p><strong>${inlineHtml(q.term)}</strong></p><p>${inlineHtml(q.canonical)}</p><p class="muted match-tap">Tap anywhere for next</p></div>`;
     }
-    fb += `<div class="sheet-actions"><button type="button" id="match-next" class="primary">Next</button></div>`;
   }
   const choices = q.choices
-    .map((c, i) => {
+    .map((c) => {
       let cls = "";
       if (s.answered) {
         if (c.correct) cls = " pick-ok";
@@ -913,6 +915,7 @@ function renderMatch() {
       }>${inlineHtml(c.label)}</button>`;
     })
     .join("");
+  root.classList.toggle("match-ready-next", !!s.answered);
   root.innerHTML = `
     <p class="muted">${hint}</p>
     <p class="match-prompt">${inlineHtml(q.prompt)}</p>
@@ -1118,18 +1121,19 @@ function bind() {
       setMode("read");
       return;
     }
-    if (e.target.closest("#match-next")) {
+    const sess = state.matchSession;
+    if (sess && sess.answered && sess.phase === "ask") {
       advanceMatch();
       return;
     }
     const choice = e.target.closest("[data-choice]");
-    if (!choice || !state.matchSession || state.matchSession.answered) return;
+    if (!choice || !sess || sess.answered) return;
     const id = choice.getAttribute("data-choice");
-    const q = state.matchSession.question;
+    const q = sess.question;
     const correct = q.choices.some((c) => c.id === id && c.correct);
-    state.matchSession.answered = true;
-    state.matchSession.lastCorrect = correct;
-    state.matchSession.pickedId = id;
+    sess.answered = true;
+    sess.lastCorrect = correct;
+    sess.pickedId = id;
     applyAnswer(correct);
     renderMatch();
   });

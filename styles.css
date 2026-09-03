@@ -146,6 +146,17 @@ textarea {
   padding: 0.25rem 0 2rem;
 }
 
+.match.match-ready-next {
+  cursor: pointer;
+  min-height: 60vh;
+}
+
+.match-tap {
+  margin: 0.55rem 0 0 !important;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
 .match-prompt {
   margin: 0.75rem 0 1rem;
   font-size: 1.05rem;
