@@ -60,11 +60,13 @@ function renderDeadline() {
   el.classList.toggle("warn", ms > 0 && ms < 24 * 60 * 60 * 1000);
   el.classList.toggle("closed", ms <= 0);
   if (ms <= 0) {
-    el.textContent = `${label} · closed (${dueLabel || local})`;
+    el.textContent = local
+      ? `${label} · closed · ${local}`
+      : `${label} · closed`;
   } else {
-    el.textContent = `${label} · ${formatRemain(ms)} left · ${dueLabel}${
-      local ? ` · ${local} your time` : ""
-    }`;
+    el.textContent = local
+      ? `${label} · ${formatRemain(ms)} · ${local}`
+      : `${label} · ${formatRemain(ms)}`;
   }
   if (detail) {
     detail.textContent = ms <= 0
@@ -321,17 +323,9 @@ function visibleChunks() {
 
 function renderNav() {
   const chunks = visibleChunks();
-  const idx = Math.max(0, chunks.findIndex((c) => c.id === state.chunkId));
-  const current = chunks[idx];
   const menu = $("open-sheet");
   if (menu) {
     menu.textContent = "CS6460 · " + weekLabel(state.currentWeekId);
-  }
-  const now = $("now");
-  if (now) {
-    now.textContent = current
-      ? `${current.title || "Overview"} · ${idx + 1}/${chunks.length}`
-      : "";
   }
   const weeksEl = $("weeks");
   if (weeksEl) {

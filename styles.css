@@ -95,15 +95,6 @@ button.primary {
   font-weight: 500;
 }
 
-.now {
-  margin: 0.2rem 0 0;
-  color: var(--muted);
-  font-size: 0.8rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .backdrop {
   position: fixed;
   inset: 0;
