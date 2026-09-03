@@ -657,16 +657,21 @@ const MATCH_STOP = new Set([
 ]);
 
 function termKeyParts(term) {
-  const cleaned = String(term)
-    .replace(/\s*\([^)]*\)\s*/g, " ")
-    .trim();
-  const tokens = cleaned
+  const full = String(term);
+  const withoutParen = full.replace(/\s*\([^)]*\)\s*/g, " ").trim();
+  const parenBits = [...full.matchAll(/\(([^)]+)\)/g)].map((m) => m[1]);
+  const allForTokens = [withoutParen, ...parenBits].join(" ");
+  const tokens = allForTokens
     .toLowerCase()
     .split(/[^a-z0-9]+/)
     .filter((t) => t.length > 3 && !MATCH_STOP.has(t));
-  const acronyms = String(term).match(/\b[A-Z]{2,}\b/g) || [];
+  const acronyms = full.match(/\b[A-Z]{2,}\b/g) || [];
+  const phrases = [withoutParen, ...parenBits]
+    .map((p) => p.trim())
+    .filter((p) => p.length > 3);
   return {
-    phrase: cleaned,
+    phrase: withoutParen,
+    phrases: [...new Set(phrases)],
     tokens: [...new Set(tokens)],
     acronyms: [...new Set(acronyms)],
   };
@@ -677,14 +682,16 @@ function leakScore(text, term) {
   const lower = String(text).toLowerCase();
   const parts = termKeyParts(term);
   let score = 0;
-  if (parts.phrase.length > 4 && lower.includes(parts.phrase.toLowerCase())) {
-    score += 8;
-  }
+  parts.phrases.forEach((p) => {
+    if (p.length > 3 && lower.includes(p.toLowerCase())) score += 8;
+  });
   parts.tokens.forEach((t) => {
-    if (lower.includes(t)) score += t.length >= 8 ? 3 : 2;
+    if (new RegExp("\\b" + t + "\\b", "i").test(text)) {
+      score += t.length >= 7 ? 4 : 2;
+    }
   });
   parts.acronyms.forEach((a) => {
-    if (new RegExp("\\b" + a + "\\b", "i").test(text)) score += 4;
+    if (new RegExp("\\b" + a + "\\b", "i").test(text)) score += 5;
   });
   return score;
 }
@@ -692,24 +699,29 @@ function leakScore(text, term) {
 function scrubFace(face, term) {
   let out = String(face);
   const parts = termKeyParts(term);
-  if (parts.phrase.length > 4) {
-    const re = new RegExp(
-      parts.phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-      "gi",
-    );
-    out = out.replace(re, "this idea");
-  }
+  parts.phrases
+    .slice()
+    .sort((a, b) => b.length - a.length)
+    .forEach((p) => {
+      const re = new RegExp(p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+      out = out.replace(re, "this idea");
+    });
   parts.acronyms.forEach((a) => {
     out = out.replace(new RegExp("\\b" + a + "\\b", "g"), "this idea");
   });
-  // long distinctive tokens only (avoid wiping normal English)
   parts.tokens
-    .filter((t) => t.length >= 6)
+    .filter((t) => t.length >= 4)
     .sort((a, b) => b.length - a.length)
     .forEach((t) => {
       out = out.replace(new RegExp("\\b" + t + "\\b", "gi"), "this");
     });
-  return out.replace(/\s{2,}/g, " ").replace(/\s+([,.])/g, "$1").trim();
+  return out
+    .replace(/\bthis idea\s*:\s*/gi, "")
+    .replace(/\bthis\s+this\b/gi, "this")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.])/g, "$1")
+    .replace(/^[,.\s]+/, "")
+    .trim();
 }
 
 function pickFace(item, againstTerm) {
@@ -721,14 +733,21 @@ function pickFace(item, againstTerm) {
     .slice()
     .sort(() => Math.random() - 0.5)
     .forEach((f) => {
-      let s = leakScore(f, item.term);
-      if (againstTerm) s += leakScore(f, againstTerm);
+      const display = scrubFace(f, item.term);
+      let s = leakScore(f, item.term) * 2 + leakScore(display, item.term) * 3;
+      if (againstTerm) {
+        s += leakScore(f, againstTerm) + leakScore(display, againstTerm);
+      }
       if (s < bestScore) {
         bestScore = s;
         best = f;
       }
     });
-  return { face: best, leak: bestScore, display: scrubFace(best, item.term) };
+  return {
+    face: best,
+    leak: bestScore,
+    display: scrubFace(best, item.term),
+  };
 }
 
 function buildQuestion(prevId) {

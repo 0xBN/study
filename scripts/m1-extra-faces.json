@@ -44,7 +44,7 @@
   "constructionism": [
     "Understand by making a shareable thing in the world. A game or world others can open makes thinking public.",
     "Learning through building an external artifact. Public make drives understanding more than private rehearsal alone.",
-    "Papert: build something real others can see or use. The artifact externalizes thought so gaps show up.",
+    "Build something real others can see or use. The artifact externalizes thought so gaps show up.",
     "Constructionism is learn-by-making that leaves a public product. Shared worlds and projects are the classic case."
   ],
   "constructivism-vs-constructionism": [
@@ -73,15 +73,15 @@
   ],
   "four-ps": [
     "Projects, Passion, Peers, Play. Make things you care about, with others, in a playful way.",
-    "Resnick's Four P's name creative learning: project work, personal interest, social peers, and play.",
+    "Named creative-learning checklist: project work, personal interest, social peers, and play.",
     "Learning design around Projects, Passion, Peers, and Play. Kindergarten creative habits for every age.",
-    "The Four P's are the creative-learning checklist: make, care, collaborate, play."
+    "Creative-learning checklist: make, care, collaborate, play."
   ],
   "body-syntonic": [
     "Understand code by acting the motion with your body. Walk the path, then write steps that match the walk.",
     "Pretend you are the object moving. Body first, symbols second.",
     "Figure the program out by enacting it. Your steps become the algorithm.",
-    "Body-syntonic means the body's motion is the model for the machine's motion. Walk it, then code it."
+    "The body's motion is the model for the machine's motion. Walk it, then code it."
   ],
   "lecture": [
     "Etymology: from Latin for reading. Historically a teacher reading material aloud.",
@@ -97,7 +97,7 @@
   ],
   "faultless-communication": [
     "If they did not learn it, the instruction failed. Treat confusion as a materials problem first.",
-    "Engelmann: blame unclear teaching before blaming the student. Instruction should be faultless.",
+    "Blame unclear teaching before blaming the student. Instruction should be faultless.",
     "Learner error implies instructional flaw. Fix the examples and wording, not only the learner.",
     "If the student has not learned, the teacher has not taught. That is the faultless-communication stance."
   ],
@@ -110,8 +110,8 @@
   "gradual-release": [
     "I do, we do, you do. Teacher models, then co-solves, then students work alone.",
     "Responsibility shifts from teacher to learner across three phases. Show, share, release.",
-    "Fully worked example first, guided practice next, independent work last. That is gradual release.",
-    "Pearson and Gallagher: move from demonstration to joint work to solo performance."
+    "Fully worked example first, guided practice next, independent work last.",
+    "Move from demonstration to joint work to solo performance."
   ],
   "operant": [
     "Voluntary acts are shaped by what follows them. Reinforce closer approximations until the full act appears.",
@@ -122,7 +122,7 @@
   "classical": [
     "Pair stimuli until an automatic response transfers. Bell with food until the bell alone triggers drool.",
     "Involuntary response learning by association. Tests can become stress cues the same way.",
-    "Neutral signal plus unconditioned stimulus yields a conditioned response. Pavlov's bell is the template.",
+    "Neutral signal plus unconditioned stimulus yields a conditioned response. The classic bell-with-food case is the template.",
     "Classical conditioning moves automatic reactions, not voluntary choices. Pairing does the work."
   ],
   "positive-reinforcement": [
@@ -169,7 +169,7 @@
   ],
   "ecological-cognition": [
     "Study thinking in messy everyday settings, not only clean labs. Real-world memory and perception matter.",
-    "Neisser's ecological turn: cognition where people actually live. Lab-only tasks are incomplete.",
+    "Ecological turn: cognition where people actually live. Lab-only tasks are incomplete.",
     "How people remember and see in daily life is the object of study. Messy contexts count.",
     "Take cognition out of the sterile experiment when you want ecological validity."
   ],
@@ -189,23 +189,23 @@
     "Intrinsic = content hardness; extraneous = clutter; germane = useful thinking. Cut junk and sequence hard ideas.",
     "Working memory is limited. Remove decorative load and order difficulty carefully.",
     "Three loads: inherent difficulty, wasteful design, productive work. Design for the third by cutting the second.",
-    "Sweller: manage what competes for attention. Sequence hard material; delete useless extras."
+    "Manage what competes for attention. Sequence hard material; delete useless extras."
   ],
   "image-principle": [
     "Instructor face on a narrated video usually does not raise learning. Little new information; can steal attention.",
-    "Mayer's Image Principle: talking-head video is often no gain. The face rarely teaches extra content.",
+    "Talking-head video is often no gain. The face rarely teaches extra content.",
     "Adding the speaker's face tends not to help outcomes. Attention may go to the face instead of the idea.",
     "Narration plus slides can beat narration plus a non-informative face. Image Principle names that finding."
   ],
   "coherence-principle": [
     "Non-teaching visuals can hurt learning. Cute unrelated animations waste limited attention.",
-    "Mayer's Coherence Principle: drop seductive details that do no semantic work.",
+    "Drop seductive details that do no semantic work.",
     "Extras that look nice but teach nothing can reduce learning. Cut them.",
     "If a graphic does not carry the idea, it can compete with the idea. That is coherence."
   ],
   "self-reflection": [
     "After the work, judge how it went and why. Plan, perform, then attribute the result. Self-regulated learning.",
-    "Zimmerman: evaluate and explain causes after performance. Forethought and performance sit beside reflection.",
+    "Evaluate and explain causes after performance. Forethought and performance sit beside reflection.",
     "Close the loop: what happened, and what caused it? That after-action step is self-reflection.",
     "SRL includes looking back with a cause story, not only doing the task."
   ],
@@ -223,7 +223,7 @@
   ],
   "guided-participation": [
     "Learn by watching and joining real activity beside experts. Help cook; do not only hear a talk about cooking.",
-    "Rogoff: side-by-side participation in authentic work. Sit-and-listen is one culture, not the only path.",
+    "Side-by-side participation in authentic work. Sit-and-listen is one culture, not the only path.",
     "Pitch in on the real task with more experienced people. That is guided participation.",
     "Learning happens in joint activity, not only in lectures about the activity."
   ],
@@ -231,7 +231,7 @@
     "Newcomers do real low-stakes work at the edge of a community, then move inward. Simple needed tasks first.",
     "Legitimate peripheral participation: authentic but peripheral jobs, then fuller roles.",
     "Apprentice pattern: real contribution at the margin, growing toward the center. Not fake busywork forever.",
-    "Lave and Wenger: belong by doing real edge work in a community of practice."
+    "Belong by doing real edge work in a community of practice."
   ],
   "cultural-variation": [
     "Allow more than one valid way to reason or represent. Do not treat one style as the only correct one.",
@@ -259,13 +259,13 @@
   ],
   "belonging": [
     "Tell students that feeling out of place is normal and temporary. That message can raise motivation and grades.",
-    "Walton and Cohen: brief belonging reassurances help, especially for marginalized students.",
+    "Brief belonging reassurances help, especially for marginalized students.",
     "Normalize temporary belonging doubts. The intervention is the message, not a long course.",
     "Social belonging can be supported by saying this feeling is common and it passes."
   ],
   "self-determination": [
     "Motivation needs autonomy, competence, and relatedness. Choice, can-do, and connection.",
-    "Deci and Ryan: three nutrients — autonomy, competence, relatedness.",
+    "Three nutrients — autonomy, competence, relatedness.",
     "Support meaningful choice, a sense of effectiveness, and human connection. That is SDT.",
     "Self-determination theory names what sustains motivation beyond stickers and threats."
   ],
@@ -283,7 +283,7 @@
   ],
   "matthew-effect": [
     "Poorly designed tech helps students already ahead first. The gap can widen before it helps everyone.",
-    "Reich's EdTech Matthew effect: advantages accrue to the advantaged early.",
+    "EdTech Matthew effect: advantages accrue to the advantaged early.",
     "Bad tool design amplifies existing privilege. Early gains go to those already resourced.",
     "The already-advantaged gain first in learning tech when design ignores unequal starting points."
   ],
