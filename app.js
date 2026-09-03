@@ -837,6 +837,14 @@ function setMatchReadyNext(on) {
   document.body.classList.toggle("match-ready-next", !!on);
   const root = $("match");
   if (root) root.classList.toggle("match-ready-next", !!on);
+  const hit = $("match-next-hit");
+  if (!hit) return;
+  hit.hidden = !on;
+  if (on) {
+    const nav = document.querySelector(".nav");
+    const top = nav ? Math.ceil(nav.getBoundingClientRect().bottom) : 0;
+    hit.style.top = top + "px";
+  }
 }
 
 function renderMatch() {
@@ -1136,28 +1144,27 @@ function bind() {
     const q = sess.question;
     const correct = q.choices.some((c) => c.id === id && c.correct);
     sess.answered = true;
-    sess.blockAdvance = true;
     sess.lastCorrect = correct;
     sess.pickedId = id;
     applyAnswer(correct);
     renderMatch();
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (state.matchSession) state.matchSession.blockAdvance = false;
-      });
-    });
   });
-  document.addEventListener("click", (e) => {
+  on("match-next-hit", "click", () => {
     const sess = state.matchSession;
     if (state.mode !== "match" || !sess || !sess.answered || sess.phase !== "ask") {
       return;
     }
-    if (sess.blockAdvance) return;
-    if (e.target.closest(".nav, #sheet, #backdrop, #match-again, #match-to-read")) {
-      return;
-    }
     advanceMatch();
   });
+  window.addEventListener(
+    "resize",
+    () => {
+      if (document.body.classList.contains("match-ready-next")) {
+        setMatchReadyNext(true);
+      }
+    },
+    { passive: true },
+  );
   on("match-export", "click", exportMatchProgress);
   on("match-import-btn", "click", importMatchProgress);
   on("match-reset", "click", resetMatchDeck);

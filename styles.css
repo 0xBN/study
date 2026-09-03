@@ -142,17 +142,22 @@ textarea {
   resize: vertical;
 }
 
+.match-next-hit {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  cursor: pointer;
+  background: transparent;
+}
+
 .match {
   padding: 0.25rem 0 2rem;
 }
 
 body.match-ready-next main {
-  cursor: pointer;
   min-height: calc(100vh - 7.5rem);
-}
-
-body.match-ready-next .match {
-  min-height: calc(100vh - 9rem);
 }
 
 .match-tap {
