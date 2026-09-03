@@ -926,10 +926,6 @@ function renderMatch() {
     root.innerHTML = "<p class='muted'>No due terms.</p>";
     return;
   }
-  const hint =
-    q.direction === "term"
-      ? "Which claim matches this term?"
-      : "Which term matches this claim?";
   let fb = "";
   if (s.answered) {
     if (s.lastCorrect) {
@@ -952,7 +948,6 @@ function renderMatch() {
     .join("");
   setMatchReadyNext(!!s.answered);
   root.innerHTML = `
-    <p class="muted">${hint}</p>
     <p class="match-prompt">${inlineHtml(q.prompt)}</p>
     <div class="match-choices">${choices}</div>
     ${fb}`;
