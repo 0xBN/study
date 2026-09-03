@@ -426,6 +426,8 @@ function setMode(mode) {
       state.mode === "match" ? "true" : "false",
     );
   }
+  document.body.classList.toggle("mode-match", state.mode === "match");
+  document.body.classList.toggle("mode-read", state.mode === "read");
   if (state.mode === "match") {
     ensureMatchSession();
     renderMatch();
@@ -433,6 +435,7 @@ function setMode(mode) {
     renderArticle();
   }
   renderNav();
+  syncNavOffset();
 }
 
 function renderNav() {
@@ -898,6 +901,12 @@ function advanceMatch() {
   renderNav();
 }
 
+function syncNavOffset() {
+  const nav = document.querySelector(".nav");
+  const h = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+  document.documentElement.style.setProperty("--nav-h", h + "px");
+}
+
 function setMatchReadyNext(on) {
   document.body.classList.toggle("match-ready-next", !!on);
   const root = $("match");
@@ -905,6 +914,7 @@ function setMatchReadyNext(on) {
   const hit = $("match-next-hit");
   if (!hit) return;
   hit.hidden = !on;
+  syncNavOffset();
   if (on) {
     const nav = document.querySelector(".nav");
     const top = nav ? Math.ceil(nav.getBoundingClientRect().bottom) : 0;
@@ -996,10 +1006,13 @@ function renderMatch() {
     .join("");
   setMatchReadyNext(!!s.answered);
   root.innerHTML = `
-    <p class="match-prompt">${inlineHtml(q.prompt)}</p>
-    <div class="match-choices">${choices}</div>
-    ${fb}`;
+    <div class="match-stage">
+      <p class="match-prompt">${inlineHtml(q.prompt)}</p>
+      <div class="match-choices">${choices}</div>
+      ${fb}
+    </div>`;
   renderNav();
+  syncNavOffset();
 }
 
 function exportMatchProgress() {
@@ -1221,6 +1234,7 @@ function bind() {
   window.addEventListener(
     "resize",
     () => {
+      syncNavOffset();
       if (document.body.classList.contains("match-ready-next")) {
         setMatchReadyNext(true);
       }

@@ -240,11 +240,31 @@ textarea {
 }
 
 .match {
-  padding: 0.25rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100dvh - var(--nav-h, 7.5rem) - 1rem);
+  padding: 0.5rem 0 max(1.25rem, env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+}
+
+body.mode-match main {
+  padding-top: 0.35rem;
+  padding-bottom: 0.75rem;
+}
+
+.match-stage {
+  width: 100%;
+  /* slight downward bias so choices sit in the thumb band */
+  transform: translateY(6vh);
+}
+
+.match-board {
+  width: 100%;
 }
 
 body.match-ready-next main {
-  min-height: calc(100vh - 7.5rem);
+  min-height: 0;
 }
 
 .match-tap {
