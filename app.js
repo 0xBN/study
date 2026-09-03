@@ -5,8 +5,6 @@ const state = {
   weeks: [],
   currentWeekId: "01",
   chunkId: null,
-  rate: 1,
-  playing: false,
   parsed: new Map(),
   syncedAt: null,
   quiz: null,
@@ -16,7 +14,6 @@ const state = {
   face: "term",
 };
 
-let playGen = 0;
 let deadlineTimer = 0;
 
 function formatRemain(ms) {
@@ -89,7 +86,6 @@ function saveLs() {
     JSON.stringify({
       weekId: state.currentWeekId,
       chunkId: state.chunkId,
-      rate: state.rate,
       collapsed: state.collapsed,
       cursorByView: state.cursorByView,
       scrollByView: state.scrollByView,
@@ -160,60 +156,6 @@ function inlineHtml(text) {
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>")
     .replace(/`([^`]+)`/g, "<code>$1</code>");
-}
-
-const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-/** Strip markdown and symbols so SpeechSynthesis does not say "slash" / "arrow". */
-function speakText(text) {
-  let s = String(text);
-  s = s.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
-  s = s.replace(/https?:\/\/\S+/gi, " ");
-  s = s.replace(/\*\*/g, "");
-  s = s.replace(/`/g, "");
-  s = s.replace(/[“”]/g, "");
-  s = s.replace(/[‘’]/g, "'");
-  s = s.replace(/&amp;/g, " and ");
-  s = s.replace(/&/g, " and ");
-  s = s.replace(/\b(\d{4})-(\d{2})-(\d{2})\b/g, (_, y, m, d) => {
-    const month = MONTHS[Number(m) - 1] || m;
-    return month + " " + Number(d) + ", " + y;
-  });
-  s = s.replace(/\b(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?\b/g, (_, a, b, y) =>
-    y ? a + " " + b + " " + y : a + " " + b,
-  );
-  s = s.replace(/(\d)\s*[–—-]\s*(\d)/g, "$1 through $2");
-  s = s.replace(/→|⇒|➔|↔/g, " to ");
-  s = s.replace(/×/g, " times ");
-  s = s.replace(/±/g, " plus or minus ");
-  s = s.replace(/[—–]/g, ", ");
-  s = s.replace(/…/g, ". ");
-  s = s.replace(/~/g, " about ");
-  s = s.replace(/=/g, " equals ");
-  s = s.replace(/\+/g, " plus ");
-  s = s.replace(/>/g, " more than ");
-  s = s.replace(/</g, " less than ");
-  s = s.replace(/#(\d+)/g, " number $1 ");
-  s = s.replace(/#/g, " ");
-  s = s.replace(/\s*\/\s*/g, ", ");
-  s = s.replace(/[_*]/g, " ");
-  s = s.replace(/[()[\]{}]/g, ", ");
-  s = s.replace(/[:;]/g, ". ");
-  s = s.replace(/\s+/g, " ");
-  return s.replace(/^[,.\s]+|[,.\s]+$/g, "").trim();
 }
 
 function parseBands(text) {
@@ -375,53 +317,6 @@ function visibleChunks() {
   );
 }
 
-function cancelSpeech() {
-  playGen += 1;
-  state.playing = false;
-  if (window.speechSynthesis) speechSynthesis.cancel();
-  document.getElementById("play").textContent = "Play";
-}
-
-function speakFrom() {
-  const chunks = visibleChunks();
-  if (!chunks.length) return;
-  cancelSpeech();
-  const gen = playGen;
-  state.playing = true;
-  document.getElementById("play").textContent = "Pause";
-  const rate = state.rate;
-  const synth = window.speechSynthesis;
-
-  const go = (n) => {
-    if (gen !== playGen) return;
-    if (n >= chunks.length) {
-      state.playing = false;
-      document.getElementById("play").textContent = "Play";
-      return;
-    }
-    setCurrent(chunks[n].id);
-    saveLs();
-    renderArticle({ scrollId: chunks[n].id });
-    const spoken = speakText(chunks[n].title + ". " + chunks[n].raw);
-    if (!synth) {
-      const words = spoken.split(/\s+/).length;
-      const ms = Math.max(1800, (words * 420) / rate);
-      setTimeout(() => go(n + 1), ms);
-      return;
-    }
-    const u = new SpeechSynthesisUtterance(spoken);
-    u.rate = rate;
-    u.lang = "en-US";
-    u.onend = () => go(n + 1);
-    u.onerror = () => {
-      state.playing = false;
-      document.getElementById("play").textContent = "Play";
-    };
-    synth.speak(u);
-  };
-  go(Math.max(0, chunks.findIndex((c) => c.id === state.chunkId)));
-}
-
 function renderNav() {
   const chunks = visibleChunks();
   const idx = Math.max(0, chunks.findIndex((c) => c.id === state.chunkId));
@@ -433,7 +328,7 @@ function renderNav() {
   const now = $("now");
   if (now) {
     now.textContent = current
-      ? `${current.title || "Overview"} · ${idx + 1}/${chunks.length}${state.playing ? " · playing" : ""}`
+      ? `${current.title || "Overview"} · ${idx + 1}/${chunks.length}`
       : "";
   }
   const weeksEl = $("weeks");
@@ -455,8 +350,6 @@ function renderNav() {
       state.face === "def" ? "true" : "false",
     );
   }
-  const rate = $("rate");
-  if (rate) rate.value = String(state.rate);
   const parsedWeek = state.parsed.get(state.currentWeekId);
   const checkpoint = $("checkpoint");
   if (checkpoint) {
@@ -536,7 +429,6 @@ async function loadWeek(id) {
 }
 
 async function showWeek(id) {
-  cancelSpeech();
   stashView();
   state.currentWeekId = id;
   await loadWeek(id);
@@ -579,39 +471,10 @@ function bind() {
     const btn = e.target.closest("[data-week]");
     if (btn) showWeek(btn.dataset.week);
   });
-  on("rate", "change", (e) => {
-    state.rate = Number(e.target.value) || 1;
-    saveLs();
-  });
   on("flip", "click", () => {
     state.face = state.face === "def" ? "term" : "def";
     saveLs();
     renderArticle();
-  });
-  on("play", "click", () => {
-    if (state.playing) cancelSpeech();
-    else speakFrom();
-    renderNav();
-  });
-  on("prev", "click", () => {
-    const chunks = visibleChunks();
-    const idx = chunks.findIndex((c) => c.id === state.chunkId);
-    if (idx > 0) {
-      cancelSpeech();
-      setCurrent(chunks[idx - 1].id);
-      saveLs();
-      renderArticle({ scrollId: chunks[idx - 1].id });
-    }
-  });
-  on("next", "click", () => {
-    const chunks = visibleChunks();
-    const idx = chunks.findIndex((c) => c.id === state.chunkId);
-    if (idx >= 0 && idx < chunks.length - 1) {
-      cancelSpeech();
-      setCurrent(chunks[idx + 1].id);
-      saveLs();
-      renderArticle({ scrollId: chunks[idx + 1].id });
-    }
   });
   on("article", "click", (e) => {
     const toggle = e.target.closest(".chunk-toggle");
@@ -625,7 +488,6 @@ function bind() {
       renderArticle();
       return;
     }
-    cancelSpeech();
     setCurrent(chunk.dataset.chunk);
     saveLs();
     renderArticle();
@@ -656,7 +518,6 @@ async function boot() {
   const ls = loadLs();
   const hash = parseHash();
   state.currentWeekId = hash.weekId || ls.weekId || manifest.current;
-  state.rate = Number(ls.rate) || 1;
   state.face = ls.face === "def" ? "def" : "term";
   state.collapsed =
     ls.collapsed && typeof ls.collapsed === "object" ? ls.collapsed : {};

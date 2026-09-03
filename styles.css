@@ -35,7 +35,7 @@ body {
   padding: 0.5rem 1rem 0.55rem;
 }
 
-.play-row,
+.nav-row,
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -43,11 +43,11 @@ body {
   align-items: center;
 }
 
-.play-row {
+.nav-row {
   justify-content: space-between;
 }
 
-.play-row .menu {
+.nav-row .menu {
   flex: 1 1 auto;
   min-width: 0;
   text-align: left;
