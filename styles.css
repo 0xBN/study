@@ -418,6 +418,10 @@ body.match-hit-big {
   body.match-hit-big {
     animation: none;
   }
+
+  .match-meter-fill {
+    transition: none;
+  }
 }
 
 .match-board {
