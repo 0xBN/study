@@ -12,6 +12,7 @@ const state = {
   cursorByView: {},
   scrollByView: {},
   face: "term",
+  showSections: true,
 };
 
 let deadlineTimer = 0;
@@ -90,6 +91,7 @@ function saveLs() {
       cursorByView: state.cursorByView,
       scrollByView: state.scrollByView,
       face: state.face,
+      showSections: state.showSections,
     }),
   );
 }
@@ -350,6 +352,14 @@ function renderNav() {
       state.face === "def" ? "true" : "false",
     );
   }
+  const sections = $("sections");
+  if (sections) {
+    sections.textContent = state.showSections ? "Sections: on" : "Sections: off";
+    sections.setAttribute(
+      "aria-pressed",
+      state.showSections ? "true" : "false",
+    );
+  }
   const parsedWeek = state.parsed.get(state.currentWeekId);
   const checkpoint = $("checkpoint");
   if (checkpoint) {
@@ -393,7 +403,7 @@ function renderArticle(opts) {
   let html = "";
   let lastSection = "";
   chunks.forEach((c) => {
-    if (c.section !== lastSection) {
+    if (state.showSections && c.section !== lastSection) {
       html += `<h2>${inlineHtml(c.section)}</h2>`;
       lastSection = c.section;
     }
@@ -476,6 +486,18 @@ function bind() {
     saveLs();
     renderArticle();
   });
+  on("collapse-all", "click", () => {
+    visibleChunks().forEach((c) => {
+      state.collapsed[c.id] = true;
+    });
+    saveLs();
+    renderArticle();
+  });
+  on("sections", "click", () => {
+    state.showSections = !state.showSections;
+    saveLs();
+    renderArticle();
+  });
   on("article", "click", (e) => {
     const toggle = e.target.closest(".chunk-toggle");
     const chunk = e.target.closest("[data-chunk]");
@@ -519,6 +541,7 @@ async function boot() {
   const hash = parseHash();
   state.currentWeekId = hash.weekId || ls.weekId || manifest.current;
   state.face = ls.face === "def" ? "def" : "term";
+  state.showSections = ls.showSections !== false;
   state.collapsed =
     ls.collapsed && typeof ls.collapsed === "object" ? ls.collapsed : {};
   state.cursorByView =

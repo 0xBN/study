@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
     <title>CS6460 Quiz Drill</title>
-    <link rel="stylesheet" href="./styles.css?v=11" />
+    <link rel="stylesheet" href="./styles.css?v=12" />
   </head>
   <body>
     <nav class="nav" aria-label="CS6460 quiz drill">
       <div class="nav-row">
         <button type="button" id="open-sheet" class="menu">Week</button>
         <button type="button" id="flip">Face: term</button>
+        <button type="button" id="collapse-all">Collapse</button>
+        <button type="button" id="sections">Sections: on</button>
       </div>
       <p id="deadline" class="deadline" hidden></p>
       <p id="now" class="now"></p>
@@ -27,7 +29,7 @@
       <p class="label">Week</p>
       <div id="weeks" class="week-list"></div>
       <p class="label">How to read</p>
-      <p class="muted">Folded face is the prompt; tap to see the other side. Flip switches term-first (what is X?) vs claim-first (which term is this?). Quiz 1 → Week 1 Module 1, not Week 2.</p>
+      <p class="muted">Folded face is the prompt; tap to see the other side. Flip switches term-first vs claim-first. Collapse folds every card. Sections off hides lesson headings so names like “1.1 Constructivism” do not hint the cards. Quiz 1 → Week 1 Module 1, not Week 2.</p>
       <p class="label">Quiz window</p>
       <p id="quiz-detail" class="muted"></p>
       <p class="label">Checkpoint</p>
@@ -39,6 +41,6 @@
     <main>
       <article id="article"></article>
     </main>
-    <script src="./app.js?v=11"></script>
+    <script src="./app.js?v=12"></script>
   </body>
 </html>
