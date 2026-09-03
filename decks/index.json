@@ -1,0 +1,10 @@
+{
+  "decks": [
+    {
+      "id": "cs6460-m1",
+      "file": "decks/cs6460-module-1.json",
+      "title": "CS6460 Module 1",
+      "weekId": "01"
+    }
+  ]
+}

@@ -1,0 +1,308 @@
+{
+  "constructivism": [
+    "Learning rebuilds an internal model instead of copying facts into the head. Someone can say the right rule and still feel heavy objects fall faster.",
+    "You construct knowledge as a personal mental model, not a file transfer. Reciting a physics fact does not mean the old gut model is gone.",
+    "Knowledge is something you rebuild inside, not download. The heavy-ball intuition can survive even after you know the textbook answer.",
+    "Teaching is not pouring information in; the learner rebuilds a mental model. Knowing the fact and feeling the wrong prediction can both be true."
+  ],
+  "assimilation": [
+    "Squeeze the new event into the model you already have. Label the mismatch a fluke so nothing has to change.",
+    "Keep the old picture and force the new data to fit it. Calling the demo a trick is assimilation protecting the old model.",
+    "New experience gets bent to match prior structure. You avoid updating the model by treating the conflict as a special case.",
+    "Fit incoming evidence into existing schemas. If it contradicts, explain it away instead of revising the schema."
+  ],
+  "accommodation": [
+    "Rewrite the mental model so it matches what just happened. Equal fall times for heavy and light balls force that rewrite.",
+    "Change your internal picture when experience will not fit. Seeing both balls land together makes the old model untenable.",
+    "Update the schema itself, not just the story about the demo. The drop experiment is the push that requires the change.",
+    "Accommodation means the model moves. After a clear counterexample, the old prediction cannot stay."
+  ],
+  "disequilibrium": [
+    "That uncomfortable mismatch between expectation and result is what drives learning. A wrong drawing that you can see is enough to create it.",
+    "Productive confusion: reality refuses your model. The error on the page is the signal, not a lecture about the error.",
+    "When prediction and outcome collide, disequilibrium begins. Visible failure of your own output makes the collision hard to ignore.",
+    "Learning starts when the model fails in front of you. A botched result can force the rethink without anyone explaining it."
+  ],
+  "mko": [
+    "Someone or something that can currently do the part you cannot. Hinting software counts the same as a tutor.",
+    "More knowledgeable other: a person or tool ahead of you on the task. A peer who can do the next step qualifies.",
+    "Support can be human or designed into the tool. The MKO is whatever can perform what you still cannot.",
+    "You learn beside a more capable other — teacher, peer, or interactive help. The tool that gives the next hint is an MKO too."
+  ],
+  "zpd": [
+    "The sweet spot between solo success and impossible even with help. Temporary scaffolds belong there and should fade.",
+    "ZPD is work you can finish with support but not alone. Help should thin out: full guide, then cue, then none.",
+    "Teach in the zone where guidance unlocks performance. Scaffolding is that help, and removal is part of the design.",
+    "Alone you cannot yet; with help you can. That gap is the ZPD, and worksheets that never go away are not true scaffolds."
+  ],
+  "kirschner-2006": [
+    "Constructive learning does not justify unguided teaching for novices. Experts can explore more freely; beginners need structure.",
+    "They argued against minimizing guidance just because learning is constructive. Novices overload without help.",
+    "Guidance should be strong early. Open discovery works better once prior knowledge can guide the learner.",
+    "Minimal guidance fails beginners even if knowledge is constructed. Fade support as expertise grows."
+  ],
+  "constructionism": [
+    "Understand by making a shareable thing in the world. A game or world others can open makes thinking public.",
+    "Learning through building an external artifact. Public make drives understanding more than private rehearsal alone.",
+    "Papert: build something real others can see or use. The artifact externalizes thought so gaps show up.",
+    "Constructionism is learn-by-making that leaves a public product. Shared worlds and projects are the classic case."
+  ],
+  "constructivism-vs-constructionism": [
+    "One rebuilds a model in the head; the other learns by making something outside the head. Inside rebuild versus public make.",
+    "Constructivism is internal model change; constructionism is learning through an external artifact. Related, not the same word.",
+    "Mental-model construction versus shareable-artifact construction. Same family; different place the building happens.",
+    "Do not mix them: constructivism = inside; constructionism = outside make that drives the inside."
+  ],
+  "instructionism": [
+    "Fix learning mainly by fixing how teachers explain. Better lecture delivery is treated as the whole solution.",
+    "The theory that better telling produces better learning. Improve how teachers explain, full stop.",
+    "Instructionism bets on refining teaching talk. Materials for making take a back seat to clearer lectures.",
+    "If learning is weak, improve the explanation. That is instructionism's core move."
+  ],
+  "wide-walls": [
+    "Many kinds of personally meaningful projects, not merely many ages or devices. One tool, many project types.",
+    "Wide walls means variety of project genres. Story versus game on the same platform is the idea.",
+    "Support diverse project kinds learners care about. It is not about supporting every age band as the definition.",
+    "Personally meaningful variety of makes. Same environment; different project shapes."
+  ],
+  "low-floor-high-ceiling": [
+    "Beginners can start easily; experts can still go deep. Same tool hosts first drag-and-drop and later complex work.",
+    "Easy entry plus room to grow. A simple first project and an advanced later project on one system.",
+    "Low floor: quick start. High ceiling: depth later. Both on the same learning tool.",
+    "Do not force a hard start or a shallow end. The tool should welcome novices and still challenge experts."
+  ],
+  "four-ps": [
+    "Projects, Passion, Peers, Play. Make things you care about, with others, in a playful way.",
+    "Resnick's Four P's name creative learning: project work, personal interest, social peers, and play.",
+    "Learning design around Projects, Passion, Peers, and Play. Kindergarten creative habits for every age.",
+    "The Four P's are the creative-learning checklist: make, care, collaborate, play."
+  ],
+  "body-syntonic": [
+    "Understand code by acting the motion with your body. Walk the path, then write steps that match the walk.",
+    "Pretend you are the object moving. Body first, symbols second.",
+    "Figure the program out by enacting it. Your steps become the algorithm.",
+    "Body-syntonic means the body's motion is the model for the machine's motion. Walk it, then code it."
+  ],
+  "lecture": [
+    "Etymology: from Latin for reading. Historically a teacher reading material aloud.",
+    "The word lecture literally points to reading. Old form: read the text to the class.",
+    "Lecture comes from to read. The name remembers teachers reading aloud.",
+    "Not a modern invention of slides — the root is reading aloud to students."
+  ],
+  "di-vs-discovery": [
+    "Not a pure either-or. Guidance should track expertise: tight for beginners, looser later.",
+    "False dichotomy between direct instruction and discovery. Expertise is the real dial.",
+    "Guide closely early; release as skill grows. Discovery versus telling is the wrong fight.",
+    "How expert the learner is decides how much guidance to give. That beats picking a camp."
+  ],
+  "faultless-communication": [
+    "If they did not learn it, the instruction failed. Treat confusion as a materials problem first.",
+    "Engelmann: blame unclear teaching before blaming the student. Instruction should be faultless.",
+    "Learner error implies instructional flaw. Fix the examples and wording, not only the learner.",
+    "If the student has not learned, the teacher has not taught. That is the faultless-communication stance."
+  ],
+  "di-vs-di": [
+    "lowercase di = teacher-led teaching in general; DI = Engelmann and Becker's scripted program. Same letters, different scopes.",
+    "Do not confuse everyday direct instruction with capital-D Direct Instruction. One is a style; one is a named package.",
+    "di means guided teaching broadly. DI means that specific scripted curriculum line.",
+    "Quiz trap: di versus DI. General teacher-led practice versus the Engelmann/Becker program."
+  ],
+  "gradual-release": [
+    "I do, we do, you do. Teacher models, then co-solves, then students work alone.",
+    "Responsibility shifts from teacher to learner across three phases. Show, share, release.",
+    "Fully worked example first, guided practice next, independent work last. That is gradual release.",
+    "Pearson and Gallagher: move from demonstration to joint work to solo performance."
+  ],
+  "operant": [
+    "Voluntary acts are shaped by what follows them. Reinforce closer approximations until the full act appears.",
+    "Consequences train chosen behaviors. Shaping rewards steps toward the target action.",
+    "Operant conditioning: after the behavior comes the consequence that makes it more or less likely.",
+    "Unlike reflexes, these are voluntary moves steered by outcomes. Reward successive approximations."
+  ],
+  "classical": [
+    "Pair stimuli until an automatic response transfers. Bell with food until the bell alone triggers drool.",
+    "Involuntary response learning by association. Tests can become stress cues the same way.",
+    "Neutral signal plus unconditioned stimulus yields a conditioned response. Pavlov's bell is the template.",
+    "Classical conditioning moves automatic reactions, not voluntary choices. Pairing does the work."
+  ],
+  "positive-reinforcement": [
+    "Add something liked; the behavior rises. Praise or food after the desired act.",
+    "Present a pleasant consequence to increase a behavior. That is positive reinforcement.",
+    "Behavior up because you added a wanted thing. Praise after the right move.",
+    "Plus a liked stimulus, behavior becomes more likely. Not the same as punishment."
+  ],
+  "negative-reinforcement": [
+    "Remove something disliked; the behavior rises. Time-limit off after chores increases chore-doing. Not punishment.",
+    "Escape or remove an aversive thing to strengthen a behavior. Chores done then restriction lifted.",
+    "Behavior goes up because something annoying ends. Negative means remove, not bad.",
+    "Take away a disliked condition after the act; the act becomes more likely. Still reinforcement."
+  ],
+  "positive-punishment": [
+    "Add something disliked; the behavior falls. Extra chores after the unwanted act.",
+    "Present an aversive consequence to decrease behavior. That is positive punishment.",
+    "Behavior down because you added something unwanted. Add work as the consequence.",
+    "Plus a disliked stimulus, behavior becomes less likely. Ask down first, then add."
+  ],
+  "negative-punishment": [
+    "Remove something liked; the behavior falls. Dessert gone when dinner is unfinished.",
+    "Take away a pleasant thing to decrease a behavior. That is negative punishment.",
+    "Behavior down because a wanted thing disappears. Loss of privilege after the act.",
+    "Minus a liked stimulus, behavior becomes less likely. Remove dessert, not add chores."
+  ],
+  "reinforcement-vs-punishment": [
+    "Reinforcement aims to increase behavior; punishment aims to decrease it. Positive = add; negative = remove. Up/down first, then add/remove.",
+    "Decoder: did the behavior go up or down? Then did we add or take away? Negative reinforcement is still an increase.",
+    "Increase versus decrease is the first cut. Add versus remove is the second. Do not read negative as punishment.",
+    "Four cells: +R, -R, +P, -P. Reinforcement raises rate; punishment lowers it."
+  ],
+  "cognitivism-displaced-behaviorism": [
+    "Behaviorism stalled on abstract ideas, transfer, and novel problems. Watching only outward acts left the mind unexplained.",
+    "Cognitivism rose because stimulus-response could not explain flexible thought. Internal representation became necessary.",
+    "Limits of behaviorism: weak on abstraction, transfer, and new problem solving. That opened the door to cognitivism.",
+    "If only behavior is allowed as data, deep learning stays invisible. Cognitivism addressed that gap."
+  ],
+  "immediate-reinforcement": [
+    "The consequence must arrive right after the behavior. Instant right/wrong beats feedback a week later.",
+    "Tight timing ties the outcome to the act. Delayed grades break that pairing.",
+    "Immediate feedback is the educational form of immediate reinforcement. Step, then signal, quickly.",
+    "Delay weakens learning from consequences. Put the result next to the move that caused it."
+  ],
+  "ecological-cognition": [
+    "Study thinking in messy everyday settings, not only clean labs. Real-world memory and perception matter.",
+    "Neisser's ecological turn: cognition where people actually live. Lab-only tasks are incomplete.",
+    "How people remember and see in daily life is the object of study. Messy contexts count.",
+    "Take cognition out of the sterile experiment when you want ecological validity."
+  ],
+  "newell-simon": [
+    "People build an internal problem picture and search possible moves. Not stimulus-response alone.",
+    "Problem-space search: states, operators, goals. Think through options mentally.",
+    "Internal representation plus search beats pure reaction. Newell and Simon's cognitivist move.",
+    "Solve by exploring a mental maze of states. Behaviorism's S-R story is not enough here."
+  ],
+  "cognitivist-feedback": [
+    "Wrong, try again mostly nudges the next click; explaining why wrong updates the model. Fix understanding, not only the answer.",
+    "Feedback should reshape the schema. Saying only incorrect reinforces behavior without repairing the idea.",
+    "Cognitivist feedback tells why the answer failed. That is different from bare reinforcement.",
+    "Update the mental model on error. Right/wrong alone is thinner than why."
+  ],
+  "cognitive-load": [
+    "Intrinsic = content hardness; extraneous = clutter; germane = useful thinking. Cut junk and sequence hard ideas.",
+    "Working memory is limited. Remove decorative load and order difficulty carefully.",
+    "Three loads: inherent difficulty, wasteful design, productive work. Design for the third by cutting the second.",
+    "Sweller: manage what competes for attention. Sequence hard material; delete useless extras."
+  ],
+  "image-principle": [
+    "Instructor face on a narrated video usually does not raise learning. Little new information; can steal attention.",
+    "Mayer's Image Principle: talking-head video is often no gain. The face rarely teaches extra content.",
+    "Adding the speaker's face tends not to help outcomes. Attention may go to the face instead of the idea.",
+    "Narration plus slides can beat narration plus a non-informative face. Image Principle names that finding."
+  ],
+  "coherence-principle": [
+    "Non-teaching visuals can hurt learning. Cute unrelated animations waste limited attention.",
+    "Mayer's Coherence Principle: drop seductive details that do no semantic work.",
+    "Extras that look nice but teach nothing can reduce learning. Cut them.",
+    "If a graphic does not carry the idea, it can compete with the idea. That is coherence."
+  ],
+  "self-reflection": [
+    "After the work, judge how it went and why. Plan, perform, then attribute the result. Self-regulated learning.",
+    "Zimmerman: evaluate and explain causes after performance. Forethought and performance sit beside reflection.",
+    "Close the loop: what happened, and what caused it? That after-action step is self-reflection.",
+    "SRL includes looking back with a cause story, not only doing the task."
+  ],
+  "fluency-illusion": [
+    "Feeling smooth after rereading is not recall ability. Familiar notes, blank quiz; practice quizzes expose it.",
+    "Ease of reading feels like knowing. It often is not. Test yourself to recalibrate.",
+    "Fluency illusion: recognition comfort masquerades as mastery. Retrieval practice breaks the illusion.",
+    "If it only feels easy while rereading, you may still fail a closed quiz. Check with a practice quiz."
+  ],
+  "monitoring-capacity": [
+    "Stress can eat the attention you need to notice you are lost. After pressure drops, gaps become visible.",
+    "Metacognitive monitoring needs spare capacity. Under load, you miss your own confusion.",
+    "When stress fills working memory, self-checks fail. Later calm can reveal what you skipped.",
+    "You cannot monitor well if attention is maxed by anxiety. Capacity returns when the pressure ends."
+  ],
+  "guided-participation": [
+    "Learn by watching and joining real activity beside experts. Help cook; do not only hear a talk about cooking.",
+    "Rogoff: side-by-side participation in authentic work. Sit-and-listen is one culture, not the only path.",
+    "Pitch in on the real task with more experienced people. That is guided participation.",
+    "Learning happens in joint activity, not only in lectures about the activity."
+  ],
+  "lpp": [
+    "Newcomers do real low-stakes work at the edge of a community, then move inward. Simple needed tasks first.",
+    "Legitimate peripheral participation: authentic but peripheral jobs, then fuller roles.",
+    "Apprentice pattern: real contribution at the margin, growing toward the center. Not fake busywork forever.",
+    "Lave and Wenger: belong by doing real edge work in a community of practice."
+  ],
+  "cultural-variation": [
+    "Allow more than one valid way to reason or represent. Do not treat one style as the only correct one.",
+    "Honor multiple reasoning styles. Translating the UI alone does not fix cultural mismatch.",
+    "Different valid representations can solve the same problem. Design should not erase that.",
+    "Cultural variation in thinking is a feature to respect, not a bug to normalize away."
+  ],
+  "zpd-vs-scaffolding": [
+    "ZPD is the gap between alone and with help; scaffolding is the temporary support inside that gap. Zone versus help.",
+    "Do not confuse the zone with the props in the zone. ZPD names the gap; scaffolding names the fading help.",
+    "Zone of proximal development is not scaffolding. One is where; the other is what support you place there.",
+    "Remember: ZPD = the region; scaffolding = supports that should disappear."
+  ],
+  "mastery-oriented": [
+    "Success means actually understanding, not looking better than others. I got it beats I looked smart.",
+    "Mastery goals define competence as real learning. Performance goals chase looking competent.",
+    "Goal orientation: mastery cares about skill growth more than relative ranking.",
+    "If the aim is genuine understanding, you are mastery-oriented. Showing off is a different aim."
+  ],
+  "espn-top-10": [
+    "Performance-approach hunts the highlight reel; performance-avoidance dodges the blooper reel. The same dunk can become either.",
+    "Same risky play can look glorious or embarrassing. Approach wants the Top 10; avoidance fears the Not Top 10.",
+    "Approach success versus avoid failure — often on the identical attempt.",
+    "Highlight versus blooper motivation can target the same move. Mastery players may ignore both lists."
+  ],
+  "belonging": [
+    "Tell students that feeling out of place is normal and temporary. That message can raise motivation and grades.",
+    "Walton and Cohen: brief belonging reassurances help, especially for marginalized students.",
+    "Normalize temporary belonging doubts. The intervention is the message, not a long course.",
+    "Social belonging can be supported by saying this feeling is common and it passes."
+  ],
+  "self-determination": [
+    "Motivation needs autonomy, competence, and relatedness. Choice, can-do, and connection.",
+    "Deci and Ryan: three nutrients — autonomy, competence, relatedness.",
+    "Support meaningful choice, a sense of effectiveness, and human connection. That is SDT.",
+    "Self-determination theory names what sustains motivation beyond stickers and threats."
+  ],
+  "remote-proctoring": [
+    "Systems struggled more with darker-skinned faces. Forced users get uneven harm.",
+    "Remote proctoring failed fairness on face detection for darker skin. Captive users cannot easily leave.",
+    "Uneven error rates by skin tone showed up in proctoring tools. Harm is not evenly shared.",
+    "Lesson cite: darker-skinned faces were harder for the systems. That is an ethics failure mode."
+  ],
+  "ai-feedback-demographics": [
+    "Girls and underrepresented minorities got less critical feedback. Softer comments are not equal help.",
+    "Demographic skew in AI critique: some groups received gentler, less useful feedback.",
+    "Unequal critical feedback by group identity. Kindness that withholds challenge is still unequal.",
+    "If the model softens critique for some demographics, learning opportunity becomes unequal."
+  ],
+  "matthew-effect": [
+    "Poorly designed tech helps students already ahead first. The gap can widen before it helps everyone.",
+    "Reich's EdTech Matthew effect: advantages accrue to the advantaged early.",
+    "Bad tool design amplifies existing privilege. Early gains go to those already resourced.",
+    "The already-advantaged gain first in learning tech when design ignores unequal starting points."
+  ],
+  "learning-styles": [
+    "Matching teaching to visual/auditory/kinesthetic styles is a myth. Real differences: prior knowledge, language, access, disability.",
+    "VAK meshing failed. Design for actual learner differences, not preferred modality myths.",
+    "Learning-styles theory as meshing is not supported. Prior knowledge and access matter more.",
+    "Do not build for VAK labels. Build for knowledge gaps, language, access, and disability."
+  ],
+  "assessment": [
+    "Measure this student's learning for a grade or feedback. Like reading one person's heart rate.",
+    "Assessment serves the learner being measured: score or formative comment for them.",
+    "Individual measurement for feedback or grading. Not yet a judgment of the whole program.",
+    "Assessment asks how this student is doing. Keep that separate from evaluating the tool."
+  ],
+  "evaluation": [
+    "Use measures to judge whether a tool or curriculum works. Compare workout plans with the same heart-rate readings.",
+    "Evaluation judges the intervention or system, often across learners. Same meter, different use.",
+    "Program-level judgment from assessment data. Did the curriculum or tool work?",
+    "Evaluation is about the design's effectiveness for the next cohort, not one student's grade alone."
+  ]
+}

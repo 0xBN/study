@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
     <title>CS6460 Quiz Drill</title>
-    <link rel="stylesheet" href="./styles.css?v=13" />
+    <link rel="stylesheet" href="./styles.css?v=14" />
   </head>
   <body>
     <nav class="nav" aria-label="CS6460 quiz drill">
-      <div class="nav-row">
+      <div class="mode-row" role="tablist" aria-label="Mode">
+        <button type="button" id="mode-read" class="mode active" aria-pressed="true">Read</button>
+        <button type="button" id="mode-match" class="mode" aria-pressed="false">Match</button>
+      </div>
+      <div id="read-controls" class="nav-row">
         <button type="button" id="open-sheet" class="menu">Week</button>
         <button type="button" id="flip">Face: term</button>
         <button type="button" id="collapse-all">Collapse</button>
         <button type="button" id="sections">Sections: on</button>
+      </div>
+      <div id="match-controls" class="nav-row" hidden>
+        <button type="button" id="open-sheet-match" class="menu">Match</button>
+        <span id="match-status" class="match-status"></span>
       </div>
       <p id="deadline" class="deadline" hidden></p>
     </nav>
@@ -25,21 +33,31 @@
         <button type="button" id="close-sheet">Done</button>
       </div>
       <p class="muted">Closed-book quiz drill only. 6795 stays in the Know file — open notes there.</p>
-      <p class="label">Week</p>
+      <p class="label">Week (Read)</p>
       <div id="weeks" class="week-list"></div>
-      <p class="label">How to read</p>
-      <p class="muted">Folded face is the prompt; tap to see the other side. Flip switches term-first vs claim-first. Collapse folds every card. Sections off hides lesson headings so names like “1.1 Constructivism” do not hint the cards. Quiz 1 → Week 1 Module 1, not Week 2.</p>
+      <p class="label">How to use</p>
+      <p class="muted">Read: fold cards, flip term/claim, hide section headings if they hint. Match: 2-choice retrieval, 10 per session, green/red feedback. Progress is local — export to paste into chat or another device.</p>
       <p class="label">Quiz window</p>
       <p id="quiz-detail" class="muted"></p>
       <p class="label">Checkpoint</p>
       <p id="checkpoint"></p>
       <p id="synced" class="muted"></p>
       <p id="missing" class="muted"></p>
+      <p class="label">Match progress</p>
+      <p id="match-sheet-stats" class="muted"></p>
+      <div class="sheet-actions">
+        <button type="button" id="match-export">Copy progress</button>
+        <button type="button" id="match-reset">Reset match deck</button>
+      </div>
+      <label class="label" for="match-import">Paste progress</label>
+      <textarea id="match-import" rows="4" placeholder="Paste study-match-progress block here"></textarea>
+      <button type="button" id="match-import-btn">Import (replace)</button>
     </div>
 
     <main>
       <article id="article"></article>
+      <section id="match" class="match" hidden aria-label="Match drill"></section>
     </main>
-    <script src="./app.js?v=13"></script>
+    <script src="./app.js?v=14"></script>
   </body>
 </html>

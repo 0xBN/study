@@ -1,5 +1,8 @@
 const LS_KEY = "omscs-study";
+const MATCH_LS_PREFIX = "omscs-study-match:";
 const COURSE = "6460";
+const CLEARS_NEEDED = 5;
+const SESSION_SIZE = 10;
 
 const state = {
   weeks: [],
@@ -13,9 +16,23 @@ const state = {
   scrollByView: {},
   face: "term",
   showSections: true,
+  mode: "read",
+  deck: null,
+  matchProgress: {},
+  matchSession: null,
 };
 
 let deadlineTimer = 0;
+
+function $(id) {
+  return document.getElementById(id);
+}
+
+function on(id, event, fn) {
+  const el = $(id);
+  if (!el) return;
+  el.addEventListener(event, fn);
+}
 
 function formatRemain(ms) {
   if (ms <= 0) return "closed";
@@ -69,9 +86,10 @@ function renderDeadline() {
       : `${label} · ${formatRemain(ms)}`;
   }
   if (detail) {
-    detail.textContent = ms <= 0
-      ? `${label} closed. Canvas date ${dueLabel || "—"}; wall clock was ${local}.`
-      : `${label} due ${dueLabel || "—"}. Anywhere on Earth (AOE) = last timezone still on that calendar day. On your clock that is ${local}. Study until then; submit before it flips.`;
+    detail.textContent =
+      ms <= 0
+        ? `${label} closed. Canvas date ${dueLabel || "—"}; wall clock was ${local}.`
+        : `${label} due ${dueLabel || "—"}. Anywhere on Earth (AOE) = last timezone still on that calendar day. On your clock that is ${local}. Study until then; submit before it flips.`;
   }
 }
 
@@ -94,15 +112,78 @@ function saveLs() {
       scrollByView: state.scrollByView,
       face: state.face,
       showSections: state.showSections,
+      mode: state.mode,
     }),
   );
+}
+
+function matchLsKey(deckId) {
+  return MATCH_LS_PREFIX + (deckId || state.deck?.id || "cs6460-m1");
+}
+
+function loadMatchProgress(deckId) {
+  try {
+    const raw = JSON.parse(localStorage.getItem(matchLsKey(deckId)) || "{}");
+    return raw.items && typeof raw.items === "object" ? raw.items : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveMatchProgress() {
+  if (!state.deck) return;
+  const payload = {
+    deckId: state.deck.id,
+    v: 1,
+    updatedAt: new Date().toISOString(),
+    items: state.matchProgress,
+  };
+  localStorage.setItem(matchLsKey(state.deck.id), JSON.stringify(payload));
+}
+
+function ensureItemProgress(id) {
+  if (!state.matchProgress[id]) {
+    state.matchProgress[id] = {
+      remaining: CLEARS_NEEDED,
+      wrong: 0,
+      seen: 0,
+      last: 0,
+    };
+  }
+  return state.matchProgress[id];
+}
+
+function matchStats() {
+  const items = state.deck?.items || [];
+  const n = items.length || 1;
+  let filled = 0;
+  let cleared = 0;
+  items.forEach((it) => {
+    const p = ensureItemProgress(it.id);
+    const rem = Math.max(0, Math.min(CLEARS_NEEDED, Number(p.remaining) || 0));
+    filled += CLEARS_NEEDED - rem;
+    if (rem === 0) cleared += 1;
+  });
+  const percent = Math.round((100 * filled) / (CLEARS_NEEDED * n));
+  const left = items.length - cleared;
+  return { percent, cleared, total: items.length, left, filled };
+}
+
+function worstTerms(limit) {
+  return (state.deck?.items || [])
+    .map((it) => {
+      const p = ensureItemProgress(it.id);
+      return { id: it.id, term: it.term, wrong: p.wrong || 0, remaining: p.remaining };
+    })
+    .filter((x) => x.wrong > 0)
+    .sort((a, b) => b.wrong - a.wrong || b.remaining - a.remaining)
+    .slice(0, limit || 8);
 }
 
 function viewKey(weekId) {
   return weekId || state.currentWeekId;
 }
 
-/** Prefer week-only keys; fall back to old week-course keys from dual-course builds. */
 function viewLookup(map, weekId) {
   const id = weekId || state.currentWeekId;
   if (map[id] != null) return map[id];
@@ -152,7 +233,7 @@ function writeHash() {
 }
 
 function inlineHtml(text) {
-  return text
+  return String(text)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
@@ -183,7 +264,6 @@ function parseBands(text) {
     if (current) {
       const extra = line.replace(/^- /, "").trim();
       if (extra) current.text += " " + extra;
-      return;
     }
   });
   if (current) bands.push(current);
@@ -321,11 +401,64 @@ function visibleChunks() {
   );
 }
 
+function setMode(mode) {
+  state.mode = mode === "match" ? "match" : "read";
+  saveLs();
+  const readCtrls = $("read-controls");
+  const matchCtrls = $("match-controls");
+  const article = $("article");
+  const match = $("match");
+  const modeRead = $("mode-read");
+  const modeMatch = $("mode-match");
+  if (readCtrls) readCtrls.hidden = state.mode !== "read";
+  if (matchCtrls) matchCtrls.hidden = state.mode !== "match";
+  if (article) article.hidden = state.mode !== "read";
+  if (match) match.hidden = state.mode !== "match";
+  if (modeRead) {
+    modeRead.classList.toggle("active", state.mode === "read");
+    modeRead.setAttribute("aria-pressed", state.mode === "read" ? "true" : "false");
+  }
+  if (modeMatch) {
+    modeMatch.classList.toggle("active", state.mode === "match");
+    modeMatch.setAttribute(
+      "aria-pressed",
+      state.mode === "match" ? "true" : "false",
+    );
+  }
+  if (state.mode === "match") {
+    ensureMatchSession();
+    renderMatch();
+  } else {
+    renderArticle();
+  }
+  renderNav();
+}
+
 function renderNav() {
   const chunks = visibleChunks();
   const menu = $("open-sheet");
   if (menu) {
     menu.textContent = "CS6460 · " + weekLabel(state.currentWeekId);
+  }
+  const menuMatch = $("open-sheet-match");
+  if (menuMatch) {
+    const st = matchStats();
+    menuMatch.textContent = state.deck
+      ? `${state.deck.title} · ${st.percent}%`
+      : "Match";
+  }
+  const status = $("match-status");
+  if (status && state.mode === "match") {
+    const st = matchStats();
+    const sess = state.matchSession;
+    const qPart = sess
+      ? sess.phase === "board"
+        ? "done"
+        : `${Math.min(sess.index + 1, sess.size)}/${sess.size}`
+      : "";
+    status.textContent = `Study ${st.percent}% · ${st.cleared}/${st.total} cleared · left ${st.left}${
+      qPart ? ` · Q ${qPart}` : ""
+    }`;
   }
   const weeksEl = $("weeks");
   if (weeksEl) {
@@ -373,10 +506,25 @@ function renderNav() {
         })
       : "";
   }
+  const sheetStats = $("match-sheet-stats");
+  if (sheetStats) {
+    if (!state.deck) {
+      sheetStats.textContent = "Match deck not loaded.";
+    } else {
+      const st = matchStats();
+      const worst = worstTerms(5)
+        .map((w) => `${w.term} (wrong ${w.wrong}, left ${w.remaining})`)
+        .join("; ");
+      sheetStats.textContent = `Study ${st.percent}% · ${st.cleared}/${st.total} terms cleared.${
+        worst ? " Weak: " + worst : " No misses yet."
+      }`;
+    }
+  }
   renderDeadline();
 }
 
 function renderArticle(opts) {
+  if (state.mode !== "read") return;
   const keepY = opts && typeof opts.y === "number" ? opts.y : window.scrollY;
   const parsed = state.parsed.get(state.currentWeekId);
   const article = document.getElementById("article");
@@ -424,12 +572,343 @@ function renderArticle(opts) {
   });
 }
 
+function itemById(id) {
+  return (state.deck?.items || []).find((i) => i.id === id);
+}
+
+function pickDueItem(excludeId) {
+  const due = (state.deck?.items || []).filter((it) => {
+    if (excludeId && it.id === excludeId) return false;
+    return ensureItemProgress(it.id).remaining > 0;
+  });
+  if (!due.length) return null;
+  const now = Date.now();
+  const scored = due.map((it) => {
+    const p = ensureItemProgress(it.id);
+    const age = Math.max(0, now - (p.last || 0)) / 60000;
+    const weight =
+      p.remaining * 3 + (p.wrong || 0) * 4 + Math.min(20, age / 5) + Math.random();
+    return { it, weight };
+  });
+  scored.sort((a, b) => b.weight - a.weight);
+  return scored[0].it;
+}
+
+function pickDistractor(correct) {
+  const byId = new Map((state.deck?.items || []).map((i) => [i.id, i]));
+  const sibs = (correct.siblings || [])
+    .map((id) => byId.get(id))
+    .filter(Boolean);
+  if (sibs.length) {
+    return sibs[Math.floor(Math.random() * sibs.length)];
+  }
+  const others = (state.deck?.items || []).filter((i) => i.id !== correct.id);
+  return others[Math.floor(Math.random() * others.length)];
+}
+
+function shuffle2(a, b) {
+  return Math.random() < 0.5 ? [a, b] : [b, a];
+}
+
+function buildQuestion(prevId) {
+  const item = pickDueItem(prevId);
+  if (!item) return null;
+  const distractor = pickDistractor(item);
+  if (!distractor) return null;
+  const faces = item.faces && item.faces.length ? item.faces : [item.term];
+  const face = faces[Math.floor(Math.random() * faces.length)];
+  const direction = Math.random() < 0.5 ? "term" : "claim";
+  let prompt;
+  let choices;
+  if (direction === "term") {
+    prompt = item.term;
+    choices = shuffle2(
+      { id: item.id, label: face, correct: true },
+      {
+        id: distractor.id,
+        label: (distractor.faces && distractor.faces[0]) || distractor.term,
+        correct: false,
+      },
+    );
+  } else {
+    prompt = face;
+    choices = shuffle2(
+      { id: item.id, label: item.term, correct: true },
+      { id: distractor.id, label: distractor.term, correct: false },
+    );
+  }
+  return {
+    itemId: item.id,
+    term: item.term,
+    canonical: (item.faces && item.faces[0]) || "",
+    direction,
+    prompt,
+    choices,
+  };
+}
+
+function ensureMatchSession(forceNew) {
+  if (!state.deck) return;
+  if (
+    !forceNew &&
+    state.matchSession &&
+    state.matchSession.phase !== "board"
+  ) {
+    return;
+  }
+  const st = matchStats();
+  state.matchSession = {
+    size: Math.min(SESSION_SIZE, Math.max(1, st.left || SESSION_SIZE)),
+    index: 0,
+    correct: 0,
+    wrong: 0,
+    misses: [],
+    phase: "ask",
+    question: null,
+    answered: false,
+  };
+  if (st.left === 0) {
+    state.matchSession.phase = "cleared";
+    state.matchSession.question = null;
+    return;
+  }
+  state.matchSession.question = buildQuestion(null);
+  if (!state.matchSession.question) {
+    state.matchSession.phase = "cleared";
+  }
+}
+
+function applyAnswer(correct) {
+  const sess = state.matchSession;
+  if (!sess || !sess.question) return;
+  const id = sess.question.itemId;
+  const p = ensureItemProgress(id);
+  p.seen = (p.seen || 0) + 1;
+  p.last = Date.now();
+  if (correct) {
+    p.remaining = Math.max(0, (p.remaining || CLEARS_NEEDED) - 1);
+    sess.correct += 1;
+  } else {
+    p.remaining = CLEARS_NEEDED;
+    p.wrong = (p.wrong || 0) + 1;
+    sess.wrong += 1;
+    sess.misses.push(id);
+  }
+  saveMatchProgress();
+}
+
+function advanceMatch() {
+  const sess = state.matchSession;
+  if (!sess) return;
+  sess.index += 1;
+  sess.answered = false;
+  if (sess.index >= sess.size || matchStats().left === 0) {
+    sess.phase = matchStats().left === 0 ? "cleared" : "board";
+    sess.question = null;
+  } else {
+    sess.phase = "ask";
+    sess.question = buildQuestion(sess.question?.itemId);
+    if (!sess.question) {
+      sess.phase = matchStats().left === 0 ? "cleared" : "board";
+    }
+  }
+  renderMatch();
+  renderNav();
+}
+
+function renderMatch() {
+  const root = $("match");
+  if (!root || state.mode !== "match") return;
+  if (!state.deck) {
+    root.innerHTML = "<p class='muted'>Loading match deck…</p>";
+    return;
+  }
+  const sess = state.matchSession;
+  if (!sess) {
+    ensureMatchSession(true);
+  }
+  const st = matchStats();
+  const s = state.matchSession;
+
+  if (s.phase === "cleared") {
+    root.innerHTML = `
+      <div class="match-board">
+        <h2>Deck cleared</h2>
+        <p>Study 100%. All ${st.total} terms have ${CLEARS_NEEDED} corrects.</p>
+        <div class="sheet-actions">
+          <button type="button" id="match-again" class="primary">Reset and drill again</button>
+          <button type="button" id="match-to-read">Back to Read</button>
+        </div>
+      </div>`;
+    renderNav();
+    return;
+  }
+
+  if (s.phase === "board") {
+    const missList = [...new Set(s.misses)]
+      .map((id) => itemById(id))
+      .filter(Boolean)
+      .map((it) => {
+        const p = ensureItemProgress(it.id);
+        return `<li>${inlineHtml(it.term)} · wrong ${p.wrong}, remaining ${p.remaining}</li>`;
+      })
+      .join("");
+    root.innerHTML = `
+      <div class="match-board">
+        <h2>Session done</h2>
+        <p>${s.correct} correct · ${s.wrong} wrong · Study ${st.percent}% · ${st.cleared}/${st.total} cleared</p>
+        ${missList ? `<p class="label">Missed this session</p><ul>${missList}</ul>` : "<p class='muted'>No misses this session.</p>"}
+        <div class="sheet-actions">
+          <button type="button" id="match-again" class="primary">Drill again</button>
+          <button type="button" id="match-to-read">Back to Read</button>
+        </div>
+      </div>`;
+    renderNav();
+    return;
+  }
+
+  const q = s.question;
+  if (!q) {
+    root.innerHTML = "<p class='muted'>No due terms.</p>";
+    return;
+  }
+  const hint =
+    q.direction === "term"
+      ? "Which claim matches this term?"
+      : "Which term matches this claim?";
+  let fb = "";
+  if (s.answered) {
+    if (s.lastCorrect) {
+      fb = `<div class="match-fb fb-ok"><strong>Correct</strong><p>${inlineHtml(q.term)}</p></div>`;
+    } else {
+      fb = `<div class="match-fb fb-bad"><strong>Wrong</strong><p><strong>${inlineHtml(q.term)}</strong></p><p>${inlineHtml(q.canonical)}</p></div>`;
+    }
+    fb += `<div class="sheet-actions"><button type="button" id="match-next" class="primary">Next</button></div>`;
+  }
+  const choices = q.choices
+    .map((c, i) => {
+      let cls = "";
+      if (s.answered) {
+        if (c.correct) cls = " pick-ok";
+        else if (s.pickedId === c.id) cls = " pick-bad";
+      }
+      return `<button type="button" data-choice="${c.id}" class="${cls}" ${
+        s.answered ? "disabled" : ""
+      }>${inlineHtml(c.label)}</button>`;
+    })
+    .join("");
+  root.innerHTML = `
+    <p class="muted">${hint}</p>
+    <p class="match-prompt">${inlineHtml(q.prompt)}</p>
+    <div class="match-choices">${choices}</div>
+    ${fb}`;
+  renderNav();
+}
+
+function exportMatchProgress() {
+  if (!state.deck) return;
+  const st = matchStats();
+  const blob = {
+    deckId: state.deck.id,
+    v: 1,
+    percent: st.percent,
+    cleared: st.cleared,
+    total: st.total,
+    items: state.matchProgress,
+  };
+  const text =
+    "```study-match-progress\n" +
+    JSON.stringify(blob) +
+    "\n```";
+  navigator.clipboard.writeText(text).then(
+    () => {
+      const el = $("match-sheet-stats");
+      if (el) el.textContent = "Copied progress block to clipboard.";
+    },
+    () => {
+      const ta = $("match-import");
+      if (ta) {
+        ta.value = text;
+        ta.focus();
+        ta.select();
+      }
+    },
+  );
+}
+
+function importMatchProgress() {
+  const ta = $("match-import");
+  if (!ta || !state.deck) return;
+  let raw = ta.value.trim();
+  const fenced = raw.match(
+    /```(?:study-match-progress)?\s*([\s\S]*?)```/,
+  );
+  if (fenced) raw = fenced[1].trim();
+  let data;
+  try {
+    data = JSON.parse(raw);
+  } catch {
+    alert("Could not parse progress JSON.");
+    return;
+  }
+  if (data.deckId && data.deckId !== state.deck.id) {
+    if (!confirm(`Progress deck ${data.deckId} ≠ ${state.deck.id}. Import anyway?`)) {
+      return;
+    }
+  }
+  const items = data.items && typeof data.items === "object" ? data.items : data;
+  state.matchProgress = {};
+  Object.keys(items).forEach((id) => {
+    const p = items[id] || {};
+    state.matchProgress[id] = {
+      remaining:
+        typeof p.remaining === "number" ? p.remaining : CLEARS_NEEDED,
+      wrong: Number(p.wrong) || 0,
+      seen: Number(p.seen) || 0,
+      last: Number(p.last) || 0,
+    };
+  });
+  (state.deck.items || []).forEach((it) => ensureItemProgress(it.id));
+  saveMatchProgress();
+  ensureMatchSession(true);
+  if (state.mode === "match") renderMatch();
+  renderNav();
+  ta.value = "";
+}
+
+function resetMatchDeck() {
+  if (!state.deck) return;
+  if (!confirm("Reset Match progress for this deck? Wrong counts stay.")) {
+    return;
+  }
+  (state.deck.items || []).forEach((it) => {
+    const p = ensureItemProgress(it.id);
+    p.remaining = CLEARS_NEEDED;
+    p.last = 0;
+  });
+  saveMatchProgress();
+  ensureMatchSession(true);
+  if (state.mode === "match") renderMatch();
+  renderNav();
+}
+
 async function loadWeek(id) {
   if (state.parsed.has(id)) return;
   const meta = weekMeta(id);
   const res = await fetch("./" + meta.file);
   const md = await res.text();
   state.parsed.set(id, parseKnow(md, id));
+}
+
+async function loadDeck() {
+  const res = await fetch("./decks/cs6460-module-1.json");
+  state.deck = await res.json();
+  if (typeof state.deck.clearsNeeded === "number") {
+    /* deck may set clearsNeeded; session still uses SESSION_SIZE */
+  }
+  state.matchProgress = loadMatchProgress(state.deck.id);
+  (state.deck.items || []).forEach((it) => ensureItemProgress(it.id));
+  saveMatchProgress();
 }
 
 async function showWeek(id) {
@@ -439,17 +918,11 @@ async function showWeek(id) {
   state.chunkId = viewLookup(state.cursorByView) || null;
   saveLs();
   writeHash();
-  renderArticle({ y: viewLookup(state.scrollByView) || 0 });
-}
-
-function $(id) {
-  return document.getElementById(id);
-}
-
-function on(id, event, fn) {
-  const el = $(id);
-  if (!el) return;
-  el.addEventListener(event, fn);
+  if (state.mode === "read") {
+    renderArticle({ y: viewLookup(state.scrollByView) || 0 });
+  } else {
+    renderNav();
+  }
 }
 
 function openSheet() {
@@ -468,7 +941,10 @@ function closeSheet() {
 }
 
 function bind() {
+  on("mode-read", "click", () => setMode("read"));
+  on("mode-match", "click", () => setMode("match"));
   on("open-sheet", "click", openSheet);
+  on("open-sheet-match", "click", openSheet);
   on("close-sheet", "click", closeSheet);
   on("backdrop", "click", closeSheet);
   on("weeks", "click", (e) => {
@@ -508,9 +984,46 @@ function bind() {
     saveLs();
     renderArticle();
   });
+  on("match", "click", (e) => {
+    const again = e.target.closest("#match-again");
+    if (again) {
+      if (matchStats().left === 0 && state.matchSession?.phase === "cleared") {
+        (state.deck.items || []).forEach((it) => {
+          ensureItemProgress(it.id).remaining = CLEARS_NEEDED;
+        });
+        saveMatchProgress();
+      }
+      ensureMatchSession(true);
+      renderMatch();
+      renderNav();
+      return;
+    }
+    if (e.target.closest("#match-to-read")) {
+      setMode("read");
+      return;
+    }
+    if (e.target.closest("#match-next")) {
+      advanceMatch();
+      return;
+    }
+    const choice = e.target.closest("[data-choice]");
+    if (!choice || !state.matchSession || state.matchSession.answered) return;
+    const id = choice.getAttribute("data-choice");
+    const q = state.matchSession.question;
+    const correct = q.choices.some((c) => c.id === id && c.correct);
+    state.matchSession.answered = true;
+    state.matchSession.lastCorrect = correct;
+    state.matchSession.pickedId = id;
+    applyAnswer(correct);
+    renderMatch();
+  });
+  on("match-export", "click", exportMatchProgress);
+  on("match-import-btn", "click", importMatchProgress);
+  on("match-reset", "click", resetMatchDeck);
   window.addEventListener(
     "scroll",
     () => {
+      if (state.mode !== "read") return;
       clearTimeout(window.__studyScroll);
       window.__studyScroll = setTimeout(() => {
         state.scrollByView[viewKey()] = window.scrollY;
@@ -522,6 +1035,7 @@ function bind() {
   window.addEventListener("pagehide", () => {
     stashView();
     saveLs();
+    saveMatchProgress();
   });
 }
 
@@ -536,6 +1050,7 @@ async function boot() {
   state.currentWeekId = hash.weekId || ls.weekId || manifest.current;
   state.face = ls.face === "def" ? "def" : "term";
   state.showSections = ls.showSections !== false;
+  state.mode = ls.mode === "match" ? "match" : "read";
   state.collapsed =
     ls.collapsed && typeof ls.collapsed === "object" ? ls.collapsed : {};
   state.cursorByView =
@@ -549,12 +1064,14 @@ async function boot() {
   if (!state.weeks.some((w) => w.id === state.currentWeekId)) {
     state.currentWeekId = manifest.current;
   }
-  state.chunkId =
-    viewLookup(state.cursorByView) || ls.chunkId || null;
+  state.chunkId = viewLookup(state.cursorByView) || ls.chunkId || null;
   bind();
-  await loadWeek(state.currentWeekId);
+  await Promise.all([loadWeek(state.currentWeekId), loadDeck()]);
   writeHash();
-  renderArticle({ y: viewLookup(state.scrollByView) || 0 });
+  setMode(state.mode);
+  if (state.mode === "read") {
+    renderArticle({ y: viewLookup(state.scrollByView) || 0 });
+  }
   if (deadlineTimer) clearInterval(deadlineTimer);
   deadlineTimer = setInterval(renderDeadline, 30000);
 }
