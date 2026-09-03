@@ -610,28 +610,144 @@ function shuffle2(a, b) {
   return Math.random() < 0.5 ? [a, b] : [b, a];
 }
 
+const MATCH_STOP = new Set([
+  "versus",
+  "vs",
+  "the",
+  "and",
+  "or",
+  "of",
+  "a",
+  "an",
+  "for",
+  "to",
+  "in",
+  "on",
+  "with",
+  "from",
+  "that",
+  "this",
+  "than",
+  "into",
+  "goal",
+  "orientation",
+  "lesson",
+  "cite",
+  "etymology",
+  "other",
+  "more",
+  "high",
+  "low",
+  "floor",
+  "ceiling",
+  "capital",
+  "lowercase",
+  "direct",
+  "visual",
+  "auditory",
+  "kinesthetic",
+  "top",
+  "not",
+  "why",
+  "what",
+  "when",
+  "your",
+  "their",
+]);
+
+function termKeyParts(term) {
+  const cleaned = String(term)
+    .replace(/\s*\([^)]*\)\s*/g, " ")
+    .trim();
+  const tokens = cleaned
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((t) => t.length > 3 && !MATCH_STOP.has(t));
+  const acronyms = String(term).match(/\b[A-Z]{2,}\b/g) || [];
+  return {
+    phrase: cleaned,
+    tokens: [...new Set(tokens)],
+    acronyms: [...new Set(acronyms)],
+  };
+}
+
+function leakScore(text, term) {
+  if (!text || !term) return 0;
+  const lower = String(text).toLowerCase();
+  const parts = termKeyParts(term);
+  let score = 0;
+  if (parts.phrase.length > 4 && lower.includes(parts.phrase.toLowerCase())) {
+    score += 8;
+  }
+  parts.tokens.forEach((t) => {
+    if (lower.includes(t)) score += t.length >= 8 ? 3 : 2;
+  });
+  parts.acronyms.forEach((a) => {
+    if (new RegExp("\\b" + a + "\\b", "i").test(text)) score += 4;
+  });
+  return score;
+}
+
+function scrubFace(face, term) {
+  let out = String(face);
+  const parts = termKeyParts(term);
+  if (parts.phrase.length > 4) {
+    const re = new RegExp(
+      parts.phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+      "gi",
+    );
+    out = out.replace(re, "this idea");
+  }
+  parts.acronyms.forEach((a) => {
+    out = out.replace(new RegExp("\\b" + a + "\\b", "g"), "this idea");
+  });
+  // long distinctive tokens only (avoid wiping normal English)
+  parts.tokens
+    .filter((t) => t.length >= 6)
+    .sort((a, b) => b.length - a.length)
+    .forEach((t) => {
+      out = out.replace(new RegExp("\\b" + t + "\\b", "gi"), "this");
+    });
+  return out.replace(/\s{2,}/g, " ").replace(/\s+([,.])/g, "$1").trim();
+}
+
+function pickFace(item, againstTerm) {
+  const faces =
+    item.faces && item.faces.length ? item.faces.slice() : [item.term];
+  let best = faces[0];
+  let bestScore = Infinity;
+  faces
+    .slice()
+    .sort(() => Math.random() - 0.5)
+    .forEach((f) => {
+      let s = leakScore(f, item.term);
+      if (againstTerm) s += leakScore(f, againstTerm);
+      if (s < bestScore) {
+        bestScore = s;
+        best = f;
+      }
+    });
+  return { face: best, leak: bestScore, display: scrubFace(best, item.term) };
+}
+
 function buildQuestion(prevId) {
   const item = pickDueItem(prevId);
   if (!item) return null;
   const distractor = pickDistractor(item);
   if (!distractor) return null;
-  const faces = item.faces && item.faces.length ? item.faces : [item.term];
-  const face = faces[Math.floor(Math.random() * faces.length)];
   const direction = Math.random() < 0.5 ? "term" : "claim";
+  const picked = pickFace(item, distractor.term);
+  const distractorFace = pickFace(distractor, item.term);
   let prompt;
   let choices;
   if (direction === "term") {
     prompt = item.term;
     choices = shuffle2(
-      { id: item.id, label: face, correct: true },
-      {
-        id: distractor.id,
-        label: (distractor.faces && distractor.faces[0]) || distractor.term,
-        correct: false,
-      },
+      { id: item.id, label: picked.display, correct: true },
+      { id: distractor.id, label: distractorFace.display, correct: false },
     );
   } else {
-    prompt = face;
+    prompt = picked.display;
     choices = shuffle2(
       { id: item.id, label: item.term, correct: true },
       { id: distractor.id, label: distractor.term, correct: false },
