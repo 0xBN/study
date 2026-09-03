@@ -33,7 +33,7 @@ body {
 .nav {
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 6;
   background: var(--chrome);
   border-bottom: 1px solid var(--line);
   padding: 0.45rem 0.85rem 0.5rem;

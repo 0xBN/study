@@ -436,6 +436,7 @@ function setMode(mode) {
 }
 
 function renderNav() {
+  const chunks = visibleChunks();
   const title = $("nav-title");
   if (title) {
     if (state.mode === "match") {
