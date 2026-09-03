@@ -12,6 +12,7 @@ const state = {
   collapsed: {},
   cursorByView: {},
   scrollByView: {},
+  face: "term",
 };
 
 let playGen = 0;
@@ -34,6 +35,7 @@ function saveLs() {
       collapsed: state.collapsed,
       cursorByView: state.cursorByView,
       scrollByView: state.scrollByView,
+      face: state.face,
     }),
   );
 }
@@ -52,6 +54,15 @@ function viewLookup(map, weekId) {
 function stashView() {
   state.scrollByView[viewKey()] = window.scrollY;
   if (state.chunkId) state.cursorByView[viewKey()] = state.chunkId;
+}
+
+function cardTerm(c) {
+  return c.title && c.title !== c.section ? c.title : "Overview";
+}
+
+function cardDef(c) {
+  if (c.raw && String(c.raw).trim()) return String(c.raw).trim();
+  return (c.bands || []).map((b) => b.text).join(" ").trim();
 }
 
 function cardClosed(id) {
@@ -378,6 +389,14 @@ function renderNav() {
       })
       .join("");
   }
+  const flip = $("flip");
+  if (flip) {
+    flip.textContent = state.face === "def" ? "Face: claim" : "Face: term";
+    flip.setAttribute(
+      "aria-pressed",
+      state.face === "def" ? "true" : "false",
+    );
+  }
   const rate = $("rate");
   if (rate) rate.value = String(state.rate);
   const parsedWeek = state.parsed.get(state.currentWeekId);
@@ -428,24 +447,13 @@ function renderArticle(opts) {
     }
     const active = c.id === state.chunkId ? " active" : "";
     const closed = cardClosed(c.id) ? " collapsed" : "";
-    const label = c.title && c.title !== c.section ? c.title : "Overview";
+    const term = cardTerm(c);
+    const def = cardDef(c) || term;
+    const face = state.face === "def" ? def : term;
+    const back = state.face === "def" ? term : def;
     const open = closed ? "false" : "true";
-    const title = `<button type="button" class="chunk-toggle" aria-expanded="${open}">${inlineHtml(label)}</button>`;
-    const bands = (c.bands && c.bands.length
-      ? c.bands
-      : [{ kind: "body", text: c.raw }]
-    )
-      .map((b) => {
-        if (b.kind === "body") return `<p>${inlineHtml(b.text)}</p>`;
-        const bandLabel =
-          b.kind === "plain"
-            ? "Plain"
-            : b.kind === "quiz"
-              ? "Quiz voice"
-              : "Trap";
-        return `<div class="band band-${b.kind}"><span class="band-label">${bandLabel}</span><p>${inlineHtml(b.text)}</p></div>`;
-      })
-      .join("");
+    const title = `<button type="button" class="chunk-toggle" aria-expanded="${open}">${inlineHtml(face)}</button>`;
+    const bands = `<p>${inlineHtml(back)}</p>`;
     html += `<div class="chunk${active}${closed}" id="${c.id}" data-chunk="${c.id}">${title}<div class="chunk-body">${bands}</div></div>`;
   });
   article.innerHTML = html;
@@ -516,6 +524,11 @@ function bind() {
     state.rate = Number(e.target.value) || 1;
     saveLs();
   });
+  on("flip", "click", () => {
+    state.face = state.face === "def" ? "term" : "def";
+    saveLs();
+    renderArticle();
+  });
   on("play", "click", () => {
     if (state.playing) cancelSpeech();
     else speakFrom();
@@ -583,6 +596,7 @@ async function boot() {
   const hash = parseHash();
   state.currentWeekId = hash.weekId || ls.weekId || manifest.current;
   state.rate = Number(ls.rate) || 1;
+  state.face = ls.face === "def" ? "def" : "term";
   state.collapsed =
     ls.collapsed && typeof ls.collapsed === "object" ? ls.collapsed : {};
   state.cursorByView =

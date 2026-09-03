@@ -182,6 +182,15 @@ h2 {
   padding-bottom: 0.35rem;
 }
 
+.chunk.collapsed .chunk-toggle {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  font-weight: 650;
+  font-size: 0.95rem;
+}
+
 .chunk.collapsed .chunk-body {
   display: none;
 }

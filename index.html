@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
     <title>CS6460 Quiz Drill</title>
-    <link rel="stylesheet" href="./styles.css?v=8" />
+    <link rel="stylesheet" href="./styles.css?v=9" />
   </head>
   <body>
     <nav class="nav" aria-label="CS6460 quiz drill">
@@ -14,6 +14,7 @@
         <button type="button" id="prev">Prev</button>
         <button type="button" id="play" class="primary">Play</button>
         <button type="button" id="next">Next</button>
+        <button type="button" id="flip">Face: term</button>
       </div>
       <p id="now" class="now"></p>
     </nav>
@@ -38,7 +39,7 @@
         <option value="3">3×</option>
       </select>
       <p class="label">How to read</p>
-      <p class="muted">Each card is a named move: title = term, body = claim. Other cards stay folded so you can recall before you tap. Quiz 1 → Week 1 Module 1, not Week 2.</p>
+      <p class="muted">Folded face is the prompt; tap to see the other side. Flip switches term-first (what is X?) vs claim-first (which term is this?). Quiz 1 → Week 1 Module 1, not Week 2.</p>
       <p class="label">Checkpoint</p>
       <p id="checkpoint"></p>
       <p id="synced" class="muted"></p>
@@ -48,6 +49,6 @@
     <main>
       <article id="article"></article>
     </main>
-    <script src="./app.js?v=8"></script>
+    <script src="./app.js?v=9"></script>
   </body>
 </html>
