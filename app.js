@@ -9,6 +9,7 @@ const state = {
   playing: false,
   parsed: new Map(),
   syncedAt: null,
+  quiz: null,
   collapsed: {},
   cursorByView: {},
   scrollByView: {},
@@ -16,6 +17,63 @@ const state = {
 };
 
 let playGen = 0;
+let deadlineTimer = 0;
+
+function formatRemain(ms) {
+  if (ms <= 0) return "closed";
+  const totalMin = Math.floor(ms / 60000);
+  const d = Math.floor(totalMin / (60 * 24));
+  const h = Math.floor((totalMin % (60 * 24)) / 60);
+  const m = totalMin % 60;
+  if (d > 0) return `${d}d ${h}h ${m}m`;
+  if (h > 0) return `${h}h ${m}m`;
+  return `${m}m`;
+}
+
+function localDuePhrase(dueAt) {
+  const d = new Date(dueAt);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleString(undefined, {
+    weekday: "short",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
+function renderDeadline() {
+  const el = $("deadline");
+  const detail = $("quiz-detail");
+  const quiz = state.quiz;
+  if (!el) return;
+  if (!quiz || !quiz.dueAt) {
+    el.hidden = true;
+    el.textContent = "";
+    if (detail) detail.textContent = "";
+    return;
+  }
+  const due = new Date(quiz.dueAt);
+  const ms = due.getTime() - Date.now();
+  const label = quiz.label || "Quiz";
+  const dueLabel = quiz.dueLabel || "";
+  const local = localDuePhrase(quiz.dueAt);
+  el.hidden = false;
+  el.classList.toggle("warn", ms > 0 && ms < 24 * 60 * 60 * 1000);
+  el.classList.toggle("closed", ms <= 0);
+  if (ms <= 0) {
+    el.textContent = `${label} · closed (${dueLabel || local})`;
+  } else {
+    el.textContent = `${label} · ${formatRemain(ms)} left · ${dueLabel}${
+      local ? ` · ${local} your time` : ""
+    }`;
+  }
+  if (detail) {
+    detail.textContent = ms <= 0
+      ? `${label} closed. Canvas date ${dueLabel || "—"}; wall clock was ${local}.`
+      : `${label} due ${dueLabel || "—"}. Anywhere on Earth (AOE) = last timezone still on that calendar day. On your clock that is ${local}. Study until then; submit before it flips.`;
+  }
+}
 
 function loadLs() {
   try {
@@ -418,6 +476,7 @@ function renderNav() {
         })
       : "";
   }
+  renderDeadline();
 }
 
 function renderArticle(opts) {
@@ -592,6 +651,8 @@ async function boot() {
   const manifest = await fetch("./manifest.json").then((r) => r.json());
   state.weeks = manifest.weeks;
   state.syncedAt = manifest.syncedAt || null;
+  state.quiz =
+    manifest.quiz && typeof manifest.quiz === "object" ? manifest.quiz : null;
   const ls = loadLs();
   const hash = parseHash();
   state.currentWeekId = hash.weekId || ls.weekId || manifest.current;
@@ -616,6 +677,8 @@ async function boot() {
   await loadWeek(state.currentWeekId);
   writeHash();
   renderArticle({ y: viewLookup(state.scrollByView) || 0 });
+  if (deadlineTimer) clearInterval(deadlineTimer);
+  deadlineTimer = setInterval(renderDeadline, 30000);
 }
 
 boot().catch((err) => {
