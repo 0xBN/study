@@ -54,6 +54,11 @@ function stashView() {
   if (state.chunkId) state.cursorByView[viewKey()] = state.chunkId;
 }
 
+function cardClosed(id) {
+  if (id === state.chunkId) return state.collapsed[id] === true;
+  return state.collapsed[id] !== false;
+}
+
 function setCurrent(id) {
   if (state.chunkId && state.chunkId !== id) {
     state.collapsed[state.chunkId] = true;
@@ -176,6 +181,17 @@ function parseBands(text) {
   return leftover ? [{ kind: "body", text: leftover }] : [];
 }
 
+function parseTermBullet(line) {
+  const m = line
+    .trim()
+    .match(/^- \*\*([^*]+)\*\*((?:\s*\([^)]+\))?)\s*:?\s*(.*)$/);
+  if (!m) return null;
+  const title = (m[1] + m[2]).replace(/:$/, "").trim();
+  const def = (m[3] || "").replace(/^:\s*/, "").trim();
+  if (!title || !def) return null;
+  return { title, def };
+}
+
 function parseKnow(md, weekId) {
   const parts = md.split(/^## /m);
   const header = parts[0] || "";
@@ -202,7 +218,7 @@ function parseKnow(md, weekId) {
     if (course === "6795") return;
     const body = (nl === -1 ? "" : part.slice(nl + 1)).trim();
     const topics = body.split(/^### /m);
-    const pushChunk = (title, text, i) => {
+    const pushChunk = (title, text, i, section) => {
       const bands = parseBands(text);
       if (!bands.length) return;
       const raw = bands
@@ -221,13 +237,31 @@ function parseKnow(md, weekId) {
       chunks.push({
         id: "w" + weekId + "-s" + sIdx + "-" + i,
         course,
-        section: heading,
+        section: section || heading,
         title,
         bands,
         raw,
       });
     };
+    const pushTerms = (section, text, iBase) => {
+      let n = 0;
+      text.split("\n").forEach((line) => {
+        const term = parseTermBullet(line);
+        if (!term) return;
+        chunks.push({
+          id: "w" + weekId + "-s" + sIdx + "-" + iBase + "-" + n,
+          course,
+          section,
+          title: term.title,
+          bands: [{ kind: "body", text: term.def }],
+          raw: term.def,
+        });
+        n += 1;
+      });
+      return n;
+    };
     if (topics.length === 1) {
+      if (pushTerms(heading, body, 0)) return;
       body
         .split(/\n{2,}/)
         .map((p) => p.trim())
@@ -240,19 +274,17 @@ function parseKnow(md, weekId) {
           const text = titleMatch
             ? para.replace(/^\*\*[^*]+\*\*\s*/, "")
             : para;
-          pushChunk(title, text, i);
+          pushChunk(title, text, i, heading);
         });
       return;
     }
     topics.forEach((topic, i) => {
-      if (i === 0) {
-        pushChunk("", topic, i);
-        return;
-      }
+      if (i === 0) return;
       const tNl = topic.indexOf("\n");
-      const title = (tNl === -1 ? topic : topic.slice(0, tNl)).trim();
+      const lesson = (tNl === -1 ? topic : topic.slice(0, tNl)).trim();
       const text = tNl === -1 ? "" : topic.slice(tNl + 1).trim();
-      pushChunk(title, text, i);
+      if (pushTerms(lesson, text, i)) return;
+      pushChunk(lesson, text, i, heading);
     });
   });
   return { dates, missing, chunks };
@@ -395,7 +427,7 @@ function renderArticle(opts) {
       lastSection = c.section;
     }
     const active = c.id === state.chunkId ? " active" : "";
-    const closed = state.collapsed[c.id] ? " collapsed" : "";
+    const closed = cardClosed(c.id) ? " collapsed" : "";
     const label = c.title && c.title !== c.section ? c.title : "Overview";
     const open = closed ? "false" : "true";
     const title = `<button type="button" class="chunk-toggle" aria-expanded="${open}">${inlineHtml(label)}</button>`;
@@ -515,7 +547,7 @@ function bind() {
     if (!chunk) return;
     if (toggle) {
       const id = chunk.dataset.chunk;
-      if (state.collapsed[id]) delete state.collapsed[id];
+      if (cardClosed(id)) state.collapsed[id] = false;
       else state.collapsed[id] = true;
       saveLs();
       renderArticle();

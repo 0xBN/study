@@ -2,7 +2,7 @@
 
 Phone reader for closed-book Honorlock quizzes. Live at [0xbn.github.io/study](https://0xbn.github.io/study/).
 
-**CS6460 only.** Purpose is reinforcing Module 1 / 3 / 5 vocabulary so you can pass the quizzes without notes. CS6795 is open-notes — keep that in the private Know files, not here.
+**CS6460 only.** Purpose is reinforcing Module 1 / 3 / 5 **named moves** (term = one sentence + who; acronyms spelled out on the line). Source of those cards: omscs `prompts/honorlock-6460.prompt.md` → `tldr/week-NN-know.md`. Not Plain/Quiz essays. CS6795 stays in the private Know files.
 
 The on-screen cards keep arrows and slashes. Play mode rewrites those to spoken English so the voice does not say "slash" or "right arrow."
 
