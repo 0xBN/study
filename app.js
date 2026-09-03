@@ -404,6 +404,7 @@ function visibleChunks() {
 function setMode(mode) {
   state.mode = mode === "match" ? "match" : "read";
   saveLs();
+  if (state.mode !== "match") setMatchReadyNext(false);
   const readCtrls = $("read-controls");
   const matchCtrls = $("match-controls");
   const article = $("article");
@@ -832,12 +833,18 @@ function advanceMatch() {
   renderNav();
 }
 
+function setMatchReadyNext(on) {
+  document.body.classList.toggle("match-ready-next", !!on);
+  const root = $("match");
+  if (root) root.classList.toggle("match-ready-next", !!on);
+}
+
 function renderMatch() {
   const root = $("match");
   if (!root || state.mode !== "match") return;
   if (!state.deck) {
     root.innerHTML = "<p class='muted'>Loading match deck…</p>";
-    root.classList.remove("match-ready-next");
+    setMatchReadyNext(false);
     return;
   }
   const sess = state.matchSession;
@@ -848,7 +855,7 @@ function renderMatch() {
   const s = state.matchSession;
 
   if (s.phase === "cleared") {
-    root.classList.remove("match-ready-next");
+    setMatchReadyNext(false);
     root.innerHTML = `
       <div class="match-board">
         <h2>Deck cleared</h2>
@@ -863,7 +870,7 @@ function renderMatch() {
   }
 
   if (s.phase === "board") {
-    root.classList.remove("match-ready-next");
+    setMatchReadyNext(false);
     const missList = [...new Set(s.misses)]
       .map((id) => itemById(id))
       .filter(Boolean)
@@ -888,6 +895,7 @@ function renderMatch() {
 
   const q = s.question;
   if (!q) {
+    setMatchReadyNext(false);
     root.innerHTML = "<p class='muted'>No due terms.</p>";
     return;
   }
@@ -898,9 +906,9 @@ function renderMatch() {
   let fb = "";
   if (s.answered) {
     if (s.lastCorrect) {
-      fb = `<div class="match-fb fb-ok"><strong>Correct</strong><p>${inlineHtml(q.term)}</p><p class="muted match-tap">Tap anywhere for next</p></div>`;
+      fb = `<div class="match-fb fb-ok"><strong>Correct</strong><p>${inlineHtml(q.term)}</p><p class="muted match-tap">Tap anywhere below the bar for next</p></div>`;
     } else {
-      fb = `<div class="match-fb fb-bad"><strong>Wrong</strong><p><strong>${inlineHtml(q.term)}</strong></p><p>${inlineHtml(q.canonical)}</p><p class="muted match-tap">Tap anywhere for next</p></div>`;
+      fb = `<div class="match-fb fb-bad"><strong>Wrong</strong><p><strong>${inlineHtml(q.term)}</strong></p><p>${inlineHtml(q.canonical)}</p><p class="muted match-tap">Tap anywhere below the bar for next</p></div>`;
     }
   }
   const choices = q.choices
@@ -915,7 +923,7 @@ function renderMatch() {
       }>${inlineHtml(c.label)}</button>`;
     })
     .join("");
-  root.classList.toggle("match-ready-next", !!s.answered);
+  setMatchReadyNext(!!s.answered);
   root.innerHTML = `
     <p class="muted">${hint}</p>
     <p class="match-prompt">${inlineHtml(q.prompt)}</p>
@@ -1122,20 +1130,33 @@ function bind() {
       return;
     }
     const sess = state.matchSession;
-    if (sess && sess.answered && sess.phase === "ask") {
-      advanceMatch();
-      return;
-    }
     const choice = e.target.closest("[data-choice]");
     if (!choice || !sess || sess.answered) return;
     const id = choice.getAttribute("data-choice");
     const q = sess.question;
     const correct = q.choices.some((c) => c.id === id && c.correct);
     sess.answered = true;
+    sess.blockAdvance = true;
     sess.lastCorrect = correct;
     sess.pickedId = id;
     applyAnswer(correct);
     renderMatch();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (state.matchSession) state.matchSession.blockAdvance = false;
+      });
+    });
+  });
+  document.addEventListener("click", (e) => {
+    const sess = state.matchSession;
+    if (state.mode !== "match" || !sess || !sess.answered || sess.phase !== "ask") {
+      return;
+    }
+    if (sess.blockAdvance) return;
+    if (e.target.closest(".nav, #sheet, #backdrop, #match-again, #match-to-read")) {
+      return;
+    }
+    advanceMatch();
   });
   on("match-export", "click", exportMatchProgress);
   on("match-import-btn", "click", importMatchProgress);
