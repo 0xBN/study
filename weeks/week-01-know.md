@@ -21,63 +21,63 @@ Term on the card title; claim in the body. Practice stems will not appear on the
 - **Format:** 27 multiple choice, four options, 45 min, two attempts keep higher, different draw, pool over 1400. Closed book, no notes, no internet, no scratch, no breaks, Chrome. Practice from the Honorlock tab.
 
 ### 1.1 Constructivism
-- **Constructivism** (Piaget): knowledge is a rebuilt **mental model**, not a download *(e.g. rebuild “force” after a lab, not memorize the definition)*.
-- **Assimilation** (Piaget): fit new input into the **old** picture *(e.g. call a whale a “fish” because it swims)*.
-- **Accommodation** (Piaget): **change** the picture *(e.g. add “mammals that swim” after learning whales breathe air)*.
-- **Disequilibrium** (Piaget): the **mismatch** that forces accommodation.
-- **More knowledgeable other (MKO)** (Vygotsky): person **or tool** that does what the learner cannot yet *(tutor, peer, or a worked example)*.
-- **Zone of proximal development (ZPD)** (Vygotsky): can do with help, not yet alone. Scaffolding is the help; it should fade.
+- **Constructivism** (Piaget): knowledge is a rebuilt **mental model**, not a download *(lesson: heavy objects fall faster — may know the fact and still feel the model)*.
+- **Assimilation** (Piaget): fit new input into the **old** picture *(misconceptions often survive this way — treat the contradiction as a trick / special case)*.
+- **Accommodation** (Piaget): **change** the picture *(lesson: drop two balls so the model must rebuild)*.
+- **Disequilibrium** (Piaget): the **mismatch** that forces accommodation *(Logo lopsided turtle / robot battery — motor delivers it, not a lecture)*.
+- **More knowledgeable other (MKO)** (Vygotsky): parent, teacher, mentor, peer — **or** a tool *(ITS hint, constrained simulation, beginner feedback)*.
+- **Zone of proximal development (ZPD)** (Vygotsky): can do with help, not yet alone. Scaffolding is the help; it should fade *(essay worksheet → reminder → gone)*.
 - **Kirschner, Sweller, and Clark (2006):** arguing against “learning is constructive so teaching should be unguided.” Novices need guidance.
 
 ### 1.2 Constructionism
-- **Constructionism** (Papert): understand by making a **public artifact** *(e.g. a Scratch game others can play)* — not only a private mental model.
+- **Constructionism** (Papert): understand by making a **public artifact** *(Scratch project, Minecraft world, Bloxels game)* — not only a private mental model.
 - **Constructivism vs constructionism:** mental model rebuild vs **shareable make**.
 - **Instructionism** (Papert): fix learning by investing in better telling / lecture delivery.
-- **Wide walls** (Resnick): many **kinds of project** — not many ages, platforms, or accessibility needs *(e.g. story, game, or simulation — not “ages 8–18”)*.
-- **Low floor / high ceiling** (Resnick): easy to start / room to grow.
+- **Wide walls** (Resnick): many **kinds of personally meaningful project** — not many ages, platforms, or accessibility needs.
+- **Low floor / high ceiling** (Resnick / Papert): easy to start / room to grow *(Scratch)*.
 - **Four P's** (Resnick): Projects, Passion, Peers, Play.
-- **Body-syntonic** (Papert): use your own body's motion as the model *(walk the shape, then code it)*.
+- **Body-syntonic** (Papert): pretend to *be* the turtle *(walk the path, then code the circle)*.
 
 ### 1.3 Direct instruction
 - **Lecture** (etymology): Latin for **reading**.
 - **Direct instruction vs discovery:** false dichotomy. The real variable is **expertise** — heavy guidance early, fade later.
-- **Faultless communication** (Engelmann): pick examples and non-examples so **only the intended rule can survive** *(e.g. “this is / is not a triangle” sets)*.
+- **Faultless communication** (Engelmann): confusion is a flaw in the **instruction** (“if the student hasn't learned, the teacher hasn't taught”).
 - **Lowercase di** vs **capital-D Direct Instruction:** teacher-led teaching in general vs Engelmann/Becker scripted program.
-- **Gradual release** (Pearson and Gallagher): I do / we do / you do.
+- **Gradual release** (Pearson and Gallagher): I do / we do / you do *(worked example = digital I do; Minecraft sandbox ≠ di; LEGO booklet is)*.
 
 ### 1.4 Behaviorism
-- **Operant conditioning** (Skinner): shape **voluntary** behavior by the **consequences** that follow it *(e.g. raise hand → get called on)*.
-- **Classical conditioning** (Pavlov): pair stimuli to get an **involuntary** response *(e.g. school bell → startle)* — not operant.
-- **Positive reinforcement:** **add** something liked → behavior **up** *(e.g. points / praise after correct answer)*.
-- **Negative reinforcement:** **remove** something disliked → behavior **up** *(e.g. stop the nagging when homework is done)*. Not punishment.
-- **Positive punishment:** **add** something disliked → behavior **down** *(e.g. detention after talking out)*.
-- **Negative punishment:** **remove** something liked → behavior **down** *(e.g. take away recess)*.
+- **Operant conditioning** (Skinner): shape **voluntary** behavior by consequences *(Skinner box; shaping / successive approximations; pigeons playing table tennis)*.
+- **Classical conditioning** (Pavlov): pair stimuli → **involuntary** response *(bell + food → salivate at bell; test anxiety; Little Albert)*.
+- **Positive reinforcement:** **add** something liked → behavior **up** *(praise or food)*.
+- **Negative reinforcement:** **remove** something disliked → behavior **up** *(disable a device time limit after chores)*. Not punishment.
+- **Positive punishment:** **add** something disliked → behavior **down** *(shock or extra chores)*.
+- **Negative punishment:** **remove** something liked → behavior **down** *(take away dessert if dinner unfinished)*.
 - **Reinforcement vs punishment:** ask “did the behavior go **up** or **down**?” then “did we **add** or **remove**?”
 - **Why cognitivism displaced behaviorism:** behaviorism could not handle **abstract concepts, transfer, novel problems**.
-- **Immediate reinforcement:** delayed feedback (e.g. a week later) breaks the **tight pairing** of consequence with the behavior.
+- **Immediate reinforcement:** pair consequence **tightly** with the behavior *(teaching machine / programmed instruction: frames + instant feedback)*.
 
 ### 1.5 Cognitivism
 - **Ecological cognition** (Neisser): study memory/perception in **messy real-world** contexts (not only the lab).
 - **Newell and Simon vs behaviorism:** people build an **internal representation** and **search** it (problem space) — not only stimulus-response.
-- **Cognitivist feedback:** do not only say incorrect; **explain why** so the **faulty schema** changes *(e.g. “you treated this as a loop, but…”)*.
-- **Cognitive load** (Sweller): intrinsic / extraneous / germane (productive work). Cut clutter; sequence difficulty *(e.g. drop decorative sidebars = cut extraneous)*.
+- **Cognitivist feedback:** “wrong, try again” only **reinforces**; feedback that shows **why** it was wrong **reshapes the schema**.
+- **Cognitive load** (Sweller): intrinsic / extraneous / germane. Cut clutter; sequence difficulty.
 - **Image Principle** (Mayer): instructor face on video usually does not raise learning.
-- **Coherence Principle** (Mayer): meaningless extras can hurt *(e.g. cute unrelated animations)*.
+- **Coherence Principle** (Mayer): extras that do no semantic work can **hurt** learning.
 
 ### 1.6 Metacognition
 - **Self-reflection** (Zimmerman): after the work — **evaluate** how it went and **attribute** a cause. Forethought = plan. Performance = do it. SRL = self-regulated learning.
-- **Fluency illusion:** rereading until it **feels smooth** is not knowing it *(e.g. notes look familiar → blank on the quiz)*.
+- **Fluency illusion:** rereading until it **feels smooth** is not knowing it *(practice quizzes recalibrate)*.
 - **Monitoring needs capacity:** stress can eat the attention metacognition uses; after the exam that capacity comes back.
 
 ### 1.7 Sociocultural
-- **Guided participation** (Rogoff): join **real activities beside** more experienced people *(e.g. cook with a parent, not a lecture about cooking)*.
-- **Legitimate peripheral participation** (Lave and Wenger): newcomer does **real low-stakes work at the edge**, then moves inward *(e.g. first commits are docs/tests, not the core feature)*.
+- **Guided participation** (Rogoff): learn by **observing and pitching in** *(sit-still-and-listen is one cultural practice, not the only way)*.
+- **Legitimate peripheral participation** (Lave and Wenger): newcomer does **real low-stakes work at the edge** of a community of practice, then moves inward.
 - **Honor cultural variation:** allow **multiple reasoning styles / representations** — not only translating the UI.
 - **ZPD vs scaffolding:** zone vs the support in it. ZPD = zone of proximal development.
 
 ### 1.8 Motivation
 - **Mastery-oriented** (goal orientation): competence = **actually understanding**, not looking good vs others.
-- **ESPN Top 10 / Not Top 10:** the **same play** can be approach or avoidance *(score to be great vs score to not look bad)*.
+- **ESPN Top 10 / Not Top 10:** performance-approach hunts the Top 10; performance-avoidance dodges the Not Top 10 — often the **same dunk** can be either.
 - **Belonging** (Walton and Cohen): tell students doubts about fitting in are **normal and temporary**.
 - **Self-determination** (Deci and Ryan): autonomy, competence, relatedness.
 
@@ -86,8 +86,8 @@ Term on the card title; claim in the body. Practice stems will not appear on the
 - **AI feedback and demographics:** girls and underrepresented minorities got **less critical** feedback.
 - **EdTech Matthew effect** (Reich): poorly designed tech helps the **already-advantaged first**.
 - **Learning styles** (visual/auditory/kinesthetic): **myth**. Real differences: prior knowledge, language, access, disability.
-- **Assessment:** this student's grade or feedback *(e.g. your quiz score)*.
-- **Evaluation:** whether the tool or curriculum works for the **next cohort** *(e.g. did Module 1 labs raise average scores?)*.
+- **Assessment:** measure this student's learning for **grades or feedback** *(Module 0 health-monitor = the reading)*.
+- **Evaluation:** use those measures to judge whether the **tool / curriculum** works *(compare fitness routines with the same monitor)*.
 
 ---
 
