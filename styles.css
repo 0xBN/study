@@ -195,11 +195,13 @@ body.match-ready-next main {
 .match-choices button.pick-ok {
   border-color: #3d9a5f;
   background: #1a3324;
+  animation: pick-win 0.38s ease-out;
 }
 
 .match-choices button.pick-bad {
   border-color: #b54a4a;
   background: #331a1a;
+  animation: pick-miss 0.28s ease-out;
 }
 
 .match-fb {
@@ -212,6 +214,7 @@ body.match-ready-next main {
 .match-fb.fb-ok {
   border-color: #3d9a5f;
   background: #14241a;
+  animation: fb-win 0.35s ease-out;
 }
 
 .match-fb.fb-bad {
@@ -222,6 +225,112 @@ body.match-ready-next main {
 .match-fb strong {
   display: block;
   margin-bottom: 0.35rem;
+}
+
+.match-streak {
+  color: #7dcea0;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+.match-streak.bump {
+  display: inline-block;
+  animation: streak-bump 0.32s ease-out;
+}
+
+@keyframes pick-win {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgb(61 154 95 / 0);
+  }
+  35% {
+    transform: scale(1.025);
+    box-shadow: 0 0 0 3px rgb(61 154 95 / 0.45);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgb(61 154 95 / 0);
+  }
+}
+
+@keyframes pick-miss {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes fb-win {
+  0% {
+    transform: translateY(4px);
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes streak-bump {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.4);
+    color: #c8f5d6;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes flash-hit {
+  0% {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+  25% {
+    box-shadow: inset 0 0 70px 12px rgb(61 154 95 / 0.28);
+  }
+  100% {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+}
+
+@keyframes flash-hit-big {
+  0% {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+  20% {
+    box-shadow: inset 0 0 100px 28px rgb(90 200 120 / 0.38);
+  }
+  100% {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+}
+
+body.match-hit {
+  animation: flash-hit 0.42s ease-out;
+}
+
+body.match-hit-big {
+  animation: flash-hit-big 0.5s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .match-choices button.pick-ok,
+  .match-choices button.pick-bad,
+  .match-fb.fb-ok,
+  .match-streak.bump,
+  body.match-hit,
+  body.match-hit-big {
+    animation: none;
+  }
 }
 
 .match-board {

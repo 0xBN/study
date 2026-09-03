@@ -457,8 +457,15 @@ function renderNav() {
         ? "done"
         : `${Math.min(sess.index + 1, sess.size)}/${sess.size}`
       : "";
-    status.textContent = `Study ${st.percent}% · ${st.cleared}/${st.total} cleared · left ${st.left}${
+    const streak = sess && sess.streak > 1 ? ` · ×${sess.streak}` : "";
+    status.innerHTML = `Study ${st.percent}% · left ${st.left}${
       qPart ? ` · Q ${qPart}` : ""
+    }${
+      streak
+        ? `<span class="match-streak${
+            sess.answered && sess.lastCorrect ? " bump" : ""
+          }">${streak}</span>`
+        : ""
     }`;
   }
   const weeksEl = $("weeks");
@@ -798,6 +805,7 @@ function ensureMatchSession(forceNew) {
     index: 0,
     correct: 0,
     wrong: 0,
+    streak: 0,
     misses: [],
     phase: "ask",
     question: null,
@@ -824,13 +832,38 @@ function applyAnswer(correct) {
   if (correct) {
     p.remaining = Math.max(0, (p.remaining || CLEARS_NEEDED) - 1);
     sess.correct += 1;
+    sess.streak = (sess.streak || 0) + 1;
   } else {
     p.remaining = CLEARS_NEEDED;
     p.wrong = (p.wrong || 0) + 1;
     sess.wrong += 1;
+    sess.streak = 0;
     sess.misses.push(id);
   }
   saveMatchProgress();
+}
+
+function playMatchJuice(correct, streak) {
+  const body = document.body;
+  body.classList.remove("match-hit", "match-hit-big", "match-miss");
+  void body.offsetWidth;
+  if (correct) {
+    body.classList.add(streak >= 3 ? "match-hit-big" : "match-hit");
+    try {
+      if (navigator.vibrate) {
+        navigator.vibrate(streak >= 3 ? [10, 35, 12, 35, 18] : [10, 40, 14]);
+      }
+    } catch (_) {}
+  } else {
+    body.classList.add("match-miss");
+    try {
+      if (navigator.vibrate) navigator.vibrate(28);
+    } catch (_) {}
+  }
+  clearTimeout(window.__matchJuice);
+  window.__matchJuice = setTimeout(() => {
+    body.classList.remove("match-hit", "match-hit-big", "match-miss");
+  }, 480);
 }
 
 function advanceMatch() {
@@ -838,6 +871,7 @@ function advanceMatch() {
   if (!sess) return;
   sess.index += 1;
   sess.answered = false;
+  sess.lastCorrect = false;
   if (sess.index >= sess.size || matchStats().left === 0) {
     sess.phase = matchStats().left === 0 ? "cleared" : "board";
     sess.question = null;
@@ -929,9 +963,11 @@ function renderMatch() {
   let fb = "";
   if (s.answered) {
     if (s.lastCorrect) {
-      fb = `<div class="match-fb fb-ok"><strong>Correct</strong><p>${inlineHtml(q.term)}</p><p class="muted match-tap">Tap anywhere below the bar for next</p></div>`;
+      const streakBit =
+        s.streak > 1 ? ` <span class="match-streak bump">×${s.streak}</span>` : "";
+      fb = `<div class="match-fb fb-ok"><strong>Correct${streakBit}</strong><p class="muted match-tap">Tap for next</p></div>`;
     } else {
-      fb = `<div class="match-fb fb-bad"><strong>Wrong</strong><p><strong>${inlineHtml(q.term)}</strong></p><p>${inlineHtml(q.canonical)}</p><p class="muted match-tap">Tap anywhere below the bar for next</p></div>`;
+      fb = `<div class="match-fb fb-bad"><strong>Wrong</strong><p><strong>${inlineHtml(q.term)}</strong></p><p>${inlineHtml(q.canonical)}</p><p class="muted match-tap">Tap for next</p></div>`;
     }
   }
   const choices = q.choices
@@ -1162,6 +1198,7 @@ function bind() {
     sess.pickedId = id;
     applyAnswer(correct);
     renderMatch();
+    playMatchJuice(correct, sess.streak || 0);
   });
   on("match-next-hit", "click", () => {
     const sess = state.matchSession;
