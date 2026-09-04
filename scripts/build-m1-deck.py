@@ -96,8 +96,8 @@ SIBLINGS = {
         "reinforcement-vs-punishment",
     ],
     "negative-reinforcement": [
-        "positive-reinforcement",
         "negative-punishment",
+        "positive-reinforcement",
         "reinforcement-vs-punishment",
     ],
     "positive-punishment": [
@@ -106,8 +106,8 @@ SIBLINGS = {
         "reinforcement-vs-punishment",
     ],
     "negative-punishment": [
-        "positive-punishment",
         "negative-reinforcement",
+        "positive-punishment",
         "reinforcement-vs-punishment",
     ],
     "reinforcement-vs-punishment": [
@@ -155,12 +155,18 @@ SIBLINGS = {
     "evaluation": ["assessment"],
 }
 
+# Hard near-miss for Match (first sibling = primary trap).
+PRIMARY = {k: v[0] for k, v in SIBLINGS.items()}
+
 EXTRA = json.loads(
     (Path(__file__).with_name("m1-extra-faces.json")).read_text(encoding="utf-8")
 )
 WHYS = json.loads(
     (Path(__file__).with_name("m1-whys.json")).read_text(encoding="utf-8")
 )
+NEAR_MISS = json.loads(
+    (Path(__file__).with_name("m1-near-miss.json")).read_text(encoding="utf-8")
+) if (Path(__file__).with_name("m1-near-miss.json")).exists() else {}
 
 
 def extract() -> list[dict]:
@@ -209,13 +215,23 @@ def main() -> None:
         while len(uniq) < 5:
             uniq.append(r["canonical"])
         why = (WHYS.get(sid) or "").strip()
+        near = []
+        seen_n = set()
+        for f in NEAR_MISS.get(sid, []):
+            f = (f or "").strip()
+            if not f or f in seen_n:
+                continue
+            seen_n.add(f)
+            near.append(f)
         items.append(
             {
                 "id": sid,
                 "term": r["term"],
                 "siblings": [],
+                "primarySibling": PRIMARY.get(sid) or "",
                 "why": why,
                 "faces": uniq[:13],
+                "nearMiss": near[:6],
             }
         )
     ids = {i["id"] for i in items}
@@ -223,6 +239,13 @@ def main() -> None:
         i["siblings"] = [
             s for s in SIBLINGS.get(i["id"], []) if s in ids and s != i["id"]
         ]
+        if i["primarySibling"] not in ids:
+            i["primarySibling"] = i["siblings"][0] if i["siblings"] else ""
+        # keep primary first in siblings list
+        if i["primarySibling"]:
+            i["siblings"] = [i["primarySibling"]] + [
+                s for s in i["siblings"] if s != i["primarySibling"]
+            ]
     deck = {
         "id": "cs6460-m1",
         "title": "CS6460 Module 1",

@@ -648,14 +648,63 @@ function pickDueItem(excludeId) {
 
 function pickDistractor(correct) {
   const byId = new Map((state.deck?.items || []).map((i) => [i.id, i]));
+  const primary = correct.primarySibling && byId.get(correct.primarySibling);
+  if (primary) return primary;
   const sibs = (correct.siblings || [])
     .map((id) => byId.get(id))
     .filter(Boolean);
-  if (sibs.length) {
-    return sibs[Math.floor(Math.random() * sibs.length)];
-  }
+  if (sibs.length) return sibs[0];
   const others = (state.deck?.items || []).filter((i) => i.id !== correct.id);
   return others[Math.floor(Math.random() * others.length)];
+}
+
+function contentOverlap(a, b) {
+  const tok = (t) =>
+    new Set(
+      String(t || "")
+        .toLowerCase()
+        .split(/[^a-z0-9]+/)
+        .filter((w) => w.length > 3 && !MATCH_STOP.has(w)),
+    );
+  const A = tok(a);
+  const B = tok(b);
+  let n = 0;
+  A.forEach((w) => {
+    if (B.has(w)) n += 1;
+  });
+  return n;
+}
+
+function pickDistractorFace(distractor, correctFace, correctTerm) {
+  const dedicated =
+    distractor.nearMiss && distractor.nearMiss.length
+      ? distractor.nearMiss.slice()
+      : [];
+  const pool = dedicated.length
+    ? dedicated
+    : distractor.faces && distractor.faces.length
+      ? distractor.faces.slice()
+      : [distractor.term];
+  let best = pool[0];
+  let bestScore = -Infinity;
+  pool
+    .slice()
+    .sort(() => Math.random() - 0.5)
+    .forEach((f) => {
+      let s = contentOverlap(f, correctFace) * 5;
+      s += contentOverlap(f, correctTerm);
+      // still scrub-friendly / not leaking distractor term too hard on display
+      const display = scrubFace(f, distractor.term, correctTerm);
+      s -= leakScore(display, distractor.term);
+      if (s > bestScore) {
+        bestScore = s;
+        best = f;
+      }
+    });
+  return {
+    face: best,
+    display: scrubFace(best, distractor.term, correctTerm),
+  };
 }
 
 function shuffle2(a, b) {
@@ -836,7 +885,11 @@ function buildQuestion(prevId) {
   let prompt;
   let choices;
   if (direction === "term") {
-    const distractorFace = pickFace(distractor, item.term);
+    const distractorFace = pickDistractorFace(
+      distractor,
+      picked.face,
+      item.term,
+    );
     prompt = item.term;
     choices = shuffle2(
       { id: item.id, label: picked.display, correct: true },
