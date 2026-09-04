@@ -160,15 +160,17 @@ function matchStats() {
   const n = items.length || 1;
   let filled = 0;
   let cleared = 0;
+  let slotsLeft = 0;
   items.forEach((it) => {
     const p = ensureItemProgress(it.id);
     const rem = Math.max(0, Math.min(CLEARS_NEEDED, Number(p.remaining) || 0));
     filled += CLEARS_NEEDED - rem;
+    slotsLeft += rem;
     if (rem === 0) cleared += 1;
   });
   const percent = Math.round((100 * filled) / (CLEARS_NEEDED * n));
   const left = items.length - cleared;
-  return { percent, cleared, total: items.length, left, filled };
+  return { percent, cleared, total: items.length, left, filled, slotsLeft };
 }
 
 function worstTerms(limit) {
@@ -602,10 +604,14 @@ function itemById(id) {
 }
 
 function pickDueItem(excludeId) {
-  const due = (state.deck?.items || []).filter((it) => {
-    if (excludeId && it.id === excludeId) return false;
-    return ensureItemProgress(it.id).remaining > 0;
-  });
+  let due = (state.deck?.items || []).filter(
+    (it) => ensureItemProgress(it.id).remaining > 0,
+  );
+  if (!due.length) return null;
+  // last uncleared term: allow back-to-back (exclude would empty the pool)
+  if (due.length > 1 && excludeId) {
+    due = due.filter((it) => it.id !== excludeId);
+  }
   if (!due.length) return null;
   const now = Date.now();
   const scored = due.map((it) => {
@@ -846,7 +852,7 @@ function ensureMatchSession(forceNew) {
   }
   const st = matchStats();
   state.matchSession = {
-    size: Math.min(SESSION_SIZE, Math.max(1, st.left || SESSION_SIZE)),
+    size: Math.min(SESSION_SIZE, Math.max(1, st.slotsLeft || SESSION_SIZE)),
     index: 0,
     correct: 0,
     wrong: 0,
@@ -857,7 +863,7 @@ function ensureMatchSession(forceNew) {
     question: null,
     answered: false,
   };
-  if (st.left === 0) {
+  if (st.left === 0 || st.slotsLeft === 0) {
     state.matchSession.phase = "cleared";
     state.matchSession.question = null;
     return;
@@ -918,14 +924,18 @@ function advanceMatch() {
   sess.index += 1;
   sess.answered = false;
   sess.lastCorrect = false;
-  if (sess.index >= sess.size || matchStats().left === 0) {
-    sess.phase = matchStats().left === 0 ? "cleared" : "board";
+  const st = matchStats();
+  if (st.slotsLeft === 0 || st.left === 0) {
+    sess.phase = "cleared";
+    sess.question = null;
+  } else if (sess.index >= sess.size) {
+    sess.phase = "board";
     sess.question = null;
   } else {
     sess.phase = "ask";
     sess.question = buildQuestion(sess.question?.itemId);
     if (!sess.question) {
-      sess.phase = matchStats().left === 0 ? "cleared" : "board";
+      sess.phase = matchStats().slotsLeft === 0 ? "cleared" : "board";
     }
   }
   renderMatch();
