@@ -3,6 +3,8 @@ const MATCH_LS_PREFIX = "omscs-study-match:";
 const COURSE = "6460";
 const CLEARS_NEEDED = 5;
 const SESSION_SIZE = 10;
+/** Bump with index.html ?v= so mobile can confirm a fresh load. */
+const APP_BUILD = 30;
 /** Match bias: claim/vignette → pick the term (thumb-cover friendly). */
 const CLAIM_TERM_P = 0.88;
 /** Recent miss stems kept per term for export/coaching. */
@@ -546,14 +548,17 @@ function renderNav() {
   if (missing) missing.textContent = parsedWeek?.missing || "";
   const synced = $("synced");
   if (synced) {
-    synced.textContent = state.syncedAt
-      ? "Last sync " +
+    const know = state.syncedAt
+      ? "Know " +
         new Date(state.syncedAt).toLocaleString(undefined, {
           dateStyle: "medium",
           timeStyle: "short",
         })
-      : "";
+      : "Know sync unknown";
+    synced.textContent = `App v${APP_BUILD} · ${know}`;
   }
+  const buildEl = $("app-build");
+  if (buildEl) buildEl.textContent = `v${APP_BUILD}`;
   const sheetStats = $("match-sheet-stats");
   if (sheetStats) {
     if (!state.deck) {
