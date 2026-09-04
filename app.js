@@ -3,6 +3,8 @@ const MATCH_LS_PREFIX = "omscs-study-match:";
 const COURSE = "6460";
 const CLEARS_NEEDED = 5;
 const SESSION_SIZE = 10;
+/** Match bias: claim/vignette → pick the term (thumb-cover friendly). */
+const CLAIM_TERM_P = 0.88;
 
 const state = {
   weeks: [],
@@ -718,25 +720,69 @@ function leakScore(text, term) {
   return score;
 }
 
-function scrubFace(face, term) {
-  let out = String(face);
-  const parts = termKeyParts(term);
-  parts.phrases
+function openingKey(text) {
+  return String(text || "")
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean)
+    .slice(0, 3)
+    .join(" ");
+}
+
+function pickFace(item, againstTerm, usedFaces) {
+  const faces =
+    item.faces && item.faces.length ? item.faces.slice() : [item.term];
+  const used = usedFaces || [];
+  const usedOpens = new Set(used.map(openingKey));
+  let best = faces[0];
+  let bestScore = Infinity;
+  faces
     .slice()
-    .sort((a, b) => b.length - a.length)
-    .forEach((p) => {
-      const re = new RegExp(p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
-      out = out.replace(re, "this idea");
+    .sort(() => Math.random() - 0.5)
+    .forEach((f) => {
+      const display = scrubFace(f, item.term, againstTerm);
+      let s = leakScore(f, item.term) * 2 + leakScore(display, item.term) * 3;
+      if (againstTerm) {
+        s += leakScore(f, againstTerm) * 2 + leakScore(display, againstTerm) * 3;
+      }
+      if (used.includes(f)) s += 50;
+      const open = openingKey(f);
+      if (open && usedOpens.has(open)) s += 35;
+      if (f === faces[0] && faces.length > 3) s += 4;
+      if (s < bestScore) {
+        bestScore = s;
+        best = f;
+      }
     });
-  parts.acronyms.forEach((a) => {
-    out = out.replace(new RegExp("\\b" + a + "\\b", "g"), "this idea");
+  return {
+    face: best,
+    leak: bestScore,
+    display: scrubFace(best, item.term, againstTerm),
+  };
+}
+
+function scrubFace(face, term, alsoTerm) {
+  let out = String(face);
+  const terms = [term, alsoTerm].filter(Boolean);
+  terms.forEach((t) => {
+    const parts = termKeyParts(t);
+    parts.phrases
+      .slice()
+      .sort((a, b) => b.length - a.length)
+      .forEach((p) => {
+        const re = new RegExp(p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+        out = out.replace(re, "this idea");
+      });
+    parts.acronyms.forEach((a) => {
+      out = out.replace(new RegExp("\\b" + a + "\\b", "g"), "this idea");
+    });
+    parts.tokens
+      .filter((tok) => tok.length >= 4)
+      .sort((a, b) => b.length - a.length)
+      .forEach((tok) => {
+        out = out.replace(new RegExp("\\b" + tok + "\\b", "gi"), "this");
+      });
   });
-  parts.tokens
-    .filter((t) => t.length >= 4)
-    .sort((a, b) => b.length - a.length)
-    .forEach((t) => {
-      out = out.replace(new RegExp("\\b" + t + "\\b", "gi"), "this");
-    });
   return out
     .replace(/\bthis idea\s*:\s*/gi, "")
     .replace(/\bthis\s+this\b/gi, "this")
@@ -746,43 +792,24 @@ function scrubFace(face, term) {
     .trim();
 }
 
-function pickFace(item, againstTerm) {
-  const faces =
-    item.faces && item.faces.length ? item.faces.slice() : [item.term];
-  let best = faces[0];
-  let bestScore = Infinity;
-  faces
-    .slice()
-    .sort(() => Math.random() - 0.5)
-    .forEach((f) => {
-      const display = scrubFace(f, item.term);
-      let s = leakScore(f, item.term) * 2 + leakScore(display, item.term) * 3;
-      if (againstTerm) {
-        s += leakScore(f, againstTerm) + leakScore(display, againstTerm);
-      }
-      if (s < bestScore) {
-        bestScore = s;
-        best = f;
-      }
-    });
-  return {
-    face: best,
-    leak: bestScore,
-    display: scrubFace(best, item.term),
-  };
-}
-
 function buildQuestion(prevId) {
   const item = pickDueItem(prevId);
   if (!item) return null;
   const distractor = pickDistractor(item);
   if (!distractor) return null;
-  const direction = Math.random() < 0.5 ? "term" : "claim";
-  const picked = pickFace(item, distractor.term);
-  const distractorFace = pickFace(distractor, item.term);
+  const sess = state.matchSession;
+  if (sess && !sess.usedFaces) sess.usedFaces = {};
+  const used = (sess && sess.usedFaces[item.id]) || [];
+  const direction = Math.random() < CLAIM_TERM_P ? "claim" : "term";
+  const picked = pickFace(item, distractor.term, used);
+  if (sess) {
+    if (!sess.usedFaces[item.id]) sess.usedFaces[item.id] = [];
+    sess.usedFaces[item.id].push(picked.face);
+  }
   let prompt;
   let choices;
   if (direction === "term") {
+    const distractorFace = pickFace(distractor, item.term);
     prompt = item.term;
     choices = shuffle2(
       { id: item.id, label: picked.display, correct: true },
@@ -799,6 +826,9 @@ function buildQuestion(prevId) {
     itemId: item.id,
     term: item.term,
     canonical: (item.faces && item.faces[0]) || "",
+    why: item.why || "",
+    distractorTerm: distractor.term,
+    distractorWhy: distractor.why || "",
     direction,
     prompt,
     choices,
@@ -822,6 +852,7 @@ function ensureMatchSession(forceNew) {
     wrong: 0,
     streak: 0,
     misses: [],
+    usedFaces: {},
     phase: "ask",
     question: null,
     answered: false,
@@ -987,9 +1018,19 @@ function renderMatch() {
     if (s.lastCorrect) {
       const streakBit =
         s.streak > 1 ? ` <span class="match-streak bump">×${s.streak}</span>` : "";
-      fb = `<div class="match-fb fb-ok"><strong>Correct${streakBit}</strong><p class="muted match-tap">Tap for next</p></div>`;
+      const whyBit = q.why
+        ? `<p class="match-why"><span class="label-inline">Why</span> ${inlineHtml(q.why)}</p>`
+        : "";
+      fb = `<div class="match-fb fb-ok"><strong>Correct${streakBit}</strong>${whyBit}<p class="muted match-tap">Tap for next</p></div>`;
     } else {
-      fb = `<div class="match-fb fb-bad"><strong>Wrong</strong><p><strong>${inlineHtml(q.term)}</strong></p><p>${inlineHtml(q.canonical)}</p><p class="muted match-tap">Tap for next</p></div>`;
+      const whyBit = q.why
+        ? `<p class="match-why"><span class="label-inline">Why</span> ${inlineHtml(q.why)}</p>`
+        : `<p>${inlineHtml(q.canonical)}</p>`;
+      const notBit =
+        q.distractorTerm && q.distractorWhy
+          ? `<p class="match-not"><span class="label-inline">Not ${inlineHtml(q.distractorTerm)}</span> ${inlineHtml(q.distractorWhy)}</p>`
+          : "";
+      fb = `<div class="match-fb fb-bad"><strong>Wrong</strong><p><strong>${inlineHtml(q.term)}</strong></p>${whyBit}${notBit}<p class="muted match-tap">Tap for next</p></div>`;
     }
   }
   const choices = q.choices

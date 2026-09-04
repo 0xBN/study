@@ -158,6 +158,9 @@ SIBLINGS = {
 EXTRA = json.loads(
     (Path(__file__).with_name("m1-extra-faces.json")).read_text(encoding="utf-8")
 )
+WHYS = json.loads(
+    (Path(__file__).with_name("m1-whys.json")).read_text(encoding="utf-8")
+)
 
 
 def extract() -> list[dict]:
@@ -194,14 +197,25 @@ def main() -> None:
         if not sid:
             raise SystemExit(f"unmapped slug: {r['slug']}")
         faces = [r["canonical"]] + list(EXTRA.get(sid, []))
-        while len(faces) < 5:
-            faces.append(r["canonical"])
+        # unique, keep order; pad only if short
+        seen = set()
+        uniq = []
+        for f in faces:
+            f = (f or "").strip()
+            if not f or f in seen:
+                continue
+            seen.add(f)
+            uniq.append(f)
+        while len(uniq) < 5:
+            uniq.append(r["canonical"])
+        why = (WHYS.get(sid) or "").strip()
         items.append(
             {
                 "id": sid,
                 "term": r["term"],
                 "siblings": [],
-                "faces": faces[:5],
+                "why": why,
+                "faces": uniq[:13],
             }
         )
     ids = {i["id"] for i in items}
