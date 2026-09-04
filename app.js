@@ -5,6 +5,8 @@ const CLEARS_NEEDED = 5;
 const SESSION_SIZE = 10;
 /** Match bias: claim/vignette → pick the term (thumb-cover friendly). */
 const CLAIM_TERM_P = 0.88;
+/** Recent miss stems kept per term for export/coaching. */
+const MISS_LOG_MAX = 5;
 
 const state = {
   weeks: [],
@@ -150,9 +152,28 @@ function ensureItemProgress(id) {
       wrong: 0,
       seen: 0,
       last: 0,
+      misses: [],
     };
   }
+  if (!Array.isArray(state.matchProgress[id].misses)) {
+    state.matchProgress[id].misses = [];
+  }
   return state.matchProgress[id];
+}
+
+function recordMissStem(q, pickedId) {
+  if (!q) return;
+  const p = ensureItemProgress(q.itemId);
+  const picked = (q.choices || []).find((c) => c.id === pickedId);
+  const entry = {
+    stem: String(q.prompt || "").slice(0, 400),
+    answer: q.term || "",
+    vs: q.distractorTerm || "",
+    picked: picked && !picked.correct ? picked.label : "",
+    dir: q.direction || "",
+    at: Date.now(),
+  };
+  p.misses = [entry, ...(p.misses || [])].slice(0, MISS_LOG_MAX);
 }
 
 function matchStats() {
@@ -544,7 +565,7 @@ function renderNav() {
         .join("; ");
       sheetStats.textContent = `Study ${st.percent}% · ${st.cleared}/${st.total} terms cleared.${
         worst ? " Weak: " + worst : " No misses yet."
-      }`;
+      } Export includes last ${MISS_LOG_MAX} miss stems per term.`;
     }
   }
   renderDeadline();
@@ -891,6 +912,7 @@ function applyAnswer(correct) {
     sess.wrong += 1;
     sess.streak = 0;
     sess.misses.push(id);
+    recordMissStem(sess.question, sess.pickedId);
   }
   saveMatchProgress();
 }
@@ -1071,7 +1093,7 @@ function exportMatchProgress() {
   const st = matchStats();
   const blob = {
     deckId: state.deck.id,
-    v: 1,
+    v: 2,
     percent: st.percent,
     cleared: st.cleared,
     total: st.total,
@@ -1121,12 +1143,25 @@ function importMatchProgress() {
   state.matchProgress = {};
   Object.keys(items).forEach((id) => {
     const p = items[id] || {};
+    const misses = Array.isArray(p.misses)
+      ? p.misses
+          .slice(0, MISS_LOG_MAX)
+          .map((m) => ({
+            stem: String(m.stem || "").slice(0, 400),
+            answer: String(m.answer || ""),
+            vs: String(m.vs || ""),
+            picked: String(m.picked || ""),
+            dir: String(m.dir || ""),
+            at: Number(m.at) || 0,
+          }))
+      : [];
     state.matchProgress[id] = {
       remaining:
         typeof p.remaining === "number" ? p.remaining : CLEARS_NEEDED,
       wrong: Number(p.wrong) || 0,
       seen: Number(p.seen) || 0,
       last: Number(p.last) || 0,
+      misses,
     };
   });
   (state.deck.items || []).forEach((it) => ensureItemProgress(it.id));
