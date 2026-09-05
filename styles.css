@@ -97,8 +97,8 @@ body {
 
 .mode-toggle .mode {
   min-height: 1.85rem;
-  padding: 0 0.55rem;
-  font-size: 0.78rem;
+  padding: 0 0.45rem;
+  font-size: 0.72rem;
   font-weight: 650;
   border: 0;
   border-radius: 0;
@@ -260,6 +260,36 @@ textarea {
 body.mode-match main {
   padding-top: 0.35rem;
   padding-bottom: 0.75rem;
+}
+
+body.mode-quiz main {
+  padding-top: 0.35rem;
+  padding-bottom: 0.75rem;
+}
+
+body.quiz-ready-next main {
+  padding-bottom: 4rem;
+}
+
+.quiz-stage {
+  padding-bottom: 1rem;
+}
+
+.quiz-meta {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+}
+
+.quiz-stem {
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.quiz-choices button {
+  text-align: left;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  padding: 0.75rem 0.85rem;
 }
 
 .match-stage {

@@ -1,14 +1,8 @@
 const LS_KEY = "omscs-study";
-const MATCH_LS_PREFIX = "omscs-study-match:";
+const QUIZ_LS_PREFIX = "omscs-study-quiz:";
 const COURSE = "6460";
-const CLEARS_NEEDED = 5;
-const SESSION_SIZE = 10;
 /** Bump with index.html ?v= so mobile can confirm a fresh load. */
-const APP_BUILD = 30;
-/** Match bias: claim/vignette → pick the term (thumb-cover friendly). */
-const CLAIM_TERM_P = 0.88;
-/** Recent miss stems kept per term for export/coaching. */
-const MISS_LOG_MAX = 5;
+const APP_BUILD = 32;
 
 const state = {
   weeks: [],
@@ -23,9 +17,9 @@ const state = {
   face: "term",
   showSections: true,
   mode: "read",
-  deck: null,
-  matchProgress: {},
-  matchSession: null,
+  quizBank: null,
+  quizProgress: {},
+  quizSession: null,
 };
 
 let deadlineTimer = 0;
@@ -118,97 +112,73 @@ function saveLs() {
       scrollByView: state.scrollByView,
       face: state.face,
       showSections: state.showSections,
-      mode: state.mode,
+      mode: state.mode === "quiz" ? "quiz" : "read",
     }),
   );
 }
 
-function matchLsKey(deckId) {
-  return MATCH_LS_PREFIX + (deckId || state.deck?.id || "cs6460-m1");
+function quizLsKey(bankId) {
+  return QUIZ_LS_PREFIX + (bankId || state.quizBank?.id || "cs6460-m1-quiz");
 }
 
-function loadMatchProgress(deckId) {
+function loadQuizProgress(bankId) {
   try {
-    const raw = JSON.parse(localStorage.getItem(matchLsKey(deckId)) || "{}");
+    const raw = JSON.parse(localStorage.getItem(quizLsKey(bankId)) || "{}");
     return raw.items && typeof raw.items === "object" ? raw.items : {};
   } catch {
     return {};
   }
 }
 
-function saveMatchProgress() {
-  if (!state.deck) return;
-  const payload = {
-    deckId: state.deck.id,
-    v: 1,
-    updatedAt: new Date().toISOString(),
-    items: state.matchProgress,
-  };
-  localStorage.setItem(matchLsKey(state.deck.id), JSON.stringify(payload));
+function saveQuizProgress() {
+  if (!state.quizBank) return;
+  localStorage.setItem(
+    quizLsKey(state.quizBank.id),
+    JSON.stringify({
+      bankId: state.quizBank.id,
+      v: 1,
+      updatedAt: new Date().toISOString(),
+      items: state.quizProgress,
+    }),
+  );
 }
 
-function ensureItemProgress(id) {
-  if (!state.matchProgress[id]) {
-    state.matchProgress[id] = {
-      remaining: CLEARS_NEEDED,
-      wrong: 0,
-      seen: 0,
-      last: 0,
-      misses: [],
-    };
+function ensureQuizItemProgress(id) {
+  if (!state.quizProgress[id]) {
+    state.quizProgress[id] = { seen: 0, correct: 0, wrong: 0 };
   }
-  if (!Array.isArray(state.matchProgress[id].misses)) {
-    state.matchProgress[id].misses = [];
+  return state.quizProgress[id];
+}
+
+function shuffleInPlace(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = arr[i];
+    arr[i] = arr[j];
+    arr[j] = t;
   }
-  return state.matchProgress[id];
+  return arr;
 }
 
-function recordMissStem(q, pickedId) {
-  if (!q) return;
-  const p = ensureItemProgress(q.itemId);
-  const picked = (q.choices || []).find((c) => c.id === pickedId);
-  const entry = {
-    stem: String(q.prompt || "").slice(0, 400),
-    answer: q.term || "",
-    vs: q.distractorTerm || "",
-    picked: picked && !picked.correct ? picked.label : "",
-    dir: q.direction || "",
-    at: Date.now(),
-  };
-  p.misses = [entry, ...(p.misses || [])].slice(0, MISS_LOG_MAX);
-}
-
-function matchStats() {
-  const items = state.deck?.items || [];
-  const n = items.length || 1;
-  let filled = 0;
-  let cleared = 0;
-  let slotsLeft = 0;
+function quizStats() {
+  const items = state.quizBank?.items || [];
+  const total = items.length;
+  let seen = 0;
+  let correct = 0;
+  let wrong = 0;
   items.forEach((it) => {
-    const p = ensureItemProgress(it.id);
-    const rem = Math.max(0, Math.min(CLEARS_NEEDED, Number(p.remaining) || 0));
-    filled += CLEARS_NEEDED - rem;
-    slotsLeft += rem;
-    if (rem === 0) cleared += 1;
+    const p = state.quizProgress[it.id];
+    if (!p) return;
+    if (p.seen > 0) seen += 1;
+    correct += p.correct || 0;
+    wrong += p.wrong || 0;
   });
-  const percent = Math.round((100 * filled) / (CLEARS_NEEDED * n));
-  const left = items.length - cleared;
-  return { percent, cleared, total: items.length, left, filled, slotsLeft };
-}
-
-function worstTerms(limit) {
-  return (state.deck?.items || [])
-    .map((it) => {
-      const p = ensureItemProgress(it.id);
-      return { id: it.id, term: it.term, wrong: p.wrong || 0, remaining: p.remaining };
-    })
-    .filter((x) => x.wrong > 0)
-    .sort((a, b) => b.wrong - a.wrong || b.remaining - a.remaining)
-    .slice(0, limit || 8);
+  const percent = total ? Math.round((seen / total) * 100) : 0;
+  return { total, seen, correct, wrong, percent };
 }
 
 function viewKey(weekId) {
-  return weekId || state.currentWeekId;
+  return (weekId || state.currentWeekId) + "-" + COURSE;
 }
 
 function viewLookup(map, weekId) {
@@ -417,7 +387,7 @@ function weekMeta(id) {
 }
 
 function weekLabel(id) {
-  return "W" + String(Number(id));
+  return "Week " + Number(id);
 }
 
 function visibleChunks() {
@@ -429,35 +399,35 @@ function visibleChunks() {
 }
 
 function setMode(mode) {
-  state.mode = mode === "match" ? "match" : "read";
+  state.mode = mode === "quiz" ? "quiz" : "read";
   saveLs();
-  if (state.mode !== "match") setMatchReadyNext(false);
+  if (state.mode !== "quiz") setQuizReadyNext(false);
   const readCtrls = $("read-controls");
-  const matchCtrls = $("match-controls");
+  const quizCtrls = $("quiz-controls");
   const article = $("article");
-  const match = $("match");
+  const sceneQuiz = $("scene-quiz");
   const modeRead = $("mode-read");
-  const modeMatch = $("mode-match");
+  const modeQuiz = $("mode-quiz");
   if (readCtrls) readCtrls.hidden = state.mode !== "read";
-  if (matchCtrls) matchCtrls.hidden = state.mode !== "match";
+  if (quizCtrls) quizCtrls.hidden = state.mode !== "quiz";
   if (article) article.hidden = state.mode !== "read";
-  if (match) match.hidden = state.mode !== "match";
+  if (sceneQuiz) sceneQuiz.hidden = state.mode !== "quiz";
   if (modeRead) {
     modeRead.classList.toggle("active", state.mode === "read");
     modeRead.setAttribute("aria-pressed", state.mode === "read" ? "true" : "false");
   }
-  if (modeMatch) {
-    modeMatch.classList.toggle("active", state.mode === "match");
-    modeMatch.setAttribute(
+  if (modeQuiz) {
+    modeQuiz.classList.toggle("active", state.mode === "quiz");
+    modeQuiz.setAttribute(
       "aria-pressed",
-      state.mode === "match" ? "true" : "false",
+      state.mode === "quiz" ? "true" : "false",
     );
   }
-  document.body.classList.toggle("mode-match", state.mode === "match");
+  document.body.classList.toggle("mode-quiz", state.mode === "quiz");
   document.body.classList.toggle("mode-read", state.mode === "read");
-  if (state.mode === "match") {
-    ensureMatchSession();
-    renderMatch();
+  if (state.mode === "quiz") {
+    ensureQuizSession();
+    renderSceneQuiz();
   } else {
     renderArticle();
   }
@@ -469,45 +439,38 @@ function renderNav() {
   const chunks = visibleChunks();
   const title = $("nav-title");
   if (title) {
-    if (state.mode === "match") {
-      title.textContent = state.deck ? state.deck.title : "Match";
+    if (state.mode === "quiz") {
+      title.textContent = state.quizBank ? state.quizBank.title : "Quiz";
     } else {
       title.textContent = "CS6460 · " + weekLabel(state.currentWeekId);
     }
   }
-  const status = $("match-status");
-  const pctEl = $("match-pct");
-  const fill = $("match-meter-fill");
-  if (state.mode === "match") {
-    const st = matchStats();
-    const sess = state.matchSession;
+  const qStatus = $("quiz-status");
+  const qPct = $("quiz-pct");
+  const qFill = $("quiz-meter-fill");
+  if (state.mode === "quiz") {
+    const st = quizStats();
+    const sess = state.quizSession;
     const qPart = sess
       ? sess.phase === "board"
         ? "done"
         : `${Math.min(sess.index + 1, sess.size)}/${sess.size}`
       : "";
-    const streak = sess && sess.streak > 1 ? ` · ×${sess.streak}` : "";
-    if (pctEl) pctEl.textContent = `${st.percent}%`;
-    if (status) {
-      status.innerHTML = `left ${st.left}${qPart ? ` · Q ${qPart}` : ""}${
-        streak
-          ? `<span class="match-streak${
-              sess.answered && sess.lastCorrect ? " bump" : ""
-            }">${streak}</span>`
-          : ""
-      }`;
+    if (qPct) qPct.textContent = `${st.percent}%`;
+    if (qStatus) {
+      qStatus.textContent = `seen ${st.seen}/${st.total}${
+        qPart ? ` · Q ${qPart}` : ""
+      } · ${st.correct}✓ ${st.wrong}✗`;
     }
-    if (fill) {
-      const prev = Number(fill.dataset.pct || -1);
-      fill.style.width = `${st.percent}%`;
-      fill.dataset.pct = String(st.percent);
-      if (st.percent > prev && prev >= 0) {
-        fill.classList.remove("bump");
-        void fill.offsetWidth;
-        fill.classList.add("bump");
-        clearTimeout(window.__meterBump);
-        window.__meterBump = setTimeout(() => fill.classList.remove("bump"), 480);
-      }
+    if (qFill) qFill.style.width = `${st.percent}%`;
+  }
+  const quizSheet = $("quiz-sheet-stats");
+  if (quizSheet) {
+    if (!state.quizBank) {
+      quizSheet.textContent = "Scene quiz bank not loaded.";
+    } else {
+      const st = quizStats();
+      quizSheet.textContent = `${state.quizBank.items.length} scenes · seen ${st.seen} · ${st.correct} correct · ${st.wrong} wrong`;
     }
   }
   const weeksEl = $("weeks");
@@ -559,20 +522,6 @@ function renderNav() {
   }
   const buildEl = $("app-build");
   if (buildEl) buildEl.textContent = `v${APP_BUILD}`;
-  const sheetStats = $("match-sheet-stats");
-  if (sheetStats) {
-    if (!state.deck) {
-      sheetStats.textContent = "Match deck not loaded.";
-    } else {
-      const st = matchStats();
-      const worst = worstTerms(5)
-        .map((w) => `${w.term} (wrong ${w.wrong}, left ${w.remaining})`)
-        .join("; ");
-      sheetStats.textContent = `Study ${st.percent}% · ${st.cleared}/${st.total} terms cleared.${
-        worst ? " Weak: " + worst : " No misses yet."
-      } Export includes last ${MISS_LOG_MAX} miss stems per term.`;
-    }
-  }
   renderDeadline();
 }
 
@@ -625,366 +574,144 @@ function renderArticle(opts) {
   });
 }
 
-function itemById(id) {
-  return (state.deck?.items || []).find((i) => i.id === id);
+function syncNavOffset() {
+  const nav = document.querySelector(".nav");
+  const top = nav ? Math.ceil(nav.getBoundingClientRect().bottom) : 0;
+  document.documentElement.style.setProperty("--nav-offset", top + "px");
 }
 
-function pickDueItem(excludeId) {
-  let due = (state.deck?.items || []).filter(
-    (it) => ensureItemProgress(it.id).remaining > 0,
-  );
-  if (!due.length) return null;
-  // last uncleared term: allow back-to-back (exclude would empty the pool)
-  if (due.length > 1 && excludeId) {
-    due = due.filter((it) => it.id !== excludeId);
+function setQuizReadyNext(on) {
+  document.body.classList.toggle("quiz-ready-next", !!on);
+  const root = $("scene-quiz");
+  if (root) root.classList.toggle("match-ready-next", !!on);
+  const hit = $("quiz-next-hit");
+  if (!hit) return;
+  hit.hidden = !on;
+  syncNavOffset();
+  if (on) {
+    const nav = document.querySelector(".nav");
+    const top = nav ? Math.ceil(nav.getBoundingClientRect().bottom) : 0;
+    hit.style.top = top + "px";
   }
-  if (!due.length) return null;
-  const now = Date.now();
-  const scored = due.map((it) => {
-    const p = ensureItemProgress(it.id);
-    const age = Math.max(0, now - (p.last || 0)) / 60000;
-    const weight =
-      p.remaining * 3 + (p.wrong || 0) * 4 + Math.min(20, age / 5) + Math.random();
-    return { it, weight };
-  });
-  scored.sort((a, b) => b.weight - a.weight);
-  return scored[0].it;
 }
 
-function pickDistractor(correct) {
-  const byId = new Map((state.deck?.items || []).map((i) => [i.id, i]));
-  const primary = correct.primarySibling && byId.get(correct.primarySibling);
-  if (primary) return primary;
-  const sibs = (correct.siblings || [])
-    .map((id) => byId.get(id))
-    .filter(Boolean);
-  if (sibs.length) return sibs[0];
-  const others = (state.deck?.items || []).filter((i) => i.id !== correct.id);
-  return others[Math.floor(Math.random() * others.length)];
-}
-
-function contentOverlap(a, b) {
-  const tok = (t) =>
-    new Set(
-      String(t || "")
-        .toLowerCase()
-        .split(/[^a-z0-9]+/)
-        .filter((w) => w.length > 3 && !MATCH_STOP.has(w)),
-    );
-  const A = tok(a);
-  const B = tok(b);
-  let n = 0;
-  A.forEach((w) => {
-    if (B.has(w)) n += 1;
-  });
-  return n;
-}
-
-function pickDistractorFace(distractor, correctFace, correctTerm) {
-  const dedicated =
-    distractor.nearMiss && distractor.nearMiss.length
-      ? distractor.nearMiss.slice()
-      : [];
-  const pool = dedicated.length
-    ? dedicated
-    : distractor.faces && distractor.faces.length
-      ? distractor.faces.slice()
-      : [distractor.term];
-  let best = pool[0];
-  let bestScore = -Infinity;
-  pool
-    .slice()
-    .sort(() => Math.random() - 0.5)
-    .forEach((f) => {
-      let s = contentOverlap(f, correctFace) * 5;
-      s += contentOverlap(f, correctTerm);
-      // still scrub-friendly / not leaking distractor term too hard on display
-      const display = scrubFace(f, distractor.term, correctTerm);
-      s -= leakScore(display, distractor.term);
-      if (s > bestScore) {
-        bestScore = s;
-        best = f;
-      }
-    });
-  return {
-    face: best,
-    display: scrubFace(best, distractor.term, correctTerm),
-  };
-}
-
-function shuffle2(a, b) {
-  return Math.random() < 0.5 ? [a, b] : [b, a];
-}
-
-const MATCH_STOP = new Set([
-  "versus",
-  "vs",
-  "the",
-  "and",
-  "or",
-  "of",
-  "a",
-  "an",
-  "for",
-  "to",
-  "in",
-  "on",
-  "with",
-  "from",
-  "that",
-  "this",
-  "than",
-  "into",
-  "goal",
-  "orientation",
-  "lesson",
-  "cite",
-  "etymology",
-  "other",
-  "more",
-  "high",
-  "low",
-  "floor",
-  "ceiling",
-  "capital",
-  "lowercase",
-  "direct",
-  "visual",
-  "auditory",
-  "kinesthetic",
-  "top",
-  "not",
-  "why",
-  "what",
-  "when",
-  "your",
-  "their",
-]);
-
-function termKeyParts(term) {
-  const full = String(term);
-  const withoutParen = full.replace(/\s*\([^)]*\)\s*/g, " ").trim();
-  const parenBits = [...full.matchAll(/\(([^)]+)\)/g)].map((m) => m[1]);
-  const allForTokens = [withoutParen, ...parenBits].join(" ");
-  const tokens = allForTokens
-    .toLowerCase()
-    .split(/[^a-z0-9]+/)
-    .filter((t) => t.length > 3 && !MATCH_STOP.has(t));
-  const acronyms = full.match(/\b[A-Z]{2,}\b/g) || [];
-  const phrases = [withoutParen, ...parenBits]
-    .map((p) => p.trim())
-    .filter((p) => p.length > 3);
-  return {
-    phrase: withoutParen,
-    phrases: [...new Set(phrases)],
-    tokens: [...new Set(tokens)],
-    acronyms: [...new Set(acronyms)],
-  };
-}
-
-function leakScore(text, term) {
-  if (!text || !term) return 0;
-  const lower = String(text).toLowerCase();
-  const parts = termKeyParts(term);
-  let score = 0;
-  parts.phrases.forEach((p) => {
-    if (p.length > 3 && lower.includes(p.toLowerCase())) score += 8;
-  });
-  parts.tokens.forEach((t) => {
-    if (new RegExp("\\b" + t + "\\b", "i").test(text)) {
-      score += t.length >= 7 ? 4 : 2;
-    }
-  });
-  parts.acronyms.forEach((a) => {
-    if (new RegExp("\\b" + a + "\\b", "i").test(text)) score += 5;
-  });
-  return score;
-}
-
-function openingKey(text) {
-  return String(text || "")
-    .toLowerCase()
-    .split(/[^a-z0-9]+/)
-    .filter(Boolean)
-    .slice(0, 3)
-    .join(" ");
-}
-
-function pickFace(item, againstTerm, usedFaces) {
-  const faces =
-    item.faces && item.faces.length ? item.faces.slice() : [item.term];
-  const used = usedFaces || [];
-  const usedOpens = new Set(used.map(openingKey));
-  let best = faces[0];
-  let bestScore = Infinity;
-  faces
-    .slice()
-    .sort(() => Math.random() - 0.5)
-    .forEach((f) => {
-      const display = scrubFace(f, item.term, againstTerm);
-      let s = leakScore(f, item.term) * 2 + leakScore(display, item.term) * 3;
-      if (againstTerm) {
-        s += leakScore(f, againstTerm) * 2 + leakScore(display, againstTerm) * 3;
-      }
-      if (used.includes(f)) s += 50;
-      const open = openingKey(f);
-      if (open && usedOpens.has(open)) s += 35;
-      if (f === faces[0] && faces.length > 3) s += 4;
-      if (s < bestScore) {
-        bestScore = s;
-        best = f;
-      }
-    });
-  return {
-    face: best,
-    leak: bestScore,
-    display: scrubFace(best, item.term, againstTerm),
-  };
-}
-
-function scrubFace(face, term, alsoTerm) {
-  let out = String(face);
-  const terms = [term, alsoTerm].filter(Boolean);
-  terms.forEach((t) => {
-    const parts = termKeyParts(t);
-    parts.phrases
-      .slice()
-      .sort((a, b) => b.length - a.length)
-      .forEach((p) => {
-        const re = new RegExp(p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
-        out = out.replace(re, "this idea");
-      });
-    parts.acronyms.forEach((a) => {
-      out = out.replace(new RegExp("\\b" + a + "\\b", "g"), "this idea");
-    });
-    parts.tokens
-      .filter((tok) => tok.length >= 4)
-      .sort((a, b) => b.length - a.length)
-      .forEach((tok) => {
-        out = out.replace(new RegExp("\\b" + tok + "\\b", "gi"), "this");
-      });
-  });
-  return out
-    .replace(/\bthis idea\s*:\s*/gi, "")
-    .replace(/\bthis\s+this\b/gi, "this")
-    .replace(/\s{2,}/g, " ")
-    .replace(/\s+([,.])/g, "$1")
-    .replace(/^[,.\s]+/, "")
-    .trim();
-}
-
-function buildQuestion(prevId) {
-  const item = pickDueItem(prevId);
-  if (!item) return null;
-  const distractor = pickDistractor(item);
-  if (!distractor) return null;
-  const sess = state.matchSession;
-  if (sess && !sess.usedFaces) sess.usedFaces = {};
-  const used = (sess && sess.usedFaces[item.id]) || [];
-  const direction = Math.random() < CLAIM_TERM_P ? "claim" : "term";
-  const picked = pickFace(item, distractor.term, used);
-  if (sess) {
-    if (!sess.usedFaces[item.id]) sess.usedFaces[item.id] = [];
-    sess.usedFaces[item.id].push(picked.face);
-  }
-  let prompt;
-  let choices;
-  if (direction === "term") {
-    const distractorFace = pickDistractorFace(
-      distractor,
-      picked.face,
-      item.term,
-    );
-    prompt = item.term;
-    choices = shuffle2(
-      { id: item.id, label: picked.display, correct: true },
-      { id: distractor.id, label: distractorFace.display, correct: false },
-    );
-  } else {
-    prompt = picked.display;
-    choices = shuffle2(
-      { id: item.id, label: item.term, correct: true },
-      { id: distractor.id, label: distractor.term, correct: false },
-    );
-  }
-  return {
-    itemId: item.id,
-    term: item.term,
-    canonical: (item.faces && item.faces[0]) || "",
-    why: item.why || "",
-    distractorTerm: distractor.term,
-    distractorWhy: distractor.why || "",
-    direction,
-    prompt,
-    choices,
-  };
-}
-
-function ensureMatchSession(forceNew) {
-  if (!state.deck) return;
-  if (
-    !forceNew &&
-    state.matchSession &&
-    state.matchSession.phase !== "board"
-  ) {
+function ensureQuizSession(forceNew) {
+  if (!state.quizBank) return;
+  if (!forceNew && state.quizSession && state.quizSession.phase === "ask") {
     return;
   }
-  const st = matchStats();
-  state.matchSession = {
-    size: Math.min(SESSION_SIZE, Math.max(1, st.slotsLeft || SESSION_SIZE)),
+  const size = Math.min(
+    state.quizBank.sessionSize || 27,
+    (state.quizBank.items || []).length,
+  );
+  const ids = (state.quizBank.items || []).map((it) => it.id);
+  shuffleInPlace(ids);
+  const queue = ids.slice(0, size);
+  state.quizSession = {
+    phase: queue.length ? "ask" : "board",
+    queue,
     index: 0,
+    size: queue.length,
     correct: 0,
     wrong: 0,
-    streak: 0,
     misses: [],
-    usedFaces: {},
-    phase: "ask",
-    question: null,
     answered: false,
+    lastCorrect: false,
+    pickedId: null,
+    question: null,
   };
-  if (st.left === 0 || st.slotsLeft === 0) {
-    state.matchSession.phase = "cleared";
-    state.matchSession.question = null;
+  if (queue.length) buildQuizQuestion();
+}
+
+function quizItemById(id) {
+  return (state.quizBank?.items || []).find((it) => it.id === id);
+}
+
+function buildQuizQuestion() {
+  const sess = state.quizSession;
+  if (!sess || sess.index >= sess.queue.length) {
+    sess.phase = "board";
+    sess.question = null;
     return;
   }
-  state.matchSession.question = buildQuestion(null);
-  if (!state.matchSession.question) {
-    state.matchSession.phase = "cleared";
+  const item = quizItemById(sess.queue[sess.index]);
+  if (!item) {
+    sess.index += 1;
+    buildQuizQuestion();
+    return;
   }
+  const choices = shuffleInPlace(
+    (item.choices || []).map((c) => ({ ...c })),
+  );
+  sess.question = {
+    id: item.id,
+    lesson: item.lesson || "",
+    tag: item.tag || "",
+    stem: item.stem,
+    explain: item.explain || "",
+    choices,
+  };
+  sess.answered = false;
+  sess.lastCorrect = false;
+  sess.pickedId = null;
 }
 
-function applyAnswer(correct) {
-  const sess = state.matchSession;
-  if (!sess || !sess.question) return;
-  const id = sess.question.itemId;
-  const p = ensureItemProgress(id);
-  p.seen = (p.seen || 0) + 1;
-  p.last = Date.now();
-  if (correct) {
-    p.remaining = Math.max(0, (p.remaining || CLEARS_NEEDED) - 1);
+function gradeQuizPick(choiceId) {
+  const sess = state.quizSession;
+  if (!sess || !sess.question || sess.answered) return;
+  const choice = sess.question.choices.find((c) => c.id === choiceId);
+  if (!choice) return;
+  sess.answered = true;
+  sess.pickedId = choiceId;
+  sess.lastCorrect = !!choice.correct;
+  const prog = ensureQuizItemProgress(sess.question.id);
+  prog.seen = (prog.seen || 0) + 1;
+  if (choice.correct) {
     sess.correct += 1;
-    sess.streak = (sess.streak || 0) + 1;
+    prog.correct = (prog.correct || 0) + 1;
   } else {
-    p.remaining = CLEARS_NEEDED;
-    p.wrong = (p.wrong || 0) + 1;
     sess.wrong += 1;
-    sess.streak = 0;
-    sess.misses.push(id);
-    recordMissStem(sess.question, sess.pickedId);
+    prog.wrong = (prog.wrong || 0) + 1;
+    sess.misses.push(sess.question.id);
   }
-  saveMatchProgress();
+  saveQuizProgress();
 }
 
-function playMatchJuice(correct, streak) {
+function advanceQuiz() {
+  const sess = state.quizSession;
+  if (!sess) return;
+  sess.index += 1;
+  sess.answered = false;
+  sess.lastCorrect = false;
+  sess.pickedId = null;
+  if (sess.index >= sess.queue.length) {
+    sess.phase = "board";
+    sess.question = null;
+  } else {
+    buildQuizQuestion();
+  }
+  renderSceneQuiz();
+}
+
+function resetSceneQuiz() {
+  if (!state.quizBank) return;
+  if (!confirm("Reset scene-quiz progress for this bank?")) return;
+  state.quizProgress = {};
+  (state.quizBank.items || []).forEach((it) => ensureQuizItemProgress(it.id));
+  saveQuizProgress();
+  ensureQuizSession(true);
+  if (state.mode === "quiz") renderSceneQuiz();
+  renderNav();
+}
+
+function playJuice(correct) {
   const body = document.body;
   body.classList.remove("match-hit", "match-hit-big", "match-miss");
   void body.offsetWidth;
   if (correct) {
-    body.classList.add(streak >= 3 ? "match-hit-big" : "match-hit");
+    body.classList.add("match-hit");
     try {
-      if (navigator.vibrate) {
-        navigator.vibrate(streak >= 3 ? [10, 35, 12, 35, 18] : [10, 40, 14]);
-      }
+      if (navigator.vibrate) navigator.vibrate([10, 40, 14]);
     } catch (_) {}
   } else {
     body.classList.add("match-miss");
@@ -998,99 +725,37 @@ function playMatchJuice(correct, streak) {
   }, 480);
 }
 
-function advanceMatch() {
-  const sess = state.matchSession;
-  if (!sess) return;
-  sess.index += 1;
-  sess.answered = false;
-  sess.lastCorrect = false;
-  const st = matchStats();
-  if (st.slotsLeft === 0 || st.left === 0) {
-    sess.phase = "cleared";
-    sess.question = null;
-  } else if (sess.index >= sess.size) {
-    sess.phase = "board";
-    sess.question = null;
-  } else {
-    sess.phase = "ask";
-    sess.question = buildQuestion(sess.question?.itemId);
-    if (!sess.question) {
-      sess.phase = matchStats().slotsLeft === 0 ? "cleared" : "board";
-    }
-  }
-  renderMatch();
-  renderNav();
-}
-
-function syncNavOffset() {
-  const nav = document.querySelector(".nav");
-  const h = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
-  document.documentElement.style.setProperty("--nav-h", h + "px");
-}
-
-function setMatchReadyNext(on) {
-  document.body.classList.toggle("match-ready-next", !!on);
-  const root = $("match");
-  if (root) root.classList.toggle("match-ready-next", !!on);
-  const hit = $("match-next-hit");
-  if (!hit) return;
-  hit.hidden = !on;
-  syncNavOffset();
-  if (on) {
-    const nav = document.querySelector(".nav");
-    const top = nav ? Math.ceil(nav.getBoundingClientRect().bottom) : 0;
-    hit.style.top = top + "px";
-  }
-}
-
-function renderMatch() {
-  const root = $("match");
-  if (!root || state.mode !== "match") return;
-  if (!state.deck) {
-    root.innerHTML = "<p class='muted'>Loading match deck…</p>";
-    setMatchReadyNext(false);
+function renderSceneQuiz() {
+  const root = $("scene-quiz");
+  if (!root || state.mode !== "quiz") return;
+  if (!state.quizBank) {
+    root.innerHTML = "<p class='muted'>Loading scene quiz…</p>";
+    setQuizReadyNext(false);
     return;
   }
-  const sess = state.matchSession;
-  if (!sess) {
-    ensureMatchSession(true);
-  }
-  const st = matchStats();
-  const s = state.matchSession;
-
-  if (s.phase === "cleared") {
-    setMatchReadyNext(false);
-    root.innerHTML = `
-      <div class="match-board">
-        <h2>Deck cleared</h2>
-        <p>Study 100%. All ${st.total} terms have ${CLEARS_NEEDED} corrects.</p>
-        <div class="sheet-actions">
-          <button type="button" id="match-again" class="primary">Reset and drill again</button>
-          <button type="button" id="match-to-read">Back to Read</button>
-        </div>
-      </div>`;
-    renderNav();
-    return;
-  }
+  if (!state.quizSession) ensureQuizSession(true);
+  const s = state.quizSession;
+  const st = quizStats();
 
   if (s.phase === "board") {
-    setMatchReadyNext(false);
+    setQuizReadyNext(false);
     const missList = [...new Set(s.misses)]
-      .map((id) => itemById(id))
+      .map((id) => quizItemById(id))
       .filter(Boolean)
-      .map((it) => {
-        const p = ensureItemProgress(it.id);
-        return `<li>${inlineHtml(it.term)} · wrong ${p.wrong}, remaining ${p.remaining}</li>`;
-      })
+      .map((it) => `<li>${inlineHtml(it.tag || it.id)}</li>`)
       .join("");
     root.innerHTML = `
       <div class="match-board">
         <h2>Session done</h2>
-        <p>${s.correct} correct · ${s.wrong} wrong · Study ${st.percent}% · ${st.cleared}/${st.total} cleared</p>
-        ${missList ? `<p class="label">Missed this session</p><ul>${missList}</ul>` : "<p class='muted'>No misses this session.</p>"}
+        <p>${s.correct} correct · ${s.wrong} wrong · Bank seen ${st.seen}/${st.total}</p>
+        ${
+          missList
+            ? `<p class="label">Missed this session</p><ul>${missList}</ul>`
+            : "<p class='muted'>No misses this session.</p>"
+        }
         <div class="sheet-actions">
-          <button type="button" id="match-again" class="primary">Drill again</button>
-          <button type="button" id="match-to-read">Back to Read</button>
+          <button type="button" id="quiz-again" class="primary">Drill again (27)</button>
+          <button type="button" id="quiz-to-read">Back to Read</button>
         </div>
       </div>`;
     renderNav();
@@ -1099,28 +764,20 @@ function renderMatch() {
 
   const q = s.question;
   if (!q) {
-    setMatchReadyNext(false);
-    root.innerHTML = "<p class='muted'>No due terms.</p>";
+    setQuizReadyNext(false);
+    root.innerHTML = "<p class='muted'>No quiz items.</p>";
     return;
   }
   let fb = "";
   if (s.answered) {
     if (s.lastCorrect) {
-      const streakBit =
-        s.streak > 1 ? ` <span class="match-streak bump">×${s.streak}</span>` : "";
-      const whyBit = q.why
-        ? `<p class="match-why"><span class="label-inline">Why</span> ${inlineHtml(q.why)}</p>`
-        : "";
-      fb = `<div class="match-fb fb-ok"><strong>Correct${streakBit}</strong>${whyBit}<p class="muted match-tap">Tap for next</p></div>`;
+      fb = `<div class="match-fb fb-ok"><strong>Correct</strong><p class="match-why">${inlineHtml(
+        q.explain,
+      )}</p><p class="muted match-tap">Tap for next</p></div>`;
     } else {
-      const whyBit = q.why
-        ? `<p class="match-why"><span class="label-inline">Why</span> ${inlineHtml(q.why)}</p>`
-        : `<p>${inlineHtml(q.canonical)}</p>`;
-      const notBit =
-        q.distractorTerm && q.distractorWhy
-          ? `<p class="match-not"><span class="label-inline">Not ${inlineHtml(q.distractorTerm)}</span> ${inlineHtml(q.distractorWhy)}</p>`
-          : "";
-      fb = `<div class="match-fb fb-bad"><strong>Wrong</strong><p><strong>${inlineHtml(q.term)}</strong></p>${whyBit}${notBit}<p class="muted match-tap">Tap for next</p></div>`;
+      fb = `<div class="match-fb fb-bad"><strong>Wrong</strong><p class="match-why">${inlineHtml(
+        q.explain,
+      )}</p><p class="muted match-tap">Tap for next</p></div>`;
     }
   }
   const choices = q.choices
@@ -1130,120 +787,26 @@ function renderMatch() {
         if (c.correct) cls = " pick-ok";
         else if (s.pickedId === c.id) cls = " pick-bad";
       }
-      return `<button type="button" data-choice="${c.id}" class="${cls}" ${
+      return `<button type="button" data-qchoice="${c.id}" class="${cls}" ${
         s.answered ? "disabled" : ""
-      }>${inlineHtml(c.label)}</button>`;
+      }>${inlineHtml(c.text)}</button>`;
     })
     .join("");
-  setMatchReadyNext(!!s.answered);
+  setQuizReadyNext(!!s.answered);
+  const meta = s.answered
+    ? `<p class="quiz-meta muted">${inlineHtml(q.lesson)}${
+        q.tag ? ` · ${inlineHtml(q.tag)}` : ""
+      }</p>`
+    : "";
   root.innerHTML = `
-    <div class="match-stage">
-      <p class="match-prompt">${inlineHtml(q.prompt)}</p>
-      <div class="match-choices">${choices}</div>
+    <div class="match-stage quiz-stage">
+      ${meta}
+      <p class="match-prompt quiz-stem">${inlineHtml(q.stem)}</p>
+      <div class="match-choices quiz-choices">${choices}</div>
       ${fb}
     </div>`;
   renderNav();
   syncNavOffset();
-}
-
-function exportMatchProgress() {
-  if (!state.deck) return;
-  const st = matchStats();
-  const blob = {
-    deckId: state.deck.id,
-    v: 2,
-    percent: st.percent,
-    cleared: st.cleared,
-    total: st.total,
-    items: state.matchProgress,
-  };
-  const text =
-    "```study-match-progress\n" +
-    JSON.stringify(blob) +
-    "\n```";
-  navigator.clipboard.writeText(text).then(
-    () => {
-      const el = $("match-sheet-stats");
-      if (el) el.textContent = "Copied progress block to clipboard.";
-    },
-    () => {
-      const ta = $("match-import");
-      if (ta) {
-        ta.value = text;
-        ta.focus();
-        ta.select();
-      }
-    },
-  );
-}
-
-function importMatchProgress() {
-  const ta = $("match-import");
-  if (!ta || !state.deck) return;
-  let raw = ta.value.trim();
-  const fenced = raw.match(
-    /```(?:study-match-progress)?\s*([\s\S]*?)```/,
-  );
-  if (fenced) raw = fenced[1].trim();
-  let data;
-  try {
-    data = JSON.parse(raw);
-  } catch {
-    alert("Could not parse progress JSON.");
-    return;
-  }
-  if (data.deckId && data.deckId !== state.deck.id) {
-    if (!confirm(`Progress deck ${data.deckId} ≠ ${state.deck.id}. Import anyway?`)) {
-      return;
-    }
-  }
-  const items = data.items && typeof data.items === "object" ? data.items : data;
-  state.matchProgress = {};
-  Object.keys(items).forEach((id) => {
-    const p = items[id] || {};
-    const misses = Array.isArray(p.misses)
-      ? p.misses
-          .slice(0, MISS_LOG_MAX)
-          .map((m) => ({
-            stem: String(m.stem || "").slice(0, 400),
-            answer: String(m.answer || ""),
-            vs: String(m.vs || ""),
-            picked: String(m.picked || ""),
-            dir: String(m.dir || ""),
-            at: Number(m.at) || 0,
-          }))
-      : [];
-    state.matchProgress[id] = {
-      remaining:
-        typeof p.remaining === "number" ? p.remaining : CLEARS_NEEDED,
-      wrong: Number(p.wrong) || 0,
-      seen: Number(p.seen) || 0,
-      last: Number(p.last) || 0,
-      misses,
-    };
-  });
-  (state.deck.items || []).forEach((it) => ensureItemProgress(it.id));
-  saveMatchProgress();
-  ensureMatchSession(true);
-  if (state.mode === "match") renderMatch();
-  renderNav();
-  ta.value = "";
-}
-
-function resetMatchDeck() {
-  if (!state.deck) return;
-  if (!confirm("Reset Match progress for this deck? Wrong counts stay.")) {
-    return;
-  }
-  (state.deck.items || []).forEach((it) => {
-    const p = ensureItemProgress(it.id);
-    p.remaining = CLEARS_NEEDED;
-    p.last = 0;
-  });
-  saveMatchProgress();
-  ensureMatchSession(true);
-  if (state.mode === "match") renderMatch();
-  renderNav();
 }
 
 async function loadWeek(id) {
@@ -1254,15 +817,12 @@ async function loadWeek(id) {
   state.parsed.set(id, parseKnow(md, id));
 }
 
-async function loadDeck() {
-  const res = await fetch("./decks/cs6460-module-1.json");
-  state.deck = await res.json();
-  if (typeof state.deck.clearsNeeded === "number") {
-    /* deck may set clearsNeeded; session still uses SESSION_SIZE */
-  }
-  state.matchProgress = loadMatchProgress(state.deck.id);
-  (state.deck.items || []).forEach((it) => ensureItemProgress(it.id));
-  saveMatchProgress();
+async function loadQuizBank() {
+  const res = await fetch("./decks/cs6460-module-1-quiz.json");
+  state.quizBank = await res.json();
+  state.quizProgress = loadQuizProgress(state.quizBank.id);
+  (state.quizBank.items || []).forEach((it) => ensureQuizItemProgress(it.id));
+  saveQuizProgress();
 }
 
 async function showWeek(id) {
@@ -1275,6 +835,8 @@ async function showWeek(id) {
   if (state.mode === "read") {
     renderArticle({ y: viewLookup(state.scrollByView) || 0 });
   } else {
+    ensureQuizSession();
+    renderSceneQuiz();
     renderNav();
   }
 }
@@ -1296,7 +858,7 @@ function closeSheet() {
 
 function bind() {
   on("mode-read", "click", () => setMode("read"));
-  on("mode-match", "click", () => setMode("match"));
+  on("mode-quiz", "click", () => setMode("quiz"));
   on("open-sheet", "click", openSheet);
   on("close-sheet", "click", closeSheet);
   on("backdrop", "click", closeSheet);
@@ -1337,57 +899,41 @@ function bind() {
     saveLs();
     renderArticle();
   });
-  on("match", "click", (e) => {
-    const again = e.target.closest("#match-again");
+  on("scene-quiz", "click", (e) => {
+    const again = e.target.closest("#quiz-again");
     if (again) {
-      if (matchStats().left === 0 && state.matchSession?.phase === "cleared") {
-        (state.deck.items || []).forEach((it) => {
-          ensureItemProgress(it.id).remaining = CLEARS_NEEDED;
-        });
-        saveMatchProgress();
-      }
-      ensureMatchSession(true);
-      renderMatch();
-      renderNav();
+      ensureQuizSession(true);
+      renderSceneQuiz();
       return;
     }
-    if (e.target.closest("#match-to-read")) {
+    if (e.target.closest("#quiz-to-read")) {
       setMode("read");
       return;
     }
-    const sess = state.matchSession;
-    const choice = e.target.closest("[data-choice]");
-    if (!choice || !sess || sess.answered) return;
-    const id = choice.getAttribute("data-choice");
-    const q = sess.question;
-    const correct = q.choices.some((c) => c.id === id && c.correct);
-    sess.answered = true;
-    sess.lastCorrect = correct;
-    sess.pickedId = id;
-    applyAnswer(correct);
-    renderMatch();
-    playMatchJuice(correct, sess.streak || 0);
+    const btn = e.target.closest("[data-qchoice]");
+    if (!btn || state.quizSession?.answered) return;
+    gradeQuizPick(btn.dataset.qchoice);
+    renderSceneQuiz();
+    playJuice(!!state.quizSession?.lastCorrect);
   });
-  on("match-next-hit", "click", () => {
-    const sess = state.matchSession;
-    if (state.mode !== "match" || !sess || !sess.answered || sess.phase !== "ask") {
+  on("quiz-next-hit", "click", () => {
+    const sess = state.quizSession;
+    if (state.mode !== "quiz" || !sess || !sess.answered || sess.phase !== "ask") {
       return;
     }
-    advanceMatch();
+    advanceQuiz();
   });
+  on("quiz-reset", "click", resetSceneQuiz);
   window.addEventListener(
     "resize",
     () => {
       syncNavOffset();
-      if (document.body.classList.contains("match-ready-next")) {
-        setMatchReadyNext(true);
+      if (document.body.classList.contains("quiz-ready-next")) {
+        setQuizReadyNext(true);
       }
     },
     { passive: true },
   );
-  on("match-export", "click", exportMatchProgress);
-  on("match-import-btn", "click", importMatchProgress);
-  on("match-reset", "click", resetMatchDeck);
   window.addEventListener(
     "scroll",
     () => {
@@ -1403,7 +949,7 @@ function bind() {
   window.addEventListener("pagehide", () => {
     stashView();
     saveLs();
-    saveMatchProgress();
+    saveQuizProgress();
   });
 }
 
@@ -1418,7 +964,7 @@ async function boot() {
   state.currentWeekId = hash.weekId || ls.weekId || manifest.current;
   state.face = ls.face === "def" ? "def" : "term";
   state.showSections = ls.showSections !== false;
-  state.mode = ls.mode === "match" ? "match" : "read";
+  state.mode = ls.mode === "quiz" ? "quiz" : "read";
   state.collapsed =
     ls.collapsed && typeof ls.collapsed === "object" ? ls.collapsed : {};
   state.cursorByView =
@@ -1434,7 +980,7 @@ async function boot() {
   }
   state.chunkId = viewLookup(state.cursorByView) || ls.chunkId || null;
   bind();
-  await Promise.all([loadWeek(state.currentWeekId), loadDeck()]);
+  await Promise.all([loadWeek(state.currentWeekId), loadQuizBank()]);
   writeHash();
   setMode(state.mode);
   if (state.mode === "read") {

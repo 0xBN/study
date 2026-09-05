@@ -13,6 +13,8 @@ Master study file for **2026-08-31 → 09-06**. Clerical: [Trello Week 2](https:
 
 **Do not restudy Module 2 for Honorlock.** Open [Week 1 Know](week-01-know.md). Joyner #28: quiz + practice open this week; Module 1 only; 27 MC / 45 min / 2 attempts (keep higher); practice from the same pool — take it before the real one; Honorlock onboarding first if not done; Module 2 this week (lab due end of next week). Pool **>1400**; attempt 2 is a different draw. Launch practice from the **Honorlock** tab.
 
+Attempt 1 lesson: a 27-draw can skip ZPD / assimilation / Four P's and still be hard. Stems were often scenarios; choices were claim-paraphrases, not vocab. Match-on-titles is the wrong grind for attempt 2. Honorlock practice is the format preview. Lecture objects (Logo, LEGO/Logo, Mindstorms kit vs book, Scratch) are first-class.
+
 **Module 2 (watch this week; lab next week).** Theory was Module 1; this is the *engineering* — categories of tools, each tied back to M1. Spectrum: open/playful → structured/adaptive. No single right point.
 
 - **Educational games** — play *is* the learning activity, aligned to an outside-the-game objective. Not entertainment-that-happens-to-teach. **Not gamification** (points on the same old drill). Games ↔ simulations are blurry.

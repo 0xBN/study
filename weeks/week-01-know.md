@@ -15,7 +15,7 @@ Master study file for **2026-08-24 → 08-30**. Clerical: [Trello Week 1](https:
 
 ## CS6460 — Module 1 (Honorlock)
 
-Term on the card title; claim in the body. Practice stems will not appear on the graded quiz. Do not study Module 2 for this quiz.
+Titles are filing labels. Graded stems often hide the term, give a classroom story, and use **paraphrase options that are not vocab words**. Study the claim sentence and Joyner’s named objects (Logo, LEGO, Scratch), not only the bold title. Honorlock practice is the format preview; Match-on-titles is not. Do not study Module 2 for this quiz.
 
 ### Honorlock
 - **Format:** 27 multiple choice, four options, 45 min, two attempts keep higher, different draw, pool over 1400. Closed book, no notes, no internet, no scratch, no breaks, Chrome. Practice from the Honorlock tab.
@@ -24,13 +24,17 @@ Term on the card title; claim in the body. Practice stems will not appear on the
 - **Constructivism** (Piaget): knowledge is a rebuilt mental model, not a download. You can recite the right physics fact and still feel that heavy objects fall faster.
 - **Assimilation** (Piaget): fit new experience into the old mental model. Call the contradictory demo a trick so you never change your mind.
 - **Accommodation** (Piaget): change the mental model to fit new experience. After you drop a heavy ball and a light ball and they hit together, the old model has to change.
-- **Disequilibrium** (Piaget): the mismatch between your model and reality that forces learning. Your drawing comes out wrong and that wrong result itself makes you rethink the rule.
+- **Disequilibrium** (Piaget): the mismatch between your model and reality that forces learning. The Logo turtle draws a lopsided shape, and that wrong result itself makes you rethink the rule.
 - **More knowledgeable other (MKO)** (Vygotsky): a person or tool that can do what the learner cannot yet. A tutor, a stronger peer, or software that gives the next hint.
 - **Zone of proximal development (ZPD)** (Vygotsky): what you can do with help but not alone yet. Scaffolding is temporary help that should disappear as you get better, like a full worksheet, then a reminder, then nothing.
 - **Kirschner, Sweller, and Clark (2006):** learning being constructive does not mean teaching should be unguided. Beginners need strong guidance; freer exploration helps more after they already know a lot.
 
 ### 1.2 Constructionism
 - **Constructionism** (Papert): learn by building something real that others can see or use. Making a game or a shared world teaches by making your thinking visible.
+- **Logo** (Papert): language plus a turtle you drive with forward/turn (floor robot, then on-screen). Geometry and coding at once; a wrong drawing is information, not shame.
+- **LEGO/Logo** (Resnick and Ocko, late 1980s): physical LEGO wired to Logo code at MIT. The program’s output is motion, light, or sound in the bricks.
+- **LEGO Mindstorms** (1998): robotics kit named after Papert’s book *Mindstorms* (1980). The book is the theory; the kit is the later toy.
+- **Scratch** (Resnick / MIT Media Lab, 2007): block coding so different people can make different projects. Low floor and high ceiling come from Papert; wide walls is Resnick’s add.
 - **Constructivism vs constructionism:** constructivism rebuilds a model in your head; constructionism drives learning by making something outside your head. Inside rebuild versus public make.
 - **Instructionism** (Papert): improve learning mainly by improving how teachers explain and lecture. Better telling is treated as the whole fix.
 - **Wide walls** (Resnick): support many kinds of personally meaningful projects, not just many ages or devices. Same tool lets one student make a story and another make a game.

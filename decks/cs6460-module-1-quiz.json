@@ -1,0 +1,477 @@
+{
+  "id": "cs6460-m1-quiz",
+  "title": "CS6460 Module 1 · Scene quiz",
+  "weekId": "01",
+  "sessionSize": 27,
+  "note": "Audit bank: lecture scenes → paraphrase choices (not vocab titles). Built from Module 1 clean extracts, not Canvas stems.",
+  "items": [
+    {
+      "id": "heavy-ball-feel",
+      "lesson": "1.1 Constructivism",
+      "tag": "constructivism / mental model",
+      "stem": "A student can recite that mass does not change free-fall acceleration. In lab they still bet the heavier ball hits first, and look surprised when both land together. Which claim fits Joyner's constructivist account?",
+      "choices": [
+        { "id": "a", "text": "The gut prediction comes from a personal mental model that was never rebuilt, even though the sentence was stored.", "correct": true },
+        { "id": "b", "text": "Learning failed because the teacher never rewarded the correct verbal answer often enough.", "correct": false },
+        { "id": "c", "text": "The student learned by building a shareable demo; the public artifact is what counts as knowledge.", "correct": false },
+        { "id": "d", "text": "Reciting the fact means the file transferred; the surprise is only test anxiety.", "correct": false }
+      ],
+      "explain": "Constructivism (Piaget framing in Joyner): knowledge is a rebuilt mental model, not a download. Recitation without model change is the classic tell. Not behaviorism (rewards only), not constructionism (external artifact)."
+    },
+    {
+      "id": "demo-rigged",
+      "lesson": "1.1 Constructivism",
+      "tag": "assimilation",
+      "stem": "Both balls land together. The student shrugs that the apparatus must be rigged, keeps predicting heavy-wins next round, and never revises the fall rule. What is happening to the mental model?",
+      "choices": [
+        { "id": "a", "text": "New experience is bent to fit the old model; the schema itself stays put.", "correct": true },
+        { "id": "b", "text": "The model is rewritten so predictions will flip next time.", "correct": false },
+        { "id": "c", "text": "The mismatch is being left unresolved on purpose as the whole goal of the lesson.", "correct": false },
+        { "id": "d", "text": "A peer tutor is temporarily doing the hard part so the student can succeed.", "correct": false }
+      ],
+      "explain": "Assimilation: force the odd result into the old box (trick / fluke). Accommodation would rewrite the rule. Disequilibrium is the mismatch feeling; scaffolding/MKO is support from outside."
+    },
+    {
+      "id": "balls-rewrite",
+      "lesson": "1.1 Constructivism",
+      "tag": "accommodation",
+      "stem": "After several undeniable equal landings, the student stops calling the demo a trick and starts predicting both balls together. Which move describes the change?",
+      "choices": [
+        { "id": "a", "text": "The mental structures themselves were reshaped to fit the new experience.", "correct": true },
+        { "id": "b", "text": "The conflict was explained away so the old prediction could survive.", "correct": false },
+        { "id": "c", "text": "Only outward behavior changed; no claim is made about an inner model.", "correct": false },
+        { "id": "d", "text": "The student built a public physics toy; that outside make is the learning theory in play.", "correct": false }
+      ],
+      "explain": "Accommodation = reshape the model. Assimilation protects the old model. Behaviorism stays on observables. Constructionism centers the external artifact."
+    },
+    {
+      "id": "logo-lopsided",
+      "lesson": "1.1 / 1.2",
+      "tag": "disequilibrium + Logo",
+      "stem": "In Logo, a learner drives a turtle with forward/turn commands. The drawing comes out lopsided. Joyner treats that wrong drawing as useful. Why?",
+      "choices": [
+        { "id": "a", "text": "The mismatch between intended path and what appeared forces the learner to rethink the rule.", "correct": true },
+        { "id": "b", "text": "Wrong drawings should be hidden so motivation stays high.", "correct": false },
+        { "id": "c", "text": "The turtle is mainly a reward dispenser for correct syntax.", "correct": false },
+        { "id": "d", "text": "Logo exists to deliver geometry facts by lecture with a cute cursor.", "correct": false }
+      ],
+      "explain": "Logo turtle + immediate feedback → productive disequilibrium (and constructionism's debugging habit). Error is information, not shame."
+    },
+    {
+      "id": "what-is-logo",
+      "lesson": "1.2 Constructionism",
+      "tag": "Logo",
+      "stem": "Joyner spends time on Logo. What is it, in course voice?",
+      "choices": [
+        { "id": "a", "text": "A language plus a turtle you drive with forward/turn — floor robot first, then on-screen — so geometry and coding happen together.", "correct": true },
+        { "id": "b", "text": "MIT's 2007 block language with low floor, high ceiling, and wide walls.", "correct": false },
+        { "id": "c", "text": "A 1998 robotics kit named after Papert's book.", "correct": false },
+        { "id": "d", "text": "Physical bricks wired so Logo code controls motors and lights.", "correct": false }
+      ],
+      "explain": "Logo = Papert's turtle language. Scratch = 2007 blocks. LEGO Mindstorms = 1998 kit. LEGO/Logo = late-1980s bricks+code (Resnick & Ocko)."
+    },
+    {
+      "id": "lego-logo",
+      "lesson": "1.2 Constructionism",
+      "tag": "LEGO/Logo",
+      "stem": "Late 1980s at MIT: Mitchel Resnick and Stephen Ocko connect physical LEGO to code. What is that lineage object?",
+      "choices": [
+        { "id": "a", "text": "LEGO/Logo — programs show up as motion, light, or sound in the bricks.", "correct": true },
+        { "id": "b", "text": "Scratch — drag blocks to make unrelated kids' projects on one tool.", "correct": false },
+        { "id": "c", "text": "Capital-D Direct Instruction — scripted choral responses with field-tested lessons.", "correct": false },
+        { "id": "d", "text": "PLATO/TUTOR — an early intelligent tutoring system lineage.", "correct": false }
+      ],
+      "explain": "LEGO/Logo is the bricks+Logo bridge. Scratch comes later (2007). DI and ITS are different lessons."
+    },
+    {
+      "id": "mindstorms-name",
+      "lesson": "1.2 Constructionism",
+      "tag": "LEGO Mindstorms",
+      "stem": "A quiz stem mentions LEGO Mindstorms (1998). How does Joyner relate it to Papert?",
+      "choices": [
+        { "id": "a", "text": "The kit is named after Papert's 1980 book Mindstorms; book = theory, kit = later toy.", "correct": true },
+        { "id": "b", "text": "Papert invented the 1998 kit before writing any book.", "correct": false },
+        { "id": "c", "text": "Mindstorms is Resnick's name for the Four P's.", "correct": false },
+        { "id": "d", "text": "Mindstorms is Engelmann's scripted reading program.", "correct": false }
+      ],
+      "explain": "Book 1980, kit 1998 named after the book. Four P's are Resnick. Engelmann is Direct Instruction."
+    },
+    {
+      "id": "tiv-vs-tion",
+      "lesson": "1.2 Constructionism",
+      "tag": "constructivism vs constructionism",
+      "stem": "One student rebuilds an inner prediction after a sim. Another learns mainly by shipping a game classmates can click. Joyner's TIV vs TION split?",
+      "choices": [
+        { "id": "a", "text": "First is constructivism (mental model); second is constructionism (external make drives learning).", "correct": true },
+        { "id": "b", "text": "First is constructionism; second is constructivism.", "correct": false },
+        { "id": "c", "text": "Both are behaviorism because something observable changed.", "correct": false },
+        { "id": "d", "text": "Both are instructionism because a teacher designed the activity.", "correct": false }
+      ],
+      "explain": "Constructivism = inside rebuild. Constructionism = public artifact as the engine. They stack; they are not typos."
+    },
+    {
+      "id": "wide-walls-scene",
+      "lesson": "1.2 Constructionism",
+      "tag": "wide walls",
+      "stem": "Same tool: one kid makes a story, another makes a game, both personally meaningful. Resnick's add beyond low floor / high ceiling is?",
+      "choices": [
+        { "id": "a", "text": "Wide walls — many kinds of projects people care about, not only many ages or devices.", "correct": true },
+        { "id": "b", "text": "Faultless communication — confusion is always the student's fault.", "correct": false },
+        { "id": "c", "text": "Variable-ratio reinforcement — likes and slots for persistence.", "correct": false },
+        { "id": "d", "text": "Image Principle — show the instructor's face beside the slides.", "correct": false }
+      ],
+      "explain": "Wide walls (Resnick). Floor/ceiling from Papert line. Other options are other lessons and wrong."
+    },
+    {
+      "id": "body-walk-turtle",
+      "lesson": "1.2 Constructionism",
+      "tag": "body-syntonic",
+      "stem": "A child figures out a Logo path by walking the room as the turtle, then writing commands that match what they walked. Papert's name for that?",
+      "choices": [
+        { "id": "a", "text": "Understand the program by acting it out with your own body.", "correct": true },
+        { "id": "b", "text": "Improve learning mainly by perfecting how teachers lecture.", "correct": false },
+        { "id": "c", "text": "Fit odd results into the old schema so nothing inside changes.", "correct": false },
+        { "id": "d", "text": "Remove dessert to decrease unfinished-dinner behavior.", "correct": false }
+      ],
+      "explain": "Body-syntonic (Papert). Instructionism is better telling. Assimilation is schema-protect. Negative punishment is dessert."
+    },
+    {
+      "id": "makerspace-zero-help",
+      "lesson": "1.1 Constructivism",
+      "tag": "Kirschner / Sweller / Clark",
+      "stem": "A makerspace tells novices to 'just explore' with no worked examples. Many drown or invent wrong rules. Kirschner, Sweller, and Clark (2006) would say?",
+      "choices": [
+        { "id": "a", "text": "Learning being constructive does not mean beginners should get minimal guidance; novices need strong guidance first.", "correct": true },
+        { "id": "b", "text": "Constructivism as a theory of mental models is false.", "correct": false },
+        { "id": "c", "text": "Novices always learn best with zero instruction.", "correct": false },
+        { "id": "d", "text": "Only Capital-D Direct Instruction scripts are allowed forever.", "correct": false }
+      ],
+      "explain": "KSC attacks unguided teaching, not 'learners build models.' Guidance advantage recedes with high prior knowledge."
+    },
+    {
+      "id": "i-do-we-do",
+      "lesson": "1.3 Direct instruction",
+      "tag": "gradual release",
+      "stem": "Teacher solves one problem aloud, then solves with the class, then students solve alone. Pearson and Gallagher's arc?",
+      "choices": [
+        { "id": "a", "text": "I do, we do, you do — responsibility moves to the learner.", "correct": true },
+        { "id": "b", "text": "You discover first, then the teacher consolidates only if needed.", "correct": false },
+        { "id": "c", "text": "Pay students for puzzles so free-time play increases.", "correct": false },
+        { "id": "d", "text": "Match teaching style to visual vs auditory preference.", "correct": false }
+      ],
+      "explain": "Gradual release. Productive failure flips the order (struggle then teach hard). Deci payment cut free play. Learning styles = myth."
+    },
+    {
+      "id": "faultless",
+      "lesson": "1.3 Direct instruction",
+      "tag": "faultless communication / DI",
+      "stem": "A scripted program treats student confusion as a flaw in the materials: if the student hasn't learned, the teacher hasn't taught. Which lineage?",
+      "choices": [
+        { "id": "a", "text": "Engelmann / Becker Direct Instruction — faultless communication.", "correct": true },
+        { "id": "b", "text": "Papert instructionism — perfect the lecture and get out of the way of making.", "correct": false },
+        { "id": "c", "text": "Rogoff guided participation — learn only by cooking beside an adult.", "correct": false },
+        { "id": "d", "text": "Reich Matthew effect — tools help the already-ahead first.", "correct": false }
+      ],
+      "explain": "Capital-D DI credo. Papert's instructionism is the 'better transmission' foil to constructionism — different claim."
+    },
+    {
+      "id": "minecraft-vs-booklet",
+      "lesson": "1.3 Direct instruction",
+      "tag": "di vs not",
+      "stem": "Joyner contrasts a Minecraft sandbox with a LEGO booklet that shows steps. Which is closer to direct instruction?",
+      "choices": [
+        { "id": "a", "text": "The LEGO booklet — explicit modeled steps toward a build.", "correct": true },
+        { "id": "b", "text": "The Minecraft sandbox — open explore with no modeled path.", "correct": false },
+        { "id": "c", "text": "Neither; both are classical conditioning.", "correct": false },
+        { "id": "d", "text": "Only remote proctoring counts as direct instruction.", "correct": false }
+      ],
+      "explain": "Lecture line: Minecraft sandbox is not di; LEGO booklet is. Sandbox can be constructionist explore."
+    },
+    {
+      "id": "chores-phone",
+      "lesson": "1.4 Behaviorism",
+      "tag": "negative reinforcement",
+      "stem": "A parent turns off a disliked phone time-limit only after chores are done. Chore-doing goes up. What happened?",
+      "choices": [
+        { "id": "a", "text": "Something disliked was removed, and the behavior increased — reinforcement, not punishment.", "correct": true },
+        { "id": "b", "text": "Something disliked was added, so the behavior should decrease.", "correct": false },
+        { "id": "c", "text": "Something liked was removed to decrease a behavior.", "correct": false },
+        { "id": "d", "text": "An automatic fear response transferred from a bell to a test.", "correct": false }
+      ],
+      "explain": "Negative reinforcement: remove dislike → behavior up. Positive punishment adds dislike. Negative punishment removes like. Classical is Pavlov pairing."
+    },
+    {
+      "id": "dessert-gone",
+      "lesson": "1.4 Behaviorism",
+      "tag": "negative punishment",
+      "stem": "Dinner unfinished → dessert taken away → unfinished dinners become less common. Classify the consequence.",
+      "choices": [
+        { "id": "a", "text": "Remove something liked so the unwanted behavior goes down.", "correct": true },
+        { "id": "b", "text": "Remove something disliked so a desired behavior goes up.", "correct": false },
+        { "id": "c", "text": "Add praise so the desired behavior goes up.", "correct": false },
+        { "id": "d", "text": "Pair a neutral cue with stress until the cue alone stresses.", "correct": false }
+      ],
+      "explain": "Negative punishment. Negative reinforcement would remove dislike to increase a behavior. Ask up/down first, then add/remove."
+    },
+    {
+      "id": "bell-drool",
+      "lesson": "1.4 Behaviorism",
+      "tag": "classical conditioning",
+      "stem": "Bell with food until bell alone makes drool; later, tests pair with stress the same way. Which learning?",
+      "choices": [
+        { "id": "a", "text": "Classical conditioning — an automatic response transfers across paired stimuli.", "correct": true },
+        { "id": "b", "text": "Operant shaping — reinforce closer approximations of a voluntary act.", "correct": false },
+        { "id": "c", "text": "Metacognitive monitoring — judge whether you understand the chapter.", "correct": false },
+        { "id": "d", "text": "Legitimate peripheral participation — low-stakes real work at the edge of a group.", "correct": false }
+      ],
+      "explain": "Pavlov / classical (involuntary). Operant is voluntary consequences. Other options are other modules."
+    },
+    {
+      "id": "why-open-box",
+      "lesson": "1.4 / 1.5",
+      "tag": "why cognitivism displaced behaviorism",
+      "stem": "Why does Joyner say cognitivism had to open the black box that behaviorism left closed?",
+      "choices": [
+        { "id": "a", "text": "Observable S–R alone could not explain abstract ideas, transfer, or truly novel solving.", "correct": true },
+        { "id": "b", "text": "Rewards never change behavior, so the whole field collapsed.", "correct": false },
+        { "id": "c", "text": "Pavlov proved mental models are photographs of experience.", "correct": false },
+        { "id": "d", "text": "Only AI connectionism counts as psychology now.", "correct": false }
+      ],
+      "explain": "Behaviorism incomplete for mind-like phenomena; cognitivism keeps rigor but studies internal processing."
+    },
+    {
+      "id": "wrong-try-again",
+      "lesson": "1.5 Cognitivism",
+      "tag": "cognitivist feedback",
+      "stem": "A tutor only says 'wrong, try again.' Another says why the step failed and what rule to revise. Cognitivist preference?",
+      "choices": [
+        { "id": "a", "text": "Explain why — update the mental model, not only nudge the next click.", "correct": true },
+        { "id": "b", "text": "Never explain; only variable-ratio points.", "correct": false },
+        { "id": "c", "text": "Always show the instructor's face while narrating.", "correct": false },
+        { "id": "d", "text": "Match the hint style to the learner's visual style.", "correct": false }
+      ],
+      "explain": "Cognitivist feedback fixes understanding. Image Principle says the face usually does not help. Learning styles myth."
+    },
+    {
+      "id": "clipart-hurt",
+      "lesson": "1.5 Cognitivism",
+      "tag": "coherence / image",
+      "stem": "A narrated lesson adds cute unrelated animations and a talking head that repeats the same words. Mayer-line claims Joyner primed?",
+      "choices": [
+        { "id": "a", "text": "Non-teaching visuals can hurt (coherence); the face usually adds no new info and can steal attention (image).", "correct": true },
+        { "id": "b", "text": "More visuals always help because dual channel has no limit.", "correct": false },
+        { "id": "c", "text": "Only the face hurts; decorative clip-art always helps motivation enough to offset load.", "correct": false },
+        { "id": "d", "text": "Extraneous load is good because desirable difficulties include clutter.", "correct": false }
+      ],
+      "explain": "Coherence = cut non-semantic visuals. Image = face on narrated lesson usually doesn't help. Desirable difficulties are content struggle, not junk UI."
+    },
+    {
+      "id": "reread-smooth",
+      "lesson": "1.6 Metacognition",
+      "tag": "fluency illusion",
+      "stem": "Notes feel smooth after rereading. Practice quiz is blank. What went wrong?",
+      "choices": [
+        { "id": "a", "text": "Familiarity was mistaken for ability to recall — fluency illusion.", "correct": true },
+        { "id": "b", "text": "Negative reinforcement removed the quiz stress.", "correct": false },
+        { "id": "c", "text": "Wide walls prevented a single correct project.", "correct": false },
+        { "id": "d", "text": "Classical conditioning paired the notes with food.", "correct": false }
+      ],
+      "explain": "Fluency illusion / calibration failure. Practice quizzes recalibrate judgments of learning."
+    },
+    {
+      "id": "hint-all-once",
+      "lesson": "1.6 Metacognition",
+      "tag": "help-seeking / gaming",
+      "stem": "A student clicks every hint immediately to finish points without struggling. Joyner's metacognition / help-seeking framing?",
+      "choices": [
+        { "id": "a", "text": "Executive / over-reliant help-seeking — or gaming the system — instead of adaptive help after real try.", "correct": true },
+        { "id": "b", "text": "Ideal scaffolding because support should never fade.", "correct": false },
+        { "id": "c", "text": "Mastery goals, because looking smart to peers is the aim.", "correct": false },
+        { "id": "d", "text": "Body-syntonic reasoning via the hint button.", "correct": false }
+      ],
+      "explain": "Adaptive help-seeking vs executive/avoidant; Baker gaming. Scaffolding that never fades isn't scaffolding."
+    },
+    {
+      "id": "cook-beside",
+      "lesson": "1.7 Sociocultural",
+      "tag": "guided participation",
+      "stem": "A newcomer learns cooking by watching and pitching in beside a more experienced cook, not by hearing a lecture about cooking. Rogoff's idea?",
+      "choices": [
+        { "id": "a", "text": "Guided participation — join real activity with more experienced people.", "correct": true },
+        { "id": "b", "text": "Faultless communication — scripts remove all confusion by design.", "correct": false },
+        { "id": "c", "text": "Image Principle — film the cook's face next to the recipe.", "correct": false },
+        { "id": "d", "text": "Positive punishment — add disliked chores for mistakes.", "correct": false }
+      ],
+      "explain": "Rogoff guided participation. Related: Lave & Wenger LPP for community peripheries."
+    },
+    {
+      "id": "edge-of-group",
+      "lesson": "1.7 Sociocultural",
+      "tag": "LPP",
+      "stem": "A newbie does real but low-stakes tasks the group actually needs, then moves toward harder central work. Lave and Wenger?",
+      "choices": [
+        { "id": "a", "text": "Legitimate peripheral participation — real edge work, then inward.", "correct": true },
+        { "id": "b", "text": "Assimilation — bend new tasks to an old solo schema.", "correct": false },
+        { "id": "c", "text": "Variable-ratio likes for forum posts.", "correct": false },
+        { "id": "d", "text": "Expertise reversal — worked examples hurt novices.", "correct": false }
+      ],
+      "explain": "LPP. Expertise reversal: worked examples help novices more; advantage shrinks with expertise."
+    },
+    {
+      "id": "zone-vs-help",
+      "lesson": "1.7 Sociocultural",
+      "tag": "ZPD vs scaffolding",
+      "stem": "One idea is the gap between alone and with help. Another is temporary support inside that gap that should disappear. Split?",
+      "choices": [
+        { "id": "a", "text": "Zone of proximal development is the gap; scaffolding is the temporary help in the gap.", "correct": true },
+        { "id": "b", "text": "Scaffolding is the gap; ZPD is any permanent tutor feature.", "correct": false },
+        { "id": "c", "text": "They are synonyms Joyner treats as identical.", "correct": false },
+        { "id": "d", "text": "ZPD is only a person; tools can never sit in that role.", "correct": false }
+      ],
+      "explain": "ZPD = zone; scaffolding = support (+ fade). MKO can be a tool. Never-fading help isn't scaffolding."
+    },
+    {
+      "id": "highlight-blooper",
+      "lesson": "1.8 Motivation",
+      "tag": "performance approach/avoid",
+      "stem": "Joyner's ESPN Top 10 vs Not Top 10: one student hunts the highlight reel; another only tries not to make the blooper reel. Goal orientations?",
+      "choices": [
+        { "id": "a", "text": "Performance-approach vs performance-avoidance — same dunk scene, different aim.", "correct": true },
+        { "id": "b", "text": "Mastery vs belonging — both about understanding for its own sake.", "correct": false },
+        { "id": "c", "text": "Intrinsic vs germane load — both about working memory channels.", "correct": false },
+        { "id": "d", "text": "Classical vs operant — both about involuntary drool.", "correct": false }
+      ],
+      "explain": "Performance-approach = look competent; performance-avoidance = don't look dumb. Mastery = understand."
+    },
+    {
+      "id": "paid-puzzles",
+      "lesson": "1.8 Motivation",
+      "tag": "overjustification / SDT",
+      "stem": "Deci pays some students to solve puzzles; later free-play, the paid group plays less. Motivation lesson?",
+      "choices": [
+        { "id": "a", "text": "External reward can undercut later intrinsic interest (overjustification); autonomy matters.", "correct": true },
+        { "id": "b", "text": "Any reward always raises long-run intrinsic motivation.", "correct": false },
+        { "id": "c", "text": "Puzzles prove learning styles: visual solvers need diagrams.", "correct": false },
+        { "id": "d", "text": "This is classical conditioning of puzzle fear.", "correct": false }
+      ],
+      "explain": "Deci 1971 / overjustification; SDT wants autonomy, competence, relatedness."
+    },
+    {
+      "id": "belonging-message",
+      "lesson": "1.8 Motivation",
+      "tag": "Walton & Cohen",
+      "stem": "Students hear that feeling out of place is normal and temporary. Grades and belonging can rise. Who/what?",
+      "choices": [
+        { "id": "a", "text": "Walton and Cohen belonging intervention.", "correct": true },
+        { "id": "b", "text": "Engelmann faultless communication scripts.", "correct": false },
+        { "id": "c", "text": "Pashler learning-styles meshing.", "correct": false },
+        { "id": "d", "text": "Skinner programmed instruction frames.", "correct": false }
+      ],
+      "explain": "Belonging (Walton & Cohen). Learning-styles meshing failed (Pashler et al.)."
+    },
+    {
+      "id": "proctor-skin",
+      "lesson": "1.9 Ethics",
+      "tag": "remote proctoring bias",
+      "stem": "Remote proctoring systems struggled more with darker-skinned faces; students cannot easily leave the tool. Ethics framing?",
+      "choices": [
+        { "id": "a", "text": "Bias in the tool becomes the learning experience; harm falls on people who cannot opt out.", "correct": true },
+        { "id": "b", "text": "Consent apps make school tools the same as consumer apps.", "correct": false },
+        { "id": "c", "text": "This proves visual learners need different proctors.", "correct": false },
+        { "id": "d", "text": "Only evaluation is affected; assessment never carries bias.", "correct": false }
+      ],
+      "explain": "Joyner ethics: prevent harm when users can't leave; bias becomes the experience (proctoring example)."
+    },
+    {
+      "id": "matthew-effect",
+      "lesson": "1.9 Ethics",
+      "tag": "Reich Matthew effect",
+      "stem": "A poorly designed edtech tool helps students who are already ahead first; the gap grows. Reich's label?",
+      "choices": [
+        { "id": "a", "text": "EdTech Matthew effect — advantages accrue to the already-resourced.", "correct": true },
+        { "id": "b", "text": "Expertise reversal — worked examples hurt experts only.", "correct": false },
+        { "id": "c", "text": "Hard fun — kids seek meaningful difficulty.", "correct": false },
+        { "id": "d", "text": "Fluency illusion — rereading feels like knowing.", "correct": false }
+      ],
+      "explain": "Reich EdTech Matthew effect. Other terms are real but different lessons."
+    },
+    {
+      "id": "vak-myth",
+      "lesson": "1.9 Ethics",
+      "tag": "learning styles",
+      "stem": "A designer wants to mesh 'visual vs auditory learners' with matching media. Course stance?",
+      "choices": [
+        { "id": "a", "text": "Learning-styles meshing is a myth; real differences are prior knowledge, language, access, disability.", "correct": true },
+        { "id": "b", "text": "Meshing is required by ADA as the main accessibility strategy.", "correct": false },
+        { "id": "c", "text": "Visual learners always need the Image Principle face video.", "correct": false },
+        { "id": "d", "text": "Auditory learners should never get diagrams.", "correct": false }
+      ],
+      "explain": "Pashler et al. 2008 — meshing hypothesis failed. Accessibility ≠ learning-styles marketing."
+    },
+    {
+      "id": "assess-vs-eval",
+      "lesson": "1.9 / Module 0",
+      "tag": "assessment vs evaluation",
+      "stem": "Heart-rate on one student for feedback vs using those readings to judge which workout plan works for the next cohort. Joyner's split?",
+      "choices": [
+        { "id": "a", "text": "Assessment serves this learner's grade/feedback; evaluation judges the tool or curriculum.", "correct": true },
+        { "id": "b", "text": "Evaluation is always unethical; assessment is always fine.", "correct": false },
+        { "id": "c", "text": "They are dictionary synonyms Joyner forbids distinguishing.", "correct": false },
+        { "id": "d", "text": "Assessment means only multiple choice; evaluation means only essays.", "correct": false }
+      ],
+      "explain": "Course construct from Module 0: same measure, different why. Do not correct outsiders who swap the words."
+    },
+    {
+      "id": "fade-worksheet",
+      "lesson": "1.1 Constructivism",
+      "tag": "scaffolding fade",
+      "stem": "Essay help goes full worksheet → short reminder → gone. Support that never leaves would mean?",
+      "choices": [
+        { "id": "a", "text": "It is not scaffolding — the tool keeps doing the work; fading was never designed in.", "correct": true },
+        { "id": "b", "text": "It is ideal ZPD because the zone should never move.", "correct": false },
+        { "id": "c", "text": "It is negative reinforcement of writing quality.", "correct": false },
+        { "id": "d", "text": "It is Capital-D DI because Project Follow Through used worksheets.", "correct": false }
+      ],
+      "explain": "Scaffolding requires planned removal. ZPD moves as competence grows."
+    },
+    {
+      "id": "scratch-what",
+      "lesson": "1.2 Constructionism",
+      "tag": "Scratch",
+      "stem": "Scratch (2007, Lifelong Kindergarten / MIT Media Lab) shows up in the constructionism lineage. What is it for in Joyner's story?",
+      "choices": [
+        { "id": "a", "text": "Block coding so different people make different personally meaningful projects — floor/ceiling plus Resnick's wide walls.", "correct": true },
+        { "id": "b", "text": "A Pavlov teaching machine with frames and immediate drool rewards.", "correct": false },
+        { "id": "c", "text": "Engelmann's choral-response reading script.", "correct": false },
+        { "id": "d", "text": "Mayer's rule that instructor faces always raise learning.", "correct": false }
+      ],
+      "explain": "Scratch = constructionist medium at scale. Not DI, not classical conditioning, not Image Principle."
+    },
+    {
+      "id": "instructionism-foil",
+      "lesson": "1.2 Constructionism",
+      "tag": "instructionism",
+      "stem": "Papert criticizes the idea that improving learning mostly means improving how teachers explain and lecture. Name that foil?",
+      "choices": [
+        { "id": "a", "text": "Instructionism — better transmission as the whole fix; counter is better materials to build with.", "correct": true },
+        { "id": "b", "text": "Constructivism — rebuild mental models.", "correct": false },
+        { "id": "c", "text": "Metacognition — monitor your own understanding.", "correct": false },
+        { "id": "d", "text": "Flow — challenge matched to skill.", "correct": false }
+      ],
+      "explain": "Instructionism is Papert's named foil. Constructionism answers with materials/making."
+    },
+    {
+      "id": "chunk-chess",
+      "lesson": "1.5 Cognitivism",
+      "tag": "chunking",
+      "stem": "A chess expert sees a board as a few meaningful patterns; a novice sees many separate pieces. Cognitivist account?",
+      "choices": [
+        { "id": "a", "text": "Expertise packs elements into chunks so working memory holds more structure.", "correct": true },
+        { "id": "b", "text": "Experts have unlimited working memory slots by birth.", "correct": false },
+        { "id": "c", "text": "Only variable-ratio rewards create chess skill.", "correct": false },
+        { "id": "d", "text": "Chess skill is classical conditioning of piece fear.", "correct": false }
+      ],
+      "explain": "Miller/Cowan + chunking; expertise as richer chunks (Joyner cognitivism)."
+    }
+  ]
+}

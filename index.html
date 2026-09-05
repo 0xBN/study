@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
     <title>CS6460 Quiz Drill</title>
-    <link rel="stylesheet" href="./styles.css?v=30" />
+    <link rel="stylesheet" href="./styles.css?v=32" />
   </head>
   <body>
     <nav class="nav" aria-label="CS6460 quiz drill">
@@ -14,10 +14,10 @@
           <span></span><span></span><span></span>
         </button>
         <p id="nav-title" class="nav-title">CS6460</p>
-        <span id="app-build" class="app-build" aria-label="App build">v30</span>
+        <span id="app-build" class="app-build" aria-label="App build">v32</span>
         <div class="mode-toggle" role="tablist" aria-label="Mode">
           <button type="button" id="mode-read" class="mode active" aria-pressed="true">Read</button>
-          <button type="button" id="mode-match" class="mode" aria-pressed="false">Match</button>
+          <button type="button" id="mode-quiz" class="mode" aria-pressed="false">Quiz</button>
         </div>
       </div>
       <div id="read-controls" class="nav-row">
@@ -25,19 +25,19 @@
         <button type="button" id="collapse-all">Collapse</button>
         <button type="button" id="sections">Sections: on</button>
       </div>
-      <div id="match-controls" class="match-meter" hidden>
+      <div id="quiz-controls" class="match-meter" hidden>
         <div class="match-meter-row">
-          <span id="match-pct" class="match-pct">0%</span>
-          <span id="match-status" class="match-status"></span>
+          <span id="quiz-pct" class="match-pct">0%</span>
+          <span id="quiz-status" class="match-status"></span>
         </div>
         <div class="match-meter-track" aria-hidden="true">
-          <div id="match-meter-fill" class="match-meter-fill"></div>
+          <div id="quiz-meter-fill" class="match-meter-fill"></div>
         </div>
       </div>
       <p id="deadline" class="deadline" hidden></p>
     </nav>
 
-    <div id="match-next-hit" class="match-next-hit" hidden aria-label="Tap for next"></div>
+    <div id="quiz-next-hit" class="match-next-hit" hidden aria-label="Tap for next"></div>
 
     <div id="backdrop" class="backdrop" hidden></div>
     <div id="sheet" class="sheet" hidden role="dialog" aria-label="Drill options">
@@ -49,28 +49,24 @@
       <p class="label">Week (Read)</p>
       <div id="weeks" class="week-list"></div>
       <p class="label">How to use</p>
-      <p class="muted">Read: fold cards, flip term/claim, hide section headings if they hint. Match: mostly a vignette or paraphrase → pick the term (2 choices; sibling distractors). Faces vary openings on purpose so you cannot pattern-match the first words. Cover the buttons with your thumb and name it first. Miss shows Why + why-not for the distractor. Copy progress includes recent miss stems for coaching. Progress is local.</p>
+      <p class="muted">Read = lecture-context init. Quiz = scene → 4 paraphrase choices → explainer. Then Honorlock practice. No Match.</p>
+      <p class="label">Scene quiz</p>
+      <p id="quiz-sheet-stats" class="muted"></p>
+      <div class="sheet-actions">
+        <button type="button" id="quiz-reset">Reset scene quiz</button>
+      </div>
       <p class="label">Quiz window</p>
       <p id="quiz-detail" class="muted"></p>
       <p class="label">Checkpoint</p>
       <p id="checkpoint"></p>
       <p id="synced" class="muted"></p>
       <p id="missing" class="muted"></p>
-      <p class="label">Match progress</p>
-      <p id="match-sheet-stats" class="muted"></p>
-      <div class="sheet-actions">
-        <button type="button" id="match-export">Copy progress</button>
-        <button type="button" id="match-reset">Reset match deck</button>
-      </div>
-      <label class="label" for="match-import">Paste progress</label>
-      <textarea id="match-import" rows="4" placeholder="Paste study-match-progress block here"></textarea>
-      <button type="button" id="match-import-btn">Import (replace)</button>
     </div>
 
     <main>
       <article id="article"></article>
-      <section id="match" class="match" hidden aria-label="Match drill"></section>
+      <section id="scene-quiz" class="match" hidden aria-label="Scene quiz"></section>
     </main>
-    <script src="./app.js?v=30"></script>
+    <script src="./app.js?v=32"></script>
   </body>
 </html>
