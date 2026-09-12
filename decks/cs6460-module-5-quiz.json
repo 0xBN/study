@@ -1,0 +1,1029 @@
+{
+  "id": "cs6460-m5-quiz",
+  "title": "CS6460 Module 5 \u00b7 Scene quiz",
+  "weekId": "05",
+  "sessionSize": 27,
+  "note": "Know-generated scenes + practice-sample items marked source=\"practice-sample\" (format calib from Canvas practice; not graded-quiz stems). Choices are paraphrases, not vocab titles.",
+  "items": [
+    {
+      "id": "ctt-equation",
+      "lesson": "5.1 Measurement",
+      "tag": "Classical Test Theory",
+      "source": "know",
+      "stem": "On a practice run a learner scores 18. Classical Test Theory treats that 18 how?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "As Observed Score = True Score + Error \u2014 the number is never pure truth.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "As True Score = Observed Score + Error, rearranging the same idea incorrectly.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "As Observed Score = Criterion Score + Norm Score.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "As Observed Score = True Score + Percentile Rank.",
+          "correct": false
+        }
+      ],
+      "explain": "CTT: Observed = True + Error."
+    },
+    {
+      "id": "reliability-ceiling",
+      "lesson": "5.1 Measurement",
+      "tag": "reliability ceilings validity",
+      "source": "know",
+      "stem": "A dashboard swings wildly from day to day for the same learner with no real change. Why does that block validity claims?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A measurement dominated by random error cannot be a trustworthy signal of any construct \u2014 reliability ceilings validity.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "High reliability automatically proves the tool is valid for its purpose.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Validity sets the maximum reliability a score can ever reach.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Fairness to groups is unrelated to reliability.",
+          "correct": false
+        }
+      ],
+      "explain": "Noise-dominated scores cannot validly indicate a construct."
+    },
+    {
+      "id": "consistent-still-wrong-construct",
+      "lesson": "5.1 Measurement",
+      "tag": "reliable \u2260 valid",
+      "source": "know",
+      "stem": "A certification exam has Cronbach alpha 0.95 across cohorts. Marketing wants to call it 'validated job readiness.' Strongest measurement objection?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Consistency does not say what is being measured \u2014 highly reliable scores can still be invalid for that claim.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Internal consistency cannot be computed once more than one cohort exists.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The claim holds if the exam is criterion-referenced instead of norm-referenced.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The claim holds once standard error falls below one scale point.",
+          "correct": false
+        }
+      ],
+      "explain": "Reliability \u2260 validity; know what construct you hit."
+    },
+    {
+      "id": "solo-prestructural",
+      "lesson": "5.2 Taxonomies",
+      "tag": "SOLO Prestructural",
+      "source": "know",
+      "stem": "Asked to compare two sorting algorithms, a student writes a joke about laundry 'sorting' and never addresses runtime. Which SOLO stage fits?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Prestructural \u2014 misses the point with irrelevant or tautological engagement.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Unistructural \u2014 one relevant element, narrowly connected.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Multistructural \u2014 several relevant elements, unintegrated.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Extended abstract \u2014 generalizes to a new domain.",
+          "correct": false
+        }
+      ],
+      "explain": "SOLO Prestructural = off-point / irrelevant."
+    },
+    {
+      "id": "bloom-type-problem",
+      "lesson": "5.2 Taxonomies",
+      "tag": "Bloom type problem",
+      "source": "know",
+      "stem": "The lesson names Bloom's hierarchy problem and type problem. What is the type problem?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Bloom handles how demanding a task is better than what kind of learning it represents.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Bloom cannot be used on open-ended work at all.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Bloom ignores motor and attitude domains entirely by definition.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Bloom handles kind of learning well but says nothing about demand.",
+          "correct": false
+        }
+      ],
+      "explain": "Type problem \u2248 weak on kind of learning; hierarchy problem is the other critique."
+    },
+    {
+      "id": "skill-vs-instance",
+      "lesson": "5.2 Taxonomies",
+      "tag": "intellectual skill vs memory",
+      "source": "know",
+      "stem": "A final reuses the identical three troubleshooting tickets from last month's homework, then claims 'debugging mastery.' Strongest objection?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Reused instances cannot separate intellectual skill from memory of those specific tickets.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Reuse is always best because retrieval practice prefers identical items forever.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The final should open with an advance organizer naming the homework.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Switching to a SOLO rubric alone fixes the reuse problem.",
+          "correct": false
+        }
+      ],
+      "explain": "Same items confound skill with instance memory."
+    },
+    {
+      "id": "narrow-to-gradable",
+      "lesson": "5.3 Assessment styles",
+      "tag": "auto-gradable narrowing",
+      "source": "know",
+      "stem": "A course adds daily auto-graded clicker items because they are cheap. Over a term, discussions and design critiques shrink. What danger does the lesson flag?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Frequent cheap auto-gradable checks can quietly narrow the course toward whatever the software can grade.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "They always raise stakes until learners hide confusion.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "They overload working memory by definition.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "They make every score stop separating learners.",
+          "correct": false
+        }
+      ],
+      "explain": "What you can grade automatically starts to define the curriculum."
+    },
+    {
+      "id": "delayed-testing-effect",
+      "lesson": "5.3 Assessment styles",
+      "tag": "Roediger and Karpicke",
+      "source": "know",
+      "stem": "Why does the lesson stress that the Roediger and Karpicke testing advantage showed on a delayed test?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Durable retention, not immediate performance, is the measure that matters.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Immediate tests are unreliable whenever a passage is read twice.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A week lets spacing replace the testing effect entirely.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Learners cannot self-judge until about a week passes.",
+          "correct": false
+        }
+      ],
+      "explain": "Testing effect claim targets lasting retention."
+    },
+    {
+      "id": "ecd-competencies-first",
+      "lesson": "5.3 Assessment styles",
+      "tag": "evidence-centered design",
+      "source": "know",
+      "stem": "A game studio wants 'stealth assessment' of engineering reasoning from play logs alone. What should they settle first under evidence-centered design?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Which competencies they intend to measure, before deciding what counts as evidence.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Which events are cheapest to log, then invent meanings later.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Which levels feel hardest, for curve calibration first.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Which playtesters match the marketing persona.",
+          "correct": false
+        }
+      ],
+      "explain": "ECD: competency model \u2192 evidence model; do not invert from cheap logs."
+    },
+    {
+      "id": "four-jobs-grade",
+      "lesson": "5.4 Grading",
+      "tag": "four jobs",
+      "source": "know",
+      "stem": "According to the grading philosophies lesson, what four jobs is a grade asked to do?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Communicate, sort, motivate, and give feedback.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Diagnose, sort, motivate, and remediate.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Communicate, calibrate, rank, and certify competence.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Certify, motivate, diagnose, and archive.",
+          "correct": false
+        }
+      ],
+      "explain": "Course voice: communicate / sort / motivate / feedback."
+    },
+    {
+      "id": "contract-who-decides",
+      "lesson": "5.4 Grading",
+      "tag": "contract grading",
+      "source": "know",
+      "stem": "What most distinguishes contract grading from standards-based and specifications grading?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It changes who decides the grade and what the grade is based on in the first place.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "It alone uses written descriptions of acceptable quality.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It alone permits reassessment.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It alone reports each objective separately.",
+          "correct": false
+        }
+      ],
+      "explain": "Contract grading shifts decision rights and basis, not only the rubric text."
+    },
+    {
+      "id": "mark-is-the-problem",
+      "lesson": "5.4 Grading",
+      "tag": "ungrading",
+      "source": "know",
+      "stem": "Students chase safe projects that score well and ignore written critique beyond the letter at the top. Faculty conclude the mark itself is the problem. Which philosophy follows?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Ungrading \u2014 replace the reported number with feedback and a closing conversation.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Standards-based grading \u2014 report each objective as a separate mastery mark.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Specifications grading \u2014 judge each piece against a written bar.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Contract grading \u2014 tie the grade to labor agreed in advance.",
+          "correct": false
+        }
+      ],
+      "explain": "If the symbol is the distortion, ungrading targets the symbol."
+    },
+    {
+      "id": "guild-knowledge",
+      "lesson": "5.5 Feedback",
+      "tag": "Sadler guild knowledge",
+      "source": "know",
+      "stem": "A studio mentor can spot strong critique in seconds but struggles to write the rule for new TAs. Sadler would call that mentor's sense what?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Guild knowledge \u2014 the expert's often-tacit sense of what good work looks like.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The published rubric criteria handed out before work begins.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The shared vocabulary of a discipline's citation rules alone.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Only procedures a newcomer masters by peripheral participation.",
+          "correct": false
+        }
+      ],
+      "explain": "Guild knowledge = tacit expert quality sense; it travels poorly."
+    },
+    {
+      "id": "feedback-no-shared-standard",
+      "lesson": "5.5 Feedback",
+      "tag": "why feedback bounces",
+      "source": "know",
+      "stem": "Carefully written comments keep bouncing. What does the lesson say is often why?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Feedback presumes a shared standard of quality that teacher and student do not actually share.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Comments are too impersonal in register.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The LMS displays poorly on phones.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Comments were written before other papers were read.",
+          "correct": false
+        }
+      ],
+      "explain": "Without a shared standard, feedback has nowhere to land."
+    },
+    {
+      "id": "show-the-aim",
+      "lesson": "5.5 Feedback",
+      "tag": "peer review target",
+      "source": "know",
+      "stem": "Peer reviewers describe likes and changes but never see what the assignment was aiming at; authors call reviews arbitrary. Best fix from the lesson?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Show reviewers the goal the work is aiming at before they write.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Let reviewers read each other before submitting their own.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Require a compliment before any critique.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Impose a fixed word count for depth.",
+          "correct": false
+        }
+      ],
+      "explain": "Without the target, reviews cannot share a standard."
+    },
+    {
+      "id": "analytic-rubric",
+      "lesson": "5.6 Rubrics",
+      "tag": "analytic rubric",
+      "source": "know",
+      "stem": "Which definition matches an analytic rubric?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It breaks the work into separate criteria and scores each independently.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "It compares every paper to one benchmark exemplar only.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It waits until the whole stack is read before any score.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It scores only against the range the cohort actually produced.",
+          "correct": false
+        }
+      ],
+      "explain": "Analytic = separate criteria, separate scores."
+    },
+    {
+      "id": "rubric-changes-construct",
+      "lesson": "5.6 Rubrics",
+      "tag": "grain changes construct",
+      "source": "know",
+      "stem": "Rubric A awards points for naming each of three causes. Rubric B awards a pool for naming and describing causes without listing how many. Why can A assess a different construct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Telling students that three are wanted removes the need to recognize scope \u2014 different from recognizing and elaborating.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "A is faster to grade, so it must measure the same thing.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A uses fewer total points, so incompleteness costs less.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A names the causes outright, so recall disappears entirely.",
+          "correct": false
+        }
+      ],
+      "explain": "Visible grain can change what cognitive work is required."
+    },
+    {
+      "id": "rubrics-by-course",
+      "lesson": "5.6 Rubrics",
+      "tag": "show rubrics carefully",
+      "source": "know",
+      "stem": "A chair wants every course from survey to seminar to publish a full grading rubric with the syllabus. How should the lesson's argument be applied?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Reject the blanket rule; set grain and visibility course by course according to the construct assessed.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Adopt it always \u2014 hidden criteria are always unfair.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Adopt the opposite blanket ban on showing any rubric early.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Adopt it only when multiple graders share a stack.",
+          "correct": false
+        }
+      ],
+      "explain": "Construct assessed drives whether and how to show rubrics."
+    },
+    {
+      "id": "peer-errors-correlate",
+      "lesson": "5.7 Peer assessment",
+      "tag": "averaging fails",
+      "source": "know",
+      "stem": "Why does averaging many peer raters often fail to remove error?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Peer-rater errors are often not independent of each other.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Averaging needs a dozen raters before any effect begins.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Peers always drift to the scale midpoint.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Each extra rater adds more noise than they remove by definition.",
+          "correct": false
+        }
+      ],
+      "explain": "Correlated bias survives the average."
+    },
+    {
+      "id": "reliable-vs-fair",
+      "lesson": "5.7 Peer assessment",
+      "tag": "reliability vs fairness",
+      "source": "know",
+      "stem": "What distinguishes the reliability question from the fairness question in peer assessment?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Reliability asks whether peer grades are consistent; fairness asks whether they are consistent for reasons that have nothing to do with the work.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Reliability asks accuracy; fairness asks whether students liked the process.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Reliability asks stability over years; fairness asks rubric coverage.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Reliability asks defensibility; fairness asks equal review workload.",
+          "correct": false
+        }
+      ],
+      "explain": "Same consistency word; fairness checks the wrong reasons for consistency."
+    },
+    {
+      "id": "meta-reviewer",
+      "lesson": "5.7 Peer assessment",
+      "tag": "meta-reviewer design",
+      "source": "know",
+      "stem": "Staff write thin, slow feedback while unread peer reviews already exist on each submission. Which redesign matches the lesson?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Have graders evaluate each submission alongside the peer reviews it already received.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Let raw peer marks stand as the final grade.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Estimate ungraded papers from peer marks after sampling.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Make staff write feedback before peers review so peers can copy tone.",
+          "correct": false
+        }
+      ],
+      "explain": "Meta-reviewer: staff grade in context of peer reviews; do not crown raw peer marks."
+    },
+    {
+      "id": "undue-influence",
+      "lesson": "5.8 Research ethics",
+      "tag": "undue influence",
+      "source": "know",
+      "stem": "What is undue influence in researching learners, as the lesson defines it?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The subtler pressure of not wanting to disappoint the person who controls your academic fate.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "An interface nudge the learner never notices.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A researcher reading ambiguous results in their favor.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Only the explicit threat of an academic penalty for declining.",
+          "correct": false
+        }
+      ],
+      "explain": "Undue influence \u2260 only blunt coercion; it includes grader-power pressure."
+    },
+    {
+      "id": "privacy-persists",
+      "lesson": "5.8 Research ethics",
+      "tag": "privacy over time",
+      "source": "know",
+      "stem": "Why is privacy in research harder than a single collection moment?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Data often persists, gets shared, and gets re-analyzed for years in ways nobody foresaw.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Students can never object because instruments are invisible.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Aggregation always strips detail so return is impossible.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A legal exception always overrides student preferences.",
+          "correct": false
+        }
+      ],
+      "explain": "Persistence and unforeseen reuse make privacy ongoing."
+    },
+    {
+      "id": "consent-not-forever",
+      "lesson": "5.8 Research ethics",
+      "tag": "stewardship",
+      "source": "know",
+      "stem": "Consent covered a hint-system study. Years later another team wants that archive to train dropout prediction. Stewardship says?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Reuse needs revisiting \u2014 one consent does not license any use forever.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Reuse is fine because no new collection occurs.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Reuse is fine after a second de-identification pass alone.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Reuse is barred because all research data must be destroyed at study end.",
+          "correct": false
+        }
+      ],
+      "explain": "Stewardship: revisit purpose; consent is not a blank check."
+    },
+    {
+      "id": "bias-at-scale",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "bias at scale",
+      "source": "know",
+      "stem": "What distinguishes a biased assessment deployed at scale from one used once?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It harms an entire population in the same direction, all at once.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "It becomes merely a compliance issue, not an ethical one.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It becomes easier to ignore because errors average out.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It harms a smaller share of learners by definition.",
+          "correct": false
+        }
+      ],
+      "explain": "Scale multiplies same-direction harm."
+    },
+    {
+      "id": "edtech-scale-fairness",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "fairness intensifies",
+      "source": "know",
+      "stem": "Why do fairness obligations intensify with scale, especially in educational technology?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A tool that reaches many learners visits the same bias on all of them at once.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Only regulators care about classroom assessments.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Larger populations need a separate norm table per subgroup first.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Bias is only real once a sample is statistically large.",
+          "correct": false
+        }
+      ],
+      "explain": "Reach multiplies identical bias exposure."
+    },
+    {
+      "id": "capture-only-needed",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "privacy in products",
+      "source": "know",
+      "stem": "A quiz platform logs keystroke timing and mouse paths 'in case analytics wants them later.' Nothing affects scores; no IRB study is running. Lesson conclusion?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Learners are owed the privacy interest anyway \u2014 capture only what the assessment requires.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Obligations begin only if findings are published later.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Terms of service already satisfy the obligation.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Only the licensing institution holds any duty.",
+          "correct": false
+        }
+      ],
+      "explain": "No research waiver for needless capture."
+    },
+    {
+      "id": "src-ctt-equation",
+      "lesson": "5.1 Measurement",
+      "tag": "Classical Test Theory",
+      "source": "practice-sample",
+      "stem": "According to the Measurement Fundamentals lesson's on-screen text, which equation expresses the central relationship in Classical Test Theory?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Observed Score = True Score + Error.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Observed Score = True Score + Percentile Rank.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "True Score = Observed Score + Error.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Observed Score = Criterion Score + Norm Score.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample definition stem for CTT equation."
+    },
+    {
+      "id": "src-reliability-ceiling",
+      "lesson": "5.1 Measurement",
+      "tag": "reliability ceilings validity",
+      "source": "practice-sample",
+      "stem": "What does the Measurement Fundamentals lesson mean when it says that reliability sets a ceiling on validity?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A measurement dominated by random error cannot be a trustworthy signal of any construct.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "A measurement that is highly reliable has thereby been shown to be valid for its purpose.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A measurement's validity limits how reliable its scores are able to become in practice.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A measurement can be no fairer to a group than its reliability for that group allows.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample: reliability ceilings validity (noise blocks construct signal)."
+    },
+    {
+      "id": "src-ecd-bridge",
+      "lesson": "5.3 Assessment styles",
+      "tag": "evidence-centered design",
+      "source": "practice-sample",
+      "stem": "A studio is building a bridge-construction game and wants to measure engineering reasoning from play alone, with no quizzes anywhere in the product. Following evidence-centered design, what should the team settle first?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Which competencies they intend to measure, before deciding what counts as evidence.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Which in-game actions the engine can log most cheaply, before deciding what they mean.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Which levels are the hardest, so that the difficulty curve can be calibrated before launch.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Which players to recruit for playtesting, so that the sample matches the target audience.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample ECD vignette: competency model before evidence model."
+    },
+    {
+      "id": "src-guild-knowledge",
+      "lesson": "5.5 Feedback",
+      "tag": "Sadler guild knowledge",
+      "source": "practice-sample",
+      "stem": "According to the Feedback Frameworks lesson, what did Sadler call guild knowledge?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The expert's often-tacit, hard-to-articulate sense of what good work looks like.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The list of criteria published in a rubric before learners begin an assignment.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The body of procedures a newcomer masters, learned by working at the edge.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The shared vocabulary a discipline uses to describe its standards of evidence.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample with Sadler quote in feedback."
+    },
+    {
+      "id": "src-reliable-vs-fair",
+      "lesson": "5.7 Peer assessment",
+      "tag": "reliability vs fairness",
+      "source": "practice-sample",
+      "stem": "What distinguishes the reliability question from the fairness question in peer assessment?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Reliability asks whether peer grades are consistent, while fairness asks whether they are consistent for reasons that have nothing to do with the work.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Reliability asks whether peer grades are accurate, while fairness asks whether students found the process transparent.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Reliability asks whether peer grades are stable over time, while fairness asks whether the rubric covered every objective.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Reliability asks whether peer grades are defensible, while fairness asks whether everyone did an equal share of reviewing.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample wording of reliability vs fairness."
+    },
+    {
+      "id": "src-meta-reviewer",
+      "lesson": "5.7 Peer assessment",
+      "tag": "meta-reviewer design",
+      "source": "practice-sample",
+      "stem": "A large online course has eight graders who each write feedback from scratch on three hundred submissions. Feedback is thin and slow. Peer review already happens before grading, and those reviews currently go unread by staff. Which redesign best matches the Peer Assessment lesson?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Have graders evaluate each submission alongside the peer reviews it received.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Have graders mark a random sample and estimate the rest from the peer marks.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Have graders read only the peer reviews and let the peer marks stand as the final grade.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Have graders write their feedback before peers review, so peers have a model to imitate.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample meta-reviewer design; raw peer marks as final is warned against."
+    },
+    {
+      "id": "src-undue-influence",
+      "lesson": "5.8 Research ethics",
+      "tag": "undue influence",
+      "source": "practice-sample",
+      "stem": "Which of the following is the most correct definition of undue influence?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The subtler pressure of not wanting to disappoint the person who grades you.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The pull an interface exerts on a learner's choices without the learner noticing it.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The tendency of a researcher to read ambiguous results in favor of their own hypothesis.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The explicit threat that declining to participate will carry an academic penalty.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample: undue influence vs explicit coercion."
+    }
+  ]
+}

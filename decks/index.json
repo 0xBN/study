@@ -13,6 +13,13 @@
       "title": "CS6460 Module 3 · Scene quiz",
       "weekId": "03",
       "kind": "quiz"
+    },
+    {
+      "id": "cs6460-m5-quiz",
+      "file": "decks/cs6460-module-5-quiz.json",
+      "title": "CS6460 Module 5 · Scene quiz",
+      "weekId": "05",
+      "kind": "quiz"
     }
   ]
 }

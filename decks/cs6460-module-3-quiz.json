@@ -1,360 +1,1089 @@
 {
   "id": "cs6460-m3-quiz",
-  "title": "CS6460 Module 3 · Scene quiz",
+  "title": "CS6460 Module 3 \u00b7 Scene quiz",
   "weekId": "03",
   "sessionSize": 27,
-  "note": "Audit bank: lecture scenes → paraphrase choices (not vocab titles). Built from Module 3 lesson claims + practice-pool patterns. Not Canvas stems.",
+  "note": "Know-generated scenes + practice-sample items marked source=\"practice-sample\" (format calib from Canvas practice; not graded-quiz stems). Choices are paraphrases, not vocab titles.",
   "items": [
     {
-      "id": "tpack-extends-shulman",
+      "id": "tpack-third-domain",
       "lesson": "3.1 TPACK",
       "tag": "TPACK / Shulman",
-      "stem": "Shulman already had content and pedagogy interlocking. Mishra and Koehler's TPACK move adds which foundational domain?",
+      "source": "know",
+      "stem": "A methods course already drills subject expertise and how to teach it. Faculty want a framework that also covers choosing and shaping tools. What does TPACK add to Shulman's picture?",
       "choices": [
-        { "id": "a", "text": "Technological Knowledge — a third base domain that also creates new intersections with content and pedagogy.", "correct": true },
-        { "id": "b", "text": "Classroom Context Knowledge — a fourth domain sitting beside the original three.", "correct": false },
-        { "id": "c", "text": "A single unified teacher-skill score that replaces Pedagogical Content Knowledge.", "correct": false },
-        { "id": "d", "text": "Nothing new; they only renamed Pedagogical Content Knowledge.", "correct": false }
+        {
+          "id": "a",
+          "text": "A third foundational domain \u2014 Technological Knowledge \u2014 that also creates new intersections with content and pedagogy.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "A fourth 'classroom climate' domain that sits beside the original three.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "One composite teacher-skill score that replaces Pedagogical Content Knowledge.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Nothing structural; it only renames Pedagogical Content Knowledge.",
+          "correct": false
+        }
       ],
-      "explain": "TPACK = Technological Pedagogical Content Knowledge. Extends Shulman by adding TK as a third foundational domain."
+      "explain": "TPACK (Mishra and Koehler) extends Shulman by adding Technological Knowledge as a third base domain."
     },
     {
-      "id": "desmos-not-chalkboard",
+      "id": "tpack-not-efficiency",
       "lesson": "3.1 TPACK",
       "tag": "tech changes representation",
-      "stem": "A algebra class uses Desmos so students drag parameters and watch the graph rewrite live. Why is that more than a faster chalkboard?",
+      "source": "know",
+      "stem": "A chemistry unit moves from static textbook reaction diagrams to a tool where students scrub reaction time and watch bonds rearrange. Marketing calls it 'same lesson, faster drawing.' What is the stronger TPACK-aligned claim?",
       "choices": [
-        { "id": "a", "text": "The technology changes how the content can be represented and how instruction can be designed.", "correct": true },
-        { "id": "b", "text": "Any demonstration repeated across spaced sessions raises retention the same way.", "correct": false },
-        { "id": "c", "text": "The only gain is cutting the extraneous load of drawing neat axes by hand.", "correct": false },
-        { "id": "d", "text": "Immediate feedback always beats delayed teacher feedback, full stop.", "correct": false }
+        {
+          "id": "a",
+          "text": "The tool changes how the content can be represented and how instruction can be designed, not only how fast drawings appear.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Any live demo beats a textbook because spaced repetition is automatic.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The only real gain is cutting the extraneous load of neat handwriting.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Immediate feedback always outperforms delayed teacher comments, full stop.",
+          "correct": false
+        }
       ],
-      "explain": "Joyner's Desmos example: qualitative change in representation and pedagogy, not mere efficiency."
+      "explain": "Joyner's TPACK point: technology can qualitatively change representation and pedagogy, not mere efficiency."
     },
     {
-      "id": "tck-plate-sim",
+      "id": "tck-what-gets-easy",
       "lesson": "3.1 TPACK",
       "tag": "technological content knowledge",
-      "stem": "Designers choose between a narrated plate-tectonics video and a drag-the-plates simulation. Which review question most directly exercises technological content knowledge?",
+      "source": "know",
+      "stem": "A team debates a timeline animation versus a map learners can pan and filter by century. Which question most directly exercises technological content knowledge?",
       "choices": [
-        { "id": "a", "text": "Which option changes what aspects of the content are foregrounded and what questions get easy to ask?", "correct": true },
-        { "id": "b", "text": "Which option stays inside the team's production budget this year?", "correct": false },
-        { "id": "c", "text": "Which option keeps learners in the zone of proximal development?", "correct": false },
-        { "id": "d", "text": "Which option imposes less extraneous load on a first-time learner?", "correct": false }
+        {
+          "id": "a",
+          "text": "Which option changes which aspects of the history become easy to notice and ask about?",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Which option fits this year's media budget?",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Which option keeps novices inside the zone of proximal development?",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Which option uses fewer on-screen words?",
+          "correct": false
+        }
       ],
-      "explain": "TCK = how tech shapes what content is expressible/askable. Budget is TK/logistics; ZPD/load are nearby but not TCK."
+      "explain": "TCK = how a tool reshapes what content is foregrounded / askable. Budget and load are nearby, not TCK."
     },
     {
-      "id": "driving-question-no-key",
+      "id": "tpack-design-capacity",
+      "lesson": "3.1 TPACK",
+      "tag": "design capacity",
+      "source": "know",
+      "stem": "An authoring team ships a vocab trainer that only ever offers multiple-choice synonym picks. Teachers later say they 'cannot teach productive use' with it. Which TPACK framing fits?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Building the tool already made pedagogical-content choices on teachers' behalf \u2014 a narrow activity type is baked in.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Teachers alone hold TPACK; tool authors sit outside the framework.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The failure is only missing captions, so it is purely an accessibility issue.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Any digital vocab drill automatically raises Technological Knowledge.",
+          "correct": false
+        }
+      ],
+      "explain": "Angeli and Valanides: TPACK as design capacity \u2014 tools encode pedagogy and content moves."
+    },
+    {
+      "id": "driving-q-no-key",
       "lesson": "3.2 PBL",
       "tag": "challenging driving question",
-      "stem": "In Joyner's own cut, what actually marks a challenging driving question?",
+      "source": "know",
+      "stem": "Two proposed unit drivers: 'List the stages of mitosis' versus 'How should our city redesign stormwater for the next decade?' On Joyner's cut, what makes the second the challenging driving question?",
       "choices": [
-        { "id": "a", "text": "Whether there is a single right answer responses can be judged against.", "correct": true },
-        { "id": "b", "text": "Whether the question grows out of the students' local community.", "correct": false },
-        { "id": "c", "text": "Whether answering it requires more than one subject area.", "correct": false },
-        { "id": "d", "text": "Whether it can realistically be finished in the time available.", "correct": false }
+        {
+          "id": "a",
+          "text": "It has no single right answer to grade against \u2014 answers can be better or worse, not keyed correct.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "It must come from students' personal neighborhoods to count.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It must require at least three academic subjects.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It is challenging only if it fits neatly in one class period.",
+          "correct": false
+        }
       ],
-      "explain": "Instructor voice: challenging driving questions have better/worse answers, not one keyed correct answer."
+      "explain": "Joyner: challenging driving questions lack a single correct key."
     },
     {
-      "id": "pbl-peers-zpd",
+      "id": "collab-is-zpd",
       "lesson": "3.2 PBL",
       "tag": "collaboration / ZPD",
-      "stem": "Why does the project/problem-based lesson treat collaboration as a core feature, not a convenience?",
+      "source": "know",
+      "stem": "A studio insists every project is solo so 'everyone is accountable.' The PBL lesson would push back how?",
       "choices": [
-        { "id": "a", "text": "Peers supply support inside the zone of proximal development.", "correct": true },
-        { "id": "b", "text": "Groups mainly let strong students demonstrate procedures for weak ones.", "correct": false },
-        { "id": "c", "text": "Groups exist so the public product can look larger to an audience.", "correct": false },
-        { "id": "d", "text": "Groups exist so each member can specialize and never integrate.", "correct": false }
+        {
+          "id": "a",
+          "text": "Peers are a core support source inside the zone of proximal development, not just a way to split chores.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Groups exist mainly so stronger students can lecture weaker ones.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Groups exist so the public product looks larger to outsiders.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Collaboration is optional flavor once authenticity is secured.",
+          "correct": false
+        }
       ],
-      "explain": "Vygotsky ZPD framing: peers are a powerful source of support between alone-ability and with-help ability."
+      "explain": "Vygotsky framing in the lesson: peers supply ZPD support; collaboration is structural."
     },
     {
-      "id": "assess-the-artifact",
+      "id": "assess-the-make",
       "lesson": "3.2 PBL",
       "tag": "assess the project",
-      "stem": "Students spend six weeks producing historical documentaries; the graded assessment is a 40-item multiple-choice test afterward. What does the lesson recommend?",
+      "source": "know",
+      "stem": "A civics class spends a month building a public policy brief with critique cycles. The grade is a separate 50-item fact quiz the next week. Strongest objection from the lesson?",
       "choices": [
-        { "id": "a", "text": "Treat the documentaries and successive drafts as the evidence of learning.", "correct": true },
-        { "id": "b", "text": "Keep the MC test and add a short reflection to consolidate.", "correct": false },
-        { "id": "c", "text": "Keep the MC test but delay it two weeks for spacing.", "correct": false },
-        { "id": "d", "text": "Keep the MC test but allow open notes.", "correct": false }
+        {
+          "id": "a",
+          "text": "Treat the brief and its drafts as the evidence of learning; the mismatched quiz ignores the actual work.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Keep the quiz but allow notes so retrieval is fairer.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Keep the quiz and delay it two weeks for spacing.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Add a one-paragraph reflection and keep the quiz as the main grade.",
+          "correct": false
+        }
       ],
-      "explain": "If the project is the learning work, assess that work — not a mismatched later MC proxy."
+      "explain": "If the project is the learning, assess that artifact \u2014 not a later MC proxy."
     },
     {
-      "id": "backward-design-who",
+      "id": "ubd-authors",
       "lesson": "3.3 Curriculum",
       "tag": "backward design",
-      "stem": "Who introduced the concept of backward design, and in what work?",
+      "source": "know",
+      "stem": "A design doc starts from 'learners will be able to critique a study's sampling' and only then picks activities. Which named move is that?",
       "choices": [
-        { "id": "a", "text": "Grant Wiggins and Jay McTighe, in Understanding by Design (1998).", "correct": true },
-        { "id": "b", "text": "Ralph Tyler, in Basic Principles of Curriculum and Instruction (1949).", "correct": false },
-        { "id": "c", "text": "Jerome Bruner, in The Process of Education (1960).", "correct": false },
-        { "id": "d", "text": "Benjamin Bloom and colleagues, in the taxonomy of cognitive objectives.", "correct": false }
+        {
+          "id": "a",
+          "text": "Backward design (Wiggins and McTighe, Understanding by Design, 1998) \u2014 desired results and evidence before activities.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Tyler's 1949 four questions, which start from a topic inventory.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Bruner's spiral, which only repeats the same lecture yearly.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Bloom's taxonomy, which is itself a full curriculum design method.",
+          "correct": false
+        }
       ],
-      "explain": "Wiggins & McTighe 1998 UbD introduced backward design. Tyler/Bruner/Bloom appear nearby as other curriculum frameworks."
+      "explain": "Wiggins & McTighe 1998 UbD introduced backward design as a practical package."
     },
     {
-      "id": "assessment-last-tradeoff",
+      "id": "motivate-vs-ideal-order",
       "lesson": "3.3 Curriculum",
       "tag": "sequence trade-off",
-      "stem": "Joyner notes his own course covers assessment last — the wrong order under backward design. How does he frame that?",
+      "source": "know",
+      "stem": "An instructor knowingly puts assessment topics after motivation and tech modules even though backward design would front-load assessment. How does Joyner frame that choice in this course?",
       "choices": [
-        { "id": "a", "text": "As a trade-off: a more motivating sequence accepted instead of a slightly more effective one.", "correct": true },
-        { "id": "b", "text": "As proof that sequence barely matters for adult professionals.", "correct": false },
-        { "id": "c", "text": "As evidence that backward design only applies to K-12.", "correct": false },
-        { "id": "d", "text": "As an inherited error a later revision will quietly fix.", "correct": false }
+        {
+          "id": "a",
+          "text": "As a trade-off: a more motivating sequence accepted instead of a slightly more effective one.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "As proof that sequence barely matters for adult learners.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "As evidence that backward design only applies to K-12.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "As an accidental leftover a future rewrite will silently fix.",
+          "correct": false
+        }
       ],
-      "explain": "Explicit trade-off language in the curriculum lesson: motivation over slight effectiveness gain."
+      "explain": "Joyner names the assessment-last order as a motivation/effectiveness trade-off."
     },
     {
-      "id": "topics-not-curriculum",
+      "id": "inventory-not-curriculum",
       "lesson": "3.3 Curriculum",
       "tag": "curriculum architecture",
-      "stem": "A platform team delivers an ordered list of thirty topics with time estimates and calls it the course design. Strongest objection from the curriculum lesson?",
+      "source": "know",
+      "stem": "A vendor delivers a spreadsheet of forty module titles with minute estimates and calls it 'the curriculum.' What is missing?",
       "choices": [
-        { "id": "a", "text": "A list of topics is not a curriculum; decisions about depth and path are missing.", "correct": true },
-        { "id": "b", "text": "Thirty topics exceed working-memory limits, so shorten first.", "correct": false },
-        { "id": "c", "text": "Reorder so the most engaging topics come first.", "correct": false },
-        { "id": "d", "text": "Check state standards before any building begins.", "correct": false }
+        {
+          "id": "a",
+          "text": "Deliberate decisions about scope, sequence, depth, and path \u2014 a topic list is inventory, not curriculum.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Only a prettier slide theme for each title.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A requirement that every title include a video.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A rule that the most engaging titles must come first.",
+          "correct": false
+        }
       ],
       "explain": "Joyner: curriculum is architecture, not inventory."
     },
     {
-      "id": "spatial-contiguity",
+      "id": "labels-beside-parts",
       "lesson": "3.4 Mayer",
       "tag": "spatial contiguity",
-      "stem": "Which statement best matches Mayer's spatial contiguity principle?",
+      "source": "know",
+      "stem": "A biology page shows a cell diagram on the left and a numbered legend of organelle names in a sidebar two columns away. Learners keep losing their place. Which Mayer principle is most directly violated?",
       "choices": [
-        { "id": "a", "text": "Corresponding words and images should be near each other on the page or screen rather than separated.", "correct": true },
-        { "id": "b", "text": "Corresponding narration and animation should play simultaneously rather than in sequence.", "correct": false },
-        { "id": "c", "text": "Complex lessons should be learner-paced segments rather than continuous.", "correct": false },
-        { "id": "d", "text": "Cues should highlight organization and key ideas.", "correct": false }
+        {
+          "id": "a",
+          "text": "Spatial contiguity \u2014 corresponding words and images should sit near each other, not separated.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Modality \u2014 narration should replace all labels forever.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Segmenting \u2014 the page must be split into separate downloads.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Image principle \u2014 removing the instructor face would fix the legend gap.",
+          "correct": false
+        }
       ],
-      "explain": "Spatial contiguity = nearness of words/images. Temporal contiguity, segmenting, signaling are sibling principles."
+      "explain": "Spatial contiguity = nearness of related words and pictures."
     },
     {
-      "id": "mayer-clusters",
+      "id": "cut-cluster-vs-pace-cluster",
       "lesson": "3.4 Mayer",
       "tag": "first vs second cluster",
-      "stem": "Joyner groups Mayer principles into clusters. What most clearly separates his second cluster from the first?",
+      "source": "know",
+      "stem": "Joyner groups Mayer principles into clusters. A designer is deciding whether to delete decorative side stories versus whether to teach part names before a full system explanation. How do those cluster jobs differ?",
       "choices": [
-        { "id": "a", "text": "The first is about ruthless editing of wasted load; the second is about sequencing and pacing hard material.", "correct": true },
-        { "id": "b", "text": "The first is empirically supported; the second is speculation.", "correct": false },
-        { "id": "c", "text": "The first applies only to video; the second only to interactive software.", "correct": false },
-        { "id": "d", "text": "The first addresses intrinsic load; the second addresses only germane load.", "correct": false }
+        {
+          "id": "a",
+          "text": "The first cluster ruthlessly cuts or reorganizes wasted load; the second paces and sequences genuinely hard material.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The first cluster is speculation; the second is the only empirical set.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The first applies only to video; the second only to games.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The first raises intrinsic load; the second only raises germane load by definition.",
+          "correct": false
+        }
       ],
-      "explain": "First cluster = cut/reorganize so WM is not wasted; second = structure arrival of genuinely complex content."
+      "explain": "Joyner: cluster 1 = protect WM from waste; cluster 2 = structure complex content arrival."
     },
     {
-      "id": "modality-chart-narration",
+      "id": "narrate-not-caption-fight",
       "lesson": "3.4 Mayer",
       "tag": "modality",
-      "stem": "A chart builds itself while a long explanatory paragraph sits beside it; learners cannot watch and read at once. Best Mayer-aligned fix?",
+      "source": "know",
+      "stem": "An interactive map highlights regions while a dense paragraph scrolls beside it; users say they cannot track both. Best Mayer-aligned change?",
       "choices": [
-        { "id": "a", "text": "Move the explanation into spoken narration that plays while the chart builds.", "correct": true },
-        { "id": "b", "text": "Let learners choose either reading or watching, but keep both visual.", "correct": false },
-        { "id": "c", "text": "Show the paragraph first, then play the animation with no narration.", "correct": false },
-        { "id": "d", "text": "Shorten the paragraph and enlarge the typeface.", "correct": false }
+        {
+          "id": "a",
+          "text": "Move the explanation into spoken narration timed with the visual highlights.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Keep both visual streams but enlarge the paragraph font.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Force users to finish the paragraph with the map hidden, then show the map with silence.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Add a third decorative animation to 'increase engagement.'",
+          "correct": false
+        }
       ],
-      "explain": "Modality: graphics + spoken words beat graphics + on-screen text competing in the visual channel."
+      "explain": "Modality: graphics + spoken words beat graphics + competing on-screen text."
     },
     {
-      "id": "udl-rose-meyer",
+      "id": "udl-from-architecture",
       "lesson": "3.5 UDL",
       "tag": "Rose and Meyer / CAST",
-      "stem": "What did David Rose and Anne Meyer do in the UDL story?",
+      "source": "know",
+      "stem": "Who moved Universal Design from buildings into learning design in the UDL origin story?",
       "choices": [
-        { "id": "a", "text": "Adapted Universal Design from architecture to education at CAST.", "correct": true },
-        { "id": "b", "text": "Founded the independent living movement and campaigned for curb cuts in Berkeley.", "correct": false },
-        { "id": "c", "text": "Established the social model of disability in academic disability studies.", "correct": false },
-        { "id": "d", "text": "Proved that matching instruction to modality preferences fails.", "correct": false }
+        {
+          "id": "a",
+          "text": "David Rose and Anne Meyer at CAST, adapting Ron Mace's architectural Universal Design.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Ed Roberts founding the independent living movement alone as UDL.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Mike Oliver inventing UDL as a medical-model fix.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Bloom publishing UDL inside the cognitive taxonomy.",
+          "correct": false
+        }
       ],
-      "explain": "Mace = architecture UD; Rose & Meyer at CAST = UDL. Roberts/Oliver/learning-styles myth are nearby names."
+      "explain": "Mace = architecture; Rose & Meyer at CAST = UDL."
     },
     {
-      "id": "udl-not-sorting",
+      "id": "udl-everyone-not-sorted",
       "lesson": "3.5 UDL",
       "tag": "UDL vs learning styles",
-      "stem": "Joyner names a third, most important difference between UDL and learning styles. What is it?",
+      "source": "know",
+      "stem": "A product plan says: diagnose each learner as visual or auditory, then route them to one matched channel. How does UDL reject that plan?",
       "choices": [
-        { "id": "a", "text": "UDL provides multiple representations to everyone rather than sorting learners into matched channels.", "correct": true },
-        { "id": "b", "text": "UDL applies only to assessment; learning styles apply only to delivery.", "correct": false },
-        { "id": "c", "text": "UDL routes each learner to the channel testing shows is best for them.", "correct": false },
-        { "id": "d", "text": "UDL was validated in RCTs; learning styles only in surveys.", "correct": false }
+        {
+          "id": "a",
+          "text": "Provide multiple representations to everyone rather than sorting learners into single matched channels.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "UDL only cares about assessment formats, never representation.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "UDL requires sorting once a preference quiz is validated.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "UDL and learning styles are identical except for branding.",
+          "correct": false
+        }
       ],
-      "explain": "Do not sort; give everyone multiple means. Sorting is the learning-styles move UDL rejects."
+      "explain": "Joyner's most important contrast: multiple means for all, not style sorting."
     },
     {
-      "id": "curb-cut-captions",
+      "id": "access-helps-many",
       "lesson": "3.5 UDL",
       "tag": "curb-cut effect",
-      "stem": "A PM refuses captions because under 2% of enrollees report a hearing impairment. Best lesson-backed reply?",
+      "source": "know",
+      "stem": "Finance kills transcript support because 'few students list a hearing disability on the intake form.' Best lesson-backed reply?",
       "choices": [
-        { "id": "a", "text": "Captions serve many more learners than that survey group, as curb cuts did on the street.", "correct": true },
-        { "id": "b", "text": "Add captions only to the conceptually heaviest videos.", "correct": false },
-        { "id": "c", "text": "Captions matter only if a regulator is watching.", "correct": false },
-        { "id": "d", "text": "Skip captions; the survey already proves demand is tiny.", "correct": false }
+        {
+          "id": "a",
+          "text": "Access features often help many more people than the named disability group \u2014 the curb-cut pattern.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Only caption the hardest conceptual videos.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Transcripts matter only under active regulation.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The intake form already proves demand is negligible.",
+          "correct": false
+        }
       ],
-      "explain": "Curb-cut effect: access features designed for one group often help almost everyone."
+      "explain": "Curb-cut effect: design for edge cases improves the default experience."
     },
     {
-      "id": "space-spectrum",
+      "id": "three-space-positions",
       "lesson": "3.6 Distributed classroom",
       "tag": "space spectrum",
-      "stem": "On the Distributed Classroom space spectrum, what are the three positions?",
+      "source": "know",
+      "stem": "In the Distributed Classroom matrix, what are the three positions on the space spectrum?",
       "choices": [
-        { "id": "a", "text": "With the instructor; with a cohort but remote from the instructor; fully remote alone.", "correct": true },
-        { "id": "b", "text": "Main campus; official satellite; any location the student chooses.", "correct": false },
-        { "id": "c", "text": "Classroom; supervised testing center; unsupervised home.", "correct": false },
-        { "id": "d", "text": "With the instructor; watching a recording later; never engaging.", "correct": false }
+        {
+          "id": "a",
+          "text": "With the instructor; with a cohort but remote from the instructor; fully remote alone.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Main campus; satellite campus; any cafe the student picks.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Proctored room; open book at home; unsupervised library.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Live with instructor; watching a recording; never engaging.",
+          "correct": false
+        }
       ],
-      "explain": "Joyner & Isbell space axis: co-located with instructor; cohort-remote; fully remote alone."
+      "explain": "Joyner and Isbell space axis: co-located with instructor; cohort-remote; fully remote alone."
     },
     {
-      "id": "materials-outlive",
+      "id": "materials-outlive-cohort",
       "lesson": "3.6 Distributed classroom",
       "tag": "invest in materials",
-      "stem": "Why invest more in materials made for a distributed classroom?",
+      "source": "know",
+      "stem": "Why does the lesson argue for investing more in materials built for distributed classes?",
       "choices": [
-        { "id": "a", "text": "Content can outlive the class it was made for and reach audiences you cannot anticipate.", "correct": true },
-        { "id": "b", "text": "Higher production values reliably raise satisfaction scores.", "correct": false },
-        { "id": "c", "text": "Accreditation now grades production polish.", "correct": false },
-        { "id": "d", "text": "Well-produced media always cut the cost of every later term to near zero.", "correct": false }
+        {
+          "id": "a",
+          "text": "Those materials can outlive the original class and reach audiences you did not plan for.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Higher polish always raises course evaluations.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Accreditation now scores production values directly.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Distributed materials never need updates once filmed.",
+          "correct": false
+        }
       ],
-      "explain": "Lesson: materials outlive the cohort — design and invest accordingly."
+      "explain": "Content outlives the cohort \u2014 design and invest accordingly."
     },
     {
       "id": "certificate-not-credit",
       "lesson": "3.6 Distributed classroom",
       "tag": "certificate vs credit",
-      "stem": "An eight-week online program has weekly deliverables and staff review but cannot verify who did the work and cannot award credit. What can it legitimately offer?",
+      "source": "know",
+      "stem": "A professional series has weekly tasks and staff comments but never verifies who did the work and cannot put credit on a transcript. What can it honestly offer?",
       "choices": [
-        { "id": "a", "text": "A certificate — completion with some structure and accountability, not academic credit.", "correct": true },
-        { "id": "b", "text": "Academic credit, because staff review counts as assessment.", "correct": false },
-        { "id": "c", "text": "Nothing beyond content access, ever.", "correct": false },
-        { "id": "d", "text": "Provisional credit that auto-converts later.", "correct": false }
+        {
+          "id": "a",
+          "text": "A certificate recognizing structured completion with some accountability \u2014 not academic credit.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Academic credit, because staff comments equal assessment.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Nothing at all beyond raw file downloads.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Automatic provisional credit that converts later without new verification.",
+          "correct": false
+        }
       ],
-      "explain": "Certificate ≠ credit. Credit needs institutional claim + verification rigor."
+      "explain": "Certificate \u2260 institutional credit claim without verification rigor."
     },
     {
-      "id": "samr-augmentation",
+      "id": "aug-vs-sub",
       "lesson": "3.7 SAMR",
       "tag": "Augmentation",
-      "stem": "In the running writing-assignment example, which description is Augmentation?",
+      "source": "know",
+      "stem": "Students used to handwrite lab notebooks. Now they type the same notebook structure, with search, easy reorder, and upload. Which SAMR level is that?",
       "choices": [
-        { "id": "a", "text": "Spell check, easy paragraph reorganization, and digital submit — same essay task with functional gains.", "correct": true },
-        { "id": "b", "text": "Typing instead of handwriting with nothing else changed.", "correct": false },
-        { "id": "c", "text": "Co-authoring a public multimedia document with peers abroad.", "correct": false },
-        { "id": "d", "text": "Drafting in a shared doc while peers comment in real time (task redesign).", "correct": false }
+        {
+          "id": "a",
+          "text": "Augmentation \u2014 same core task, with functional improvements beyond bare Substitution.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Substitution only \u2014 nothing functional changed.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Modification \u2014 the task itself was redesigned.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Redefinition \u2014 previously impossible collaboration across countries.",
+          "correct": false
+        }
       ],
-      "explain": "Substitution = type instead of write. Augmentation = functional improvement, same core task. Mod/Redef = redesign / previously impossible."
+      "explain": "Typing alone \u2248 Substitution; spell/search/reorder/submit gains \u2248 Augmentation."
     },
     {
-      "id": "samr-tpack-labor",
+      "id": "samr-diagnoses-tpack-judges",
       "lesson": "3.7 SAMR",
       "tag": "SAMR vs TPACK",
-      "stem": "How does the lesson divide labor between SAMR and TPACK?",
+      "source": "know",
+      "stem": "A team used SAMR to notice their app only replaces paper worksheets. What should TPACK add that SAMR does not?",
       "choices": [
-        { "id": "a", "text": "SAMR notices how modest or transformative the integration is; TPACK evaluates whether going further is a good idea.", "correct": true },
-        { "id": "b", "text": "They compete; pick one framework and ignore the other.", "correct": false },
-        { "id": "c", "text": "SAMR supersedes TPACK once a teacher is comfortable with tech.", "correct": false },
-        { "id": "d", "text": "TPACK only diagnoses modest use; SAMR judges pedagogical wisdom.", "correct": false }
+        {
+          "id": "a",
+          "text": "A judgment of whether pushing to a higher transformation level is pedagogically wise for this content and goal.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "A competing account that replaces SAMR entirely.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A rule that higher SAMR levels are always better.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A claim that TPACK only measures how modest the tech use looks.",
+          "correct": false
+        }
       ],
-      "explain": "Complementary: SAMR = degree of change; TPACK = whether the design works pedagogically."
+      "explain": "Complementary: SAMR diagnoses degree of change; TPACK evaluates design wisdom."
     },
     {
-      "id": "samr-hold-for-goal",
+      "id": "hold-level-for-goal",
       "lesson": "3.7 SAMR",
       "tag": "right level = goal",
-      "stem": "Stats goal: choose and justify a hypothesis test. Software could auto-select the test; instructor allows it only for arithmetic. Colleague wants Modification. Evaluate.",
+      "source": "know",
+      "stem": "Goal: students choose a statistical test and justify it. Software can auto-select the test; the instructor locks that feature and leaves choice to students. A colleague calls that 'wasted capability.' Evaluate.",
       "choices": [
-        { "id": "a", "text": "The instructor is deliberately holding integration at the level that fits the learning goal.", "correct": true },
-        { "id": "b", "text": "Leaving the software's main capability unused always wastes the technology.", "correct": false },
-        { "id": "c", "text": "Always let the tool choose the test and reframe the goal around reading output.", "correct": false },
-        { "id": "d", "text": "Show only the final p-value to cut extraneous processing.", "correct": false }
+        {
+          "id": "a",
+          "text": "Holding integration at the level that serves the learning goal is deliberate, not a failure to climb SAMR.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Unused software features always mean the design is incomplete.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Auto-select should always replace student choice to reach Modification.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Showing only a final p-value is required by the modality principle.",
+          "correct": false
+        }
       ],
-      "explain": "Higher on SAMR is not always better; match level to the learning goal."
+      "explain": "Higher on SAMR is not always better; match level to the goal."
     },
     {
-      "id": "coi-integration",
+      "id": "pim-integration",
       "lesson": "3.8 CoI",
       "tag": "Practical Inquiry / integration",
-      "stem": "In the Practical Inquiry Model, what is the integration phase?",
+      "source": "know",
+      "stem": "In the Practical Inquiry Model, which phase is 'make sense of explored ideas and connect them into coherent understanding'?",
       "choices": [
-        { "id": "a", "text": "Making sense of ideas from exploration and building connections between them.", "correct": true },
-        { "id": "b", "text": "A sparking problem that starts curiosity.", "correct": false },
-        { "id": "c", "text": "Open brainstorming and idea-sharing without yet connecting.", "correct": false },
-        { "id": "d", "text": "Testing the constructed understanding against the original problem.", "correct": false }
+        {
+          "id": "a",
+          "text": "Integration \u2014 and it is where the community dimension matters most.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Triggering event \u2014 the spark that starts curiosity.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Exploration \u2014 brainstorming without yet weaving.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Resolution \u2014 only the final application test.",
+          "correct": false
+        }
       ],
-      "explain": "Triggering → exploration → integration → resolution. Integration is where community helps most."
+      "explain": "Triggering \u2192 exploration \u2192 integration \u2192 resolution. Integration needs discourse."
     },
     {
-      "id": "social-then-cognitive",
+      "id": "social-unlocks-cognitive",
       "lesson": "3.8 CoI",
-      "tag": "social → cognitive presence",
-      "stem": "Why does weak social presence make cognitive presence harder?",
+      "tag": "social \u2192 cognitive presence",
+      "source": "know",
+      "stem": "A forum feels anonymous and chilly; few people risk half-formed ideas. Why does that hurt cognitive presence?",
       "choices": [
-        { "id": "a", "text": "Genuine integration needs honest discourse, which happens when people feel safe as real people.", "correct": true },
-        { "id": "b", "text": "Instructors simply lack prior-knowledge data in those environments.", "correct": false },
-        { "id": "c", "text": "Isolated learners always skip readings.", "correct": false },
-        { "id": "d", "text": "Anonymity mainly raises extraneous load while reading posts.", "correct": false }
+        {
+          "id": "a",
+          "text": "Honest discourse needed for genuine integration is harder when people do not feel present as real people.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Instructors simply lack prior-knowledge dashboards in those courses.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Isolated learners always skip readings by definition.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Anonymity mainly adds extraneous load while scrolling.",
+          "correct": false
+        }
       ],
-      "explain": "Without social presence, learners avoid intellectual risk; integration stalls."
+      "explain": "Weak social presence \u2192 less intellectual risk \u2192 weaker cognitive presence."
     },
     {
-      "id": "facilitate-discourse",
+      "id": "weave-not-answer-key",
       "lesson": "3.8 CoI",
       "tag": "facilitating discourse",
-      "stem": "Week three has ninety varied, thoughtful posts; nobody has tied them together and time is almost up. Best facilitating-discourse move?",
+      "source": "know",
+      "stem": "Twenty thoughtful posts sit in parallel threads with no synthesis and the week is ending. Which teaching-presence move best fits facilitating discourse?",
       "choices": [
-        { "id": "a", "text": "Name which threads connect and ask the group to reconcile them.", "correct": true },
-        { "id": "b", "text": "Post the correct answer so discussion can stop.", "correct": false },
-        { "id": "c", "text": "Only schedule a sync video for social presence and ignore the threads.", "correct": false },
-        { "id": "d", "text": "Cut the required post count so fewer people write.", "correct": false }
+        {
+          "id": "a",
+          "text": "Name which threads connect and ask the group to reconcile them.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Post the official correct synthesis and close comments.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Only schedule a social icebreaker call and ignore the threads.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Cut the required post count so fewer people write.",
+          "correct": false
+        }
       ],
-      "explain": "Facilitating discourse = guide interaction while it happens; weave, don't replace with the key."
+      "explain": "Facilitating discourse guides interaction; it does not replace it with the key."
     },
     {
-      "id": "ai-transparency",
+      "id": "ai-be-transparent",
       "lesson": "3.9 Ethics",
       "tag": "AI authorship",
-      "stem": "Most defensible ethical position on AI authorship for now, per the lesson?",
+      "source": "know",
+      "stem": "Legal rules on AI-assisted student work are unsettled. What does the lesson call the most defensible ethical stance for now?",
       "choices": [
-        { "id": "a", "text": "Transparency about what was generated, by what means, and what role human judgment played.", "correct": true },
-        { "id": "b", "text": "Treat AI output as public domain until copyright settles.", "correct": false },
-        { "id": "c", "text": "Ban any AI-touched work from academic credit.", "correct": false },
-        { "id": "d", "text": "Allow AI only on outputs learners never see.", "correct": false }
+        {
+          "id": "a",
+          "text": "Transparency about what was generated, by what means, and what role human judgment played.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Treat all AI output as public domain until courts finish.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Ban any AI-touched artifact from credit automatically.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Allow AI only on materials learners never encounter.",
+          "correct": false
+        }
       ],
-      "explain": "Lesson: for now, transparency is the most defensible stance while law catches up."
+      "explain": "For now: disclose generation, means, and human judgment."
     },
     {
-      "id": "sociopolitical-hardest",
+      "id": "critique-while-succeeding",
       "lesson": "3.9 Ethics",
       "tag": "Ladson-Billings",
+      "source": "know",
       "stem": "Why is sociopolitical consciousness often the hardest of Ladson-Billings' three requirements?",
       "choices": [
-        { "id": "a", "text": "It asks educators to help students critique the systems they are also trying to succeed within.", "correct": true },
-        { "id": "b", "text": "It is the hardest to put on a standardized test.", "correct": false },
-        { "id": "c", "text": "Most teachers lack any cultural knowledge at all.", "correct": false },
-        { "id": "d", "text": "It always replaces academic success instead of sitting beside it.", "correct": false }
+        {
+          "id": "a",
+          "text": "It asks educators to help students critique the systems they are also trying to succeed within.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "It is simply the hardest item to put on a multiple-choice test.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Teachers are assumed to have zero cultural knowledge whatsoever.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It replaces academic success rather than sitting beside it.",
+          "correct": false
+        }
       ],
-      "explain": "Academic success + cultural competence + sociopolitical consciousness; the third critiques the systems of success."
+      "explain": "Academic success + cultural competence + sociopolitical consciousness; the third critiques the success system."
     },
     {
-      "id": "multiple-means-mastery",
+      "id": "format-not-construct",
       "lesson": "3.9 Ethics",
       "tag": "inclusive assessment",
-      "stem": "A certificate grades every module with one timed oral, though the goal is disease-transmission reasoning. Strong written analyses, weak oral scores. Best response?",
+      "source": "know",
+      "stem": "A course grades 'systems thinking' only via one high-stakes live debate. A student with strong written analyses tanks the debate format. Best ethics-aligned response?",
       "choices": [
-        { "id": "a", "text": "Offer multiple means of demonstrating mastery — the format is incidental to the stated goal.", "correct": true },
-        { "id": "b", "text": "Keep one format so ranking stays fair.", "correct": false },
-        { "id": "c", "text": "Only add spaced oral practice so the format becomes familiar.", "correct": false },
-        { "id": "d", "text": "Add growth-mindset comments and leave the single format alone.", "correct": false }
+        {
+          "id": "a",
+          "text": "Offer multiple means of demonstrating mastery \u2014 the debate format is incidental to the stated construct.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Keep one format so ranking stays comparable.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Only add growth-mindset comments and leave the single format.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Assume more debate rehearsal always fixes a construct mismatch.",
+          "correct": false
+        }
       ],
-      "explain": "Separate knowledge from format. Can't-show-it-this-way ≠ doesn't-know-it."
+      "explain": "Separate knowledge from format; can't-show-it-this-way \u2260 doesn't-know-it."
+    },
+    {
+      "id": "src-tpack-extends-shulman",
+      "lesson": "3.1 TPACK",
+      "tag": "TPACK / Shulman",
+      "source": "practice-sample",
+      "stem": "According to the TPACK lesson, how does TPACK extend Shulman's framework?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It adds Technological Knowledge to Shulman's two as a third foundational domain.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "It adds classroom context as a fourth domain alongside the original three domains.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It replaces Pedagogical Content Knowledge with one unified measure of teacher skill.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It separates content knowledge from subject matter expertise for the very first time.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample shape: definition stem. Claim = TK as third foundational domain."
+    },
+    {
+      "id": "src-desmos-more-than-convenience",
+      "lesson": "3.1 TPACK",
+      "tag": "tech changes representation",
+      "source": "practice-sample",
+      "stem": "Why does the TPACK lesson treat using Desmos to explore functions as more than a convenience over a chalkboard?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Because technology changes how content can be represented and how instruction can be designed.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Because students retain more when a demonstration is repeated across spaced sessions.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Because the tool reduces the extraneous load of drawing accurate graphs by hand.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Because immediate feedback is more motivating than delayed feedback from a teacher.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample scene (Desmos). Same claim as Know tech-changes-representation card."
+    },
+    {
+      "id": "src-tck-plate-sim",
+      "lesson": "3.1 TPACK",
+      "tag": "technological content knowledge",
+      "source": "practice-sample",
+      "stem": "A design team is choosing between a narrated video about plate tectonics and a simulation in which learners drag plates and watch boundaries form. Which question in their review meeting most directly exercises technological content knowledge?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Which option changes what aspects of the content are foregrounded and what questions get easy to ask.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Which option keeps learners inside the zone where they can succeed with a modest amount of help.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Which option can be produced and maintained within the budget the team has been given this year.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Which option imposes less extraneous cognitive load on a learner meeting the topic for the first time.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample TCK vignette. Correct choice = content foregrounding, not ZPD/budget/load."
+    },
+    {
+      "id": "src-driving-question",
+      "lesson": "3.2 PBL",
+      "tag": "challenging driving question",
+      "source": "practice-sample",
+      "stem": "In the instructor's own stated view, what actually differentiates a challenging driving question?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Whether there is a single right answer that responses can be judged against.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Whether the question can realistically be answered in the time available.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Whether answering it requires knowledge drawn from more than one subject area.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Whether the question grows out of a problem in the students' own community.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample with Joyner feedback: no single right answer to judge against."
+    },
+    {
+      "id": "src-wiggins-mctighe",
+      "lesson": "3.3 Curriculum",
+      "tag": "backward design",
+      "source": "practice-sample",
+      "stem": "Who introduced the concept of backward design, and in what work?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Grant Wiggins and Jay McTighe, in Understanding by Design, first published in 1998.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Benjamin Bloom and his colleagues, in their taxonomy of cognitive learning objectives.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Ralph Tyler, in Basic Principles of Curriculum and Instruction, first published in 1949.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Jerome Bruner, in The Process of Education, first published in 1960.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample who/what stem. Tyler/Bruner/Bloom are sibling curriculum names."
+    },
+    {
+      "id": "src-spatial-contiguity",
+      "lesson": "3.4 Mayer",
+      "tag": "spatial contiguity",
+      "source": "practice-sample",
+      "stem": "Which of the following is the most correct statement of the spatial contiguity principle?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Corresponding words and images should be near each other on the page or screen rather than separated.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "People learn better when a complex lesson is presented in learner-paced segments than continuously.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "People learn better when cues highlight the organization and key ideas of the material being taught.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Corresponding narration and animation should be presented simultaneously rather than in sequence.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample definition stem. Segmenting / signaling / temporal contiguity are siblings."
+    },
+    {
+      "id": "src-udl-rose-meyer",
+      "lesson": "3.5 UDL",
+      "tag": "Rose and Meyer / CAST",
+      "source": "practice-sample",
+      "stem": "According to the Accessibility and Universal Design for Learning lesson, what did David Rose and Anne Meyer do?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "They adapted Universal Design from architecture to education at CAST.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "They established the social model of disability within academic disability studies.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "They demonstrated that matching instruction to stated modality preferences fails.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "They founded the independent living movement and campaigned for curb cuts in Berkeley.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample who-did-what. Roberts/Oliver/learning-styles myth are distractors."
+    },
+    {
+      "id": "src-integration-phase",
+      "lesson": "3.8 CoI",
+      "tag": "Practical Inquiry / integration",
+      "source": "practice-sample",
+      "stem": "Which of the following is the most correct definition of the integration phase of the Practical Inquiry Model?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Making sense of the ideas that emerged earlier and building connections between them.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "A problem or question or situation that sparks curiosity and provides a reason for inquiry.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Open-ended investigation of the problem space, where learners brainstorm and share ideas.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Testing the understanding that was constructed and applying it to the original problem.",
+          "correct": false
+        }
+      ],
+      "explain": "Practice-sample PIM definition. Community matters most at integration."
     }
   ]
 }
