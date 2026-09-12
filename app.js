@@ -2,7 +2,7 @@ const LS_KEY = "omscs-study";
 const QUIZ_LS_PREFIX = "omscs-study-quiz:";
 const COURSE = "6460";
 /** Bump with index.html ?v= so mobile can confirm a fresh load. */
-const APP_BUILD = 34;
+const APP_BUILD = 35;
 
 const state = {
   weeks: [],
@@ -730,7 +730,8 @@ function renderSceneQuiz() {
   const root = $("scene-quiz");
   if (!root || state.mode !== "quiz") return;
   if (!state.quizBank) {
-    root.innerHTML = "<p class='muted'>Loading scene quiz…</p>";
+    root.innerHTML =
+      "<p class='muted'>No scene quiz bank for this week (or it failed to load). Hard-refresh if you just deployed.</p>";
     setQuizReadyNext(false);
     return;
   }
@@ -823,7 +824,9 @@ async function loadWeek(id) {
 }
 
 async function loadQuizBank() {
-  const index = await fetch("./decks/index.json").then((r) => r.json());
+  const index = await fetch(
+    "./decks/index.json?v=" + APP_BUILD,
+  ).then((r) => r.json());
   const decks = (index && index.decks) || [];
   const match = decks.find(
     (d) => d.kind === "quiz" && d.weekId === state.currentWeekId,
@@ -833,7 +836,12 @@ async function loadQuizBank() {
     state.quizSession = null;
     return;
   }
-  const res = await fetch("./" + match.file);
+  const res = await fetch("./" + match.file + "?v=" + APP_BUILD);
+  if (!res.ok) {
+    state.quizBank = null;
+    state.quizSession = null;
+    return;
+  }
   state.quizBank = await res.json();
   state.quizProgress = loadQuizProgress(state.quizBank.id);
   (state.quizBank.items || []).forEach((it) => ensureQuizItemProgress(it.id));
