@@ -818,17 +818,28 @@ async function loadWeek(id) {
 }
 
 async function loadQuizBank() {
-  const res = await fetch("./decks/cs6460-module-1-quiz.json");
+  const index = await fetch("./decks/index.json").then((r) => r.json());
+  const decks = (index && index.decks) || [];
+  const match = decks.find(
+    (d) => d.kind === "quiz" && d.weekId === state.currentWeekId,
+  );
+  if (!match) {
+    state.quizBank = null;
+    state.quizSession = null;
+    return;
+  }
+  const res = await fetch("./" + match.file);
   state.quizBank = await res.json();
   state.quizProgress = loadQuizProgress(state.quizBank.id);
   (state.quizBank.items || []).forEach((it) => ensureQuizItemProgress(it.id));
   saveQuizProgress();
+  state.quizSession = null;
 }
 
 async function showWeek(id) {
   stashView();
   state.currentWeekId = id;
-  await loadWeek(id);
+  await Promise.all([loadWeek(id), loadQuizBank()]);
   state.chunkId = viewLookup(state.cursorByView) || null;
   saveLs();
   writeHash();

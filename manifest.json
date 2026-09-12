@@ -1,6 +1,6 @@
 {
-  "current": "01",
-  "syncedAt": "2026-09-05T15:57:15Z",
+  "current": "03",
+  "syncedAt": "2026-09-12T00:22:55Z",
   "weeks": [
     {
       "id": "01",
@@ -9,11 +9,19 @@
     {
       "id": "02",
       "file": "weeks/week-02-know.md"
+    },
+    {
+      "id": "03",
+      "file": "weeks/week-03-know.md"
+    },
+    {
+      "id": "05",
+      "file": "weeks/week-05-know.md"
     }
   ],
   "quiz": {
-    "label": "Module 1 Quiz",
-    "dueLabel": "Sun 9/6 AOE",
-    "dueAt": "2026-09-07T11:59:59.999Z"
+    "label": "Module 3 Quiz",
+    "dueLabel": "Sun 9/20 AOE",
+    "dueAt": "2026-09-21T11:59:59.999Z"
   }
 }
