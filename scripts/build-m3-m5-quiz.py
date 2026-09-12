@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Build Module 3/5 scene-quiz banks from Know + marked practice samples."""
+"""Build Module 3/5 scene-quiz banks from Know + marked practice samples.
+
+sessionSize = 5 (think-hard drills).
+Explains = layman claim + fully encapsulated why each tempting wrong dies.
+"""
 
 from __future__ import annotations
 
@@ -7,6 +11,7 @@ import json
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parents[1] / "decks"
+SESSION = 5
 
 
 def item(id_, lesson, tag, stem, correct, wrongs, explain, *, source="know"):
@@ -17,7 +22,7 @@ def item(id_, lesson, tag, stem, correct, wrongs, explain, *, source="know"):
         "id": id_,
         "lesson": lesson,
         "tag": tag,
-        "source": source,  # "know" | "practice-sample"
+        "source": source,
         "stem": stem,
         "choices": choices,
         "explain": explain,
@@ -29,11 +34,10 @@ def pack(id_, title, week, items):
         "id": id_,
         "title": title,
         "weekId": week,
-        "sessionSize": 27,
+        "sessionSize": SESSION,
         "note": (
-            "Know-generated scenes + practice-sample items marked "
-            'source="practice-sample" (format calib from Canvas practice; '
-            "not graded-quiz stems). Choices are paraphrases, not vocab titles."
+            f"Know scenes + practice-sample items (source=practice-sample). "
+            f"Session draws {SESSION}. Explains are layman + why each wrong dies."
         ),
         "items": items,
     }
@@ -42,7 +46,7 @@ def pack(id_, title, week, items):
 def build_m3():
     items = []
 
-    # --- Know-generated (original scenes) ---
+    # --- 3.1 ---
     items.append(
         item(
             "tpack-third-domain",
@@ -55,7 +59,7 @@ def build_m3():
                 "One composite teacher-skill score that replaces Pedagogical Content Knowledge.",
                 "Nothing structural; it only renames Pedagogical Content Knowledge.",
             ],
-            "TPACK (Mishra and Koehler) extends Shulman by adding Technological Knowledge as a third base domain.",
+            "TPACK adds Technological Knowledge as a real third base next to content and pedagogy, so tool choice is not an afterthought. Classroom climate is not that third base. A single skill score would erase the intersections, not explain them. Renaming Pedagogical Content Knowledge alone does not add technology.",
         )
     )
     items.append(
@@ -70,7 +74,7 @@ def build_m3():
                 "The only real gain is cutting the extraneous load of neat handwriting.",
                 "Immediate feedback always outperforms delayed teacher comments, full stop.",
             ],
-            "Joyner's TPACK point: technology can qualitatively change representation and pedagogy, not mere efficiency.",
+            "The win is a new way to see and teach the reaction, not speed alone. Spaced repetition is a different idea and is not automatic just because something is live. Handwriting load can matter, but that understates the representation change. Immediate feedback is not always better, and it is not the TPACK claim here.",
         )
     )
     items.append(
@@ -85,7 +89,7 @@ def build_m3():
                 "Which option keeps novices inside the zone of proximal development?",
                 "Which option uses fewer on-screen words?",
             ],
-            "TCK = how a tool reshapes what content is foregrounded / askable. Budget and load are nearby, not TCK.",
+            "Technological content knowledge asks how the tool reshapes what parts of the subject are easy to see and question. Budget is logistics. Zone of proximal development is about help and readiness. Word count is load/layout, not how the content itself is foregrounded.",
         )
     )
     items.append(
@@ -100,9 +104,27 @@ def build_m3():
                 "The failure is only missing captions, so it is purely an accessibility issue.",
                 "Any digital vocab drill automatically raises Technological Knowledge.",
             ],
-            "Angeli and Valanides: TPACK as design capacity — tools encode pedagogy and content moves.",
+            "When you design the tool you already chose how the content can be practiced — here, only synonym picks. Authors are inside that design capacity, not outside TPACK. Missing captions would be accessibility, not the whole problem. Digitized drills do not automatically equal good technological knowledge.",
         )
     )
+    # alt face: vignette for TCK vs nearby loads
+    items.append(
+        item(
+            "alt-tck-vs-extraneous",
+            "3.1 TPACK",
+            "technological content knowledge",
+            "Reviewers keep arguing about font size and color contrast on a genetics sim. One person asks a different question: 'Does dragging alleles make inheritance patterns easier to notice than a static pedigree chart?' What kind of knowledge is that second question?",
+            "Technological content knowledge — how the tool changes what of the science is easy to see and ask.",
+            [
+                "Only coherence — cutting decoration from working memory.",
+                "Only pedagogical knowledge — classroom management of talk time.",
+                "Only content knowledge — the Mendel facts themselves with no tool in view.",
+            ],
+            "That second question is about how the tool reshapes the content you can notice. Coherence is about cutting junk load. Pedagogical knowledge alone is teaching moves without the tool-content link. Bare Mendel facts are content knowledge with the tool ignored.",
+        )
+    )
+
+    # --- 3.2 ---
     items.append(
         item(
             "driving-q-no-key",
@@ -115,7 +137,7 @@ def build_m3():
                 "It must require at least three academic subjects.",
                 "It is challenging only if it fits neatly in one class period.",
             ],
-            "Joyner: challenging driving questions lack a single correct key.",
+            "Joyner's cut: a challenging driving question has no single correct key — only better and worse answers. Local community origin is nice but not his differentiator here. Multi-subject is optional. Fitting one period is logistics, not the challenge test.",
         )
     )
     items.append(
@@ -123,14 +145,14 @@ def build_m3():
             "collab-is-zpd",
             "3.2 PBL",
             "collaboration / ZPD",
-            "A studio insists every project is solo so 'everyone is accountable.' The PBL lesson would push back how?",
+            "A studio insists every project is solo so 'everyone is accountable.' The project-based lesson would push back how?",
             "Peers are a core support source inside the zone of proximal development, not just a way to split chores.",
             [
                 "Groups exist mainly so stronger students can lecture weaker ones.",
                 "Groups exist so the public product looks larger to outsiders.",
                 "Collaboration is optional flavor once authenticity is secured.",
             ],
-            "Vygotsky framing in the lesson: peers supply ZPD support; collaboration is structural.",
+            "Peers help you do what you cannot yet do alone — that zone of proximal development support is why collaboration is core. It is not mainly stronger kids lecturing. Looking impressive is not the reason. Authenticity does not make collaboration optional flavor.",
         )
     )
     items.append(
@@ -145,9 +167,11 @@ def build_m3():
                 "Keep the quiz and delay it two weeks for spacing.",
                 "Add a one-paragraph reflection and keep the quiz as the main grade.",
             ],
-            "If the project is the learning, assess that artifact — not a later MC proxy.",
+            "If the month of making was the learning, grade that work. Open notes, spacing, or a tiny reflection still leave a mismatched quiz as the real measure.",
         )
     )
+
+    # --- 3.3 ---
     items.append(
         item(
             "ubd-authors",
@@ -160,7 +184,7 @@ def build_m3():
                 "Bruner's spiral, which only repeats the same lecture yearly.",
                 "Bloom's taxonomy, which is itself a full curriculum design method.",
             ],
-            "Wiggins & McTighe 1998 UbD introduced backward design as a practical package.",
+            "Starting from the end goal then building activities is backward design from Wiggins and McTighe (1998). Tyler starts from purposes too but is not the UbD package named here. Bruner's spiral revisits ideas at rising depth — not 'same lecture yearly.' Bloom's taxonomy labels thinking demand; it is not a full design method by itself.",
         )
     )
     items.append(
@@ -175,7 +199,7 @@ def build_m3():
                 "As evidence that backward design only applies to K-12.",
                 "As an accidental leftover a future rewrite will silently fix.",
             ],
-            "Joyner names the assessment-last order as a motivation/effectiveness trade-off.",
+            "He names it as choosing motivation over a slightly better ideal order — not that sequence is irrelevant, not that backward design is K-12-only, and not a silent bug to patch later.",
         )
     )
     items.append(
@@ -190,9 +214,11 @@ def build_m3():
                 "A requirement that every title include a video.",
                 "A rule that the most engaging titles must come first.",
             ],
-            "Joyner: curriculum is architecture, not inventory.",
+            "A title list with times is inventory. Curriculum needs choices about how deep, in what order, and along what path. Themes, mandatory video, or 'fun first' do not supply that architecture.",
         )
     )
+
+    # --- 3.4 ---
     items.append(
         item(
             "labels-beside-parts",
@@ -205,7 +231,7 @@ def build_m3():
                 "Segmenting — the page must be split into separate downloads.",
                 "Image principle — removing the instructor face would fix the legend gap.",
             ],
-            "Spatial contiguity = nearness of related words and pictures.",
+            "Related words and pictures should sit together — that is spatial contiguity. Modality is about spoken words with graphics versus on-screen text fighting the picture. Segmenting is pacing chunks. The image principle is about the talking head, not legend distance.",
         )
     )
     items.append(
@@ -220,7 +246,7 @@ def build_m3():
                 "The first applies only to video; the second only to games.",
                 "The first raises intrinsic load; the second only raises germane load by definition.",
             ],
-            "Joyner: cluster 1 = protect WM from waste; cluster 2 = structure complex content arrival.",
+            "First cluster = stop wasting working memory on junk. Second cluster = feed hard material in a learnable order and pace. Both are evidence-based guidance, not video-only or game-only, and the first is about cutting waste — not raising intrinsic load on purpose.",
         )
     )
     items.append(
@@ -235,9 +261,26 @@ def build_m3():
                 "Force users to finish the paragraph with the map hidden, then show the map with silence.",
                 "Add a third decorative animation to 'increase engagement.'",
             ],
-            "Modality: graphics + spoken words beat graphics + competing on-screen text.",
+            "Speak the explanation while the map moves so eyes are not reading and watching at once. Bigger type still leaves two visual jobs. Hide-then-silent-map loses the together timing. Extra decoration adds load.",
         )
     )
+    items.append(
+        item(
+            "alt-spatial-vs-temporal",
+            "3.4 Mayer",
+            "spatial vs temporal contiguity",
+            "A narrated animation plays the voiceover first, then the motion afterward with no speech. Separately, a diagram puts labels in a distant footer. Which fix matches which principle?",
+            "Play voice and motion together (temporal contiguity); put labels next to the parts (spatial contiguity).",
+            [
+                "Both problems are only coherence — delete the animation entirely.",
+                "Both problems are only segmenting — split into more downloads.",
+                "Swap the fixes: put labels far away on purpose; delay narration on purpose.",
+            ],
+            "Temporal contiguity = matching sound and motion in time. Spatial contiguity = matching words and pictures in space. Deleting everything is coherence overkill. More downloads is segmenting. Swapping the fixes makes both problems worse.",
+        )
+    )
+
+    # --- 3.5 ---
     items.append(
         item(
             "udl-from-architecture",
@@ -250,7 +293,7 @@ def build_m3():
                 "Mike Oliver inventing UDL as a medical-model fix.",
                 "Bloom publishing UDL inside the cognitive taxonomy.",
             ],
-            "Mace = architecture; Rose & Meyer at CAST = UDL.",
+            "Rose and Meyer at CAST adapted building Universal Design into learning. Roberts fought for curb cuts and independent living — not UDL authorship. Oliver is social-model disability theory. Bloom is taxonomy, not UDL.",
         )
     )
     items.append(
@@ -265,7 +308,7 @@ def build_m3():
                 "UDL requires sorting once a preference quiz is validated.",
                 "UDL and learning styles are identical except for branding.",
             ],
-            "Joyner's most important contrast: multiple means for all, not style sorting.",
+            "Universal Design for Learning gives everyone multiple ways in — it does not sort people into one 'style' pipe. Representation is central, not ignored. Preference quizzes are the learning-styles move UDL rejects. The two are not the same idea with new branding.",
         )
     )
     items.append(
@@ -280,9 +323,11 @@ def build_m3():
                 "Transcripts matter only under active regulation.",
                 "The intake form already proves demand is negligible.",
             ],
-            "Curb-cut effect: design for edge cases improves the default experience.",
+            "Like curb cuts, transcripts help far more people than the checkbox count. Hardest-only captions and regulation-only logic miss that. The intake form undercounts everyday benefit.",
         )
     )
+
+    # --- 3.6 ---
     items.append(
         item(
             "three-space-positions",
@@ -295,7 +340,7 @@ def build_m3():
                 "Proctored room; open book at home; unsupervised library.",
                 "Live with instructor; watching a recording; never engaging.",
             ],
-            "Joyner and Isbell space axis: co-located with instructor; cohort-remote; fully remote alone.",
+            "Space is about who you sit with: instructor, remote cohort, or alone. Campus labels, proctoring, and 'never engaging' are different axes.",
         )
     )
     items.append(
@@ -310,7 +355,7 @@ def build_m3():
                 "Accreditation now scores production values directly.",
                 "Distributed materials never need updates once filmed.",
             ],
-            "Content outlives the cohort — design and invest accordingly.",
+            "Distributed materials travel past this semester's roster, so quality is worth it. Eval scores, accreditation polish myths, and 'never update' are not the argument.",
         )
     )
     items.append(
@@ -325,9 +370,26 @@ def build_m3():
                 "Nothing at all beyond raw file downloads.",
                 "Automatic provisional credit that converts later without new verification.",
             ],
-            "Certificate ≠ institutional credit claim without verification rigor.",
+            "Without verifying identity and meeting institutional standards you can offer a certificate, not transcript credit. Staff comments alone are not credit. You are not limited to raw downloads. Provisional auto-credit without verification is still dishonest as credit.",
         )
     )
+    items.append(
+        item(
+            "alt-certificate-vs-credit",
+            "3.6 Distributed classroom",
+            "certificate vs credit",
+            "A learner finishes every module and gets a PDF that says 'Completed with staff review.' No ID check happened. A friend asks if that counts like a university course on a transcript. Straight answer?",
+            "No — that is certificate-style recognition, not academic credit backed by verified assessment.",
+            [
+                "Yes — any staff comment makes it credit.",
+                "Yes — PDF completion always transfers as elective hours.",
+                "No — and certificates are worthless in every context.",
+            ],
+            "Credit is an institutional claim with verification. This PDF is structured completion recognition. Staff comments do not mint credit. Transfer hours are not automatic. Certificates can still have real value without being credit.",
+        )
+    )
+
+    # --- 3.7 ---
     items.append(
         item(
             "aug-vs-sub",
@@ -340,7 +402,7 @@ def build_m3():
                 "Modification — the task itself was redesigned.",
                 "Redefinition — previously impossible collaboration across countries.",
             ],
-            "Typing alone ≈ Substitution; spell/search/reorder/submit gains ≈ Augmentation.",
+            "Same notebook job with search/reorder/upload is Augmentation. Pure typing with no new function would be Substitution. Modification redesigns the task. Redefinition enables previously impossible work — not claimed here.",
         )
     )
     items.append(
@@ -355,7 +417,7 @@ def build_m3():
                 "A rule that higher SAMR levels are always better.",
                 "A claim that TPACK only measures how modest the tech use looks.",
             ],
-            "Complementary: SAMR diagnoses degree of change; TPACK evaluates design wisdom.",
+            "SAMR tells you how much the task changed. TPACK asks whether going further is smart for this teaching goal. They work together. Higher is not always better. TPACK is not just another modest-use meter.",
         )
     )
     items.append(
@@ -370,9 +432,26 @@ def build_m3():
                 "Auto-select should always replace student choice to reach Modification.",
                 "Showing only a final p-value is required by the modality principle.",
             ],
-            "Higher on SAMR is not always better; match level to the goal.",
+            "Match the tech level to the learning goal — here, choosing the test is the point. Unused features are not automatic failure. Climbing SAMR for its own sake can wreck the goal. Modality is about narration versus on-screen text, not p-values.",
         )
     )
+    items.append(
+        item(
+            "alt-samr-ladder-trap",
+            "3.7 SAMR",
+            "SAMR levels",
+            "Which pair is ordered from least to most transformative on the SAMR ladder?",
+            "Substitution → Augmentation → Modification → Redefinition.",
+            [
+                "Redefinition → Modification → Augmentation → Substitution.",
+                "Augmentation → Substitution → Redefinition → Modification.",
+                "Modification → Substitution → Augmentation → Redefinition.",
+            ],
+            "SAMR climbs Substitution, Augmentation, Modification, Redefinition. The other orders scramble enhancement versus transformation.",
+        )
+    )
+
+    # --- 3.8 ---
     items.append(
         item(
             "pim-integration",
@@ -385,7 +464,7 @@ def build_m3():
                 "Exploration — brainstorming without yet weaving.",
                 "Resolution — only the final application test.",
             ],
-            "Triggering → exploration → integration → resolution. Integration needs discourse.",
+            "Integration is the weaving phase after exploration. Triggering starts curiosity. Exploration is the open hunt. Resolution tests and applies the built understanding.",
         )
     )
     items.append(
@@ -400,7 +479,7 @@ def build_m3():
                 "Isolated learners always skip readings by definition.",
                 "Anonymity mainly adds extraneous load while scrolling.",
             ],
-            "Weak social presence → less intellectual risk → weaker cognitive presence.",
+            "Without feeling like real people to each other, learners stop risking the talk that builds understanding. Missing dashboards, skipped readings, or scroll load are not the Community of Inquiry link named here.",
         )
     )
     items.append(
@@ -415,9 +494,26 @@ def build_m3():
                 "Only schedule a social icebreaker call and ignore the threads.",
                 "Cut the required post count so fewer people write.",
             ],
-            "Facilitating discourse guides interaction; it does not replace it with the key.",
+            "Facilitating discourse means helping the group connect ideas while they talk — not replacing them with the answer key, not only running an icebreaker, and not just cutting volume.",
         )
     )
+    items.append(
+        item(
+            "alt-pim-order",
+            "3.8 CoI",
+            "Practical Inquiry order",
+            "Which order matches the Practical Inquiry Model cycle?",
+            "Triggering event → exploration → integration → resolution.",
+            [
+                "Integration → triggering → resolution → exploration.",
+                "Exploration → resolution → triggering → integration.",
+                "Resolution → exploration → integration → triggering.",
+            ],
+            "Curiosity spark, then explore, then weave, then test/apply. The other sequences scramble the cycle.",
+        )
+    )
+
+    # --- 3.9 ---
     items.append(
         item(
             "ai-be-transparent",
@@ -430,7 +526,7 @@ def build_m3():
                 "Ban any AI-touched artifact from credit automatically.",
                 "Allow AI only on materials learners never encounter.",
             ],
-            "For now: disclose generation, means, and human judgment.",
+            "For now: say what was generated, how, and what a human decided. Public-domain guesses, blanket credit bans, and 'hide AI from learners' are not the stance named.",
         )
     )
     items.append(
@@ -445,7 +541,7 @@ def build_m3():
                 "Teachers are assumed to have zero cultural knowledge whatsoever.",
                 "It replaces academic success rather than sitting beside it.",
             ],
-            "Academic success + cultural competence + sociopolitical consciousness; the third critiques the success system.",
+            "The hard part is critiquing the same systems students must also succeed in. Test format difficulty, 'zero cultural knowledge,' or replacing academic success are not the lesson's reason.",
         )
     )
     items.append(
@@ -460,11 +556,11 @@ def build_m3():
                 "Only add growth-mindset comments and leave the single format.",
                 "Assume more debate rehearsal always fixes a construct mismatch.",
             ],
-            "Separate knowledge from format; can't-show-it-this-way ≠ doesn't-know-it.",
+            "If the goal is systems thinking, let people show it more than one way. One format for easy ranking can punish the format, not the thinking. Mindset comments or more rehearsal do not fix a mismatched measure.",
         )
     )
 
-    # --- Practice-sample items (from Brian's Canvas practice paste; format calib) ---
+    # --- practice samples (from source) ---
     items.append(
         item(
             "src-tpack-extends-shulman",
@@ -477,7 +573,7 @@ def build_m3():
                 "It replaces Pedagogical Content Knowledge with one unified measure of teacher skill.",
                 "It separates content knowledge from subject matter expertise for the very first time.",
             ],
-            "Practice-sample shape: definition stem. Claim = TK as third foundational domain.",
+            "TPACK adds Technological Knowledge as a third foundation next to content and pedagogy. A fourth 'context' domain is not that move. Replacing Pedagogical Content Knowledge with one score erases the framework. Separating content from subject expertise is not what TPACK introduces.",
             source="practice-sample",
         )
     )
@@ -493,7 +589,7 @@ def build_m3():
                 "Because the tool reduces the extraneous load of drawing accurate graphs by hand.",
                 "Because immediate feedback is more motivating than delayed feedback from a teacher.",
             ],
-            "Practice-sample scene (Desmos). Same claim as Know tech-changes-representation card.",
+            "Desmos changes what you can show and how you teach — not merely speed. Spacing, handwriting load, and motivation-from-immediacy are different claims.",
             source="practice-sample",
         )
     )
@@ -509,7 +605,7 @@ def build_m3():
                 "Which option can be produced and maintained within the budget the team has been given this year.",
                 "Which option imposes less extraneous cognitive load on a learner meeting the topic for the first time.",
             ],
-            "Practice-sample TCK vignette. Correct choice = content foregrounding, not ZPD/budget/load.",
+            "Ask how the tool changes what of the science is easy to notice and question. Help level is zone of proximal development. Budget is logistics. Extraneous load is important but not technological content knowledge.",
             source="practice-sample",
         )
     )
@@ -525,7 +621,7 @@ def build_m3():
                 "Whether answering it requires knowledge drawn from more than one subject area.",
                 "Whether the question grows out of a problem in the students' own community.",
             ],
-            "Practice-sample with Joyner feedback: no single right answer to judge against.",
+            "Joyner: challenging driving questions have no single correct key. Time, multi-subject, and community origin are common textbook criteria he is not using as the differentiator here.",
             source="practice-sample",
         )
     )
@@ -541,7 +637,7 @@ def build_m3():
                 "Ralph Tyler, in Basic Principles of Curriculum and Instruction, first published in 1949.",
                 "Jerome Bruner, in The Process of Education, first published in 1960.",
             ],
-            "Practice-sample who/what stem. Tyler/Bruner/Bloom are sibling curriculum names.",
+            "Backward design as named here is Wiggins and McTighe 1998. Bloom labels thinking levels. Tyler is an earlier curriculum rationale. Bruner is spiral/process-of-education — not UbD.",
             source="practice-sample",
         )
     )
@@ -557,7 +653,7 @@ def build_m3():
                 "People learn better when cues highlight the organization and key ideas of the material being taught.",
                 "Corresponding narration and animation should be presented simultaneously rather than in sequence.",
             ],
-            "Practice-sample definition stem. Segmenting / signaling / temporal contiguity are siblings.",
+            "Spatial contiguity = put matching words and pictures near each other. Segments are segmenting. Cues are signaling. Narration with motion together is temporal contiguity.",
             source="practice-sample",
         )
     )
@@ -573,7 +669,7 @@ def build_m3():
                 "They demonstrated that matching instruction to stated modality preferences fails.",
                 "They founded the independent living movement and campaigned for curb cuts in Berkeley.",
             ],
-            "Practice-sample who-did-what. Roberts/Oliver/learning-styles myth are distractors.",
+            "Rose and Meyer brought Universal Design into learning at CAST. Social model, learning-styles myth-busting, and Berkeley curb cuts are other people/stories.",
             source="practice-sample",
         )
     )
@@ -589,7 +685,7 @@ def build_m3():
                 "Open-ended investigation of the problem space, where learners brainstorm and share ideas.",
                 "Testing the understanding that was constructed and applying it to the original problem.",
             ],
-            "Practice-sample PIM definition. Community matters most at integration.",
+            "Integration weaves explored ideas into coherent understanding. Sparking curiosity is triggering. Brainstorming is exploration. Testing/applying is resolution.",
             source="practice-sample",
         )
     )
@@ -612,7 +708,7 @@ def build_m5():
                 "As Observed Score = Criterion Score + Norm Score.",
                 "As Observed Score = True Score + Percentile Rank.",
             ],
-            "CTT: Observed = True + Error.",
+            "The score you see is true ability plus mess — Observed = True + Error. Flipping True and Observed is the wrong equation. Criterion/norm and percentile are other ideas, not that central equation.",
         )
     )
     items.append(
@@ -627,7 +723,7 @@ def build_m5():
                 "Validity sets the maximum reliability a score can ever reach.",
                 "Fairness to groups is unrelated to reliability.",
             ],
-            "Noise-dominated scores cannot validly indicate a construct.",
+            "If the number is mostly noise, it cannot honestly point at the skill you care about. Reliable still is not automatically valid. Validity does not cap reliability that way. Fairness can still interact with reliability.",
         )
     )
     items.append(
@@ -642,9 +738,25 @@ def build_m5():
                 "The claim holds if the exam is criterion-referenced instead of norm-referenced.",
                 "The claim holds once standard error falls below one scale point.",
             ],
-            "Reliability ≠ validity; know what construct you hit.",
+            "A steady score can still measure the wrong thing. Multi-cohort consistency is computable. Criterion vs norm referencing and tiny standard error do not by themselves prove job-readiness validity.",
         )
     )
+    items.append(
+        item(
+            "alt-reliable-vs-valid",
+            "5.1 Measurement",
+            "reliable ≠ valid",
+            "A scale weighs you at 182.0 every morning for a week — same number each day — but the true weight is 168 because it was never calibrated. What does that illustrate?",
+            "High consistency (reliability) with the wrong target (invalid for true weight).",
+            [
+                "Low reliability but high validity.",
+                "That reliability and validity are the same word.",
+                "That calibration is irrelevant once scores stop bouncing.",
+            ],
+            "Same wrong number every day is reliable and still wrong. That is not low reliability. Reliability and validity are not synonyms. Calibration is exactly why the steady wrong reading fails.",
+        )
+    )
+
     items.append(
         item(
             "solo-prestructural",
@@ -657,7 +769,7 @@ def build_m5():
                 "Multistructural — several relevant elements, unintegrated.",
                 "Extended abstract — generalizes to a new domain.",
             ],
-            "SOLO Prestructural = off-point / irrelevant.",
+            "Prestructural = misses the point. One relevant bit would be unistructural. Several unconnected relevant bits would be multistructural. Extended abstract goes up a level of abstraction on purpose.",
         )
     )
     items.append(
@@ -672,7 +784,7 @@ def build_m5():
                 "Bloom ignores motor and attitude domains entirely by definition.",
                 "Bloom handles kind of learning well but says nothing about demand.",
             ],
-            "Type problem ≈ weak on kind of learning; hierarchy problem is the other critique.",
+            "The type problem is weak on *kind* of learning while demand/hierarchy is handled better. Open-ended work is not banned. Motor/attitude domains are a different issue. The last option flips type vs demand.",
         )
     )
     items.append(
@@ -687,9 +799,10 @@ def build_m5():
                 "The final should open with an advance organizer naming the homework.",
                 "Switching to a SOLO rubric alone fixes the reuse problem.",
             ],
-            "Same items confound skill with instance memory.",
+            "Same tickets can be memorized as stories, not as transferable debugging skill. Identical forever is not required for retrieval practice. An advance organizer or SOLO rubric does not fix the confound.",
         )
     )
+
     items.append(
         item(
             "narrow-to-gradable",
@@ -702,7 +815,7 @@ def build_m5():
                 "They overload working memory by definition.",
                 "They make every score stop separating learners.",
             ],
-            "What you can grade automatically starts to define the curriculum.",
+            "What the machine can score starts to become the whole course. Stakes, working memory, and separation can fail in other designs — they are not the narrowing danger named here.",
         )
     )
     items.append(
@@ -717,7 +830,7 @@ def build_m5():
                 "A week lets spacing replace the testing effect entirely.",
                 "Learners cannot self-judge until about a week passes.",
             ],
-            "Testing effect claim targets lasting retention.",
+            "They care about what sticks later, not how it looks right after study. Double reading does not make immediate tests meaningless. Spacing does not erase the testing effect. Self-judgment timing is a different claim.",
         )
     )
     items.append(
@@ -732,9 +845,25 @@ def build_m5():
                 "Which levels feel hardest, for curve calibration first.",
                 "Which playtesters match the marketing persona.",
             ],
-            "ECD: competency model → evidence model; do not invert from cheap logs.",
+            "Decide what skill you mean to measure first, then decide which logged actions would count as proof of that skill. Cheap logs invent meaning after the fact. Hardest levels calibrate difficulty, not the construct. Playtester personas are recruiting, not the measurement model.",
         )
     )
+    items.append(
+        item(
+            "alt-ecd-definition",
+            "5.3 Assessment styles",
+            "evidence-centered design",
+            "In evidence-centered design, what is the competency model versus the evidence model?",
+            "Competency model = what you intend to measure; evidence model = which observable actions count as proof.",
+            [
+                "Competency model = the LMS gradebook columns; evidence model = the curve.",
+                "Competency model = cheapest logs; evidence model = marketing claims.",
+                "They are two names for the same checklist of quiz items.",
+            ],
+            "Competencies are the targets; evidence is what you will accept as signs of those targets. Gradebook columns, curves, cheap logs, and marketing are not those two models. They are not the same checklist under two labels.",
+        )
+    )
+
     items.append(
         item(
             "four-jobs-grade",
@@ -747,7 +876,7 @@ def build_m5():
                 "Communicate, calibrate, rank, and certify competence.",
                 "Certify, motivate, diagnose, and archive.",
             ],
-            "Course voice: communicate / sort / motivate / feedback.",
+            "Course voice: communicate, sort, motivate, feedback. The other lists swap in diagnose/remediate/calibrate/archive jobs the lesson is not using as the four.",
         )
     )
     items.append(
@@ -762,7 +891,7 @@ def build_m5():
                 "It alone permits reassessment.",
                 "It alone reports each objective separately.",
             ],
-            "Contract grading shifts decision rights and basis, not only the rubric text.",
+            "Contract grading shifts who decides and on what basis. Written quality bars, reassessment, and separate objectives show up in the sibling systems too.",
         )
     )
     items.append(
@@ -777,9 +906,25 @@ def build_m5():
                 "Specifications grading — judge each piece against a written bar.",
                 "Contract grading — tie the grade to labor agreed in advance.",
             ],
-            "If the symbol is the distortion, ungrading targets the symbol.",
+            "If the letter/number is distorting behavior, ungrading removes that symbol. The other philosophies still center a reported mark structure.",
         )
     )
+    items.append(
+        item(
+            "alt-grading-siblings",
+            "5.4 Grading",
+            "grading philosophies",
+            "Match the philosophy to the move: (1) remove the score symbol, (2) agree labor/engagement up front, (3) judge each piece against a written quality bar.",
+            "1 ungrading, 2 contract grading, 3 specifications grading.",
+            [
+                "1 specifications, 2 ungrading, 3 contract.",
+                "1 contract, 2 specifications, 3 ungrading.",
+                "1 standards-based, 2 ungrading, 3 contract.",
+            ],
+            "Ungrading drops the mark. Contract shifts the bargain of who decides. Specifications uses an explicit quality bar per piece. The other matchings scramble those.",
+        )
+    )
+
     items.append(
         item(
             "guild-knowledge",
@@ -792,7 +937,7 @@ def build_m5():
                 "The shared vocabulary of a discipline's citation rules alone.",
                 "Only procedures a newcomer masters by peripheral participation.",
             ],
-            "Guild knowledge = tacit expert quality sense; it travels poorly.",
+            "Guild knowledge is the hard-to-say expert feel for quality. A printed rubric is explicit. Citation vocabulary alone is narrower. Peripheral participation is a learning path, not Sadler's name for that tacit feel.",
         )
     )
     items.append(
@@ -807,7 +952,7 @@ def build_m5():
                 "The LMS displays poorly on phones.",
                 "Comments were written before other papers were read.",
             ],
-            "Without a shared standard, feedback has nowhere to land.",
+            "If teacher and student do not share what 'good' means, comments have nowhere to stick. Tone, phone layout, and grading order are lesser explanations here.",
         )
     )
     items.append(
@@ -822,9 +967,10 @@ def build_m5():
                 "Require a compliment before any critique.",
                 "Impose a fixed word count for depth.",
             ],
-            "Without the target, reviews cannot share a standard.",
+            "Without the aim, reviews cannot share a standard. Reading peers, forced compliments, or word counts do not supply the missing target.",
         )
     )
+
     items.append(
         item(
             "analytic-rubric",
@@ -837,7 +983,7 @@ def build_m5():
                 "It waits until the whole stack is read before any score.",
                 "It scores only against the range the cohort actually produced.",
             ],
-            "Analytic = separate criteria, separate scores.",
+            "Analytic = separate criteria, separate scores. One exemplar, wait-for-whole-stack, and cohort-range scoring are other rubric/grading moves.",
         )
     )
     items.append(
@@ -852,7 +998,7 @@ def build_m5():
                 "A uses fewer total points, so incompleteness costs less.",
                 "A names the causes outright, so recall disappears entirely.",
             ],
-            "Visible grain can change what cognitive work is required.",
+            "Showing 'three' changes the mental work required. Speed and point totals do not prove same construct. The stem does not say A names the causes for the student.",
         )
     )
     items.append(
@@ -867,9 +1013,25 @@ def build_m5():
                 "Adopt the opposite blanket ban on showing any rubric early.",
                 "Adopt it only when multiple graders share a stack.",
             ],
-            "Construct assessed drives whether and how to show rubrics.",
+            "Whether to show a fine-grained rubric depends on what you are measuring in that course. Always-show and never-show blankets both ignore construct. Multi-grader logistics alone is not the rule.",
         )
     )
+    items.append(
+        item(
+            "alt-analytic-vs-holistic",
+            "5.6 Rubrics",
+            "analytic vs holistic",
+            "A team wants one overall quality judgment per essay, not separate scores for thesis, evidence, and mechanics. What are they rejecting?",
+            "An analytic rubric's separate criteria scores — they want a holistic overall judgment instead.",
+            [
+                "Evidence-centered design entirely.",
+                "Any feedback to students.",
+                "Contract grading's labor bargain.",
+            ],
+            "One overall mark is holistic; split criteria are analytic. That choice is not rejecting ECD, feedback, or contract grading as such.",
+        )
+    )
+
     items.append(
         item(
             "peer-errors-correlate",
@@ -882,7 +1044,7 @@ def build_m5():
                 "Peers always drift to the scale midpoint.",
                 "Each extra rater adds more noise than they remove by definition.",
             ],
-            "Correlated bias survives the average.",
+            "If everyone shares the same bias, the average keeps the bias. You do not need a magic dozen. Midpoint drift is one failure mode, not the general reason. Extra raters are not automatic net noise.",
         )
     )
     items.append(
@@ -897,7 +1059,7 @@ def build_m5():
                 "Reliability asks stability over years; fairness asks rubric coverage.",
                 "Reliability asks defensibility; fairness asks equal review workload.",
             ],
-            "Same consistency word; fairness checks the wrong reasons for consistency.",
+            "Reliability = do the marks agree. Fairness = do they agree for the wrong reasons (bias unrelated to the work). Liking the process, year-scale stability, and equal workload are different questions.",
         )
     )
     items.append(
@@ -912,9 +1074,25 @@ def build_m5():
                 "Estimate ungraded papers from peer marks after sampling.",
                 "Make staff write feedback before peers review so peers can copy tone.",
             ],
-            "Meta-reviewer: staff grade in context of peer reviews; do not crown raw peer marks.",
+            "Staff become meta-reviewers: judge the work in light of the peer reviews. Raw peer marks as final, estimating the rest from peers, or staff-first modeling are not that design — and raw peer finals are warned against.",
         )
     )
+    items.append(
+        item(
+            "alt-fair-not-reliable",
+            "5.7 Peer assessment",
+            "reliability vs fairness",
+            "Peer scores on posters are almost identical across raters because everyone docks points for accent, not for poster quality. What passes and what fails?",
+            "Reliability can look fine (they agree) while fairness fails (they agree for the wrong reason).",
+            [
+                "Fairness passes because agreement is high.",
+                "Reliability fails because scores match.",
+                "Both pass whenever scores match.",
+            ],
+            "Agreement from a shared irrelevant bias is reliable and unfair. High agreement is not fairness. Matching scores are exactly what reliability likes.",
+        )
+    )
+
     items.append(
         item(
             "undue-influence",
@@ -927,7 +1105,7 @@ def build_m5():
                 "A researcher reading ambiguous results in their favor.",
                 "Only the explicit threat of an academic penalty for declining.",
             ],
-            "Undue influence ≠ only blunt coercion; it includes grader-power pressure.",
+            "Undue influence is the quieter pull from the person who grades you. Dark-pattern nudges, motivated reading of results, and only blunt threats are different problems — the lesson separates undue influence from explicit coercion.",
         )
     )
     items.append(
@@ -942,7 +1120,7 @@ def build_m5():
                 "Aggregation always strips detail so return is impossible.",
                 "A legal exception always overrides student preferences.",
             ],
-            "Persistence and unforeseen reuse make privacy ongoing.",
+            "The hard part is long life and surprise reuse of the data. Invisible instruments, aggregation, and legal overrides are not the main lesson point.",
         )
     )
     items.append(
@@ -957,9 +1135,25 @@ def build_m5():
                 "Reuse is fine after a second de-identification pass alone.",
                 "Reuse is barred because all research data must be destroyed at study end.",
             ],
-            "Stewardship: revisit purpose; consent is not a blank check.",
+            "New purpose needs a fresh look at consent. 'No new collection,' a second de-ID pass, or mandatory destroy-all are not the stewardship rule named.",
         )
     )
+    items.append(
+        item(
+            "alt-undue-vs-coercion",
+            "5.8 Research ethics",
+            "undue influence vs coercion",
+            "Syllabus says 'you may decline the study with no grade penalty,' but students still enroll because they do not want to disappoint the professor who grades them. Which problem is that?",
+            "Undue influence — subtler pressure from the grader relationship, even without an explicit threat.",
+            [
+                "Only explicit coercion, because the syllabus already promised no penalty.",
+                "Only a validity threat to Classical Test Theory.",
+                "Only a curb-cut accessibility failure.",
+            ],
+            "No written penalty can still leave grader-power pressure — undue influence. That is not 'only coercion solved by syllabus text,' not Classical Test Theory, and not curb cuts.",
+        )
+    )
+
     items.append(
         item(
             "bias-at-scale",
@@ -972,7 +1166,7 @@ def build_m5():
                 "It becomes easier to ignore because errors average out.",
                 "It harms a smaller share of learners by definition.",
             ],
-            "Scale multiplies same-direction harm.",
+            "Scale means the same skew hits many people together. It stays ethical, does not magically average away, and does not shrink the harmed share by definition.",
         )
     )
     items.append(
@@ -987,7 +1181,7 @@ def build_m5():
                 "Larger populations need a separate norm table per subgroup first.",
                 "Bias is only real once a sample is statistically large.",
             ],
-            "Reach multiplies identical bias exposure.",
+            "Wide reach multiplies the same harm. Regulation, norm tables, and statistical detectability are not the intensifier named.",
         )
     )
     items.append(
@@ -1002,11 +1196,11 @@ def build_m5():
                 "Terms of service already satisfy the obligation.",
                 "Only the licensing institution holds any duty.",
             ],
-            "No research waiver for needless capture.",
+            "No live study and no score use still do not excuse vacuuming traces 'for someday.' Publication later, ToS checkboxes, and 'blame the school' do not clear the product team.",
         )
     )
 
-    # Practice-sample items
+    # practice samples
     items.append(
         item(
             "src-ctt-equation",
@@ -1019,7 +1213,7 @@ def build_m5():
                 "True Score = Observed Score + Error.",
                 "Observed Score = Criterion Score + Norm Score.",
             ],
-            "Practice-sample definition stem for CTT equation.",
+            "Observed = True + Error. Percentile and criterion/norm mixes are other ideas. Flipping True and Observed is the wrong equation.",
             source="practice-sample",
         )
     )
@@ -1035,7 +1229,7 @@ def build_m5():
                 "A measurement's validity limits how reliable its scores are able to become in practice.",
                 "A measurement can be no fairer to a group than its reliability for that group allows.",
             ],
-            "Practice-sample: reliability ceilings validity (noise blocks construct signal).",
+            "Noise blocks a trustworthy signal of the thing you care about. High reliability does not prove validity. Validity does not cap reliability that way. Fairness is a related but different sentence.",
             source="practice-sample",
         )
     )
@@ -1051,7 +1245,7 @@ def build_m5():
                 "Which levels are the hardest, so that the difficulty curve can be calibrated before launch.",
                 "Which players to recruit for playtesting, so that the sample matches the target audience.",
             ],
-            "Practice-sample ECD vignette: competency model before evidence model.",
+            "Decide what skill you mean to measure first, then decide which logged actions would count as proof. Cheap logs invent meaning afterward. Hard levels calibrate difficulty. Playtester personas are recruiting.",
             source="practice-sample",
         )
     )
@@ -1067,7 +1261,7 @@ def build_m5():
                 "The body of procedures a newcomer masters, learned by working at the edge.",
                 "The shared vocabulary a discipline uses to describe its standards of evidence.",
             ],
-            "Practice-sample with Sadler quote in feedback.",
+            "Guild knowledge is the expert's hard-to-say feel for quality. Rubrics are explicit. Edge procedures and shared vocabulary are neighboring ideas, not Sadler's name for that tacit sense.",
             source="practice-sample",
         )
     )
@@ -1083,7 +1277,7 @@ def build_m5():
                 "Reliability asks whether peer grades are stable over time, while fairness asks whether the rubric covered every objective.",
                 "Reliability asks whether peer grades are defensible, while fairness asks whether everyone did an equal share of reviewing.",
             ],
-            "Practice-sample wording of reliability vs fairness.",
+            "Reliability = do they agree. Fairness = do they agree for irrelevant reasons. Transparency liking, long-term stability, rubric coverage, and equal workload are different tests.",
             source="practice-sample",
         )
     )
@@ -1099,7 +1293,7 @@ def build_m5():
                 "Have graders read only the peer reviews and let the peer marks stand as the final grade.",
                 "Have graders write their feedback before peers review, so peers have a model to imitate.",
             ],
-            "Practice-sample meta-reviewer design; raw peer marks as final is warned against.",
+            "Graders judge the work with the peer reviews in view — meta-review. Estimating from peers, crowning raw peer marks, or staff-first modeling are not that redesign.",
             source="practice-sample",
         )
     )
@@ -1115,7 +1309,7 @@ def build_m5():
                 "The tendency of a researcher to read ambiguous results in favor of their own hypothesis.",
                 "The explicit threat that declining to participate will carry an academic penalty.",
             ],
-            "Practice-sample: undue influence vs explicit coercion.",
+            "Undue influence is quieter grader-power pressure. Dark-pattern pull, motivated interpretation, and explicit academic threats are neighboring problems — the last is coercion, not the subtler case.",
             source="practice-sample",
         )
     )
@@ -1124,25 +1318,14 @@ def build_m5():
 
 
 def main() -> None:
-    m3 = pack(
-        "cs6460-m3-quiz",
-        "CS6460 Module 3 · Scene quiz",
-        "03",
-        build_m3(),
-    )
-    m5 = pack(
-        "cs6460-m5-quiz",
-        "CS6460 Module 5 · Scene quiz",
-        "05",
-        build_m5(),
-    )
+    m3 = pack("cs6460-m3-quiz", "CS6460 Module 3 · Scene quiz", "03", build_m3())
+    m5 = pack("cs6460-m5-quiz", "CS6460 Module 5 · Scene quiz", "05", build_m5())
     for p in (m3, m5):
         for it in p["items"]:
             assert sum(1 for c in it["choices"] if c["correct"]) == 1
             assert len(it["choices"]) == 4
             assert it["source"] in ("know", "practice-sample")
-        path = OUT / f"cs6460-module-{p['weekId'].lstrip('0') or '0'}-quiz.json"
-        # week 03 -> module-3, week 05 -> module-5
+            assert len(it["explain"]) > 80, it["id"]
         path = OUT / (
             "cs6460-module-3-quiz.json"
             if p["weekId"] == "03"
@@ -1150,8 +1333,11 @@ def main() -> None:
         )
         path.write_text(json.dumps(p, indent=2) + "\n", encoding="utf-8")
         n_src = sum(1 for it in p["items"] if it["source"] == "practice-sample")
-        n_know = sum(1 for it in p["items"] if it["source"] == "know")
-        print(f"{path.name}: {len(p['items'])} items ({n_know} know, {n_src} from source)")
+        n_know = len(p["items"]) - n_src
+        print(
+            f"{path.name}: {len(p['items'])} items "
+            f"({n_know} know/alt, {n_src} from source), sessionSize={p['sessionSize']}"
+        )
 
 
 if __name__ == "__main__":

@@ -2,8 +2,8 @@
   "id": "cs6460-m3-quiz",
   "title": "CS6460 Module 3 \u00b7 Scene quiz",
   "weekId": "03",
-  "sessionSize": 27,
-  "note": "Know-generated scenes + practice-sample items marked source=\"practice-sample\" (format calib from Canvas practice; not graded-quiz stems). Choices are paraphrases, not vocab titles.",
+  "sessionSize": 5,
+  "note": "Know scenes + practice-sample items (source=practice-sample). Session draws 5. Explains are layman + why each wrong dies.",
   "items": [
     {
       "id": "tpack-third-domain",
@@ -33,7 +33,7 @@
           "correct": false
         }
       ],
-      "explain": "TPACK (Mishra and Koehler) extends Shulman by adding Technological Knowledge as a third base domain."
+      "explain": "TPACK adds Technological Knowledge as a real third base next to content and pedagogy, so tool choice is not an afterthought. Classroom climate is not that third base. A single skill score would erase the intersections, not explain them. Renaming Pedagogical Content Knowledge alone does not add technology."
     },
     {
       "id": "tpack-not-efficiency",
@@ -63,7 +63,7 @@
           "correct": false
         }
       ],
-      "explain": "Joyner's TPACK point: technology can qualitatively change representation and pedagogy, not mere efficiency."
+      "explain": "The win is a new way to see and teach the reaction, not speed alone. Spaced repetition is a different idea and is not automatic just because something is live. Handwriting load can matter, but that understates the representation change. Immediate feedback is not always better, and it is not the TPACK claim here."
     },
     {
       "id": "tck-what-gets-easy",
@@ -93,7 +93,7 @@
           "correct": false
         }
       ],
-      "explain": "TCK = how a tool reshapes what content is foregrounded / askable. Budget and load are nearby, not TCK."
+      "explain": "Technological content knowledge asks how the tool reshapes what parts of the subject are easy to see and question. Budget is logistics. Zone of proximal development is about help and readiness. Word count is load/layout, not how the content itself is foregrounded."
     },
     {
       "id": "tpack-design-capacity",
@@ -123,7 +123,37 @@
           "correct": false
         }
       ],
-      "explain": "Angeli and Valanides: TPACK as design capacity \u2014 tools encode pedagogy and content moves."
+      "explain": "When you design the tool you already chose how the content can be practiced \u2014 here, only synonym picks. Authors are inside that design capacity, not outside TPACK. Missing captions would be accessibility, not the whole problem. Digitized drills do not automatically equal good technological knowledge."
+    },
+    {
+      "id": "alt-tck-vs-extraneous",
+      "lesson": "3.1 TPACK",
+      "tag": "technological content knowledge",
+      "source": "know",
+      "stem": "Reviewers keep arguing about font size and color contrast on a genetics sim. One person asks a different question: 'Does dragging alleles make inheritance patterns easier to notice than a static pedigree chart?' What kind of knowledge is that second question?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Technological content knowledge \u2014 how the tool changes what of the science is easy to see and ask.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Only coherence \u2014 cutting decoration from working memory.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Only pedagogical knowledge \u2014 classroom management of talk time.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Only content knowledge \u2014 the Mendel facts themselves with no tool in view.",
+          "correct": false
+        }
+      ],
+      "explain": "That second question is about how the tool reshapes the content you can notice. Coherence is about cutting junk load. Pedagogical knowledge alone is teaching moves without the tool-content link. Bare Mendel facts are content knowledge with the tool ignored."
     },
     {
       "id": "driving-q-no-key",
@@ -153,14 +183,14 @@
           "correct": false
         }
       ],
-      "explain": "Joyner: challenging driving questions lack a single correct key."
+      "explain": "Joyner's cut: a challenging driving question has no single correct key \u2014 only better and worse answers. Local community origin is nice but not his differentiator here. Multi-subject is optional. Fitting one period is logistics, not the challenge test."
     },
     {
       "id": "collab-is-zpd",
       "lesson": "3.2 PBL",
       "tag": "collaboration / ZPD",
       "source": "know",
-      "stem": "A studio insists every project is solo so 'everyone is accountable.' The PBL lesson would push back how?",
+      "stem": "A studio insists every project is solo so 'everyone is accountable.' The project-based lesson would push back how?",
       "choices": [
         {
           "id": "a",
@@ -183,7 +213,7 @@
           "correct": false
         }
       ],
-      "explain": "Vygotsky framing in the lesson: peers supply ZPD support; collaboration is structural."
+      "explain": "Peers help you do what you cannot yet do alone \u2014 that zone of proximal development support is why collaboration is core. It is not mainly stronger kids lecturing. Looking impressive is not the reason. Authenticity does not make collaboration optional flavor."
     },
     {
       "id": "assess-the-make",
@@ -213,7 +243,7 @@
           "correct": false
         }
       ],
-      "explain": "If the project is the learning, assess that artifact \u2014 not a later MC proxy."
+      "explain": "If the month of making was the learning, grade that work. Open notes, spacing, or a tiny reflection still leave a mismatched quiz as the real measure."
     },
     {
       "id": "ubd-authors",
@@ -243,7 +273,7 @@
           "correct": false
         }
       ],
-      "explain": "Wiggins & McTighe 1998 UbD introduced backward design as a practical package."
+      "explain": "Starting from the end goal then building activities is backward design from Wiggins and McTighe (1998). Tyler starts from purposes too but is not the UbD package named here. Bruner's spiral revisits ideas at rising depth \u2014 not 'same lecture yearly.' Bloom's taxonomy labels thinking demand; it is not a full design method by itself."
     },
     {
       "id": "motivate-vs-ideal-order",
@@ -273,7 +303,7 @@
           "correct": false
         }
       ],
-      "explain": "Joyner names the assessment-last order as a motivation/effectiveness trade-off."
+      "explain": "He names it as choosing motivation over a slightly better ideal order \u2014 not that sequence is irrelevant, not that backward design is K-12-only, and not a silent bug to patch later."
     },
     {
       "id": "inventory-not-curriculum",
@@ -303,7 +333,7 @@
           "correct": false
         }
       ],
-      "explain": "Joyner: curriculum is architecture, not inventory."
+      "explain": "A title list with times is inventory. Curriculum needs choices about how deep, in what order, and along what path. Themes, mandatory video, or 'fun first' do not supply that architecture."
     },
     {
       "id": "labels-beside-parts",
@@ -333,7 +363,7 @@
           "correct": false
         }
       ],
-      "explain": "Spatial contiguity = nearness of related words and pictures."
+      "explain": "Related words and pictures should sit together \u2014 that is spatial contiguity. Modality is about spoken words with graphics versus on-screen text fighting the picture. Segmenting is pacing chunks. The image principle is about the talking head, not legend distance."
     },
     {
       "id": "cut-cluster-vs-pace-cluster",
@@ -363,7 +393,7 @@
           "correct": false
         }
       ],
-      "explain": "Joyner: cluster 1 = protect WM from waste; cluster 2 = structure complex content arrival."
+      "explain": "First cluster = stop wasting working memory on junk. Second cluster = feed hard material in a learnable order and pace. Both are evidence-based guidance, not video-only or game-only, and the first is about cutting waste \u2014 not raising intrinsic load on purpose."
     },
     {
       "id": "narrate-not-caption-fight",
@@ -393,7 +423,37 @@
           "correct": false
         }
       ],
-      "explain": "Modality: graphics + spoken words beat graphics + competing on-screen text."
+      "explain": "Speak the explanation while the map moves so eyes are not reading and watching at once. Bigger type still leaves two visual jobs. Hide-then-silent-map loses the together timing. Extra decoration adds load."
+    },
+    {
+      "id": "alt-spatial-vs-temporal",
+      "lesson": "3.4 Mayer",
+      "tag": "spatial vs temporal contiguity",
+      "source": "know",
+      "stem": "A narrated animation plays the voiceover first, then the motion afterward with no speech. Separately, a diagram puts labels in a distant footer. Which fix matches which principle?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Play voice and motion together (temporal contiguity); put labels next to the parts (spatial contiguity).",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Both problems are only coherence \u2014 delete the animation entirely.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Both problems are only segmenting \u2014 split into more downloads.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Swap the fixes: put labels far away on purpose; delay narration on purpose.",
+          "correct": false
+        }
+      ],
+      "explain": "Temporal contiguity = matching sound and motion in time. Spatial contiguity = matching words and pictures in space. Deleting everything is coherence overkill. More downloads is segmenting. Swapping the fixes makes both problems worse."
     },
     {
       "id": "udl-from-architecture",
@@ -423,7 +483,7 @@
           "correct": false
         }
       ],
-      "explain": "Mace = architecture; Rose & Meyer at CAST = UDL."
+      "explain": "Rose and Meyer at CAST adapted building Universal Design into learning. Roberts fought for curb cuts and independent living \u2014 not UDL authorship. Oliver is social-model disability theory. Bloom is taxonomy, not UDL."
     },
     {
       "id": "udl-everyone-not-sorted",
@@ -453,7 +513,7 @@
           "correct": false
         }
       ],
-      "explain": "Joyner's most important contrast: multiple means for all, not style sorting."
+      "explain": "Universal Design for Learning gives everyone multiple ways in \u2014 it does not sort people into one 'style' pipe. Representation is central, not ignored. Preference quizzes are the learning-styles move UDL rejects. The two are not the same idea with new branding."
     },
     {
       "id": "access-helps-many",
@@ -483,7 +543,7 @@
           "correct": false
         }
       ],
-      "explain": "Curb-cut effect: design for edge cases improves the default experience."
+      "explain": "Like curb cuts, transcripts help far more people than the checkbox count. Hardest-only captions and regulation-only logic miss that. The intake form undercounts everyday benefit."
     },
     {
       "id": "three-space-positions",
@@ -513,7 +573,7 @@
           "correct": false
         }
       ],
-      "explain": "Joyner and Isbell space axis: co-located with instructor; cohort-remote; fully remote alone."
+      "explain": "Space is about who you sit with: instructor, remote cohort, or alone. Campus labels, proctoring, and 'never engaging' are different axes."
     },
     {
       "id": "materials-outlive-cohort",
@@ -543,7 +603,7 @@
           "correct": false
         }
       ],
-      "explain": "Content outlives the cohort \u2014 design and invest accordingly."
+      "explain": "Distributed materials travel past this semester's roster, so quality is worth it. Eval scores, accreditation polish myths, and 'never update' are not the argument."
     },
     {
       "id": "certificate-not-credit",
@@ -573,7 +633,37 @@
           "correct": false
         }
       ],
-      "explain": "Certificate \u2260 institutional credit claim without verification rigor."
+      "explain": "Without verifying identity and meeting institutional standards you can offer a certificate, not transcript credit. Staff comments alone are not credit. You are not limited to raw downloads. Provisional auto-credit without verification is still dishonest as credit."
+    },
+    {
+      "id": "alt-certificate-vs-credit",
+      "lesson": "3.6 Distributed classroom",
+      "tag": "certificate vs credit",
+      "source": "know",
+      "stem": "A learner finishes every module and gets a PDF that says 'Completed with staff review.' No ID check happened. A friend asks if that counts like a university course on a transcript. Straight answer?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "No \u2014 that is certificate-style recognition, not academic credit backed by verified assessment.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Yes \u2014 any staff comment makes it credit.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Yes \u2014 PDF completion always transfers as elective hours.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "No \u2014 and certificates are worthless in every context.",
+          "correct": false
+        }
+      ],
+      "explain": "Credit is an institutional claim with verification. This PDF is structured completion recognition. Staff comments do not mint credit. Transfer hours are not automatic. Certificates can still have real value without being credit."
     },
     {
       "id": "aug-vs-sub",
@@ -603,7 +693,7 @@
           "correct": false
         }
       ],
-      "explain": "Typing alone \u2248 Substitution; spell/search/reorder/submit gains \u2248 Augmentation."
+      "explain": "Same notebook job with search/reorder/upload is Augmentation. Pure typing with no new function would be Substitution. Modification redesigns the task. Redefinition enables previously impossible work \u2014 not claimed here."
     },
     {
       "id": "samr-diagnoses-tpack-judges",
@@ -633,7 +723,7 @@
           "correct": false
         }
       ],
-      "explain": "Complementary: SAMR diagnoses degree of change; TPACK evaluates design wisdom."
+      "explain": "SAMR tells you how much the task changed. TPACK asks whether going further is smart for this teaching goal. They work together. Higher is not always better. TPACK is not just another modest-use meter."
     },
     {
       "id": "hold-level-for-goal",
@@ -663,7 +753,37 @@
           "correct": false
         }
       ],
-      "explain": "Higher on SAMR is not always better; match level to the goal."
+      "explain": "Match the tech level to the learning goal \u2014 here, choosing the test is the point. Unused features are not automatic failure. Climbing SAMR for its own sake can wreck the goal. Modality is about narration versus on-screen text, not p-values."
+    },
+    {
+      "id": "alt-samr-ladder-trap",
+      "lesson": "3.7 SAMR",
+      "tag": "SAMR levels",
+      "source": "know",
+      "stem": "Which pair is ordered from least to most transformative on the SAMR ladder?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Substitution \u2192 Augmentation \u2192 Modification \u2192 Redefinition.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Redefinition \u2192 Modification \u2192 Augmentation \u2192 Substitution.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Augmentation \u2192 Substitution \u2192 Redefinition \u2192 Modification.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Modification \u2192 Substitution \u2192 Augmentation \u2192 Redefinition.",
+          "correct": false
+        }
+      ],
+      "explain": "SAMR climbs Substitution, Augmentation, Modification, Redefinition. The other orders scramble enhancement versus transformation."
     },
     {
       "id": "pim-integration",
@@ -693,7 +813,7 @@
           "correct": false
         }
       ],
-      "explain": "Triggering \u2192 exploration \u2192 integration \u2192 resolution. Integration needs discourse."
+      "explain": "Integration is the weaving phase after exploration. Triggering starts curiosity. Exploration is the open hunt. Resolution tests and applies the built understanding."
     },
     {
       "id": "social-unlocks-cognitive",
@@ -723,7 +843,7 @@
           "correct": false
         }
       ],
-      "explain": "Weak social presence \u2192 less intellectual risk \u2192 weaker cognitive presence."
+      "explain": "Without feeling like real people to each other, learners stop risking the talk that builds understanding. Missing dashboards, skipped readings, or scroll load are not the Community of Inquiry link named here."
     },
     {
       "id": "weave-not-answer-key",
@@ -753,7 +873,37 @@
           "correct": false
         }
       ],
-      "explain": "Facilitating discourse guides interaction; it does not replace it with the key."
+      "explain": "Facilitating discourse means helping the group connect ideas while they talk \u2014 not replacing them with the answer key, not only running an icebreaker, and not just cutting volume."
+    },
+    {
+      "id": "alt-pim-order",
+      "lesson": "3.8 CoI",
+      "tag": "Practical Inquiry order",
+      "source": "know",
+      "stem": "Which order matches the Practical Inquiry Model cycle?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Triggering event \u2192 exploration \u2192 integration \u2192 resolution.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Integration \u2192 triggering \u2192 resolution \u2192 exploration.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Exploration \u2192 resolution \u2192 triggering \u2192 integration.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Resolution \u2192 exploration \u2192 integration \u2192 triggering.",
+          "correct": false
+        }
+      ],
+      "explain": "Curiosity spark, then explore, then weave, then test/apply. The other sequences scramble the cycle."
     },
     {
       "id": "ai-be-transparent",
@@ -783,7 +933,7 @@
           "correct": false
         }
       ],
-      "explain": "For now: disclose generation, means, and human judgment."
+      "explain": "For now: say what was generated, how, and what a human decided. Public-domain guesses, blanket credit bans, and 'hide AI from learners' are not the stance named."
     },
     {
       "id": "critique-while-succeeding",
@@ -813,7 +963,7 @@
           "correct": false
         }
       ],
-      "explain": "Academic success + cultural competence + sociopolitical consciousness; the third critiques the success system."
+      "explain": "The hard part is critiquing the same systems students must also succeed in. Test format difficulty, 'zero cultural knowledge,' or replacing academic success are not the lesson's reason."
     },
     {
       "id": "format-not-construct",
@@ -843,7 +993,7 @@
           "correct": false
         }
       ],
-      "explain": "Separate knowledge from format; can't-show-it-this-way \u2260 doesn't-know-it."
+      "explain": "If the goal is systems thinking, let people show it more than one way. One format for easy ranking can punish the format, not the thinking. Mindset comments or more rehearsal do not fix a mismatched measure."
     },
     {
       "id": "src-tpack-extends-shulman",
@@ -873,7 +1023,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample shape: definition stem. Claim = TK as third foundational domain."
+      "explain": "TPACK adds Technological Knowledge as a third foundation next to content and pedagogy. A fourth 'context' domain is not that move. Replacing Pedagogical Content Knowledge with one score erases the framework. Separating content from subject expertise is not what TPACK introduces."
     },
     {
       "id": "src-desmos-more-than-convenience",
@@ -903,7 +1053,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample scene (Desmos). Same claim as Know tech-changes-representation card."
+      "explain": "Desmos changes what you can show and how you teach \u2014 not merely speed. Spacing, handwriting load, and motivation-from-immediacy are different claims."
     },
     {
       "id": "src-tck-plate-sim",
@@ -933,7 +1083,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample TCK vignette. Correct choice = content foregrounding, not ZPD/budget/load."
+      "explain": "Ask how the tool changes what of the science is easy to notice and question. Help level is zone of proximal development. Budget is logistics. Extraneous load is important but not technological content knowledge."
     },
     {
       "id": "src-driving-question",
@@ -963,7 +1113,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample with Joyner feedback: no single right answer to judge against."
+      "explain": "Joyner: challenging driving questions have no single correct key. Time, multi-subject, and community origin are common textbook criteria he is not using as the differentiator here."
     },
     {
       "id": "src-wiggins-mctighe",
@@ -993,7 +1143,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample who/what stem. Tyler/Bruner/Bloom are sibling curriculum names."
+      "explain": "Backward design as named here is Wiggins and McTighe 1998. Bloom labels thinking levels. Tyler is an earlier curriculum rationale. Bruner is spiral/process-of-education \u2014 not UbD."
     },
     {
       "id": "src-spatial-contiguity",
@@ -1023,7 +1173,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample definition stem. Segmenting / signaling / temporal contiguity are siblings."
+      "explain": "Spatial contiguity = put matching words and pictures near each other. Segments are segmenting. Cues are signaling. Narration with motion together is temporal contiguity."
     },
     {
       "id": "src-udl-rose-meyer",
@@ -1053,7 +1203,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample who-did-what. Roberts/Oliver/learning-styles myth are distractors."
+      "explain": "Rose and Meyer brought Universal Design into learning at CAST. Social model, learning-styles myth-busting, and Berkeley curb cuts are other people/stories."
     },
     {
       "id": "src-integration-phase",
@@ -1083,7 +1233,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample PIM definition. Community matters most at integration."
+      "explain": "Integration weaves explored ideas into coherent understanding. Sparking curiosity is triggering. Brainstorming is exploration. Testing/applying is resolution."
     }
   ]
 }

@@ -2,8 +2,8 @@
   "id": "cs6460-m5-quiz",
   "title": "CS6460 Module 5 \u00b7 Scene quiz",
   "weekId": "05",
-  "sessionSize": 27,
-  "note": "Know-generated scenes + practice-sample items marked source=\"practice-sample\" (format calib from Canvas practice; not graded-quiz stems). Choices are paraphrases, not vocab titles.",
+  "sessionSize": 5,
+  "note": "Know scenes + practice-sample items (source=practice-sample). Session draws 5. Explains are layman + why each wrong dies.",
   "items": [
     {
       "id": "ctt-equation",
@@ -33,7 +33,7 @@
           "correct": false
         }
       ],
-      "explain": "CTT: Observed = True + Error."
+      "explain": "The score you see is true ability plus mess \u2014 Observed = True + Error. Flipping True and Observed is the wrong equation. Criterion/norm and percentile are other ideas, not that central equation."
     },
     {
       "id": "reliability-ceiling",
@@ -63,7 +63,7 @@
           "correct": false
         }
       ],
-      "explain": "Noise-dominated scores cannot validly indicate a construct."
+      "explain": "If the number is mostly noise, it cannot honestly point at the skill you care about. Reliable still is not automatically valid. Validity does not cap reliability that way. Fairness can still interact with reliability."
     },
     {
       "id": "consistent-still-wrong-construct",
@@ -93,7 +93,37 @@
           "correct": false
         }
       ],
-      "explain": "Reliability \u2260 validity; know what construct you hit."
+      "explain": "A steady score can still measure the wrong thing. Multi-cohort consistency is computable. Criterion vs norm referencing and tiny standard error do not by themselves prove job-readiness validity."
+    },
+    {
+      "id": "alt-reliable-vs-valid",
+      "lesson": "5.1 Measurement",
+      "tag": "reliable \u2260 valid",
+      "source": "know",
+      "stem": "A scale weighs you at 182.0 every morning for a week \u2014 same number each day \u2014 but the true weight is 168 because it was never calibrated. What does that illustrate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "High consistency (reliability) with the wrong target (invalid for true weight).",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Low reliability but high validity.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "That reliability and validity are the same word.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "That calibration is irrelevant once scores stop bouncing.",
+          "correct": false
+        }
+      ],
+      "explain": "Same wrong number every day is reliable and still wrong. That is not low reliability. Reliability and validity are not synonyms. Calibration is exactly why the steady wrong reading fails."
     },
     {
       "id": "solo-prestructural",
@@ -123,7 +153,7 @@
           "correct": false
         }
       ],
-      "explain": "SOLO Prestructural = off-point / irrelevant."
+      "explain": "Prestructural = misses the point. One relevant bit would be unistructural. Several unconnected relevant bits would be multistructural. Extended abstract goes up a level of abstraction on purpose."
     },
     {
       "id": "bloom-type-problem",
@@ -153,7 +183,7 @@
           "correct": false
         }
       ],
-      "explain": "Type problem \u2248 weak on kind of learning; hierarchy problem is the other critique."
+      "explain": "The type problem is weak on *kind* of learning while demand/hierarchy is handled better. Open-ended work is not banned. Motor/attitude domains are a different issue. The last option flips type vs demand."
     },
     {
       "id": "skill-vs-instance",
@@ -183,7 +213,7 @@
           "correct": false
         }
       ],
-      "explain": "Same items confound skill with instance memory."
+      "explain": "Same tickets can be memorized as stories, not as transferable debugging skill. Identical forever is not required for retrieval practice. An advance organizer or SOLO rubric does not fix the confound."
     },
     {
       "id": "narrow-to-gradable",
@@ -213,7 +243,7 @@
           "correct": false
         }
       ],
-      "explain": "What you can grade automatically starts to define the curriculum."
+      "explain": "What the machine can score starts to become the whole course. Stakes, working memory, and separation can fail in other designs \u2014 they are not the narrowing danger named here."
     },
     {
       "id": "delayed-testing-effect",
@@ -243,7 +273,7 @@
           "correct": false
         }
       ],
-      "explain": "Testing effect claim targets lasting retention."
+      "explain": "They care about what sticks later, not how it looks right after study. Double reading does not make immediate tests meaningless. Spacing does not erase the testing effect. Self-judgment timing is a different claim."
     },
     {
       "id": "ecd-competencies-first",
@@ -273,7 +303,37 @@
           "correct": false
         }
       ],
-      "explain": "ECD: competency model \u2192 evidence model; do not invert from cheap logs."
+      "explain": "Decide what skill you mean to measure first, then decide which logged actions would count as proof of that skill. Cheap logs invent meaning after the fact. Hardest levels calibrate difficulty, not the construct. Playtester personas are recruiting, not the measurement model."
+    },
+    {
+      "id": "alt-ecd-definition",
+      "lesson": "5.3 Assessment styles",
+      "tag": "evidence-centered design",
+      "source": "know",
+      "stem": "In evidence-centered design, what is the competency model versus the evidence model?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Competency model = what you intend to measure; evidence model = which observable actions count as proof.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Competency model = the LMS gradebook columns; evidence model = the curve.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Competency model = cheapest logs; evidence model = marketing claims.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "They are two names for the same checklist of quiz items.",
+          "correct": false
+        }
+      ],
+      "explain": "Competencies are the targets; evidence is what you will accept as signs of those targets. Gradebook columns, curves, cheap logs, and marketing are not those two models. They are not the same checklist under two labels."
     },
     {
       "id": "four-jobs-grade",
@@ -303,7 +363,7 @@
           "correct": false
         }
       ],
-      "explain": "Course voice: communicate / sort / motivate / feedback."
+      "explain": "Course voice: communicate, sort, motivate, feedback. The other lists swap in diagnose/remediate/calibrate/archive jobs the lesson is not using as the four."
     },
     {
       "id": "contract-who-decides",
@@ -333,7 +393,7 @@
           "correct": false
         }
       ],
-      "explain": "Contract grading shifts decision rights and basis, not only the rubric text."
+      "explain": "Contract grading shifts who decides and on what basis. Written quality bars, reassessment, and separate objectives show up in the sibling systems too."
     },
     {
       "id": "mark-is-the-problem",
@@ -363,7 +423,37 @@
           "correct": false
         }
       ],
-      "explain": "If the symbol is the distortion, ungrading targets the symbol."
+      "explain": "If the letter/number is distorting behavior, ungrading removes that symbol. The other philosophies still center a reported mark structure."
+    },
+    {
+      "id": "alt-grading-siblings",
+      "lesson": "5.4 Grading",
+      "tag": "grading philosophies",
+      "source": "know",
+      "stem": "Match the philosophy to the move: (1) remove the score symbol, (2) agree labor/engagement up front, (3) judge each piece against a written quality bar.",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1 ungrading, 2 contract grading, 3 specifications grading.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "1 specifications, 2 ungrading, 3 contract.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "1 contract, 2 specifications, 3 ungrading.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "1 standards-based, 2 ungrading, 3 contract.",
+          "correct": false
+        }
+      ],
+      "explain": "Ungrading drops the mark. Contract shifts the bargain of who decides. Specifications uses an explicit quality bar per piece. The other matchings scramble those."
     },
     {
       "id": "guild-knowledge",
@@ -393,7 +483,7 @@
           "correct": false
         }
       ],
-      "explain": "Guild knowledge = tacit expert quality sense; it travels poorly."
+      "explain": "Guild knowledge is the hard-to-say expert feel for quality. A printed rubric is explicit. Citation vocabulary alone is narrower. Peripheral participation is a learning path, not Sadler's name for that tacit feel."
     },
     {
       "id": "feedback-no-shared-standard",
@@ -423,7 +513,7 @@
           "correct": false
         }
       ],
-      "explain": "Without a shared standard, feedback has nowhere to land."
+      "explain": "If teacher and student do not share what 'good' means, comments have nowhere to stick. Tone, phone layout, and grading order are lesser explanations here."
     },
     {
       "id": "show-the-aim",
@@ -453,7 +543,7 @@
           "correct": false
         }
       ],
-      "explain": "Without the target, reviews cannot share a standard."
+      "explain": "Without the aim, reviews cannot share a standard. Reading peers, forced compliments, or word counts do not supply the missing target."
     },
     {
       "id": "analytic-rubric",
@@ -483,7 +573,7 @@
           "correct": false
         }
       ],
-      "explain": "Analytic = separate criteria, separate scores."
+      "explain": "Analytic = separate criteria, separate scores. One exemplar, wait-for-whole-stack, and cohort-range scoring are other rubric/grading moves."
     },
     {
       "id": "rubric-changes-construct",
@@ -513,7 +603,7 @@
           "correct": false
         }
       ],
-      "explain": "Visible grain can change what cognitive work is required."
+      "explain": "Showing 'three' changes the mental work required. Speed and point totals do not prove same construct. The stem does not say A names the causes for the student."
     },
     {
       "id": "rubrics-by-course",
@@ -543,7 +633,37 @@
           "correct": false
         }
       ],
-      "explain": "Construct assessed drives whether and how to show rubrics."
+      "explain": "Whether to show a fine-grained rubric depends on what you are measuring in that course. Always-show and never-show blankets both ignore construct. Multi-grader logistics alone is not the rule."
+    },
+    {
+      "id": "alt-analytic-vs-holistic",
+      "lesson": "5.6 Rubrics",
+      "tag": "analytic vs holistic",
+      "source": "know",
+      "stem": "A team wants one overall quality judgment per essay, not separate scores for thesis, evidence, and mechanics. What are they rejecting?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "An analytic rubric's separate criteria scores \u2014 they want a holistic overall judgment instead.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Evidence-centered design entirely.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Any feedback to students.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Contract grading's labor bargain.",
+          "correct": false
+        }
+      ],
+      "explain": "One overall mark is holistic; split criteria are analytic. That choice is not rejecting ECD, feedback, or contract grading as such."
     },
     {
       "id": "peer-errors-correlate",
@@ -573,7 +693,7 @@
           "correct": false
         }
       ],
-      "explain": "Correlated bias survives the average."
+      "explain": "If everyone shares the same bias, the average keeps the bias. You do not need a magic dozen. Midpoint drift is one failure mode, not the general reason. Extra raters are not automatic net noise."
     },
     {
       "id": "reliable-vs-fair",
@@ -603,7 +723,7 @@
           "correct": false
         }
       ],
-      "explain": "Same consistency word; fairness checks the wrong reasons for consistency."
+      "explain": "Reliability = do the marks agree. Fairness = do they agree for the wrong reasons (bias unrelated to the work). Liking the process, year-scale stability, and equal workload are different questions."
     },
     {
       "id": "meta-reviewer",
@@ -633,7 +753,37 @@
           "correct": false
         }
       ],
-      "explain": "Meta-reviewer: staff grade in context of peer reviews; do not crown raw peer marks."
+      "explain": "Staff become meta-reviewers: judge the work in light of the peer reviews. Raw peer marks as final, estimating the rest from peers, or staff-first modeling are not that design \u2014 and raw peer finals are warned against."
+    },
+    {
+      "id": "alt-fair-not-reliable",
+      "lesson": "5.7 Peer assessment",
+      "tag": "reliability vs fairness",
+      "source": "know",
+      "stem": "Peer scores on posters are almost identical across raters because everyone docks points for accent, not for poster quality. What passes and what fails?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Reliability can look fine (they agree) while fairness fails (they agree for the wrong reason).",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Fairness passes because agreement is high.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Reliability fails because scores match.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Both pass whenever scores match.",
+          "correct": false
+        }
+      ],
+      "explain": "Agreement from a shared irrelevant bias is reliable and unfair. High agreement is not fairness. Matching scores are exactly what reliability likes."
     },
     {
       "id": "undue-influence",
@@ -663,7 +813,7 @@
           "correct": false
         }
       ],
-      "explain": "Undue influence \u2260 only blunt coercion; it includes grader-power pressure."
+      "explain": "Undue influence is the quieter pull from the person who grades you. Dark-pattern nudges, motivated reading of results, and only blunt threats are different problems \u2014 the lesson separates undue influence from explicit coercion."
     },
     {
       "id": "privacy-persists",
@@ -693,7 +843,7 @@
           "correct": false
         }
       ],
-      "explain": "Persistence and unforeseen reuse make privacy ongoing."
+      "explain": "The hard part is long life and surprise reuse of the data. Invisible instruments, aggregation, and legal overrides are not the main lesson point."
     },
     {
       "id": "consent-not-forever",
@@ -723,7 +873,37 @@
           "correct": false
         }
       ],
-      "explain": "Stewardship: revisit purpose; consent is not a blank check."
+      "explain": "New purpose needs a fresh look at consent. 'No new collection,' a second de-ID pass, or mandatory destroy-all are not the stewardship rule named."
+    },
+    {
+      "id": "alt-undue-vs-coercion",
+      "lesson": "5.8 Research ethics",
+      "tag": "undue influence vs coercion",
+      "source": "know",
+      "stem": "Syllabus says 'you may decline the study with no grade penalty,' but students still enroll because they do not want to disappoint the professor who grades them. Which problem is that?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Undue influence \u2014 subtler pressure from the grader relationship, even without an explicit threat.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Only explicit coercion, because the syllabus already promised no penalty.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Only a validity threat to Classical Test Theory.",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Only a curb-cut accessibility failure.",
+          "correct": false
+        }
+      ],
+      "explain": "No written penalty can still leave grader-power pressure \u2014 undue influence. That is not 'only coercion solved by syllabus text,' not Classical Test Theory, and not curb cuts."
     },
     {
       "id": "bias-at-scale",
@@ -753,7 +933,7 @@
           "correct": false
         }
       ],
-      "explain": "Scale multiplies same-direction harm."
+      "explain": "Scale means the same skew hits many people together. It stays ethical, does not magically average away, and does not shrink the harmed share by definition."
     },
     {
       "id": "edtech-scale-fairness",
@@ -783,7 +963,7 @@
           "correct": false
         }
       ],
-      "explain": "Reach multiplies identical bias exposure."
+      "explain": "Wide reach multiplies the same harm. Regulation, norm tables, and statistical detectability are not the intensifier named."
     },
     {
       "id": "capture-only-needed",
@@ -813,7 +993,7 @@
           "correct": false
         }
       ],
-      "explain": "No research waiver for needless capture."
+      "explain": "No live study and no score use still do not excuse vacuuming traces 'for someday.' Publication later, ToS checkboxes, and 'blame the school' do not clear the product team."
     },
     {
       "id": "src-ctt-equation",
@@ -843,7 +1023,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample definition stem for CTT equation."
+      "explain": "Observed = True + Error. Percentile and criterion/norm mixes are other ideas. Flipping True and Observed is the wrong equation."
     },
     {
       "id": "src-reliability-ceiling",
@@ -873,7 +1053,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample: reliability ceilings validity (noise blocks construct signal)."
+      "explain": "Noise blocks a trustworthy signal of the thing you care about. High reliability does not prove validity. Validity does not cap reliability that way. Fairness is a related but different sentence."
     },
     {
       "id": "src-ecd-bridge",
@@ -903,7 +1083,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample ECD vignette: competency model before evidence model."
+      "explain": "Decide what skill you mean to measure first, then decide which logged actions would count as proof. Cheap logs invent meaning afterward. Hard levels calibrate difficulty. Playtester personas are recruiting."
     },
     {
       "id": "src-guild-knowledge",
@@ -933,7 +1113,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample with Sadler quote in feedback."
+      "explain": "Guild knowledge is the expert's hard-to-say feel for quality. Rubrics are explicit. Edge procedures and shared vocabulary are neighboring ideas, not Sadler's name for that tacit sense."
     },
     {
       "id": "src-reliable-vs-fair",
@@ -963,7 +1143,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample wording of reliability vs fairness."
+      "explain": "Reliability = do they agree. Fairness = do they agree for irrelevant reasons. Transparency liking, long-term stability, rubric coverage, and equal workload are different tests."
     },
     {
       "id": "src-meta-reviewer",
@@ -993,7 +1173,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample meta-reviewer design; raw peer marks as final is warned against."
+      "explain": "Graders judge the work with the peer reviews in view \u2014 meta-review. Estimating from peers, crowning raw peer marks, or staff-first modeling are not that redesign."
     },
     {
       "id": "src-undue-influence",
@@ -1023,7 +1203,7 @@
           "correct": false
         }
       ],
-      "explain": "Practice-sample: undue influence vs explicit coercion."
+      "explain": "Undue influence is quieter grader-power pressure. Dark-pattern pull, motivated interpretation, and explicit academic threats are neighboring problems \u2014 the last is coercion, not the subtler case."
     }
   ]
 }

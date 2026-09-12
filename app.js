@@ -2,7 +2,7 @@ const LS_KEY = "omscs-study";
 const QUIZ_LS_PREFIX = "omscs-study-quiz:";
 const COURSE = "6460";
 /** Bump with index.html ?v= so mobile can confirm a fresh load. */
-const APP_BUILD = 35;
+const APP_BUILD = 36;
 
 const state = {
   weeks: [],
@@ -601,7 +601,7 @@ function ensureQuizSession(forceNew) {
     return;
   }
   const size = Math.min(
-    state.quizBank.sessionSize || 27,
+    state.quizBank.sessionSize || 5,
     (state.quizBank.items || []).length,
   );
   const ids = (state.quizBank.items || []).map((it) => it.id);
@@ -746,6 +746,7 @@ function renderSceneQuiz() {
       .filter(Boolean)
       .map((it) => `<li>${inlineHtml(it.tag || it.id)}</li>`)
       .join("");
+    const againN = state.quizBank.sessionSize || 5;
     root.innerHTML = `
       <div class="match-board">
         <h2>Session done</h2>
@@ -756,7 +757,7 @@ function renderSceneQuiz() {
             : "<p class='muted'>No misses this session.</p>"
         }
         <div class="sheet-actions">
-          <button type="button" id="quiz-again" class="primary">Drill again (27)</button>
+          <button type="button" id="quiz-again" class="primary">Drill again (${againN})</button>
           <button type="button" id="quiz-to-read">Back to Read</button>
         </div>
       </div>`;
