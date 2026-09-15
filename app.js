@@ -2,7 +2,7 @@ const LS_KEY = "omscs-study";
 const QUIZ_LS_PREFIX = "omscs-study-quiz:";
 const COURSE = "6460";
 /** Bump with index.html ?v= so mobile can confirm a fresh load. */
-const APP_BUILD = 36;
+const APP_BUILD = 37;
 
 const state = {
   weeks: [],
@@ -204,6 +204,10 @@ function cardDef(c) {
 function cardClosed(id) {
   if (id === state.chunkId) return state.collapsed[id] === true;
   return state.collapsed[id] !== false;
+}
+
+function anyVisibleOpen() {
+  return visibleChunks().some((c) => !cardClosed(c.id));
 }
 
 function setCurrent(id) {
@@ -491,6 +495,12 @@ function renderNav() {
       "aria-pressed",
       state.face === "def" ? "true" : "false",
     );
+  }
+  const collapseAll = $("collapse-all");
+  if (collapseAll) {
+    const open = anyVisibleOpen();
+    collapseAll.textContent = open ? "Collapse" : "Expand";
+    collapseAll.setAttribute("aria-pressed", open ? "false" : "true");
   }
   const sections = $("sections");
   if (sections) {
@@ -897,8 +907,9 @@ function bind() {
     renderArticle();
   });
   on("collapse-all", "click", () => {
+    const expand = !anyVisibleOpen();
     visibleChunks().forEach((c) => {
-      state.collapsed[c.id] = true;
+      state.collapsed[c.id] = expand ? false : true;
     });
     saveLs();
     renderArticle();
