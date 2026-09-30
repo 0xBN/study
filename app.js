@@ -2,7 +2,7 @@ const LS_KEY = "omscs-study";
 const QUIZ_LS_PREFIX = "omscs-study-quiz:";
 const COURSE = "6460";
 /** Bump with index.html ?v= so mobile can confirm a fresh load. */
-const APP_BUILD = 41;
+const APP_BUILD = 42;
 
 const state = {
   weeks: [],
@@ -806,14 +806,19 @@ function renderSceneQuiz() {
     })
     .join("");
   setQuizReadyNext(!!s.answered);
-  const sourceMark =
-    q.source === "practice-sample" ? " · from source" : "";
+  const sourceLabel =
+    q.source === "practice-sample"
+      ? "from source"
+      : q.source === "practice-bank"
+        ? "practice bank"
+        : "";
+  const sourceMark = sourceLabel ? ` · ${sourceLabel}` : "";
   const meta = s.answered
     ? `<p class="quiz-meta muted">${inlineHtml(q.lesson)}${
         q.tag ? ` · ${inlineHtml(q.tag)}` : ""
       }${sourceMark}</p>`
-    : q.source === "practice-sample"
-      ? `<p class="quiz-meta muted">from source</p>`
+    : sourceLabel
+      ? `<p class="quiz-meta muted">${sourceLabel}</p>`
       : "";
   root.innerHTML = `
     <div class="match-stage quiz-stage">

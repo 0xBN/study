@@ -3,7 +3,7 @@
   "title": "CS6460 Module 5 \u00b7 Scene quiz",
   "weekId": "05",
   "sessionSize": 5,
-  "note": "Know scenes + practice-sample items (source=practice-sample). Session draws 5. Explains are layman + why each wrong dies.",
+  "note": "33 Know scenes, 7 practice-sample items, 90 practice-bank items. Session draws 5. Explains are layman + why each wrong dies.",
   "items": [
     {
       "id": "ctt-equation",
@@ -1204,6 +1204,2796 @@
         }
       ],
       "explain": "Undue influence is quieter grader-power pressure. Dark-pattern pull, motivated interpretation, and explicit academic threats are neighboring problems \u2014 the last is coercion, not the subtler case."
+    },
+    {
+      "id": "pb-m5-01-operationalization",
+      "lesson": "5.1 Measurement",
+      "tag": "operationalization",
+      "source": "practice-bank",
+      "stem": "A research team says it wants to measure \u201ccollaborative problem solving.\u201d Before collecting any scores, the team specifies that successful learners should propose alternatives, respond to teammates' ideas, and revise a solution after disagreement. What step has the team primarily taken?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Established test-retest reliability",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Operationalized the construct",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Established criterion validity",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Converted the measure to a norm-referenced scale",
+          "correct": false
+        }
+      ],
+      "explain": "Operationalization means deciding before data collection which observable indicators will count as evidence of an abstract construct. Test-retest is stability over time, criterion validity ties scores to an outside outcome, and norm referencing compares people - none of them define what counts.",
+      "bankWhy": "Operationalization means turning an abstract construct into observable, measurable indicators. \u201cCollaborative problem solving\u201d cannot be measured directly until the team decides what behaviors will count as evidence of it."
+    },
+    {
+      "id": "pb-m5-02-criterion-validity",
+      "lesson": "5.1 Measurement",
+      "tag": "criterion-validity",
+      "source": "practice-bank",
+      "stem": "An admissions exam strongly predicts students' first-year college GPA. What type of validity evidence does this most directly provide?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Construct validity",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Internal consistency",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Criterion validity",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Differential item functioning",
+          "correct": false
+        }
+      ],
+      "explain": "Criterion validity is evidence that scores relate to an external outcome, here later GPA. Construct validity would ask whether the intended trait is measured, internal consistency only shows items agree with each other, and DIF is about group differences on an item.",
+      "bankWhy": "Criterion validity asks whether scores relate to some external outcome or criterion. Predicting later GPA is the classic kind of example."
+    },
+    {
+      "id": "pb-m5-03-construct-validity",
+      "lesson": "5.1 Measurement",
+      "tag": "construct-validity",
+      "source": "practice-bank",
+      "stem": "A creativity test predicts which students will win an unrelated scholarship, but researchers discover that the test mainly measures vocabulary knowledge rather than creativity. What is the strongest concern?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The test lacks construct validity",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The test lacks a reference group",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The test must have low reliability",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The test is necessarily criterion-referenced",
+          "correct": false
+        }
+      ],
+      "explain": "A test can predict an outside outcome and still measure the wrong thing, so construct validity is the operative question. A missing reference group, low reliability, and criterion referencing are separate issues the scenario never establishes.",
+      "bankWhy": "Construct validity asks whether the assessment actually measures the intended underlying construct. An assessment can correlate with an outside outcome while still measuring the wrong thing."
+    },
+    {
+      "id": "pb-m5-04-reliability",
+      "lesson": "5.1 Measurement",
+      "tag": "reliability",
+      "source": "practice-bank",
+      "stem": "Two students of essentially identical ability repeatedly receive very different scores on the same assessment under nearly identical conditions. Which measurement property is most directly in question?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Reliability",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Criterion validity",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Operationalization",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Norm referencing",
+          "correct": false
+        }
+      ],
+      "explain": "Reliability is consistency: would comparable conditions produce approximately the same result? Criterion validity, operationalization, and norm referencing concern meaning and reference frames, not whether the same conditions reproduce the same score.",
+      "bankWhy": "Reliability concerns consistency: under comparable circumstances, would measurement produce approximately the same result?"
+    },
+    {
+      "id": "pb-m5-05-alpha-is-consistency",
+      "lesson": "5.1 Measurement",
+      "tag": "alpha-is-consistency",
+      "source": "practice-bank",
+      "stem": "An instructor reports that a new exam has a Cronbach's alpha of .96 and therefore concludes that the exam is an excellent measure of scientific reasoning. What is the best response?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A high alpha establishes both reliability and construct validity",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A high alpha indicates consistency, but does not establish that the exam measures scientific reasoning",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Alpha can only be used for norm-referenced tests",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "An alpha above .90 means standard error is zero",
+          "correct": false
+        }
+      ],
+      "explain": "A high alpha shows the items hang together, not that they measure scientific reasoning. A swaps reliability in for validity, C invents a norm-referenced restriction, and D reads consistency as zero error.",
+      "bankWhy": "Reliability is necessary for a useful measure but does not tell you what is being measured. A highly consistent test can consistently measure the wrong construct."
+    },
+    {
+      "id": "pb-m5-06-reliability-ceiling",
+      "lesson": "5.1 Measurement",
+      "tag": "reliability-ceiling",
+      "source": "practice-bank",
+      "stem": "What does the statement **\u201creliability places a ceiling on validity\u201d** mean?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Once reliability is sufficiently high, validity follows automatically",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "An assessment cannot meaningfully measure a construct if its scores are overwhelmed by random measurement error",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Valid measures must always have higher validity coefficients than reliability coefficients",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Reliability is more important than validity in high-stakes testing",
+          "correct": false
+        }
+      ],
+      "explain": "If score variation is mostly random noise the number cannot carry a trustworthy signal about the construct, so reliability constrains validity. A turns the ceiling into a guarantee, C flips the relation, and D is a priorities claim the idea never makes.",
+      "bankWhy": "If scores vary largely because of random noise, they cannot provide a trustworthy signal about the underlying construct. High reliability is not sufficient for validity, but very poor reliability constrains it."
+    },
+    {
+      "id": "pb-m5-07-standard-error-of-measurement",
+      "lesson": "5.1 Measurement",
+      "tag": "standard-error-of-measurement",
+      "source": "practice-bank",
+      "stem": "A student earns a 74 on an exam. The instructor tells the student, \u201cYou know exactly 74% of the course material.\u201d Which concept most directly challenges that interpretation?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Bloom's taxonomy",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Standard error of measurement",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Criterion referencing",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Evidence-centered design",
+          "correct": false
+        }
+      ],
+      "explain": "Every observed score carries error, so 74 is a band around true ability rather than an exact percentage of material known. Bloom, criterion referencing, and evidence-centered design say nothing about one score's precision.",
+      "bankWhy": "Any observed score contains measurement error. The student's underlying score is better understood as lying somewhere around the observed score rather than being exactly 74."
+    },
+    {
+      "id": "pb-m5-08-norm-referenced",
+      "lesson": "5.1 Measurement",
+      "tag": "norm-referenced",
+      "source": "practice-bank",
+      "stem": "A student is told, \u201cYou scored higher than 82% of the students in the comparison group.\u201d What kind of interpretation is this?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Criterion-referenced",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Construct-referenced",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Norm-referenced",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Standards-based",
+          "correct": false
+        }
+      ],
+      "explain": "The score means something by comparison with a reference group. Criterion and standards-based readings compare against a defined standard, and construct-referenced is not one of the lesson's frames.",
+      "bankWhy": "The meaning of the score comes from comparison with other people in a reference group."
+    },
+    {
+      "id": "pb-m5-09-criterion-referenced",
+      "lesson": "5.1 Measurement",
+      "tag": "criterion-referenced",
+      "source": "practice-bank",
+      "stem": "A certification exam reports only whether each candidate can safely perform every required laboratory procedure, regardless of how other candidates perform. Which approach best describes the interpretation?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Norm-referenced",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Criterion-referenced",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Ipsative",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Differential",
+          "correct": false
+        }
+      ],
+      "explain": "Each candidate is judged against a defined standard, not against other candidates. Norm-referenced would need a comparison group, ipsative compares a learner to their own past scores, and differential is not a reference frame.",
+      "bankWhy": "The candidate is compared with a defined standard rather than with other test takers."
+    },
+    {
+      "id": "pb-m5-10-fairness-is-validity",
+      "lesson": "5.1 Measurement",
+      "tag": "fairness-is-validity",
+      "source": "practice-bank",
+      "stem": "A geometry exam gives lengthy, linguistically complex word problems. Students still learning English score substantially lower even after researchers match the groups on geometry ability. What is the strongest measurement concern?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The test may be measuring geometry plus English-language proficiency",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The assessment has become summative rather than formative",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "The exam is too criterion-referenced",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The scores are necessarily unreliable",
+          "correct": false
+        }
+      ],
+      "explain": "Fairness sits inside validity: irrelevant language demands shift scores systematically, so the exam measures geometry plus English proficiency. Formative versus summative is about use, criterion referencing is a frame, and unreliability does not follow.",
+      "bankWhy": "Fairness is part of validity. If irrelevant language demands systematically influence results, the assessment is not cleanly measuring the intended construct."
+    },
+    {
+      "id": "pb-m5-11-differential-item-functioning",
+      "lesson": "5.1 Measurement",
+      "tag": "differential-item-functioning",
+      "source": "practice-bank",
+      "stem": "Two groups of students have equivalent estimated mathematics ability, but one group is substantially more likely to miss one particular item. Which analysis is designed to detect this problem?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Cronbach's alpha",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Differential item functioning",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Standard error of measurement",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Criterion validation",
+          "correct": false
+        }
+      ],
+      "explain": "DIF detects items on which equally capable learners perform differently by group membership. Alpha is internal consistency, SEM is score error, and criterion validation links scores to an outside outcome.",
+      "bankWhy": "DIF looks for items on which equally capable learners perform differently as a function of group membership."
+    },
+    {
+      "id": "pb-m5-12-stereotype-threat",
+      "lesson": "5.1 Measurement",
+      "tag": "stereotype-threat",
+      "source": "practice-bank",
+      "stem": "Before a difficult test, researchers ask students to identify a social identity associated with a negative stereotype about performance in the subject. Scores then fall for that group. Which phenomenon most directly describes the result?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Criteria compliance",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Stereotype threat",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Testing effect",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Constructive alignment",
+          "correct": false
+        }
+      ],
+      "explain": "Steele and Aronson showed that making a negatively stereotyped identity salient can suppress performance without changing underlying ability. Criteria compliance, the testing effect, and constructive alignment are different mechanisms.",
+      "bankWhy": "Steele and Aronson's work showed that making a negatively stereotyped identity salient can suppress performance even without changing underlying ability."
+    },
+    {
+      "id": "pb-m5-13-bloom-not-difficulty",
+      "lesson": "5.2 Taxonomies",
+      "tag": "bloom-not-difficulty",
+      "source": "practice-bank",
+      "stem": "An instructor writes an extremely difficult examination composed entirely of obscure factual-recall questions. According to the lesson's use of Bloom's taxonomy, what is the strongest conclusion?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Difficulty automatically moves the assessment into Analysis or Evaluation",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The exam still primarily measures a low level of Bloom's taxonomy",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Bloom's taxonomy cannot classify difficult questions",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Recall questions are necessarily invalid",
+          "correct": false
+        }
+      ],
+      "explain": "Bloom classifies the cognitive operation a task demands, not how obscure or hard the content is. Difficulty does not promote recall into Analysis, Bloom can classify difficult items, and recall items are not automatically invalid.",
+      "bankWhy": "Bloom is about the kind of cognitive operation required, not how obscure or difficult the content happens to be."
+    },
+    {
+      "id": "pb-m5-14-revised-bloom",
+      "lesson": "5.2 Taxonomies",
+      "tag": "revised-bloom",
+      "source": "practice-bank",
+      "stem": "What major change distinguishes Anderson and Krathwohl's revised Bloom taxonomy?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It removes higher-order cognition entirely",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It replaces cognitive levels with motor-skill levels",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It uses action-oriented categories and adds a separate knowledge dimension",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "It treats all cognitive tasks as equally demanding",
+          "correct": false
+        }
+      ],
+      "explain": "The revision switches to action verbs and crosses the cognitive-process dimension with factual, conceptual, procedural, and metacognitive knowledge. It removes nothing, adds no motor levels, and does not flatten demands.",
+      "bankWhy": "The revision moves toward verbs and crosses the cognitive-process dimension with factual, conceptual, procedural, and metacognitive knowledge."
+    },
+    {
+      "id": "pb-m5-15-webb-dok",
+      "lesson": "5.2 Taxonomies",
+      "tag": "webb-dok",
+      "source": "practice-bank",
+      "stem": "A professor objects that Bloom's hierarchy implies that lower-level tasks must always precede higher-level thinking, even though some apparently simple tasks can require substantial reasoning. Which alternative most directly addresses the **depth** of thinking required without asserting the same ladder?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Webb's Depth of Knowledge",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Cronbach's alpha",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Specifications grading",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "SOLO Prestructural",
+          "correct": false
+        }
+      ],
+      "explain": "Webb's Depth of Knowledge describes how deep the thinking in a task goes without claiming lower levels must always come first. Alpha, specifications grading, and SOLO Prestructural measure completely different things.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-16-solo-multistructural",
+      "lesson": "5.2 Taxonomies",
+      "tag": "solo-multistructural",
+      "source": "practice-bank",
+      "stem": "A student lists four relevant causes of an event but explains each separately and never shows how they interact. Under SOLO, which level best describes the response?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Unistructural",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Multistructural",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Relational",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Extended Abstract",
+          "correct": false
+        }
+      ],
+      "explain": "Several relevant elements are present but stay disconnected, which is multistructural. Unistructural has one relevant element, relational integrates them into a whole, and extended abstract goes beyond the given material.",
+      "bankWhy": "Several relevant elements are present, but they remain disconnected."
+    },
+    {
+      "id": "pb-m5-17-solo-relational",
+      "lesson": "5.2 Taxonomies",
+      "tag": "solo-relational",
+      "source": "practice-bank",
+      "stem": "A learner identifies several factors, connects them into a coherent explanation, and shows how they jointly produce an outcome. Which SOLO stage best fits?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Prestructural",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Unistructural",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Relational",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Extended Abstract",
+          "correct": false
+        }
+      ],
+      "explain": "Relational responses integrate the components into one coherent explanation. Prestructural misses the point, unistructural has a single relevant element, and extended abstract adds transfer or generalization beyond what was given.",
+      "bankWhy": "Relational responses integrate the components into a coherent whole."
+    },
+    {
+      "id": "pb-m5-18-solo-extended-abstract",
+      "lesson": "5.2 Taxonomies",
+      "tag": "solo-extended-abstract",
+      "source": "practice-bank",
+      "stem": "A learner develops a coherent explanation and then generalizes the underlying principle to a new domain that was not part of the original question. Which SOLO stage is most appropriate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Prestructural",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Multistructural",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Relational",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Extended Abstract",
+          "correct": true
+        }
+      ],
+      "explain": "Extended abstract goes past integration into transfer, abstraction, or generalization. Prestructural, multistructural, and relational all stay inside the material that was handed to the learner.",
+      "bankWhy": "Extended Abstract goes beyond integration of the given material into transfer, abstraction, or generalization."
+    },
+    {
+      "id": "pb-m5-19-gagne-novel-instances",
+      "lesson": "5.2 Taxonomies",
+      "tag": "gagne-novel-instances",
+      "source": "practice-bank",
+      "stem": "A programming course wants to assess whether students possess the intellectual skill of debugging unfamiliar programs. Which examination design follows most directly from Gagn\u00e9's framework?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Reuse exactly the programs students practiced",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Give students novel debugging problems",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Ask students to define the word debugging",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Give students a survey of their attitudes toward debugging",
+          "correct": false
+        }
+      ],
+      "explain": "If the target is an intellectual skill, learners must show it on novel instances rather than replay practiced examples. Reusing the same programs, defining the term, and surveying attitudes test memory, verbal knowledge, or affect instead.",
+      "bankWhy": "If the target is an intellectual skill, the learner should demonstrate it on novel instances rather than reproduce memory for practiced examples."
+    },
+    {
+      "id": "pb-m5-20-taxonomy-roles",
+      "lesson": "5.2 Taxonomies",
+      "tag": "taxonomy-roles",
+      "source": "practice-bank",
+      "stem": "Which pairing best matches the role assigned to each taxonomy in the lesson?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Bloom \u2192 response structure; SOLO \u2192 learning type; Gagn\u00e9 \u2192 reliability",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Bloom \u2192 cognitive audit; SOLO \u2192 structure of the response; Gagn\u00e9 \u2192 kind of learning",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Bloom \u2192 fairness; SOLO \u2192 motivation; Gagn\u00e9 \u2192 grading consistency",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Bloom \u2192 psychometrics; SOLO \u2192 criterion validity; Gagn\u00e9 \u2192 norm referencing",
+          "correct": false
+        }
+      ],
+      "explain": "Bloom audits the cognitive operation, SOLO describes the structure of the response, and Gagne describes the kind of learning. Assigning reliability, fairness, motivation, or psychometrics to them invents jobs they do not have.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-21-diagnostic",
+      "lesson": "5.3 Assessment styles",
+      "tag": "diagnostic",
+      "source": "practice-bank",
+      "stem": "An instructor gives students a short mechanics inventory during the first day of class and changes the opening unit after discovering widespread misconceptions. What role did the assessment serve?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Summative",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Diagnostic",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Norm-referenced",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Contractual",
+          "correct": false
+        }
+      ],
+      "explain": "Diagnostic assessment establishes a starting point so instruction can answer what learners already hold. Summative judges accomplishment, norm referencing compares people, and contractual is not a purpose that fits here.",
+      "bankWhy": "Diagnostic assessment establishes the learner's starting point so instruction can respond to what the learner already knows."
+    },
+    {
+      "id": "pb-m5-22-formative-is-use",
+      "lesson": "5.3 Assessment styles",
+      "tag": "formative-is-use",
+      "source": "practice-bank",
+      "stem": "An instructor gives the exact same quiz to two sections. In Section A, the results determine final grades. In Section B, the instructor uses the results to reteach misunderstood concepts the next day. What does this illustrate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Formative and summative are properties of how an assessment is used",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Multiple-choice assessments are inherently summative",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Repeated assessments are inherently formative",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The quiz in Section B has greater reliability",
+          "correct": false
+        }
+      ],
+      "explain": "Formative and summative describe what happens because of the information, not the instrument: section A's quiz settles grades while section B's quiz changes tomorrow's teaching. Format and repetition are not the defining feature.",
+      "bankWhy": "The instrument itself does not determine whether an assessment is formative. What matters is what happens because of the information."
+    },
+    {
+      "id": "pb-m5-23-formative-changes-what-happens",
+      "lesson": "5.3 Assessment styles",
+      "tag": "formative-changes-what-happens",
+      "source": "practice-bank",
+      "stem": "According to Black and Wiliam's formulation, which condition is most important for calling an assessment formative?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It is worth very few points",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Students receive it frequently",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Its evidence actually changes what happens next",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "It contains written comments",
+          "correct": false
+        }
+      ],
+      "explain": "Black and Wiliam define formative by whether the evidence actually alters what happens next. Few points, high frequency, and written comments are surface features that do not guarantee the evidence gets used.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-24-routine-assessment-narrowing",
+      "lesson": "5.3 Assessment styles",
+      "tag": "routine-assessment-narrowing",
+      "source": "practice-bank",
+      "stem": "A learning platform gradually replaces essay writing, design work, and discussion with multiple-choice checks because those items can be generated and scored cheaply. Which danger does this most directly illustrate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Stereotype threat",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Routine assessment narrowing the course toward what software can grade",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Differential item functioning",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The standard error of measurement",
+          "correct": false
+        }
+      ],
+      "explain": "Assessment steers what gets taught, so routine cheap-to-score checks pull a course toward whatever software can grade. Stereotype threat, DIF, and SEM describe entirely different problems.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-25-testing-effect",
+      "lesson": "5.3 Assessment styles",
+      "tag": "testing-effect",
+      "source": "practice-bank",
+      "stem": "Students either reread a passage several times or retrieve its contents from memory. Immediately afterward, rereaders feel more confident, but one week later the retrieval group remembers more. Which principle does this illustrate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Testing effect",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Criteria compliance",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Contract grading",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Norm referencing",
+          "correct": false
+        }
+      ],
+      "explain": "Roediger and Karpicke's result is durability: retrieval beats rereading on the delayed test even though rereaders felt more confident. Criteria compliance, contract grading, and norm referencing are unrelated.",
+      "bankWhy": "Roediger and Karpicke's important result concerns durable retention, not merely immediate performance."
+    },
+    {
+      "id": "pb-m5-26-delayed-test",
+      "lesson": "5.3 Assessment styles",
+      "tag": "delayed-test",
+      "source": "practice-bank",
+      "stem": "Why is the **delayed** test in retrieval-practice research especially important?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Immediate performance is never measurable",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Durable learning can differ from what looks strongest immediately after study",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Test reliability increases automatically after seven days",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Rereading only works on norm-referenced assessments",
+          "correct": false
+        }
+      ],
+      "explain": "The delayed test separates durable learning from how strong performance looks immediately after study, which is where the rereading fluency illusion appears. Immediate performance is measurable, reliability does not rise with time, and rereading is not frame-specific.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-27-adaptive-assessment",
+      "lesson": "5.3 Assessment styles",
+      "tag": "adaptive-assessment",
+      "source": "practice-bank",
+      "stem": "A computerized assessment selects the next problem based on the learner's previous answers and repeatedly chooses items expected to reveal the most information about that learner's proficiency. What kind of assessment is this?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Diagnostic only",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Adaptive assessment",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Ungrading",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Holistic assessment",
+          "correct": false
+        }
+      ],
+      "explain": "Adaptive assessment selects items dynamically to converge on a learner's estimated level. Diagnostic-only, ungrading, and holistic scoring describe different stances rather than dynamic item selection.",
+      "bankWhy": "Adaptive assessments select items dynamically to converge on a learner's estimated level."
+    },
+    {
+      "id": "pb-m5-28-item-response-theory",
+      "lesson": "5.3 Assessment styles",
+      "tag": "item-response-theory",
+      "source": "practice-bank",
+      "stem": "Which framework provides the psychometric foundation commonly associated with adaptive assessment?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Item response theory",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "SOLO taxonomy",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Campbell's Law",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Contract grading",
+          "correct": false
+        }
+      ],
+      "explain": "Item response theory supplies the item-parameter model adaptive delivery depends on. SOLO, Campbell's Law, and contract grading are not psychometric foundations for selecting items.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-29-stealth-assessment",
+      "lesson": "5.3 Assessment styles",
+      "tag": "stealth-assessment",
+      "source": "practice-bank",
+      "stem": "A game infers a learner's understanding of Newtonian mechanics from the way the learner constructs and modifies vehicles, without interrupting play with conventional quizzes. Which assessment style best describes this?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Summative assessment",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Stealth assessment",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Norm-referenced assessment",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Specifications grading",
+          "correct": false
+        }
+      ],
+      "explain": "Stealth assessment infers competency from ongoing play without interrupting it with conventional quizzes. Summative, norm-referenced, and specifications grading are different designs.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-30-evidence-centered-design",
+      "lesson": "5.3 Assessment styles",
+      "tag": "evidence-centered-design",
+      "source": "practice-bank",
+      "stem": "A simulation team begins its assessment design by listing every mouse movement and button click the software can record. According to evidence-centered design, what is wrong with this approach?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The team should start by identifying the competencies it wants to measure",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Mouse movements are never valid evidence",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Evidence-centered design permits only written assessments",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Tasks should be designed before constructs are defined",
+          "correct": false
+        }
+      ],
+      "explain": "Evidence-centered design runs competency model, then evidence model, then task model, so starting from whatever telemetry exists reverses the logic. Mouse movements can be valid evidence, written-only tasks are not required, and tasks follow constructs.",
+      "bankWhy": "Evidence-centered design proceeds conceptually from **competency model \u2192 evidence model \u2192 task model**. Starting from cheap telemetry reverses the logic."
+    },
+    {
+      "id": "pb-m5-31-grades-four-jobs",
+      "lesson": "5.4 Grading",
+      "tag": "grades-four-jobs",
+      "source": "practice-bank",
+      "stem": "According to the lesson, which four jobs are simultaneously assigned to grades?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Communicate, sort, motivate, give feedback",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Measure, punish, remediate, certify",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Predict, rank, diagnose, archive",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Compare, teach, operationalize, validate",
+          "correct": false
+        }
+      ],
+      "explain": "Grades are asked to communicate, sort, motivate, and give feedback at the same time. The other lists drop the motivational and feedback jobs or replace them with punishment and certification.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-32-grader-variation",
+      "lesson": "5.4 Grading",
+      "tag": "grader-variation",
+      "source": "practice-bank",
+      "stem": "Starch and Elliott's early grading studies are most useful for illustrating which problem?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Students dislike numerical grades",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Different graders can assign dramatically different scores to the same work",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Automated grading always outperforms human grading",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Norm-referenced exams are inherently unfair",
+          "correct": false
+        }
+      ],
+      "explain": "Starch and Elliott showed that different graders can assign dramatically different scores to the same work, which is a reliability problem. Student preference, automated superiority, and inherent unfairness are different claims.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-33-reeves-zero-average",
+      "lesson": "5.4 Grading",
+      "tag": "reeves-zero-average",
+      "source": "practice-bank",
+      "stem": "Why did Douglas Reeves object to averaging a zero into a course grade?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Zeros make grading too criterion-referenced",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A zero can have a disproportionately destructive arithmetic effect on the average",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Students cannot interpret percentages",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Zeros increase Cronbach's alpha",
+          "correct": false
+        }
+      ],
+      "explain": "Reeves objected to the arithmetic damage a zero does inside an average, which is far larger than the missing work deserves. Criterion referencing, percentage interpretation, and alpha are not the objection.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-34-butler-comments-only",
+      "lesson": "5.4 Grading",
+      "tag": "butler-comments-only",
+      "source": "practice-bank",
+      "stem": "One group receives written comments on its work. Another receives only grades. A third receives grades plus comments. In Butler's study, which approach produced the strongest later performance?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Grades only",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Grades plus comments",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Comments only",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "All three were equivalent",
+          "correct": false
+        }
+      ],
+      "explain": "Butler found comments alone produced the strongest later performance, because the grade can crowd out attention to feedback. Grades only, grades plus comments, and equivalence were not the outcome.",
+      "bankWhy": "The lesson's larger point is that the grade itself can crowd out attention to feedback."
+    },
+    {
+      "id": "pb-m5-35-standards-based-grading",
+      "lesson": "5.4 Grading",
+      "tag": "standards-based-grading",
+      "source": "practice-bank",
+      "stem": "A school stops averaging every task into one percentage and instead reports a student's demonstrated level on each learning standard. Which philosophy most closely fits?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Standards-based grading",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Contract grading",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Ungrading",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Norm referencing",
+          "correct": false
+        }
+      ],
+      "explain": "Standards-based grading reports demonstrated level on each learning standard instead of averaging everything into one percentage. Contract, ungrading, and norm referencing are different philosophies.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-36-specifications-grading",
+      "lesson": "5.4 Grading",
+      "tag": "specifications-grading",
+      "source": "practice-bank",
+      "stem": "A course marks each assignment simply **meets specification / does not meet specification**, and students earn course grades by completing defined bundles of satisfactory work. Which approach is this?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Standards-based grading",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Specifications grading",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Contract grading",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Ungrading",
+          "correct": false
+        }
+      ],
+      "explain": "Specifications grading marks each assignment meets or does not meet the specification and awards course grades for bundles of satisfactory work. Standards-based reports per-standard levels, contract changes the basis and control of the grade, and ungrading minimizes grades.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-37-contract-grading-basis",
+      "lesson": "5.4 Grading",
+      "tag": "contract-grading-basis",
+      "source": "practice-bank",
+      "stem": "Which feature most clearly distinguishes contract grading from standards-based and specifications grading?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It always uses a four-point rubric",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It changes who determines the basis of the grade and may base it on agreed labor or engagement rather than quality judgments",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "It forbids revision",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It requires students to rank one another",
+          "correct": false
+        }
+      ],
+      "explain": "Contract grading changes who determines the basis of the grade, often granting credit for agreed labor or engagement rather than a quality judgment. Rubric shape, banned revision, and student ranking are not the distinguishing feature.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-38-ungrading",
+      "lesson": "5.4 Grading",
+      "tag": "ungrading",
+      "source": "practice-bank",
+      "stem": "A design instructor notices students choosing safe work because they are optimizing for marks, and students routinely ignore written critiques after seeing their scores. If the instructor believes the **presence of the grade itself** is causing the problem, which philosophy most directly responds?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Ungrading",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Norm-referenced grading",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Point-based grading",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Differential grading",
+          "correct": false
+        }
+      ],
+      "explain": "If the presence of the grade itself is the diagnosed cause, minimizing or removing the grade is the direct response, which is ungrading. Norm-referenced, point-based, and differential grading all keep the grade central.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-39-feedback-definition",
+      "lesson": "5.5 Feedback",
+      "tag": "feedback-definition",
+      "source": "practice-bank",
+      "stem": "Which description best captures the lesson's definition of feedback?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Any information a teacher gives after grading",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Usable information about the gap between current performance and a desired destination",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "A numerical estimate of ability",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Praise intended to motivate the learner",
+          "correct": false
+        }
+      ],
+      "explain": "Feedback is usable information about the gap between current performance and a desired destination. Information after grading, a numeric ability estimate, and motivational praise all miss the gap plus use requirement.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-40-kluger-denisi",
+      "lesson": "5.5 Feedback",
+      "tag": "kluger-denisi",
+      "source": "practice-bank",
+      "stem": "What surprising result emerged from Kluger and DeNisi's meta-analysis?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Feedback almost never changed performance",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Feedback improved every learner studied",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Feedback improved performance on average but made performance worse in a substantial minority of cases",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Written feedback consistently outperformed spoken feedback",
+          "correct": false
+        }
+      ],
+      "explain": "Kluger and DeNisi found feedback improved performance on average while making it worse in a substantial minority of cases. Feedback does change performance, it does not help everyone, and the modality claim is not the finding.",
+      "bankWhy": "Feedback is not automatically beneficial merely because it exists."
+    },
+    {
+      "id": "pb-m5-41-hattie-self-level",
+      "lesson": "5.5 Feedback",
+      "tag": "hattie-self-level",
+      "source": "practice-bank",
+      "stem": "According to Hattie and Timperley, which example provides the least task-relevant information?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "\u201cYour evidence does not support the second claim.\u201d",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "\u201cTry comparing these two cases before drawing your conclusion.\u201d",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "\u201cCheck your reasoning before submitting your next answer.\u201d",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "\u201cYou're a really smart student.\u201d",
+          "correct": true
+        }
+      ],
+      "explain": "Self-level praise about the person carries the least task information. The other options sit at task, process, or self-regulation level and point attention back at the work.",
+      "bankWhy": "Self-level praise directs attention toward the person or ego and provides little information about how to improve the work."
+    },
+    {
+      "id": "pb-m5-42-sadler-sequence",
+      "lesson": "5.5 Feedback",
+      "tag": "sadler-sequence",
+      "source": "practice-bank",
+      "stem": "According to Sadler, which sequence is necessary for a learner to use feedback effectively?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Receive a grade \u2192 compare with peers \u2192 repeat the task",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Know the standard \u2192 compare present performance with it \u2192 take action to close the gap",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Read a rubric \u2192 memorize criteria \u2192 request another grade",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Receive praise \u2192 increase motivation \u2192 achieve mastery",
+          "correct": false
+        }
+      ],
+      "explain": "Sadler's sequence is know the standard, compare present performance against it, then act to close the gap. Grade-and-compare, memorize-rubric, and praise paths skip the learner's own comparison and action.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-43-guild-knowledge",
+      "lesson": "5.5 Feedback",
+      "tag": "guild-knowledge",
+      "source": "practice-bank",
+      "stem": "An expert writing instructor immediately knows that an essay \u201cdoesn't quite work,\u201d but struggles to fully articulate the accumulated standards underlying that judgment. What term did Sadler use for this kind of expertise?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Criterion validity",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Guild knowledge",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Metacognitive monitoring",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Criteria compliance",
+          "correct": false
+        }
+      ],
+      "explain": "Sadler called this tacit, accumulated expertise guild knowledge. Criterion validity, metacognitive monitoring, and criteria compliance name different constructs.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-44-shared-conception-of-quality",
+      "lesson": "5.5 Feedback",
+      "tag": "shared-conception-of-quality",
+      "source": "practice-bank",
+      "stem": "Why can detailed instructor comments fail even when they are accurate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Learners may not share the instructor's underlying conception of what good work looks like",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Accurate feedback reduces reliability",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Students can only process numerical information",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Feedback works only when anonymous",
+          "correct": false
+        }
+      ],
+      "explain": "Accurate comments still fail when the learner does not share the instructor's conception of what good work looks like. Feedback does not reduce reliability, learners are not limited to numbers, and anonymity is not the issue.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-45-guild-knowledge-gap",
+      "lesson": "5.5 Feedback",
+      "tag": "guild-knowledge-gap",
+      "source": "practice-bank",
+      "stem": "A learner receives a comment saying \u201cdevelop the analysis more deeply\u201d but has no idea what \u201cdeep analysis\u201d looks like. Which problem is most directly illustrated?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Standard error",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Lack of shared guild knowledge",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Adaptive testing",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Summative interference",
+          "correct": false
+        }
+      ],
+      "explain": "Without a shared sense of what deep analysis looks like, the comment cannot guide action, which is the guild knowledge gap. Standard error, adaptive testing, and summative interference are unrelated to the failure.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-46-dialogic-feedback",
+      "lesson": "5.5 Feedback",
+      "tag": "dialogic-feedback",
+      "source": "practice-bank",
+      "stem": "What makes **dialogic feedback** different from a conventional feedback message?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It is always delivered digitally",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Meaning is negotiated through a two-way interaction",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "It never includes criticism",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It eliminates standards",
+          "correct": false
+        }
+      ],
+      "explain": "Dialogic feedback negotiates meaning through two-way interaction rather than one-way delivery. It can be spoken or written, it may include criticism, and it does not remove standards.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-47-boud-molloy-new-paradigm",
+      "lesson": "5.5 Feedback",
+      "tag": "boud-molloy-new-paradigm",
+      "source": "practice-bank",
+      "stem": "Boud and Molloy's \u201cnew paradigm\u201d changes feedback primarily by treating it as:",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A product instructors deliver efficiently",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A process learners actively participate in and drive",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "A score attached to performance",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "An automated response generated after every answer",
+          "correct": false
+        }
+      ],
+      "explain": "Boud and Molloy's new paradigm treats feedback as a process learners actively participate in and drive. Efficient delivery, score attachment, and automatic responses keep feedback as something done to the learner.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-48-feedback-literacy",
+      "lesson": "5.5 Feedback",
+      "tag": "feedback-literacy",
+      "source": "practice-bank",
+      "stem": "Which student most clearly demonstrates **feedback literacy**?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A student who collects every comment but never revises",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A student who can interpret the feedback, judge quality, manage an emotional reaction, and take useful action",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "A student who receives feedback instantly",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A student who earns the highest grade without reading comments",
+          "correct": false
+        }
+      ],
+      "explain": "Feedback literacy is the capacity to interpret comments, judge quality, manage the emotional response, and take useful action. Collecting without revising, instant delivery, and high grades without reading comments show its absence.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-49-constructive-alignment",
+      "lesson": "5.6 Rubrics",
+      "tag": "constructive-alignment",
+      "source": "practice-bank",
+      "stem": "What sequence best represents constructive alignment?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Choose grading software \u2192 write assessment \u2192 infer objectives",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Define outcomes \u2192 design learning activities \u2192 design assessment around the same target",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Write rubric \u2192 determine grade distribution \u2192 choose objectives",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Rank students \u2192 identify misconceptions \u2192 revise standards",
+          "correct": false
+        }
+      ],
+      "explain": "Constructive alignment defines outcomes, designs learning activities, then designs assessment around the same target. Software-first, rubric-first, and ranking-first sequences all invert the order.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-50-rubric-reliability-first",
+      "lesson": "5.6 Rubrics",
+      "tag": "rubric-reliability-first",
+      "source": "practice-bank",
+      "stem": "Why does the lesson call reliability a rubric's first job?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Rubrics ensure every learner receives the same grade",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Rubrics help different graders converge toward similar judgments",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Rubrics prove that the intended construct is being measured",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Rubrics make every assignment easier",
+          "correct": false
+        }
+      ],
+      "explain": "A rubric's first job is helping different graders converge on similar judgments. Equal grades, proof of the intended construct, and easier assignments are not what rubrics guarantee.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-51-analytic-vs-holistic-rubric",
+      "lesson": "5.6 Rubrics",
+      "tag": "analytic-vs-holistic-rubric",
+      "source": "practice-bank",
+      "stem": "Which statement correctly distinguishes analytic and holistic rubrics?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Analytic rubrics judge the whole performance; holistic rubrics score dimensions separately",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Analytic rubrics score criteria separately; holistic rubrics make an overall judgment",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Analytic rubrics are for novices only",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Holistic rubrics cannot be reliable",
+          "correct": false
+        }
+      ],
+      "explain": "Analytic rubrics score criteria separately while holistic rubrics make one overall judgment. The first option reverses them, and neither design is reserved for novices or inherently unreliable.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-52-rubric-scope-leak",
+      "lesson": "5.6 Rubrics",
+      "tag": "rubric-scope-leak",
+      "source": "practice-bank",
+      "stem": "A history assessment originally asks, \u201cIdentify the important causes of World War I.\u201d The published rubric then says, \u201c2 points each for correctly describing the **three** major causes.\u201d Why might this change what the assessment measures?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Students are now told how many causes they need to recognize",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "The rubric reduces inter-rater reliability",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Students must now use higher-order cognition",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Three causes cannot be assessed analytically",
+          "correct": false
+        }
+      ],
+      "explain": "Telling students there are exactly three acceptable causes gives away how many exist, so recognizing the scope stops being part of what is measured. It does not lower inter-rater reliability, demand higher-order cognition, or block analytic scoring.",
+      "bankWhy": "The rubric has leaked information about the expected scope of the answer. Recognizing how many important causes exist is no longer part of the construct."
+    },
+    {
+      "id": "pb-m5-53-criteria-compliance",
+      "lesson": "5.6 Rubrics",
+      "tag": "criteria-compliance",
+      "source": "practice-bank",
+      "stem": "Students begin writing essays by mechanically checking off every phrase in a detailed rubric rather than making substantive judgments about the topic. Which concept best describes the problem?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Criteria compliance",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Stereotype threat",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Retrieval practice",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Differential item functioning",
+          "correct": false
+        }
+      ],
+      "explain": "Checking off rubric phrases instead of judging the topic is criteria compliance. Stereotype threat, retrieval practice, and DIF describe different phenomena.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-54-rubric-granularity-validity",
+      "lesson": "5.6 Rubrics",
+      "tag": "rubric-granularity-validity",
+      "source": "practice-bank",
+      "stem": "A professor argues that because transparency is good, students at every level should receive the most detailed possible grading rubric before every task. Which response best matches the lesson?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Correct: maximum transparency can never affect validity",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Incorrect: the appropriate level of rubric detail depends on what judgment the assessment is intended to measure",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Correct, but only for norm-referenced assessments",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Incorrect because students should never see rubrics",
+          "correct": false
+        }
+      ],
+      "explain": "How much rubric detail is appropriate depends on the judgment the assessment is meant to measure, because an overly detailed rubric can hand over the thinking being assessed. Transparency is not weightless, is not limited to norm-referenced tests, and does not mean hiding rubrics.",
+      "bankWhy": "If independent judgment is itself part of the target construct, an overly detailed rubric can give away the very thinking being assessed."
+    },
+    {
+      "id": "pb-m5-55-jonsson-svingby-exemplars",
+      "lesson": "5.6 Rubrics",
+      "tag": "jonsson-svingby-exemplars",
+      "source": "practice-bank",
+      "stem": "According to Jonsson and Svingby's review, when are rubrics especially effective at improving scoring reliability?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "When students never see examples",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "When rubrics are accompanied by exemplars and grader training",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "When every criterion is worth exactly the same points",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "When holistic scoring is prohibited",
+          "correct": false
+        }
+      ],
+      "explain": "Jonsson and Svingby found rubrics help scoring reliability most when paired with exemplars and grader training. Withholding examples, equal weighting, and banning holistic scoring are not their findings.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-56-peer-assessment-learning-value",
+      "lesson": "5.7 Peer assessment",
+      "tag": "peer-assessment-learning-value",
+      "source": "practice-bank",
+      "stem": "Why does peer assessment have educational value even if an instructor could grade every submission personally?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Reviewing another person's work can itself produce learning",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Peer grades are always more accurate than expert grades",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Students prefer giving grades to receiving feedback",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Peer assessment eliminates bias",
+          "correct": false
+        }
+      ],
+      "explain": "Reviewing someone else's work is itself a learning activity, so peer assessment has value even when the instructor could grade everything personally. Peer marks are not automatically more accurate, and preference or bias elimination is not the reason.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-57-falchikov-goldfinch",
+      "lesson": "5.7 Peer assessment",
+      "tag": "falchikov-goldfinch",
+      "source": "practice-bank",
+      "stem": "What did Falchikov and Goldfinch's pooled evidence suggest about peer marks?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Peer and teacher marks bear almost no relationship",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Peer marks correlate reasonably well with teacher marks on average",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Peer marks are always identical to teacher marks",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Peer marks work only in graduate courses",
+          "correct": false
+        }
+      ],
+      "explain": "Falchikov and Goldfinch's pooled evidence found peer and teacher marks correlate reasonably well on average. Near-zero relation, perfect agreement, and graduate-course-only limits are not what the evidence showed.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-58-holistic-peer-judgment",
+      "lesson": "5.7 Peer assessment",
+      "tag": "holistic-peer-judgment",
+      "source": "practice-bank",
+      "stem": "Which peer-review design tends to correspond better with expert judgment according to the lesson?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Students score dozens of tiny checklist dimensions independently",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Students make a more holistic judgment against well-understood criteria",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Students grade without seeing any criteria",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Students assign scores randomly and average them",
+          "correct": false
+        }
+      ],
+      "explain": "Peer designs where students make a more holistic judgment against well-understood criteria tend to correspond better with expert judgment. Dozens of tiny checklist dimensions, unstated criteria, and random averaging all degrade agreement.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-59-shared-bias-averaging",
+      "lesson": "5.7 Peer assessment",
+      "tag": "shared-bias-averaging",
+      "source": "practice-bank",
+      "stem": "A course increases from two peer graders per assignment to eight, yet a systematic tendency to penalize unconventional writing styles remains. Why has averaging failed?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Averaging only helps when errors are independent and random",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Eight raters are fewer than the minimum required",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Reliability always decreases as raters are added",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Peer graders cannot produce quantitative scores",
+          "correct": false
+        }
+      ],
+      "explain": "Averaging cancels independent random error, not bias shared by every rater, so adding graders reproduces the same penalty. Eight raters is not below a minimum, reliability does not always fall as raters are added, and peers can produce quantitative marks.",
+      "bankWhy": "Shared bias does not cancel out merely because more people reproduce it."
+    },
+    {
+      "id": "pb-m5-60-fairness-vs-reliability-peer",
+      "lesson": "5.7 Peer assessment",
+      "tag": "fairness-vs-reliability-peer",
+      "source": "practice-bank",
+      "stem": "What distinguishes **fairness** from **reliability** in peer assessment?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Reliability asks whether marks are consistent; fairness asks whether systematic consistency comes from irrelevant features rather than the work itself",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Reliability concerns students, fairness concerns teachers",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Fairness is simply another word for high inter-rater reliability",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Reliability matters only with numerical grading",
+          "correct": false
+        }
+      ],
+      "explain": "Reliability asks whether marks are consistent while fairness asks whether that consistency comes from irrelevant features rather than the work itself. The other options misassign the terms, equate them, or restrict reliability to numbers.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-61-meta-review",
+      "lesson": "5.7 Peer assessment",
+      "tag": "meta-review",
+      "source": "practice-bank",
+      "stem": "A large MOOC already has students review one another's work. Expert graders later grade the assignment but currently ignore those peer reviews. Which redesign follows the meta-reviewer model?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Replace experts entirely with peers",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Let expert graders evaluate the work while seeing the peer reviews it already received",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Average all peer grades and automatically accept the result",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Have experts review only students who complain",
+          "correct": false
+        }
+      ],
+      "explain": "The meta-review model has expert graders judge the work with the peer reviews it already received in view. Replacing experts, auto-accepting averaged peer marks, and reviewing only complaints drop expert judgment or the review signal.",
+      "bankWhy": "The meta-review model composes peer and expert review rather than treating them as mutually exclusive."
+    },
+    {
+      "id": "pb-m5-62-belmont",
+      "lesson": "5.8 Research ethics",
+      "tag": "belmont",
+      "source": "practice-bank",
+      "stem": "Which three principles form the core of the Belmont Report?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Validity, reliability, fairness",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Respect for persons, beneficence, justice",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Privacy, anonymity, transparency",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Consent, prediction, optimization",
+          "correct": false
+        }
+      ],
+      "explain": "The Belmont Report rests on respect for persons, beneficence, and justice. Validity, reliability, and fairness are measurement ideas, privacy and anonymity name practices, and consent, prediction, and optimization is not the trio.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-63-irb-role",
+      "lesson": "5.8 Research ethics",
+      "tag": "irb-role",
+      "source": "practice-bank",
+      "stem": "What is the primary role of an Institutional Review Board in human-subjects research?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Publish the study after completion",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Approve and review research protections before the research begins",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Determine whether results are statistically significant",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Grade research participants fairly",
+          "correct": false
+        }
+      ],
+      "explain": "An IRB approves and reviews research protections before the research begins. Publishing results, testing statistical significance, and grading participants are not its role.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-64-undue-influence",
+      "lesson": "5.8 Research ethics",
+      "tag": "undue-influence",
+      "source": "practice-bank",
+      "stem": "A professor tells students that participating in her study is \u201ccompletely optional,\u201d but she is also the person assigning their course grades. Several students participate because they do not want to disappoint her. Which ethical concept is most directly implicated?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Explicit coercion only",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Undue influence",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Differential item functioning",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Criterion validity",
+          "correct": false
+        }
+      ],
+      "explain": "The quiet pressure of not wanting to disappoint the person who grades you is undue influence. Coercion names explicit threats, while DIF and criterion validity belong to measurement rather than research ethics.",
+      "bankWhy": "The pressure need not be an explicit threat. The power relationship itself can make supposedly voluntary participation less voluntary."
+    },
+    {
+      "id": "pb-m5-65-captive-population",
+      "lesson": "5.8 Research ethics",
+      "tag": "captive-population",
+      "source": "practice-bank",
+      "stem": "Why are students sometimes described as a **captive population** in educational research?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "They are legally forbidden from leaving a study",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "They occupy an institutional relationship in which instructors control grades, opportunities, and classroom conditions",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Educational studies must always involve minors",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Students cannot provide informed consent",
+          "correct": false
+        }
+      ],
+      "explain": "Students are described as captive because instructors control grades, opportunities, and classroom conditions, which makes refusal costly. They are not legally bound, minors are not required, and they can provide informed consent.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-66-ferpa",
+      "lesson": "5.8 Research ethics",
+      "tag": "ferpa",
+      "source": "practice-bank",
+      "stem": "Which law most directly governs access to students' education records such as grades and transcripts?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "FERPA",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "HIPAA",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Campbell's Law",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The Belmont Report",
+          "correct": false
+        }
+      ],
+      "explain": "FERPA governs access to students' education records such as grades and transcripts. HIPAA covers health information, Campbell's Law is about indicators under stakes, and the Belmont Report is a principles framework.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-67-data-stewardship-reuse",
+      "lesson": "5.8 Research ethics",
+      "tag": "data-stewardship-reuse",
+      "source": "practice-bank",
+      "stem": "A student agrees in 2024 to let researchers use interaction data to study a tutoring system. In 2030, another research group wants to reuse those records to predict which students will drop out. What does the Week 5 stewardship principle suggest?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The original consent automatically licenses any future research",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The new purpose should be reconsidered rather than assuming the old consent covers it",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Data may never be reused under any circumstance",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Reuse is automatically acceptable if computation is performed by an algorithm",
+          "correct": false
+        }
+      ],
+      "explain": "A new purpose should be reconsidered rather than assumed covered by an old consent. Blanket reuse, a total ban on reuse, and automatic algorithm exemption are all wrong.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-68-inbloom",
+      "lesson": "5.8 Research ethics",
+      "tag": "inbloom",
+      "source": "practice-bank",
+      "stem": "Why is **inBloom** used as a cautionary example?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It showed that centralized educational data can trigger serious public and parental privacy concerns",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "It proved adaptive testing cannot work",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "It eliminated student records too quickly",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It showed that rubrics reduce validity",
+          "correct": false
+        }
+      ],
+      "explain": "inBloom is cautionary because centralized educational data triggered serious public and parental privacy concerns. It was not about adaptive testing failing, deleting records too quickly, or rubric validity.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-69-equipoise",
+      "lesson": "5.8 Research ethics",
+      "tag": "equipoise",
+      "source": "practice-bank",
+      "stem": "What is **equipoise**?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The belief that both conditions will produce identical results",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Genuine uncertainty about which experimental condition is better",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Equality in the number of participants per group",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A requirement that students know which group they are in",
+          "correct": false
+        }
+      ],
+      "explain": "Equipoise is genuine uncertainty about which experimental condition is better, which is what can make random assignment acceptable. Identical results, equal group sizes, and disclosure requirements are different ideas.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-70-equipoise-violation",
+      "lesson": "5.8 Research ethics",
+      "tag": "equipoise-violation",
+      "source": "practice-bank",
+      "stem": "A school believes with near certainty that a new intervention is substantially better for students but deliberately assigns half its students to what administrators already believe is the inferior option simply to obtain a publishable comparison. Which concept creates the strongest ethical concern?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Criterion validity",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Equipoise",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Internal consistency",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Evidence-centered design",
+          "correct": false
+        }
+      ],
+      "explain": "If administrators are nearly certain one arm is better, randomizing students into the other arm for publishability violates equipoise. Criterion validity, internal consistency, and evidence-centered design do not address the ethics.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-71-facebook-emotional-contagion",
+      "lesson": "5.8 Research ethics",
+      "tag": "facebook-emotional-contagion",
+      "source": "practice-bank",
+      "stem": "What lesson does the Facebook emotional-contagion study illustrate in the Week 5 material?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Any software optimization is automatically exempt from research ethics",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Optimization combined with an intention to produce generalizable research can cross into research that carries research obligations",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Online experiments can never produce valid evidence",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "A/B tests are unethical while untested product changes are always ethical",
+          "correct": false
+        }
+      ],
+      "explain": "Optimization plus an intention to produce generalizable knowledge can cross into research that carries research obligations. Software does not exempt ethics, online experiments can yield valid evidence, and A/B tests are not inherently unethical.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-72-responsible-stewardship",
+      "lesson": "5.8 Research ethics",
+      "tag": "responsible-stewardship",
+      "source": "practice-bank",
+      "stem": "Which research practice most closely matches the lesson's idea of responsible stewardship?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Collect every possible variable in case it becomes useful later",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Assume researcher neutrality unless evidence proves otherwise",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Minimize unnecessary data, respect participants, and remain skeptical of one's own neutrality",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Keep data indefinitely because storage is inexpensive",
+          "correct": false
+        }
+      ],
+      "explain": "Responsible stewardship means collecting only what is needed, respecting participants, and staying skeptical of one's own neutrality. Collecting everything, assuming neutrality, and indefinite storage are the failure modes.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-73-campbells-law",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "campbells-law",
+      "source": "practice-bank",
+      "stem": "A school makes one standardized test score the primary basis for graduation, teacher evaluation, school rankings, and funding. Schools respond by devoting increasingly large portions of instruction to maximizing that score. Which principle most directly predicts this outcome?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Campbell's Law",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "SOLO taxonomy",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Cronbach's alpha",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Dialogic feedback",
+          "correct": false
+        }
+      ],
+      "explain": "The more a quantitative indicator drives high-stakes decisions, the stronger the pressure to optimize the indicator instead of the process, which is Campbell's Law. SOLO, alpha, and dialogic feedback do not predict that response.",
+      "bankWhy": "The more a quantitative indicator becomes the basis of high-stakes decisions, the stronger the pressure to corrupt or optimize the indicator rather than the underlying process."
+    },
+    {
+      "id": "pb-m5-74-goodhart-campbell",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "goodhart-campbell",
+      "source": "practice-bank",
+      "stem": "How is Goodhart's Law related to Campbell's Law in this lesson?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Both warn that attaching high stakes to a proxy can cause people to optimize the proxy rather than the thing it was intended to represent",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Both provide methods for increasing reliability",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Both explain stereotype threat",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Both argue against educational measurement entirely",
+          "correct": false
+        }
+      ],
+      "explain": "Both warn that attaching high stakes to a proxy pushes people to optimize the proxy rather than the thing it was meant to represent. Neither is a reliability method, an explanation of stereotype threat, or an argument against measurement.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-75-bias-at-scale",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "bias-at-scale",
+      "source": "practice-bank",
+      "stem": "Why does an assessment's fairness obligation become especially important when the system is deployed at large scale?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Statistical error vanishes at scale",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The same systematic bias can be imposed on a very large population simultaneously",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Large systems automatically become norm-referenced",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Small assessments cannot be biased",
+          "correct": false
+        }
+      ],
+      "explain": "At scale the same systematic bias is imposed on a very large population at once, so the fairness obligation grows rather than shrinks. Statistical error does not vanish, large systems are not automatically norm-referenced, and small assessments can be biased.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-76-automated-scoring-inherits-bias",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "automated-scoring-inherits-bias",
+      "source": "practice-bank",
+      "stem": "An automated essay scorer is trained on thousands of historical human ratings. The developers argue that because the final judgments are produced by software, the system is more objective than humans. What is the strongest objection from the lesson?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Software cannot process written language",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A model trained on historical judgments can reproduce those judgments' biases while making them appear objective",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Historical datasets are always too small",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Automated scoring can only be used formatively",
+          "correct": false
+        }
+      ],
+      "explain": "A model trained on historical human ratings can reproduce those judgments' biases while wrapping them in apparent objectivity. Software can process language, dataset size is not the issue, and automated scoring is not limited to formative use.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-77-perelman",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "perelman",
+      "source": "practice-bank",
+      "stem": "Why is Les Perelman's work with elaborate but meaningless machine-generated essays important?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It demonstrates the testing effect",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "It shows automated scoring systems may reward surface features correlated with quality rather than genuine quality",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "It proves humans cannot evaluate essays reliably",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "It shows that longer essays are always better",
+          "correct": false
+        }
+      ],
+      "explain": "Perelman's machine-generated essays show scorers can reward surface features correlated with quality rather than genuine quality. It does not demonstrate the testing effect, prove human unreliability, or show longer essays are better.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-78-uk-exam-grading",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "uk-exam-grading",
+      "source": "practice-bank",
+      "stem": "The 2020 UK exam-grading episode is used primarily to illustrate what danger?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Adaptive assessment becomes inefficient at national scale",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Algorithmic decisions can reproduce and amplify disadvantage across a population while appearing neutral",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Holistic grading cannot be automated",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Criterion-referenced grading requires human scorers",
+          "correct": false
+        }
+      ],
+      "explain": "The 2020 UK episode shows algorithmic decisions reproducing and amplifying disadvantage across a population while appearing neutral. It is not about adaptive inefficiency, automating holistic grading, or requiring human scorers.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-79-accountable-machine-judgment",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "accountable-machine-judgment",
+      "source": "practice-bank",
+      "stem": "Which design best matches the lesson's standard for accountable machine judgment?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The model's decision is final because automation removes human bias",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Decisions should be inspectable, audited, appealable, and ultimately answerable to people",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Learners should not be told that algorithms are involved",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Human review should be prohibited because it reduces consistency",
+          "correct": false
+        }
+      ],
+      "explain": "Accountable machine judgment means decisions are inspectable, audited, appealable, and answerable to people. Final-by-default, hidden involvement, and banning human review all remove accountability.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-80-assessment-data-stewardship",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "assessment-data-stewardship",
+      "source": "practice-bank",
+      "stem": "A testing platform logs webcam data, mouse trajectories, keystrokes, location information, and device fingerprints \u201cbecause the analytics team may want them someday,\u201d although none of those data are necessary to score the assessment. Which principle most directly objects?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Assessment data stewardship",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Bloom's hierarchy",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Criterion referencing",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Testing effect",
+          "correct": false
+        }
+      ],
+      "explain": "Stewardship calls for collecting only what the assessment requires, explaining what is captured, securing it, and avoiding unrelated repurposing. Bloom, criterion referencing, and the testing effect are unrelated.",
+      "bankWhy": "The lesson argues for collecting only what the assessment requires, explaining what is captured and why, securing it, and avoiding unrelated repurposing."
+    },
+    {
+      "id": "pb-m5-81-stewardship-needs-no-irb",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "stewardship-needs-no-irb",
+      "source": "practice-bank",
+      "stem": "A product team argues, \u201cWe are not conducting publishable research, so no IRB is involved. Therefore we have no ethical obligation to minimize the educational data we collect.\u201d Which response best follows from the lesson?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Correct; privacy obligations apply only to formal research",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Correct if users accepted terms of service",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Incorrect; learners retain privacy interests even when the activity is ordinary assessment rather than formal research",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Incorrect only if the assessment is summative",
+          "correct": false
+        }
+      ],
+      "explain": "Learners keep privacy interests even when the activity is ordinary assessment rather than formal research, so no IRB does not mean no obligation. Formal-research-only, terms of service, and summative-only conditions are all wrong.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-82-humility-as-stance",
+      "lesson": "5.9 Assessment ethics",
+      "tag": "humility-as-stance",
+      "source": "practice-bank",
+      "stem": "What does the lesson mean by **humility as a stance** toward assessment scores?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Never make decisions using scores",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Treat scores as perfectly precise when reliability is high",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Use assessment evidence when necessary while remembering that the score is an imperfect proxy rather than the learner itself",
+          "correct": true
+        },
+        {
+          "id": "d",
+          "text": "Replace every score with peer assessment",
+          "correct": false
+        }
+      ],
+      "explain": "Humility means using assessment evidence when necessary while remembering the score is an imperfect proxy rather than the learner. Never using scores, trusting high reliability as precision, and replacing scores with peer assessment are the extremes.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-83-aligned-construct",
+      "lesson": "Mixed review",
+      "tag": "aligned-construct",
+      "source": "practice-bank",
+      "stem": "A course's learning objective says students will **design an original experiment**, but the final exam consists entirely of definitions of experimental terminology. The exam has Cronbach's alpha of .95. Which criticism is strongest?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The exam cannot be reliable because it contains vocabulary questions",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The assessment is highly consistent but poorly aligned with the intended construct",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Original experiments cannot be assessed reliably",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Cronbach's alpha demonstrates that the learning objective has been achieved",
+          "correct": false
+        }
+      ],
+      "explain": "High alpha cannot rescue misalignment: the exam consistently measures terminology recall rather than designing an experiment. Vocabulary items can be reliable, original experiments can be assessed, and alpha says nothing about achieving the objective.",
+      "bankWhy": "High reliability cannot rescue a validity/alignment problem. The assessment consistently measures something other than the intended performance."
+    },
+    {
+      "id": "pb-m5-84-diagnosis-without-action",
+      "lesson": "Mixed review",
+      "tag": "diagnosis-without-action",
+      "source": "practice-bank",
+      "stem": "A professor gives a diagnostic quiz at the start of class, discovers that half the class holds a serious misconception, records the result, and proceeds with the original lesson plan unchanged. What is the strongest criticism?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Diagnostic testing should only occur after instruction",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The instructor collected diagnostic information but failed to use it to change the instructional path",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The quiz has become norm-referenced",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The quiz violates Campbell's Law",
+          "correct": false
+        }
+      ],
+      "explain": "The instructor gathered diagnostic evidence and then changed nothing, so it never became formative. Diagnostic testing belongs before instruction, the quiz is not norm-referenced, and Campbell's Law concerns high-stakes indicators.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-85-criteria-compliance-granularity",
+      "lesson": "Mixed review",
+      "tag": "criteria-compliance-granularity",
+      "source": "practice-bank",
+      "stem": "Students are told exactly which five phrases must appear in an essay to receive full points. Almost every student includes all five, but many essays show little understanding. Which pair of concepts best explains the problem?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Criteria compliance and the granularity/transparency trap",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Retrieval practice and adaptive testing",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Stereotype threat and differential item functioning",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Standard error and criterion validity",
+          "correct": false
+        }
+      ],
+      "explain": "Students checking off five required phrases while understanding little is criteria compliance produced by granular, fully transparent requirements. Retrieval practice, adaptive testing, stereotype threat, DIF, SEM, and criterion validity do not explain it.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-86-scalable-but-not-dialogic",
+      "lesson": "Mixed review",
+      "tag": "scalable-but-not-dialogic",
+      "source": "practice-bank",
+      "stem": "An online tutor instantly tells students \u201ccorrect\u201d or \u201cincorrect\u201d after every response but never helps them interpret why an answer failed or what standard distinguishes good reasoning. Which criticism best fits the feedback section?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The system provides scalable task-level information but lacks the dialogic process that helps learners construct and use meaning",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Automated feedback can never improve learning",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Immediate feedback is necessarily summative",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "The system should replace comments with grades",
+          "correct": false
+        }
+      ],
+      "explain": "Instant correct or incorrect marks give scalable task-level information but no dialogic process for building shared meaning about why an answer failed. Automated feedback can help learning, immediacy is not inherently summative, and replacing comments with grades loses information.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-87-reliable-but-unfair",
+      "lesson": "Mixed review",
+      "tag": "reliable-but-unfair",
+      "source": "practice-bank",
+      "stem": "A peer-grading system produces very consistent grades, but students using nonstandard dialects systematically receive lower scores despite equivalent content. What is the best interpretation?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "High reliability demonstrates fairness",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "The system may be reliable while still unfair and therefore invalid for the intended judgment",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "The only problem is low internal consistency",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Adding more similarly biased peer graders will necessarily eliminate the difference",
+          "correct": false
+        }
+      ],
+      "explain": "Consistent marks can still come from dialect rather than content, which makes the system reliable yet unfair and therefore invalid for the intended judgment. Consistency does not prove fairness, internal consistency is not the problem, and adding similarly biased raters preserves the bias.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-88-evidence-centered-order",
+      "lesson": "Mixed review",
+      "tag": "evidence-centered-order",
+      "source": "practice-bank",
+      "stem": "A video game records dozens of player actions. Designers discover afterward that one action correlates with course grades, so they declare that action a valid measure of \u201csystems thinking.\u201d What is missing from the evidence-centered approach?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A competency model establishing what systems thinking means before choosing evidence for it",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "A norm table",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "A contract-grading agreement",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "An analytic rubric",
+          "correct": false
+        }
+      ],
+      "explain": "The competency model has to define what systems thinking means before evidence is chosen for it. A norm table, a contract agreement, and an analytic rubric do not supply that definition.",
+      "bankWhy": ""
+    },
+    {
+      "id": "pb-m5-89-proxy-optimization",
+      "lesson": "Mixed review",
+      "tag": "proxy-optimization",
+      "source": "practice-bank",
+      "stem": "A school introduces an AI writing score worth 70% of students' final grades. Within a semester, students learn that longer sentences and unusual vocabulary increase the automated score, so they begin producing verbose but less coherent essays. Which concept most directly explains the behavioral response?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Goodhart/Campbell",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Stereotype threat",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Retrieval practice",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Guild knowledge",
+          "correct": false
+        }
+      ],
+      "explain": "Once the automated score is the high-stakes target, students optimize the proxy and produce verbose but less coherent essays. Stereotype threat, retrieval practice, and guild knowledge are different ideas.",
+      "bankWhy": "Once the proxy becomes the high-stakes target, people optimize the proxy."
+    },
+    {
+      "id": "pb-m5-90-rubric-detail-validity",
+      "lesson": "Mixed review",
+      "tag": "rubric-detail-validity",
+      "source": "practice-bank",
+      "stem": "A professor says, \u201cMy rubric is extremely detailed, so my assessment must be valid.\u201d What is the strongest objection?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Rubrics reduce reliability",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "A detailed rubric can improve scoring consistency while simultaneously changing or narrowing the construct being assessed",
+          "correct": true
+        },
+        {
+          "id": "c",
+          "text": "Valid assessments cannot use rubrics",
+          "correct": false
+        },
+        {
+          "id": "d",
+          "text": "Holistic rubrics are always more valid",
+          "correct": false
+        }
+      ],
+      "explain": "A detailed rubric can improve scoring consistency while simultaneously narrowing or changing what is assessed, so detail is not proof of validity. Rubrics do not reduce reliability, validity does not forbid rubrics, and holistic is not automatically more valid.",
+      "bankWhy": ""
     }
   ]
 }

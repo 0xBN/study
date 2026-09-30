@@ -8,10 +8,12 @@ Explains = layman claim + fully encapsulated why each tempting wrong dies.
 from __future__ import annotations
 
 import json
+from collections import Counter
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parents[1] / "decks"
 SESSION = 5
+BANK = Path(__file__).resolve().parent / "m5-practice-bank.json"
 
 
 def item(id_, lesson, tag, stem, correct, wrongs, explain, *, source="know"):
@@ -30,14 +32,22 @@ def item(id_, lesson, tag, stem, correct, wrongs, explain, *, source="know"):
 
 
 def pack(id_, title, week, items):
+    counts = Counter(it["source"] for it in items)
+    kinds = []
+    if counts["know"]:
+        kinds.append(f"{counts['know']} Know scenes")
+    if counts["practice-sample"]:
+        kinds.append(f"{counts['practice-sample']} practice-sample items")
+    if counts["practice-bank"]:
+        kinds.append(f"{counts['practice-bank']} practice-bank items")
     return {
         "id": id_,
         "title": title,
         "weekId": week,
         "sessionSize": SESSION,
         "note": (
-            f"Know scenes + practice-sample items (source=practice-sample). "
-            f"Session draws {SESSION}. Explains are layman + why each wrong dies."
+            f"{', '.join(kinds)}. Session draws {SESSION}. "
+            f"Explains are layman + why each wrong dies."
         ),
         "items": items,
     }
@@ -1317,26 +1327,44 @@ def build_m5():
     return items
 
 
+def practice_bank():
+    """Module 5 practice bank items built by scripts/ingest-m5-practice-bank.py."""
+    if not BANK.exists():
+        print(f"note: {BANK.name} missing; run scripts/ingest-m5-practice-bank.py")
+        return []
+    items = json.loads(BANK.read_text(encoding="utf-8"))
+    for it in items:
+        assert it["source"] == "practice-bank", it["id"]
+    return items
+
+
 def main() -> None:
     m3 = pack("cs6460-m3-quiz", "CS6460 Module 3 · Scene quiz", "03", build_m3())
-    m5 = pack("cs6460-m5-quiz", "CS6460 Module 5 · Scene quiz", "05", build_m5())
+    m5 = pack(
+        "cs6460-m5-quiz",
+        "CS6460 Module 5 · Scene quiz",
+        "05",
+        build_m5() + practice_bank(),
+    )
     for p in (m3, m5):
         for it in p["items"]:
             assert sum(1 for c in it["choices"] if c["correct"]) == 1
             assert len(it["choices"]) == 4
-            assert it["source"] in ("know", "practice-sample")
+            assert it["source"] in ("know", "practice-sample", "practice-bank")
             assert len(it["explain"]) > 80, it["id"]
+        ids = [it["id"] for it in p["items"]]
+        assert len(ids) == len(set(ids)), "duplicate item id"
         path = OUT / (
             "cs6460-module-3-quiz.json"
             if p["weekId"] == "03"
             else "cs6460-module-5-quiz.json"
         )
         path.write_text(json.dumps(p, indent=2) + "\n", encoding="utf-8")
-        n_src = sum(1 for it in p["items"] if it["source"] == "practice-sample")
-        n_know = len(p["items"]) - n_src
+        counts = Counter(it["source"] for it in p["items"])
+        detail = ", ".join(f"{n} {src}" for src, n in sorted(counts.items()))
         print(
-            f"{path.name}: {len(p['items'])} items "
-            f"({n_know} know/alt, {n_src} from source), sessionSize={p['sessionSize']}"
+            f"{path.name}: {len(p['items'])} items ({detail}), "
+            f"sessionSize={p['sessionSize']}"
         )
 
 

@@ -1,0 +1,362 @@
+{
+  "1": {
+    "tag": "operationalization",
+    "explain": "Operationalization means deciding before data collection which observable indicators will count as evidence of an abstract construct. Test-retest is stability over time, criterion validity ties scores to an outside outcome, and norm referencing compares people - none of them define what counts."
+  },
+  "2": {
+    "tag": "criterion-validity",
+    "explain": "Criterion validity is evidence that scores relate to an external outcome, here later GPA. Construct validity would ask whether the intended trait is measured, internal consistency only shows items agree with each other, and DIF is about group differences on an item."
+  },
+  "3": {
+    "tag": "construct-validity",
+    "explain": "A test can predict an outside outcome and still measure the wrong thing, so construct validity is the operative question. A missing reference group, low reliability, and criterion referencing are separate issues the scenario never establishes."
+  },
+  "4": {
+    "tag": "reliability",
+    "explain": "Reliability is consistency: would comparable conditions produce approximately the same result? Criterion validity, operationalization, and norm referencing concern meaning and reference frames, not whether the same conditions reproduce the same score."
+  },
+  "5": {
+    "tag": "alpha-is-consistency",
+    "explain": "A high alpha shows the items hang together, not that they measure scientific reasoning. A swaps reliability in for validity, C invents a norm-referenced restriction, and D reads consistency as zero error."
+  },
+  "6": {
+    "tag": "reliability-ceiling",
+    "explain": "If score variation is mostly random noise the number cannot carry a trustworthy signal about the construct, so reliability constrains validity. A turns the ceiling into a guarantee, C flips the relation, and D is a priorities claim the idea never makes."
+  },
+  "7": {
+    "tag": "standard-error-of-measurement",
+    "explain": "Every observed score carries error, so 74 is a band around true ability rather than an exact percentage of material known. Bloom, criterion referencing, and evidence-centered design say nothing about one score's precision."
+  },
+  "8": {
+    "tag": "norm-referenced",
+    "explain": "The score means something by comparison with a reference group. Criterion and standards-based readings compare against a defined standard, and construct-referenced is not one of the lesson's frames."
+  },
+  "9": {
+    "tag": "criterion-referenced",
+    "explain": "Each candidate is judged against a defined standard, not against other candidates. Norm-referenced would need a comparison group, ipsative compares a learner to their own past scores, and differential is not a reference frame."
+  },
+  "10": {
+    "tag": "fairness-is-validity",
+    "explain": "Fairness sits inside validity: irrelevant language demands shift scores systematically, so the exam measures geometry plus English proficiency. Formative versus summative is about use, criterion referencing is a frame, and unreliability does not follow."
+  },
+  "11": {
+    "tag": "differential-item-functioning",
+    "explain": "DIF detects items on which equally capable learners perform differently by group membership. Alpha is internal consistency, SEM is score error, and criterion validation links scores to an outside outcome."
+  },
+  "12": {
+    "tag": "stereotype-threat",
+    "explain": "Steele and Aronson showed that making a negatively stereotyped identity salient can suppress performance without changing underlying ability. Criteria compliance, the testing effect, and constructive alignment are different mechanisms."
+  },
+  "13": {
+    "tag": "bloom-not-difficulty",
+    "explain": "Bloom classifies the cognitive operation a task demands, not how obscure or hard the content is. Difficulty does not promote recall into Analysis, Bloom can classify difficult items, and recall items are not automatically invalid."
+  },
+  "14": {
+    "tag": "revised-bloom",
+    "explain": "The revision switches to action verbs and crosses the cognitive-process dimension with factual, conceptual, procedural, and metacognitive knowledge. It removes nothing, adds no motor levels, and does not flatten demands."
+  },
+  "15": {
+    "tag": "webb-dok",
+    "explain": "Webb's Depth of Knowledge describes how deep the thinking in a task goes without claiming lower levels must always come first. Alpha, specifications grading, and SOLO Prestructural measure completely different things."
+  },
+  "16": {
+    "tag": "solo-multistructural",
+    "explain": "Several relevant elements are present but stay disconnected, which is multistructural. Unistructural has one relevant element, relational integrates them into a whole, and extended abstract goes beyond the given material."
+  },
+  "17": {
+    "tag": "solo-relational",
+    "explain": "Relational responses integrate the components into one coherent explanation. Prestructural misses the point, unistructural has a single relevant element, and extended abstract adds transfer or generalization beyond what was given."
+  },
+  "18": {
+    "tag": "solo-extended-abstract",
+    "explain": "Extended abstract goes past integration into transfer, abstraction, or generalization. Prestructural, multistructural, and relational all stay inside the material that was handed to the learner."
+  },
+  "19": {
+    "tag": "gagne-novel-instances",
+    "explain": "If the target is an intellectual skill, learners must show it on novel instances rather than replay practiced examples. Reusing the same programs, defining the term, and surveying attitudes test memory, verbal knowledge, or affect instead."
+  },
+  "20": {
+    "tag": "taxonomy-roles",
+    "explain": "Bloom audits the cognitive operation, SOLO describes the structure of the response, and Gagne describes the kind of learning. Assigning reliability, fairness, motivation, or psychometrics to them invents jobs they do not have."
+  },
+  "21": {
+    "tag": "diagnostic",
+    "explain": "Diagnostic assessment establishes a starting point so instruction can answer what learners already hold. Summative judges accomplishment, norm referencing compares people, and contractual is not a purpose that fits here."
+  },
+  "22": {
+    "tag": "formative-is-use",
+    "explain": "Formative and summative describe what happens because of the information, not the instrument: section A's quiz settles grades while section B's quiz changes tomorrow's teaching. Format and repetition are not the defining feature."
+  },
+  "23": {
+    "tag": "formative-changes-what-happens",
+    "explain": "Black and Wiliam define formative by whether the evidence actually alters what happens next. Few points, high frequency, and written comments are surface features that do not guarantee the evidence gets used."
+  },
+  "24": {
+    "tag": "routine-assessment-narrowing",
+    "explain": "Assessment steers what gets taught, so routine cheap-to-score checks pull a course toward whatever software can grade. Stereotype threat, DIF, and SEM describe entirely different problems."
+  },
+  "25": {
+    "tag": "testing-effect",
+    "explain": "Roediger and Karpicke's result is durability: retrieval beats rereading on the delayed test even though rereaders felt more confident. Criteria compliance, contract grading, and norm referencing are unrelated."
+  },
+  "26": {
+    "tag": "delayed-test",
+    "explain": "The delayed test separates durable learning from how strong performance looks immediately after study, which is where the rereading fluency illusion appears. Immediate performance is measurable, reliability does not rise with time, and rereading is not frame-specific."
+  },
+  "27": {
+    "tag": "adaptive-assessment",
+    "explain": "Adaptive assessment selects items dynamically to converge on a learner's estimated level. Diagnostic-only, ungrading, and holistic scoring describe different stances rather than dynamic item selection."
+  },
+  "28": {
+    "tag": "item-response-theory",
+    "explain": "Item response theory supplies the item-parameter model adaptive delivery depends on. SOLO, Campbell's Law, and contract grading are not psychometric foundations for selecting items."
+  },
+  "29": {
+    "tag": "stealth-assessment",
+    "explain": "Stealth assessment infers competency from ongoing play without interrupting it with conventional quizzes. Summative, norm-referenced, and specifications grading are different designs."
+  },
+  "30": {
+    "tag": "evidence-centered-design",
+    "explain": "Evidence-centered design runs competency model, then evidence model, then task model, so starting from whatever telemetry exists reverses the logic. Mouse movements can be valid evidence, written-only tasks are not required, and tasks follow constructs."
+  },
+  "31": {
+    "tag": "grades-four-jobs",
+    "explain": "Grades are asked to communicate, sort, motivate, and give feedback at the same time. The other lists drop the motivational and feedback jobs or replace them with punishment and certification."
+  },
+  "32": {
+    "tag": "grader-variation",
+    "explain": "Starch and Elliott showed that different graders can assign dramatically different scores to the same work, which is a reliability problem. Student preference, automated superiority, and inherent unfairness are different claims."
+  },
+  "33": {
+    "tag": "reeves-zero-average",
+    "explain": "Reeves objected to the arithmetic damage a zero does inside an average, which is far larger than the missing work deserves. Criterion referencing, percentage interpretation, and alpha are not the objection."
+  },
+  "34": {
+    "tag": "butler-comments-only",
+    "explain": "Butler found comments alone produced the strongest later performance, because the grade can crowd out attention to feedback. Grades only, grades plus comments, and equivalence were not the outcome."
+  },
+  "35": {
+    "tag": "standards-based-grading",
+    "explain": "Standards-based grading reports demonstrated level on each learning standard instead of averaging everything into one percentage. Contract, ungrading, and norm referencing are different philosophies."
+  },
+  "36": {
+    "tag": "specifications-grading",
+    "explain": "Specifications grading marks each assignment meets or does not meet the specification and awards course grades for bundles of satisfactory work. Standards-based reports per-standard levels, contract changes the basis and control of the grade, and ungrading minimizes grades."
+  },
+  "37": {
+    "tag": "contract-grading-basis",
+    "explain": "Contract grading changes who determines the basis of the grade, often granting credit for agreed labor or engagement rather than a quality judgment. Rubric shape, banned revision, and student ranking are not the distinguishing feature."
+  },
+  "38": {
+    "tag": "ungrading",
+    "explain": "If the presence of the grade itself is the diagnosed cause, minimizing or removing the grade is the direct response, which is ungrading. Norm-referenced, point-based, and differential grading all keep the grade central."
+  },
+  "39": {
+    "tag": "feedback-definition",
+    "explain": "Feedback is usable information about the gap between current performance and a desired destination. Information after grading, a numeric ability estimate, and motivational praise all miss the gap plus use requirement."
+  },
+  "40": {
+    "tag": "kluger-denisi",
+    "explain": "Kluger and DeNisi found feedback improved performance on average while making it worse in a substantial minority of cases. Feedback does change performance, it does not help everyone, and the modality claim is not the finding."
+  },
+  "41": {
+    "tag": "hattie-self-level",
+    "explain": "Self-level praise about the person carries the least task information. The other options sit at task, process, or self-regulation level and point attention back at the work."
+  },
+  "42": {
+    "tag": "sadler-sequence",
+    "explain": "Sadler's sequence is know the standard, compare present performance against it, then act to close the gap. Grade-and-compare, memorize-rubric, and praise paths skip the learner's own comparison and action."
+  },
+  "43": {
+    "tag": "guild-knowledge",
+    "explain": "Sadler called this tacit, accumulated expertise guild knowledge. Criterion validity, metacognitive monitoring, and criteria compliance name different constructs."
+  },
+  "44": {
+    "tag": "shared-conception-of-quality",
+    "explain": "Accurate comments still fail when the learner does not share the instructor's conception of what good work looks like. Feedback does not reduce reliability, learners are not limited to numbers, and anonymity is not the issue."
+  },
+  "45": {
+    "tag": "guild-knowledge-gap",
+    "explain": "Without a shared sense of what deep analysis looks like, the comment cannot guide action, which is the guild knowledge gap. Standard error, adaptive testing, and summative interference are unrelated to the failure."
+  },
+  "46": {
+    "tag": "dialogic-feedback",
+    "explain": "Dialogic feedback negotiates meaning through two-way interaction rather than one-way delivery. It can be spoken or written, it may include criticism, and it does not remove standards."
+  },
+  "47": {
+    "tag": "boud-molloy-new-paradigm",
+    "explain": "Boud and Molloy's new paradigm treats feedback as a process learners actively participate in and drive. Efficient delivery, score attachment, and automatic responses keep feedback as something done to the learner."
+  },
+  "48": {
+    "tag": "feedback-literacy",
+    "explain": "Feedback literacy is the capacity to interpret comments, judge quality, manage the emotional response, and take useful action. Collecting without revising, instant delivery, and high grades without reading comments show its absence."
+  },
+  "49": {
+    "tag": "constructive-alignment",
+    "explain": "Constructive alignment defines outcomes, designs learning activities, then designs assessment around the same target. Software-first, rubric-first, and ranking-first sequences all invert the order."
+  },
+  "50": {
+    "tag": "rubric-reliability-first",
+    "explain": "A rubric's first job is helping different graders converge on similar judgments. Equal grades, proof of the intended construct, and easier assignments are not what rubrics guarantee."
+  },
+  "51": {
+    "tag": "analytic-vs-holistic-rubric",
+    "explain": "Analytic rubrics score criteria separately while holistic rubrics make one overall judgment. The first option reverses them, and neither design is reserved for novices or inherently unreliable."
+  },
+  "52": {
+    "tag": "rubric-scope-leak",
+    "explain": "Telling students there are exactly three acceptable causes gives away how many exist, so recognizing the scope stops being part of what is measured. It does not lower inter-rater reliability, demand higher-order cognition, or block analytic scoring."
+  },
+  "53": {
+    "tag": "criteria-compliance",
+    "explain": "Checking off rubric phrases instead of judging the topic is criteria compliance. Stereotype threat, retrieval practice, and DIF describe different phenomena."
+  },
+  "54": {
+    "tag": "rubric-granularity-validity",
+    "explain": "How much rubric detail is appropriate depends on the judgment the assessment is meant to measure, because an overly detailed rubric can hand over the thinking being assessed. Transparency is not weightless, is not limited to norm-referenced tests, and does not mean hiding rubrics."
+  },
+  "55": {
+    "tag": "jonsson-svingby-exemplars",
+    "explain": "Jonsson and Svingby found rubrics help scoring reliability most when paired with exemplars and grader training. Withholding examples, equal weighting, and banning holistic scoring are not their findings."
+  },
+  "56": {
+    "tag": "peer-assessment-learning-value",
+    "explain": "Reviewing someone else's work is itself a learning activity, so peer assessment has value even when the instructor could grade everything personally. Peer marks are not automatically more accurate, and preference or bias elimination is not the reason."
+  },
+  "57": {
+    "tag": "falchikov-goldfinch",
+    "explain": "Falchikov and Goldfinch's pooled evidence found peer and teacher marks correlate reasonably well on average. Near-zero relation, perfect agreement, and graduate-course-only limits are not what the evidence showed."
+  },
+  "58": {
+    "tag": "holistic-peer-judgment",
+    "explain": "Peer designs where students make a more holistic judgment against well-understood criteria tend to correspond better with expert judgment. Dozens of tiny checklist dimensions, unstated criteria, and random averaging all degrade agreement."
+  },
+  "59": {
+    "tag": "shared-bias-averaging",
+    "explain": "Averaging cancels independent random error, not bias shared by every rater, so adding graders reproduces the same penalty. Eight raters is not below a minimum, reliability does not always fall as raters are added, and peers can produce quantitative marks."
+  },
+  "60": {
+    "tag": "fairness-vs-reliability-peer",
+    "explain": "Reliability asks whether marks are consistent while fairness asks whether that consistency comes from irrelevant features rather than the work itself. The other options misassign the terms, equate them, or restrict reliability to numbers."
+  },
+  "61": {
+    "tag": "meta-review",
+    "explain": "The meta-review model has expert graders judge the work with the peer reviews it already received in view. Replacing experts, auto-accepting averaged peer marks, and reviewing only complaints drop expert judgment or the review signal."
+  },
+  "62": {
+    "tag": "belmont",
+    "explain": "The Belmont Report rests on respect for persons, beneficence, and justice. Validity, reliability, and fairness are measurement ideas, privacy and anonymity name practices, and consent, prediction, and optimization is not the trio."
+  },
+  "63": {
+    "tag": "irb-role",
+    "explain": "An IRB approves and reviews research protections before the research begins. Publishing results, testing statistical significance, and grading participants are not its role."
+  },
+  "64": {
+    "tag": "undue-influence",
+    "explain": "The quiet pressure of not wanting to disappoint the person who grades you is undue influence. Coercion names explicit threats, while DIF and criterion validity belong to measurement rather than research ethics."
+  },
+  "65": {
+    "tag": "captive-population",
+    "explain": "Students are described as captive because instructors control grades, opportunities, and classroom conditions, which makes refusal costly. They are not legally bound, minors are not required, and they can provide informed consent."
+  },
+  "66": {
+    "tag": "ferpa",
+    "explain": "FERPA governs access to students' education records such as grades and transcripts. HIPAA covers health information, Campbell's Law is about indicators under stakes, and the Belmont Report is a principles framework."
+  },
+  "67": {
+    "tag": "data-stewardship-reuse",
+    "explain": "A new purpose should be reconsidered rather than assumed covered by an old consent. Blanket reuse, a total ban on reuse, and automatic algorithm exemption are all wrong."
+  },
+  "68": {
+    "tag": "inbloom",
+    "explain": "inBloom is cautionary because centralized educational data triggered serious public and parental privacy concerns. It was not about adaptive testing failing, deleting records too quickly, or rubric validity."
+  },
+  "69": {
+    "tag": "equipoise",
+    "explain": "Equipoise is genuine uncertainty about which experimental condition is better, which is what can make random assignment acceptable. Identical results, equal group sizes, and disclosure requirements are different ideas."
+  },
+  "70": {
+    "tag": "equipoise-violation",
+    "explain": "If administrators are nearly certain one arm is better, randomizing students into the other arm for publishability violates equipoise. Criterion validity, internal consistency, and evidence-centered design do not address the ethics."
+  },
+  "71": {
+    "tag": "facebook-emotional-contagion",
+    "explain": "Optimization plus an intention to produce generalizable knowledge can cross into research that carries research obligations. Software does not exempt ethics, online experiments can yield valid evidence, and A/B tests are not inherently unethical."
+  },
+  "72": {
+    "tag": "responsible-stewardship",
+    "explain": "Responsible stewardship means collecting only what is needed, respecting participants, and staying skeptical of one's own neutrality. Collecting everything, assuming neutrality, and indefinite storage are the failure modes."
+  },
+  "73": {
+    "tag": "campbells-law",
+    "explain": "The more a quantitative indicator drives high-stakes decisions, the stronger the pressure to optimize the indicator instead of the process, which is Campbell's Law. SOLO, alpha, and dialogic feedback do not predict that response."
+  },
+  "74": {
+    "tag": "goodhart-campbell",
+    "explain": "Both warn that attaching high stakes to a proxy pushes people to optimize the proxy rather than the thing it was meant to represent. Neither is a reliability method, an explanation of stereotype threat, or an argument against measurement."
+  },
+  "75": {
+    "tag": "bias-at-scale",
+    "explain": "At scale the same systematic bias is imposed on a very large population at once, so the fairness obligation grows rather than shrinks. Statistical error does not vanish, large systems are not automatically norm-referenced, and small assessments can be biased."
+  },
+  "76": {
+    "tag": "automated-scoring-inherits-bias",
+    "explain": "A model trained on historical human ratings can reproduce those judgments' biases while wrapping them in apparent objectivity. Software can process language, dataset size is not the issue, and automated scoring is not limited to formative use."
+  },
+  "77": {
+    "tag": "perelman",
+    "explain": "Perelman's machine-generated essays show scorers can reward surface features correlated with quality rather than genuine quality. It does not demonstrate the testing effect, prove human unreliability, or show longer essays are better."
+  },
+  "78": {
+    "tag": "uk-exam-grading",
+    "explain": "The 2020 UK episode shows algorithmic decisions reproducing and amplifying disadvantage across a population while appearing neutral. It is not about adaptive inefficiency, automating holistic grading, or requiring human scorers."
+  },
+  "79": {
+    "tag": "accountable-machine-judgment",
+    "explain": "Accountable machine judgment means decisions are inspectable, audited, appealable, and answerable to people. Final-by-default, hidden involvement, and banning human review all remove accountability."
+  },
+  "80": {
+    "tag": "assessment-data-stewardship",
+    "explain": "Stewardship calls for collecting only what the assessment requires, explaining what is captured, securing it, and avoiding unrelated repurposing. Bloom, criterion referencing, and the testing effect are unrelated."
+  },
+  "81": {
+    "tag": "stewardship-needs-no-irb",
+    "explain": "Learners keep privacy interests even when the activity is ordinary assessment rather than formal research, so no IRB does not mean no obligation. Formal-research-only, terms of service, and summative-only conditions are all wrong."
+  },
+  "82": {
+    "tag": "humility-as-stance",
+    "explain": "Humility means using assessment evidence when necessary while remembering the score is an imperfect proxy rather than the learner. Never using scores, trusting high reliability as precision, and replacing scores with peer assessment are the extremes."
+  },
+  "83": {
+    "tag": "aligned-construct",
+    "explain": "High alpha cannot rescue misalignment: the exam consistently measures terminology recall rather than designing an experiment. Vocabulary items can be reliable, original experiments can be assessed, and alpha says nothing about achieving the objective."
+  },
+  "84": {
+    "tag": "diagnosis-without-action",
+    "explain": "The instructor gathered diagnostic evidence and then changed nothing, so it never became formative. Diagnostic testing belongs before instruction, the quiz is not norm-referenced, and Campbell's Law concerns high-stakes indicators."
+  },
+  "85": {
+    "tag": "criteria-compliance-granularity",
+    "explain": "Students checking off five required phrases while understanding little is criteria compliance produced by granular, fully transparent requirements. Retrieval practice, adaptive testing, stereotype threat, DIF, SEM, and criterion validity do not explain it."
+  },
+  "86": {
+    "tag": "scalable-but-not-dialogic",
+    "explain": "Instant correct or incorrect marks give scalable task-level information but no dialogic process for building shared meaning about why an answer failed. Automated feedback can help learning, immediacy is not inherently summative, and replacing comments with grades loses information."
+  },
+  "87": {
+    "tag": "reliable-but-unfair",
+    "explain": "Consistent marks can still come from dialect rather than content, which makes the system reliable yet unfair and therefore invalid for the intended judgment. Consistency does not prove fairness, internal consistency is not the problem, and adding similarly biased raters preserves the bias."
+  },
+  "88": {
+    "tag": "evidence-centered-order",
+    "explain": "The competency model has to define what systems thinking means before evidence is chosen for it. A norm table, a contract agreement, and an analytic rubric do not supply that definition."
+  },
+  "89": {
+    "tag": "proxy-optimization",
+    "explain": "Once the automated score is the high-stakes target, students optimize the proxy and produce verbose but less coherent essays. Stereotype threat, retrieval practice, and guild knowledge are different ideas."
+  },
+  "90": {
+    "tag": "rubric-detail-validity",
+    "explain": "A detailed rubric can improve scoring consistency while simultaneously narrowing or changing what is assessed, so detail is not proof of validity. Rubrics do not reduce reliability, validity does not forbid rubrics, and holistic is not automatically more valid."
+  }
+}
