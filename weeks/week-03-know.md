@@ -6,7 +6,7 @@ Master study file for **2026-09-07 → 09-13**. Clerical: [Trello Week 3](https:
 
 **How to read this.** **CS6460 Honorlock:** named move = one line (term + who + claim). Acronyms spelled out on that line. Drill on [0xbn.github.io/study](https://0xbn.github.io/study). **CS6795:** open notes — use Week 2 Know for Quiz 2 leftovers; this week’s 6795 Do is mostly done.
 
-**Still missing (6460 Honorlock):** Module 5 lesson cleans not ingested yet; Module 5 named moves live in [Week 5 Know](week-05-know.md) drafted from practice-pool patterns (verify when Module 5 lessons are watched).
+**Still missing (6460 Honorlock):** none for Module 3. Module 5 is now rebuilt from its lesson transcripts in [Week 5 Know](week-05-know.md), and its quiz is due end of Week 6 (Sun 10/04).
 
 | Course | This week’s job | Next graded hit |
 |---|---|---|
