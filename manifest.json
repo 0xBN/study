@@ -1,6 +1,6 @@
 {
-  "current": "03",
-  "syncedAt": "2026-09-12T00:25:31Z",
+  "current": "05",
+  "syncedAt": "2026-09-30T02:40:17Z",
   "weeks": [
     {
       "id": "01",
@@ -16,8 +16,8 @@
     }
   ],
   "quiz": {
-    "label": "Module 3 Quiz",
-    "dueLabel": "Sun 9/20 AOE",
-    "dueAt": "2026-09-21T11:59:59.999Z"
+    "label": "Module 5 Quiz",
+    "dueLabel": "Sun 10/4 AOE",
+    "dueAt": "2026-10-05T11:59:59.999Z"
   }
 }

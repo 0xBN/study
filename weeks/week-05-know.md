@@ -4,7 +4,7 @@ Master study file for **2026-09-21 → 09-27** (drafted early from Module 5 prac
 
 **Honorlock Quiz 5 (CS6460, due end of Week 6):** grind this CS6460 Module 5 section on [0xbn.github.io/study](https://0xbn.github.io/study) once Module 5 lessons are watched. Practice quiz is already open.
 
-**Still missing:** full Module 5 Ed lesson cleans (measurement module not yet distilled from raw). Cards below come from practice-pool claims + Canvas feedback snippets — mark any that feel thin after watching, and paste a stem if needed.
+**Ed lessons now filed (2026-09-29):** Module 5 raw transcripts (11 lessons) are in `cs6460-educational-technology/raw/week-05-ed-lesson-*.md`, pulled together with Modules 6 and 7 for the Week 6 Ed reading. Cards below still come from practice-pool claims + Canvas feedback snippets — re-check any that feel thin against the raw transcript.
 
 ---
 
