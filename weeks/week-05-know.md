@@ -6,7 +6,7 @@ Master study file for **2026-09-21 → 09-27**. Clerical: use that week’s Trel
 
 **Rebuilt from the lessons (2026-09-29).** Module 5 raw lessons are filed at `cs6460-educational-technology/raw/week-05-ed-lesson-*.md` (11 lessons). Every card below now comes from those transcripts instead of practice-pool snippets. Title is a filing label; what the quiz keys on is the **claim sentence**.
 
-**How to read this.** Card = **term + who**, then the claim he must recognize even when the options never say the title, plus a short picture of what it means. Acronyms are spelled out on their own line. Drill on [0xbn.github.io/study](https://0xbn.github.io/study).
+**How to read this.** Card = **term + who**, then the claim he must recognize even when the options never say the title, plus a short picture of what it means. Acronyms are spelled out on the card line. Drill on [0xbn.github.io/study](https://0xbn.github.io/study).
 
 **Still missing:** CS6795 weeks 5–7 terms (Quiz 4/5/6 are open notes and are not distilled in this file yet); Trello cards for weeks 5–7; no quiz stems filed anywhere, by design.
 
