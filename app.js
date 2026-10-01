@@ -2,7 +2,7 @@ const LS_KEY = "omscs-study";
 const QUIZ_LS_PREFIX = "omscs-study-quiz:";
 const COURSE = "6460";
 /** Bump with index.html ?v= so mobile can confirm a fresh load. */
-const APP_BUILD = 43;
+const APP_BUILD = 44;
 
 const state = {
   weeks: [],
@@ -437,6 +437,8 @@ function setMode(mode) {
   }
   renderNav();
   syncNavOffset();
+  if (state.mode === "quiz") scheduleQuizNavHide();
+  else showNavChrome();
 }
 
 function renderNav() {
@@ -618,13 +620,34 @@ function hideNavChrome() {
   setNavHidden(true);
 }
 
-function canDocumentScroll() {
-  return document.documentElement.scrollHeight > window.innerHeight + 2;
+function navScrollRange() {
+  return Math.max(
+    0,
+    document.documentElement.scrollHeight - window.innerHeight,
+  );
+}
+
+/** Quiz stems often fit the viewport; tiny overflow should not block hiding. */
+function quizNavImmersive() {
+  return state.mode === "quiz" && navScrollRange() < 96;
+}
+
+function canHideNavAtScrollTop() {
+  return state.mode === "quiz" && quizNavImmersive();
 }
 
 let navLastScrollY = 0;
 const NAV_HIDE_AFTER_Y = 48;
 const NAV_SCROLL_DELTA = 8;
+
+function scheduleQuizNavHide() {
+  if (state.mode !== "quiz" || !navAutoHideEnabled()) return;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      if (state.mode === "quiz" && navAutoHideEnabled()) hideNavChrome();
+    });
+  });
+}
 
 function onNavScroll() {
   if (!navAutoHideEnabled()) {
@@ -633,12 +656,18 @@ function onNavScroll() {
   }
   const y = window.scrollY;
   const dy = y - navLastScrollY;
-  if (y <= 4) {
+  if (y <= 4 && state.mode === "read") {
     showNavChrome();
   } else if (dy > NAV_SCROLL_DELTA && y > NAV_HIDE_AFTER_Y) {
     hideNavChrome();
   } else if (dy < -NAV_SCROLL_DELTA) {
     showNavChrome();
+  } else if (
+    quizNavImmersive() &&
+    dy > NAV_SCROLL_DELTA &&
+    y > 0
+  ) {
+    hideNavChrome();
   }
   navLastScrollY = y;
 }
@@ -650,11 +679,11 @@ function onNavWheel(e) {
     return;
   }
   if (e.deltaY <= NAV_SCROLL_DELTA) return;
-  if (canDocumentScroll()) {
-    if (window.scrollY > NAV_HIDE_AFTER_Y) hideNavChrome();
-  } else {
+  if (quizNavImmersive() || !navScrollRange()) {
     hideNavChrome();
+    return;
   }
+  if (window.scrollY > NAV_HIDE_AFTER_Y) hideNavChrome();
 }
 
 function bindNavChrome() {
@@ -678,7 +707,10 @@ function bindNavChrome() {
       if (!navAutoHideEnabled() || !e.touches.length) return;
       const dy = e.touches[0].clientY - touchStartY;
       if (dy > NAV_SCROLL_DELTA) showNavChrome();
-      else if (dy < -NAV_SCROLL_DELTA && (!canDocumentScroll() || window.scrollY > 4)) {
+      else if (
+        dy < -NAV_SCROLL_DELTA &&
+        (canHideNavAtScrollTop() || window.scrollY > 4)
+      ) {
         hideNavChrome();
       }
     },
@@ -699,7 +731,8 @@ function bindNavChrome() {
     { passive: true },
   );
   navLastScrollY = window.scrollY;
-  showNavChrome();
+  if (state.mode === "quiz") scheduleQuizNavHide();
+  else showNavChrome();
 }
 
 function syncNavOffset() {
@@ -949,6 +982,7 @@ function renderSceneQuiz() {
     </div>`;
   renderNav();
   syncNavOffset();
+  if (state.mode === "quiz" && quizNavImmersive()) scheduleQuizNavHide();
 }
 
 async function loadWeek(id) {
@@ -1015,6 +1049,7 @@ function closeSheet() {
   const backdrop = $("backdrop");
   if (sheet) sheet.hidden = true;
   if (backdrop) backdrop.hidden = true;
+  if (state.mode === "quiz") scheduleQuizNavHide();
 }
 
 function bind() {
