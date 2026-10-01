@@ -116,4 +116,4 @@ Master study file for **2026-09-21 → 09-27**. Clerical: use that week’s Trel
 ---
 
 ## CS6795 (open notes)
-Quiz 4 covered lessons 11–12 (Simon Ch. 1 and 5, Marr Ch. 1, Newell) and closed Sun 9/27. CS6795 weeks 5–7 terms are **not** distilled in this file yet: the raw lessons and transcripts are filed under `cs6795-cognitive-science/raw/`, the clean notes are not written. Say the word and 6795 gets the same treatment.
+**Quiz 4 closed Sun 9/27.** This file previously recorded Quiz 4 as covering lessons 11–12; the staff rule (Ed #15: quizzes test the *previous* week, and its own example is “quiz 5 → week 5 material”) implies Quiz 4 covered lessons 9–10 (Thagard Ch. 11–14) and that lessons 11–12 are the **Quiz 5** core due 10/04. Brian sat the quiz, so Canvas settles it. Terms for lessons 11–12 are distilled in [Week 6 Know](week-06-know.md).

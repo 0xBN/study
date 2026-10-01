@@ -31,12 +31,22 @@ body {
 }
 
 .nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 50%;
   z-index: 6;
+  width: min(40rem, 100%);
+  transform: translateX(-50%) translateY(0);
   background: var(--chrome);
   border-bottom: 1px solid var(--line);
   padding: 0.45rem 0.85rem 0.5rem;
+  padding-top: max(0.45rem, env(safe-area-inset-top, 0px));
+  transition: transform 0.22s ease;
+  will-change: transform;
+}
+
+.nav.nav--hidden {
+  transform: translateX(-50%) translateY(calc(-100% - 1px));
 }
 
 .nav-top {
@@ -263,7 +273,7 @@ body.mode-match main {
 }
 
 body.mode-quiz main {
-  padding-top: 0.35rem;
+  padding-top: calc(var(--nav-h, 7.5rem) + 0.35rem);
   padding-bottom: 0.75rem;
 }
 
@@ -486,6 +496,14 @@ body.match-hit-big {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .nav {
+    transition: none;
+  }
+
+  main {
+    transition: none;
+  }
+
   .match-choices button.pick-ok,
   .match-choices button.pick-bad,
   .match-fb.fb-ok,
@@ -571,6 +589,8 @@ select {
 
 main {
   padding: 0.75rem 1rem 3rem;
+  padding-top: calc(var(--nav-h, 7.5rem) + 0.75rem);
+  transition: padding-top 0.22s ease;
 }
 
 h2 {

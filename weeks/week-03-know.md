@@ -71,4 +71,29 @@ Titles are filing labels. Graded stems often hide the term, give a classroom/too
 
 ## CS6795 (this week)
 
-Quiz 2 / Exercise 1 were the graded hits. For leftover open-notes drill, use [Week 2 Know](week-02-know.md). Project pitch is the next deliverable (due 9/27) — not Honorlock.
+## CS6795 — Lessons 7–8 (the Quiz 3 scope: week 3 material)
+
+Quiz 2 / Exercise 1 were the graded hits. For leftover week-2 drill use [Week 2 Know](week-02-know.md). Project pitch is the next deliverable (due 9/27) — not Honorlock. Quiz 3 (due end of week 4, 9/20) tests these two lessons.
+
+### Lesson 7 — Review of Cognitive Science
+
+- **What counts as behavior here**: cognitive/intelligent behavior — language generation and understanding, focusing attention, speech perception — not basic needs like breathing, and not yet feelings. Feelings arrive in lesson 8.
+- **Mind as a construct**: an abstraction above the brain that deals in reasoning, learning, short-term memory, long-term memory, rather than cortex and dopamine. The reason is explanatory: neural activity alone does not map cleanly onto individual behaviors, so **brain → mind → behavior** buys a more systematic route than brain → behavior.
+- **CRUM, stated plainly**: the mind holds **mental representations** and runs **procedures** on them, much like algorithms acting on data structures. The open question inside CRUM is *which* representations and procedures.
+- **The schools that answer it**: **logic** (innate knowledge plus rules of inference such as modus ponens); **rules/production systems** (fired when the antecedents match working memory, not by logical inference); **concepts** (equivalence classes that also index actions); **analogies** (one situation reminds you of another — you handle a new city by analogy to cities you know); **imagistic/iconic** representations (not necessarily propositional); **connectionism** (concepts stored as networks, activation spreading between nodes).
+- **CRUM's intended reach is universal**: it should account for a crow dropping stones into a tube to reach food, and for problem solvers like Georgia Tech or the United States, not only adult human brains. That is why the theory is stated at the level of mind.
+- **Why universality is provocative**: the Turing Test and *Blade Runner*'s futuristic version of it make the point that intelligent behavior alone cannot tell you whether you are talking to a human or a machine.
+- **Four standard criticisms**: CRUM leaves out **brains**, **emotions**, **consciousness**, and **culture** (much behavior is a product of interacting with a social and cultural world, not only of what happens inside one head). Week 3 answers the first two; week 4 answers culture.
+
+### Lesson 8 — Brains and Emotions
+
+- **The brain-theory objection**: nobody has ever seen a mind, brains physically exist — so why postulate an invisible construct when you could just study what brains do? CRUM took shape in the 1970s, dominated until roughly 2000, and has drawn growing criticism since.
+- **The counter-argument (cell-phone-to-a-Martian)**: a chips-and-circuits account never explains how the phone adds 5 + 5 or how a call connects — the implementation is a *mechanism for* something that has to be described at a higher level of abstraction. That higher level is what mind provides for cognition.
+- **Mirror neurons** (Ramachandran): neurons that fire both when acting and when watching, giving **learning by imitation** and **empathy**. Ramachandran's claim is that they shaped civilization — but note the caveat: the concepts (empathy, imitation) are what make neuron data meaningful, so the bridge does not replace the mental vocabulary.
+- **Three-way evolution**: biological, cognitive, and cultural evolution run in parallel and reinforce each other, with the direction of causality still unresolved — the same shape as the language-versus-thought question.
+- **CRUM's response to the brain critique**: neither accept as-is nor abandon — **revise and expand**. Mind occurs in or emerges from the brain, and the goal is analytical bridges (mirror neurons) between the levels.
+- **Emotions defined**: mental *and* physiological states tied to feelings (anger, fear, joy), directed at something in the world; the physiology shows internally (pulse, heart rate) and externally (facial expression, posture).
+- **Basic emotions**: six recognizable expressions — surprise, joy, sadness, anger, disgust, fear — and **Plutchik's** small set of basic emotions as four pairs of opposites (joy/sadness, acceptance/disgust, fear/anger, surprise/anticipation). Surprise is deliberately unplaced because it can be positive or negative.
+- **Four named theories of emotion** (all about the direction of causality — the same debate as mind vs brain): **James–Lange** (physiological arousal first, then the emotion), **Cannon–Bard** (arousal and emotion at the same time, with no role for thought), **Schachter–Singer** (arousal first, then you identify a *reason* and only then label the emotion — the same footsteps are welcome if you expect a friend), **Lazarus** (the mental appraisal comes first and the body follows).
+- **A CRUM account of fear**: fear as a **resource-allocation** mechanism — the mind as an operating system spending limited resources (attention, short-term memory) on the one thing that matters, while a relaxed mind spreads them widely. Anger gets a functional account too: a goal is blocked, at a cost. Fear, anger, sadness, and joy all get computational treatments — expand the theory, do not abandon it.
+- **Four kinds of stress**: **eustress** (short-term, positive, gives strength — the roller coaster), **distress** (negative, anxiety), **hyperstress** (more than a person can handle), **hypostress** (none at all, which produces boredom). The Minsky anecdote about scientists wanting 750 years is there to argue for an optimal level of stress.

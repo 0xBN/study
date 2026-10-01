@@ -2,7 +2,7 @@ const LS_KEY = "omscs-study";
 const QUIZ_LS_PREFIX = "omscs-study-quiz:";
 const COURSE = "6460";
 /** Bump with index.html ?v= so mobile can confirm a fresh load. */
-const APP_BUILD = 42;
+const APP_BUILD = 43;
 
 const state = {
   weeks: [],
@@ -584,10 +584,130 @@ function renderArticle(opts) {
   });
 }
 
+function sheetOpen() {
+  const sheet = $("sheet");
+  return !!(sheet && !sheet.hidden);
+}
+
+function navAutoHideEnabled() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return false;
+  }
+  return !sheetOpen();
+}
+
+function setNavHidden(hidden) {
+  const nav = document.querySelector(".nav");
+  if (!nav) return;
+  const on = !!hidden;
+  if (nav.classList.contains("nav--hidden") === on) return;
+  nav.classList.toggle("nav--hidden", on);
+  document.body.classList.toggle("nav--hidden", on);
+  syncNavOffset();
+  if (document.body.classList.contains("quiz-ready-next")) {
+    setQuizReadyNext(true);
+  }
+}
+
+function showNavChrome() {
+  setNavHidden(false);
+}
+
+function hideNavChrome() {
+  if (!navAutoHideEnabled()) return;
+  setNavHidden(true);
+}
+
+function canDocumentScroll() {
+  return document.documentElement.scrollHeight > window.innerHeight + 2;
+}
+
+let navLastScrollY = 0;
+const NAV_HIDE_AFTER_Y = 48;
+const NAV_SCROLL_DELTA = 8;
+
+function onNavScroll() {
+  if (!navAutoHideEnabled()) {
+    showNavChrome();
+    return;
+  }
+  const y = window.scrollY;
+  const dy = y - navLastScrollY;
+  if (y <= 4) {
+    showNavChrome();
+  } else if (dy > NAV_SCROLL_DELTA && y > NAV_HIDE_AFTER_Y) {
+    hideNavChrome();
+  } else if (dy < -NAV_SCROLL_DELTA) {
+    showNavChrome();
+  }
+  navLastScrollY = y;
+}
+
+function onNavWheel(e) {
+  if (!navAutoHideEnabled()) return;
+  if (e.deltaY < -NAV_SCROLL_DELTA) {
+    showNavChrome();
+    return;
+  }
+  if (e.deltaY <= NAV_SCROLL_DELTA) return;
+  if (canDocumentScroll()) {
+    if (window.scrollY > NAV_HIDE_AFTER_Y) hideNavChrome();
+  } else {
+    hideNavChrome();
+  }
+}
+
+function bindNavChrome() {
+  const nav = document.querySelector(".nav");
+  if (!nav) return;
+  if (typeof ResizeObserver !== "undefined") {
+    const ro = new ResizeObserver(() => syncNavOffset());
+    ro.observe(nav);
+  }
+  let touchStartY = 0;
+  window.addEventListener(
+    "touchstart",
+    (e) => {
+      if (e.touches.length) touchStartY = e.touches[0].clientY;
+    },
+    { passive: true },
+  );
+  window.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!navAutoHideEnabled() || !e.touches.length) return;
+      const dy = e.touches[0].clientY - touchStartY;
+      if (dy > NAV_SCROLL_DELTA) showNavChrome();
+      else if (dy < -NAV_SCROLL_DELTA && (!canDocumentScroll() || window.scrollY > 4)) {
+        hideNavChrome();
+      }
+    },
+    { passive: true },
+  );
+  window.addEventListener("wheel", onNavWheel, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      onNavScroll();
+      if (state.mode !== "read") return;
+      clearTimeout(window.__studyScroll);
+      window.__studyScroll = setTimeout(() => {
+        state.scrollByView[viewKey()] = window.scrollY;
+        saveLs();
+      }, 200);
+    },
+    { passive: true },
+  );
+  navLastScrollY = window.scrollY;
+  showNavChrome();
+}
+
 function syncNavOffset() {
   const nav = document.querySelector(".nav");
-  const top = nav ? Math.ceil(nav.getBoundingClientRect().bottom) : 0;
-  document.documentElement.style.setProperty("--nav-offset", top + "px");
+  const hidden = nav?.classList.contains("nav--hidden");
+  const h = hidden || !nav ? 0 : Math.ceil(nav.getBoundingClientRect().height);
+  document.documentElement.style.setProperty("--nav-h", h + "px");
+  document.documentElement.style.setProperty("--nav-offset", h + "px");
 }
 
 function setQuizReadyNext(on) {
@@ -883,6 +1003,7 @@ async function showWeek(id) {
 
 function openSheet() {
   renderNav();
+  showNavChrome();
   const sheet = $("sheet");
   const backdrop = $("backdrop");
   if (sheet) sheet.hidden = false;
@@ -975,18 +1096,7 @@ function bind() {
     },
     { passive: true },
   );
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (state.mode !== "read") return;
-      clearTimeout(window.__studyScroll);
-      window.__studyScroll = setTimeout(() => {
-        state.scrollByView[viewKey()] = window.scrollY;
-        saveLs();
-      }, 200);
-    },
-    { passive: true },
-  );
+  bindNavChrome();
   window.addEventListener("pagehide", () => {
     stashView();
     saveLs();
