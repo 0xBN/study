@@ -2,6 +2,8 @@
 
 Phone reader for closed-book Honorlock quizzes. Live at [0xbn.github.io/study](https://0xbn.github.io/study/).
 
+**Install (Android):** open in Chrome → menu → **Install app** (or “Add to Home screen” with standalone icon). Requires v45+ with service worker. Week/deck content still loads from the network when online.
+
 **CS6460 only.** Path: **Read** (lecture-context init) → **Quiz** (scene MC + explainer) → Honorlock practice → graded. No Match. CS6795 stays in private Know files.
 
 ## Local

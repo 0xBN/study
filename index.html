@@ -4,8 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#111111" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Quiz Drill" />
     <title>CS6460 Quiz Drill</title>
-    <link rel="stylesheet" href="./styles.css?v=44" />
+    <link rel="manifest" href="./app.webmanifest" />
+    <link rel="icon" href="./icons/icon-192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+    <link rel="stylesheet" href="./styles.css?v=45" />
   </head>
   <body>
     <nav class="nav" aria-label="CS6460 quiz drill">
@@ -14,7 +21,7 @@
           <span></span><span></span><span></span>
         </button>
         <p id="nav-title" class="nav-title">CS6460</p>
-        <span id="app-build" class="app-build" aria-label="App build">v44</span>
+        <span id="app-build" class="app-build" aria-label="App build">v45</span>
         <div class="mode-toggle" role="tablist" aria-label="Mode">
           <button type="button" id="mode-read" class="mode active" aria-pressed="true">Read</button>
           <button type="button" id="mode-quiz" class="mode" aria-pressed="false">Quiz</button>
@@ -67,6 +74,6 @@
       <article id="article"></article>
       <section id="scene-quiz" class="match" hidden aria-label="Scene quiz"></section>
     </main>
-    <script src="./app.js?v=44"></script>
+    <script src="./app.js?v=45"></script>
   </body>
 </html>

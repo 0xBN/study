@@ -2,7 +2,7 @@ const LS_KEY = "omscs-study";
 const QUIZ_LS_PREFIX = "omscs-study-quiz:";
 const COURSE = "6460";
 /** Bump with index.html ?v= so mobile can confirm a fresh load. */
-const APP_BUILD = 44;
+const APP_BUILD = 45;
 
 const state = {
   weeks: [],
@@ -1139,7 +1139,17 @@ function bind() {
   });
 }
 
+function registerServiceWorker() {
+  if (!("serviceWorker" in navigator)) return;
+  const register = () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  };
+  if (document.readyState === "complete") register();
+  else window.addEventListener("load", register, { once: true });
+}
+
 async function boot() {
+  registerServiceWorker();
   const manifest = await fetch("./manifest.json").then((r) => r.json());
   state.weeks = manifest.weeks;
   state.syncedAt = manifest.syncedAt || null;
