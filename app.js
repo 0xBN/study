@@ -2,7 +2,7 @@ const LS_KEY = "omscs-study";
 const QUIZ_LS_PREFIX = "omscs-study-quiz:";
 const COURSE = "6460";
 /** Bump with index.html ?v= so mobile can confirm a fresh load. */
-const APP_BUILD = 46;
+const APP_BUILD = 47;
 
 const state = {
   weeks: [],
@@ -17,7 +17,6 @@ const state = {
   face: "term",
   showSections: true,
   mode: "read",
-  navOpen: false,
   quizBank: null,
   quizProgress: {},
   quizSession: null,
@@ -114,7 +113,6 @@ function saveLs() {
       face: state.face,
       showSections: state.showSections,
       mode: state.mode === "quiz" ? "quiz" : "read",
-      navOpen: !!state.navOpen,
     }),
   );
 }
@@ -438,7 +436,7 @@ function setMode(mode) {
     renderArticle();
   }
   renderNav();
-  applyNavOpen();
+  syncChromeInsets();
 }
 
 function renderNav() {
@@ -586,32 +584,6 @@ function renderArticle(opts) {
   });
 }
 
-function setNavOpen(open) {
-  state.navOpen = !!open;
-  document.body.classList.toggle("nav-open", state.navOpen);
-  document.body.classList.toggle("nav-closed", !state.navOpen);
-  const nav = $("app-nav");
-  const toggle = $("nav-toggle");
-  if (nav) nav.classList.toggle("nav--closed", !state.navOpen);
-  if (toggle) {
-    toggle.setAttribute("aria-expanded", state.navOpen ? "true" : "false");
-    toggle.setAttribute("aria-label", state.navOpen ? "Hide toolbar" : "Show toolbar");
-  }
-  saveLs();
-  syncNavOffset();
-  if (document.body.classList.contains("quiz-ready-next")) {
-    setQuizReadyNext(true);
-  }
-}
-
-function toggleNavOpen() {
-  setNavOpen(!state.navOpen);
-}
-
-function applyNavOpen() {
-  setNavOpen(!!state.navOpen);
-}
-
 function syncQuizDock() {
   const dock = document.querySelector(".quiz-dock");
   const h = dock ? Math.ceil(dock.getBoundingClientRect().height) : 0;
@@ -621,14 +593,12 @@ function syncQuizDock() {
 function bindNavLayout() {
   if (typeof ResizeObserver === "undefined") return;
   const ro = new ResizeObserver(() => {
-    syncNavOffset();
+    syncChromeInsets();
     syncQuizDock();
   });
-  const nav = $("app-nav");
-  const float = document.querySelector(".chrome-float");
+  const fabWrap = document.querySelector(".menu-fab-wrap");
   const scene = $("scene-quiz");
-  if (nav) ro.observe(nav);
-  if (float) ro.observe(float);
+  if (fabWrap) ro.observe(fabWrap);
   if (scene) ro.observe(scene);
   window.addEventListener(
     "scroll",
@@ -644,17 +614,13 @@ function bindNavLayout() {
   );
 }
 
-function syncNavOffset() {
-  const float = document.querySelector(".chrome-float");
-  const nav = $("app-nav");
-  const floatH = float ? Math.ceil(float.getBoundingClientRect().height) : 0;
-  const navH =
-    state.navOpen && nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
-  const top = floatH + navH;
-  document.documentElement.style.setProperty("--chrome-top", top + "px");
-  document.documentElement.style.setProperty("--chrome-float-h", floatH + "px");
-  document.documentElement.style.setProperty("--nav-h", top + "px");
-  document.documentElement.style.setProperty("--nav-offset", top + "px");
+function syncChromeInsets() {
+  const fab = document.querySelector(".menu-fab");
+  const inset = fab ? Math.ceil(fab.getBoundingClientRect().width) + 20 : 56;
+  document.documentElement.style.setProperty("--menu-inset", inset + "px");
+  document.documentElement.style.setProperty("--chrome-top", "0px");
+  document.documentElement.style.setProperty("--nav-h", "0px");
+  document.documentElement.style.setProperty("--nav-offset", "0px");
 }
 
 function setQuizReadyNext(on) {
@@ -664,7 +630,7 @@ function setQuizReadyNext(on) {
   const hit = $("quiz-next-hit");
   if (!hit) return;
   hit.hidden = !on;
-  syncNavOffset();
+  syncChromeInsets();
   syncQuizDock();
 }
 
@@ -857,7 +823,20 @@ function renderSceneQuiz() {
     }
   }
   const choiceLetters = "ABCD";
-  const choices = q.choices
+  const optionList = q.choices
+    .map((c, i) => {
+      const letter = choiceLetters[i] || "?";
+      let cls = "";
+      if (s.answered) {
+        if (c.correct) cls = " quiz-opt-ok";
+        else if (s.pickedId === c.id) cls = " quiz-opt-bad";
+      }
+      return `<li class="quiz-opt${cls}"><span class="quiz-opt-letter">${letter}</span><span class="quiz-opt-text">${inlineHtml(
+        c.text,
+      )}</span></li>`;
+    })
+    .join("");
+  const dockButtons = q.choices
     .map((c, i) => {
       let cls = "";
       if (s.answered) {
@@ -865,11 +844,9 @@ function renderSceneQuiz() {
         else if (s.pickedId === c.id) cls = " pick-bad";
       }
       const letter = choiceLetters[i] || "?";
-      return `<button type="button" data-qchoice="${c.id}" class="${cls}" ${
+      return `<button type="button" data-qchoice="${c.id}" class="quiz-pick${cls}" aria-label="Choice ${letter}" ${
         s.answered ? "disabled" : ""
-      }><span class="quiz-letter" aria-hidden="true">${letter}</span><span class="quiz-choice-text">${inlineHtml(
-        c.text,
-      )}</span></button>`;
+      }><span class="quiz-letter">${letter}</span></button>`;
     })
     .join("");
   setQuizReadyNext(!!s.answered);
@@ -893,15 +870,16 @@ function renderSceneQuiz() {
         <div class="quiz-stage">
           ${meta}
           <p class="match-prompt quiz-stem">${inlineHtml(q.stem)}</p>
+          <ol class="quiz-options" aria-label="Answer choices">${optionList}</ol>
           ${fb}
         </div>
       </div>
       <div class="quiz-dock">
-        <div class="match-choices quiz-choices">${choices}</div>
+        <div class="quiz-picks" role="group" aria-label="Pick A, B, C, or D">${dockButtons}</div>
       </div>
     </div>`;
   renderNav();
-  syncNavOffset();
+  syncChromeInsets();
   syncQuizDock();
 }
 
@@ -959,22 +937,33 @@ function openSheet() {
   renderNav();
   const sheet = $("sheet");
   const backdrop = $("backdrop");
+  const menu = $("open-sheet");
   if (sheet) sheet.hidden = false;
   if (backdrop) backdrop.hidden = false;
+  document.body.classList.add("menu-open");
+  if (menu) menu.setAttribute("aria-expanded", "true");
 }
 
 function closeSheet() {
   const sheet = $("sheet");
   const backdrop = $("backdrop");
+  const menu = $("open-sheet");
   if (sheet) sheet.hidden = true;
   if (backdrop) backdrop.hidden = true;
+  document.body.classList.remove("menu-open");
+  if (menu) menu.setAttribute("aria-expanded", "false");
+}
+
+function toggleMenu() {
+  const sheet = $("sheet");
+  if (sheet && !sheet.hidden) closeSheet();
+  else openSheet();
 }
 
 function bind() {
   on("mode-read", "click", () => setMode("read"));
   on("mode-quiz", "click", () => setMode("quiz"));
-  on("nav-toggle", "click", toggleNavOpen);
-  on("open-sheet", "click", openSheet);
+  on("open-sheet", "click", toggleMenu);
   on("close-sheet", "click", closeSheet);
   on("backdrop", "click", closeSheet);
   on("weeks", "click", (e) => {
@@ -1043,7 +1032,7 @@ function bind() {
   window.addEventListener(
     "resize",
     () => {
-      syncNavOffset();
+      syncChromeInsets();
       if (document.body.classList.contains("quiz-ready-next")) {
         setQuizReadyNext(true);
       }
@@ -1079,8 +1068,6 @@ async function boot() {
   state.face = ls.face === "def" ? "def" : "term";
   state.showSections = ls.showSections !== false;
   state.mode = ls.mode === "quiz" ? "quiz" : "read";
-  state.navOpen =
-    typeof ls.navOpen === "boolean" ? ls.navOpen : state.mode !== "quiz";
   state.collapsed =
     ls.collapsed && typeof ls.collapsed === "object" ? ls.collapsed : {};
   state.cursorByView =
