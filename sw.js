@@ -1,5 +1,5 @@
 /** Keep SHELL_BUILD in sync with APP_BUILD in app.js / index.html ?v= */
-const SHELL_BUILD = "45";
+const SHELL_BUILD = "46";
 
 const CACHE = `study-shell-${SHELL_BUILD}`;
 const PRECACHE = [

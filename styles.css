@@ -30,9 +30,92 @@ body {
   margin: 0 auto;
 }
 
-.nav {
+.chrome-float {
   position: fixed;
   top: 0;
+  left: 50%;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: min(40rem, 100%);
+  padding: max(0.4rem, env(safe-area-inset-top, 0px)) 0.75rem 0.35rem;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.chrome-float > * {
+  pointer-events: auto;
+}
+
+.nav-fab {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  min-height: unset;
+  padding: 0;
+  border-radius: 11px;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  background: rgb(22 22 22 / 0.88);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 18px rgb(0 0 0 / 0.35);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.nav-fab:active {
+  transform: scale(0.96);
+}
+
+body.nav-open .nav-fab#nav-toggle {
+  border-color: rgb(110 168 255 / 0.45);
+  background: rgb(28 32 38 / 0.95);
+}
+
+.nav-fab-bars {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 1rem;
+  height: 1rem;
+}
+
+.nav-fab-bars i {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--text);
+  transition:
+    transform 0.22s ease,
+    opacity 0.18s ease;
+}
+
+body.nav-open .nav-fab-bars i:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+body.nav-open .nav-fab-bars i:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+.nav-fab-dots {
+  position: relative;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--muted);
+  box-shadow:
+    -6px 0 0 var(--muted),
+    6px 0 0 var(--muted);
+}
+
+.nav {
+  position: fixed;
+  top: var(--chrome-float-h, 3.25rem);
   left: 50%;
   z-index: 6;
   width: min(40rem, 100%);
@@ -40,13 +123,18 @@ body {
   background: var(--chrome);
   border-bottom: 1px solid var(--line);
   padding: 0.45rem 0.85rem 0.5rem;
-  padding-top: max(0.45rem, env(safe-area-inset-top, 0px));
-  transition: transform 0.22s ease;
+  transition:
+    transform 0.24s ease,
+    opacity 0.2s ease,
+    visibility 0.24s;
   will-change: transform;
 }
 
-.nav.nav--hidden {
-  transform: translateX(-50%) translateY(calc(-100% - 1px));
+.nav.nav--closed {
+  transform: translateX(-50%) translateY(calc(-100% - 0.5rem));
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .nav-top {
@@ -74,25 +162,6 @@ body {
   font-variant-numeric: tabular-nums;
   color: var(--muted);
   letter-spacing: 0.02em;
-}
-
-.burger {
-  flex: 0 0 auto;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-  width: 2.5rem;
-  min-height: 2.5rem;
-  padding: 0.55rem 0.6rem;
-}
-
-.burger span {
-  display: block;
-  height: 2px;
-  width: 100%;
-  border-radius: 1px;
-  background: var(--text);
 }
 
 .mode-toggle {
@@ -252,8 +321,9 @@ textarea {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0;
-  z-index: 5;
+  top: var(--chrome-top, 0);
+  bottom: var(--quiz-dock-h, 0);
+  z-index: 3;
   cursor: pointer;
   background: transparent;
 }
@@ -261,9 +331,9 @@ textarea {
 .match {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: calc(100dvh - var(--nav-h, 7.5rem) - 1rem);
-  padding: 0.5rem 0 max(1.25rem, env(safe-area-inset-bottom, 0px));
+  justify-content: flex-start;
+  min-height: calc(100dvh - var(--chrome-top, 3.5rem) - var(--quiz-dock-h, 0px));
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -273,16 +343,47 @@ body.mode-match main {
 }
 
 body.mode-quiz main {
-  padding-top: calc(var(--nav-h, 7.5rem) + 0.35rem);
-  padding-bottom: 0.75rem;
+  padding: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 body.quiz-ready-next main {
-  padding-bottom: 4rem;
+  padding-bottom: 0;
+}
+
+.quiz-layout {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - var(--chrome-top, 3.5rem));
+  width: 100%;
+}
+
+.quiz-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0.5rem 1rem 0.75rem;
+  padding-bottom: calc(var(--quiz-dock-h, 12rem) + 0.35rem);
+}
+
+.quiz-dock {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 5;
+  width: min(40rem, 100%);
+  transform: translateX(-50%);
+  padding: 0.45rem 1rem max(0.55rem, env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(180deg, rgb(17 17 17 / 0) 0%, rgb(17 17 17 / 0.92) 22%, var(--bg) 40%);
+  border-top: 1px solid var(--line);
+  box-sizing: border-box;
 }
 
 .quiz-stage {
-  padding-bottom: 1rem;
+  padding-bottom: 0.25rem;
 }
 
 .quiz-meta {
@@ -296,20 +397,49 @@ body.quiz-ready-next main {
 }
 
 .quiz-choices button {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
   text-align: left;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.35;
-  padding: 0.75rem 0.85rem;
+  padding: 0.65rem 0.75rem;
+  min-height: 3rem;
+}
+
+.quiz-letter {
+  flex: 0 0 auto;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: grid;
+  place-items: center;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 0.04);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  color: var(--accent);
+}
+
+.quiz-choice-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-top: 0.12rem;
 }
 
 .match-stage {
   width: 100%;
-  /* slight downward bias so choices sit in the thumb band */
-  transform: translateY(6vh);
 }
 
 .match-board {
   width: 100%;
+  padding: 0.5rem 1rem 1.25rem;
+  box-sizing: border-box;
+}
+
+body.mode-quiz .quiz-dock .match-choices {
+  gap: 0.4rem;
 }
 
 body.match-ready-next main {
@@ -496,10 +626,9 @@ body.match-hit-big {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav {
-    transition: none;
-  }
-
+  .nav,
+  .nav-fab,
+  .nav-fab-bars i,
   main {
     transition: none;
   }
@@ -589,8 +718,8 @@ select {
 
 main {
   padding: 0.75rem 1rem 3rem;
-  padding-top: calc(var(--nav-h, 7.5rem) + 0.75rem);
-  transition: padding-top 0.22s ease;
+  padding-top: calc(var(--chrome-top, 3.5rem) + 0.75rem);
+  transition: padding-top 0.24s ease;
 }
 
 h2 {

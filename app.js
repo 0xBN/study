@@ -2,7 +2,7 @@ const LS_KEY = "omscs-study";
 const QUIZ_LS_PREFIX = "omscs-study-quiz:";
 const COURSE = "6460";
 /** Bump with index.html ?v= so mobile can confirm a fresh load. */
-const APP_BUILD = 45;
+const APP_BUILD = 46;
 
 const state = {
   weeks: [],
@@ -17,6 +17,7 @@ const state = {
   face: "term",
   showSections: true,
   mode: "read",
+  navOpen: false,
   quizBank: null,
   quizProgress: {},
   quizSession: null,
@@ -113,6 +114,7 @@ function saveLs() {
       face: state.face,
       showSections: state.showSections,
       mode: state.mode === "quiz" ? "quiz" : "read",
+      navOpen: !!state.navOpen,
     }),
   );
 }
@@ -436,9 +438,7 @@ function setMode(mode) {
     renderArticle();
   }
   renderNav();
-  syncNavOffset();
-  if (state.mode === "quiz") scheduleQuizNavHide();
-  else showNavChrome();
+  applyNavOpen();
 }
 
 function renderNav() {
@@ -586,141 +586,53 @@ function renderArticle(opts) {
   });
 }
 
-function sheetOpen() {
-  const sheet = $("sheet");
-  return !!(sheet && !sheet.hidden);
-}
-
-function navAutoHideEnabled() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    return false;
+function setNavOpen(open) {
+  state.navOpen = !!open;
+  document.body.classList.toggle("nav-open", state.navOpen);
+  document.body.classList.toggle("nav-closed", !state.navOpen);
+  const nav = $("app-nav");
+  const toggle = $("nav-toggle");
+  if (nav) nav.classList.toggle("nav--closed", !state.navOpen);
+  if (toggle) {
+    toggle.setAttribute("aria-expanded", state.navOpen ? "true" : "false");
+    toggle.setAttribute("aria-label", state.navOpen ? "Hide toolbar" : "Show toolbar");
   }
-  return !sheetOpen();
-}
-
-function setNavHidden(hidden) {
-  const nav = document.querySelector(".nav");
-  if (!nav) return;
-  const on = !!hidden;
-  if (nav.classList.contains("nav--hidden") === on) return;
-  nav.classList.toggle("nav--hidden", on);
-  document.body.classList.toggle("nav--hidden", on);
+  saveLs();
   syncNavOffset();
   if (document.body.classList.contains("quiz-ready-next")) {
     setQuizReadyNext(true);
   }
 }
 
-function showNavChrome() {
-  setNavHidden(false);
+function toggleNavOpen() {
+  setNavOpen(!state.navOpen);
 }
 
-function hideNavChrome() {
-  if (!navAutoHideEnabled()) return;
-  setNavHidden(true);
+function applyNavOpen() {
+  setNavOpen(!!state.navOpen);
 }
 
-function navScrollRange() {
-  return Math.max(
-    0,
-    document.documentElement.scrollHeight - window.innerHeight,
-  );
+function syncQuizDock() {
+  const dock = document.querySelector(".quiz-dock");
+  const h = dock ? Math.ceil(dock.getBoundingClientRect().height) : 0;
+  document.documentElement.style.setProperty("--quiz-dock-h", h + "px");
 }
 
-/** Quiz stems often fit the viewport; tiny overflow should not block hiding. */
-function quizNavImmersive() {
-  return state.mode === "quiz" && navScrollRange() < 96;
-}
-
-function canHideNavAtScrollTop() {
-  return state.mode === "quiz" && quizNavImmersive();
-}
-
-let navLastScrollY = 0;
-const NAV_HIDE_AFTER_Y = 48;
-const NAV_SCROLL_DELTA = 8;
-
-function scheduleQuizNavHide() {
-  if (state.mode !== "quiz" || !navAutoHideEnabled()) return;
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      if (state.mode === "quiz" && navAutoHideEnabled()) hideNavChrome();
-    });
+function bindNavLayout() {
+  if (typeof ResizeObserver === "undefined") return;
+  const ro = new ResizeObserver(() => {
+    syncNavOffset();
+    syncQuizDock();
   });
-}
-
-function onNavScroll() {
-  if (!navAutoHideEnabled()) {
-    showNavChrome();
-    return;
-  }
-  const y = window.scrollY;
-  const dy = y - navLastScrollY;
-  if (y <= 4 && state.mode === "read") {
-    showNavChrome();
-  } else if (dy > NAV_SCROLL_DELTA && y > NAV_HIDE_AFTER_Y) {
-    hideNavChrome();
-  } else if (dy < -NAV_SCROLL_DELTA) {
-    showNavChrome();
-  } else if (
-    quizNavImmersive() &&
-    dy > NAV_SCROLL_DELTA &&
-    y > 0
-  ) {
-    hideNavChrome();
-  }
-  navLastScrollY = y;
-}
-
-function onNavWheel(e) {
-  if (!navAutoHideEnabled()) return;
-  if (e.deltaY < -NAV_SCROLL_DELTA) {
-    showNavChrome();
-    return;
-  }
-  if (e.deltaY <= NAV_SCROLL_DELTA) return;
-  if (quizNavImmersive() || !navScrollRange()) {
-    hideNavChrome();
-    return;
-  }
-  if (window.scrollY > NAV_HIDE_AFTER_Y) hideNavChrome();
-}
-
-function bindNavChrome() {
-  const nav = document.querySelector(".nav");
-  if (!nav) return;
-  if (typeof ResizeObserver !== "undefined") {
-    const ro = new ResizeObserver(() => syncNavOffset());
-    ro.observe(nav);
-  }
-  let touchStartY = 0;
-  window.addEventListener(
-    "touchstart",
-    (e) => {
-      if (e.touches.length) touchStartY = e.touches[0].clientY;
-    },
-    { passive: true },
-  );
-  window.addEventListener(
-    "touchmove",
-    (e) => {
-      if (!navAutoHideEnabled() || !e.touches.length) return;
-      const dy = e.touches[0].clientY - touchStartY;
-      if (dy > NAV_SCROLL_DELTA) showNavChrome();
-      else if (
-        dy < -NAV_SCROLL_DELTA &&
-        (canHideNavAtScrollTop() || window.scrollY > 4)
-      ) {
-        hideNavChrome();
-      }
-    },
-    { passive: true },
-  );
-  window.addEventListener("wheel", onNavWheel, { passive: true });
+  const nav = $("app-nav");
+  const float = document.querySelector(".chrome-float");
+  const scene = $("scene-quiz");
+  if (nav) ro.observe(nav);
+  if (float) ro.observe(float);
+  if (scene) ro.observe(scene);
   window.addEventListener(
     "scroll",
     () => {
-      onNavScroll();
       if (state.mode !== "read") return;
       clearTimeout(window.__studyScroll);
       window.__studyScroll = setTimeout(() => {
@@ -730,17 +642,19 @@ function bindNavChrome() {
     },
     { passive: true },
   );
-  navLastScrollY = window.scrollY;
-  if (state.mode === "quiz") scheduleQuizNavHide();
-  else showNavChrome();
 }
 
 function syncNavOffset() {
-  const nav = document.querySelector(".nav");
-  const hidden = nav?.classList.contains("nav--hidden");
-  const h = hidden || !nav ? 0 : Math.ceil(nav.getBoundingClientRect().height);
-  document.documentElement.style.setProperty("--nav-h", h + "px");
-  document.documentElement.style.setProperty("--nav-offset", h + "px");
+  const float = document.querySelector(".chrome-float");
+  const nav = $("app-nav");
+  const floatH = float ? Math.ceil(float.getBoundingClientRect().height) : 0;
+  const navH =
+    state.navOpen && nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+  const top = floatH + navH;
+  document.documentElement.style.setProperty("--chrome-top", top + "px");
+  document.documentElement.style.setProperty("--chrome-float-h", floatH + "px");
+  document.documentElement.style.setProperty("--nav-h", top + "px");
+  document.documentElement.style.setProperty("--nav-offset", top + "px");
 }
 
 function setQuizReadyNext(on) {
@@ -751,11 +665,7 @@ function setQuizReadyNext(on) {
   if (!hit) return;
   hit.hidden = !on;
   syncNavOffset();
-  if (on) {
-    const nav = document.querySelector(".nav");
-    const top = nav ? Math.ceil(nav.getBoundingClientRect().bottom) : 0;
-    hit.style.top = top + "px";
-  }
+  syncQuizDock();
 }
 
 function ensureQuizSession(forceNew) {
@@ -946,16 +856,20 @@ function renderSceneQuiz() {
       )}</p><p class="muted match-tap">Tap for next</p></div>`;
     }
   }
+  const choiceLetters = "ABCD";
   const choices = q.choices
-    .map((c) => {
+    .map((c, i) => {
       let cls = "";
       if (s.answered) {
         if (c.correct) cls = " pick-ok";
         else if (s.pickedId === c.id) cls = " pick-bad";
       }
+      const letter = choiceLetters[i] || "?";
       return `<button type="button" data-qchoice="${c.id}" class="${cls}" ${
         s.answered ? "disabled" : ""
-      }>${inlineHtml(c.text)}</button>`;
+      }><span class="quiz-letter" aria-hidden="true">${letter}</span><span class="quiz-choice-text">${inlineHtml(
+        c.text,
+      )}</span></button>`;
     })
     .join("");
   setQuizReadyNext(!!s.answered);
@@ -974,15 +888,21 @@ function renderSceneQuiz() {
       ? `<p class="quiz-meta muted">${sourceLabel}</p>`
       : "";
   root.innerHTML = `
-    <div class="match-stage quiz-stage">
-      ${meta}
-      <p class="match-prompt quiz-stem">${inlineHtml(q.stem)}</p>
-      <div class="match-choices quiz-choices">${choices}</div>
-      ${fb}
+    <div class="quiz-layout">
+      <div class="quiz-scroll">
+        <div class="quiz-stage">
+          ${meta}
+          <p class="match-prompt quiz-stem">${inlineHtml(q.stem)}</p>
+          ${fb}
+        </div>
+      </div>
+      <div class="quiz-dock">
+        <div class="match-choices quiz-choices">${choices}</div>
+      </div>
     </div>`;
   renderNav();
   syncNavOffset();
-  if (state.mode === "quiz" && quizNavImmersive()) scheduleQuizNavHide();
+  syncQuizDock();
 }
 
 async function loadWeek(id) {
@@ -1037,7 +957,6 @@ async function showWeek(id) {
 
 function openSheet() {
   renderNav();
-  showNavChrome();
   const sheet = $("sheet");
   const backdrop = $("backdrop");
   if (sheet) sheet.hidden = false;
@@ -1049,12 +968,12 @@ function closeSheet() {
   const backdrop = $("backdrop");
   if (sheet) sheet.hidden = true;
   if (backdrop) backdrop.hidden = true;
-  if (state.mode === "quiz") scheduleQuizNavHide();
 }
 
 function bind() {
   on("mode-read", "click", () => setMode("read"));
   on("mode-quiz", "click", () => setMode("quiz"));
+  on("nav-toggle", "click", toggleNavOpen);
   on("open-sheet", "click", openSheet);
   on("close-sheet", "click", closeSheet);
   on("backdrop", "click", closeSheet);
@@ -1131,7 +1050,6 @@ function bind() {
     },
     { passive: true },
   );
-  bindNavChrome();
   window.addEventListener("pagehide", () => {
     stashView();
     saveLs();
@@ -1161,6 +1079,8 @@ async function boot() {
   state.face = ls.face === "def" ? "def" : "term";
   state.showSections = ls.showSections !== false;
   state.mode = ls.mode === "quiz" ? "quiz" : "read";
+  state.navOpen =
+    typeof ls.navOpen === "boolean" ? ls.navOpen : state.mode !== "quiz";
   state.collapsed =
     ls.collapsed && typeof ls.collapsed === "object" ? ls.collapsed : {};
   state.cursorByView =
@@ -1176,6 +1096,7 @@ async function boot() {
   }
   state.chunkId = viewLookup(state.cursorByView) || ls.chunkId || null;
   bind();
+  bindNavLayout();
   await Promise.all([loadWeek(state.currentWeekId), loadQuizBank()]);
   writeHash();
   setMode(state.mode);

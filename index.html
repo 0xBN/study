@@ -12,16 +12,28 @@
     <link rel="manifest" href="./app.webmanifest" />
     <link rel="icon" href="./icons/icon-192.png" type="image/png" />
     <link rel="apple-touch-icon" href="./icons/icon-192.png" />
-    <link rel="stylesheet" href="./styles.css?v=45" />
+    <link rel="stylesheet" href="./styles.css?v=46" />
   </head>
-  <body>
-    <nav class="nav" aria-label="CS6460 quiz drill">
+  <body class="nav-closed">
+    <div class="chrome-float">
+      <button
+        type="button"
+        id="nav-toggle"
+        class="nav-fab"
+        aria-label="Toolbar"
+        aria-controls="app-nav"
+        aria-expanded="false"
+      >
+        <span class="nav-fab-bars" aria-hidden="true"><i></i><i></i></span>
+      </button>
+      <button type="button" id="open-sheet" class="nav-fab nav-fab--menu" aria-label="Drill options">
+        <span class="nav-fab-dots" aria-hidden="true"></span>
+      </button>
+    </div>
+    <nav id="app-nav" class="nav nav--closed" aria-label="CS6460 quiz drill">
       <div class="nav-top">
-        <button type="button" id="open-sheet" class="burger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
         <p id="nav-title" class="nav-title">CS6460</p>
-        <span id="app-build" class="app-build" aria-label="App build">v45</span>
+        <span id="app-build" class="app-build" aria-label="App build">v46</span>
         <div class="mode-toggle" role="tablist" aria-label="Mode">
           <button type="button" id="mode-read" class="mode active" aria-pressed="true">Read</button>
           <button type="button" id="mode-quiz" class="mode" aria-pressed="false">Quiz</button>
@@ -74,6 +86,6 @@
       <article id="article"></article>
       <section id="scene-quiz" class="match" hidden aria-label="Scene quiz"></section>
     </main>
-    <script src="./app.js?v=45"></script>
+    <script src="./app.js?v=46"></script>
   </body>
 </html>
